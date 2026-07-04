@@ -1,0 +1,53 @@
+import { useState } from 'react'
+import Home from './components/Home.jsx'
+import PlayerSetup from './components/PlayerSetup.jsx'
+import ImpostorGame from './components/impostor/ImpostorGame.jsx'
+import ResistenciaGame from './components/resistencia/ResistenciaGame.jsx'
+
+export default function App() {
+  const [screen, setScreen] = useState('home')
+  const [selectedGame, setSelectedGame] = useState(null)
+  const [players, setPlayers] = useState([])
+
+  function goHome() {
+    setScreen('home')
+    setSelectedGame(null)
+    setPlayers([])
+  }
+
+  if (screen === 'home') {
+    return (
+      <Home
+        onSelectGame={(game) => {
+          setSelectedGame(game)
+          setScreen('setup')
+        }}
+      />
+    )
+  }
+
+  if (screen === 'setup') {
+    return (
+      <PlayerSetup
+        gameName={selectedGame.nome}
+        minPlayers={selectedGame.minPlayers}
+        maxPlayers={selectedGame.id === 'resistencia' ? 10 : undefined}
+        onBack={goHome}
+        onStart={(names) => {
+          setPlayers(names)
+          setScreen('game')
+        }}
+      />
+    )
+  }
+
+  if (screen === 'game' && selectedGame.id === 'impostor') {
+    return <ImpostorGame players={players} onBack={goHome} />
+  }
+
+  if (screen === 'game' && selectedGame.id === 'resistencia') {
+    return <ResistenciaGame players={players} onBack={goHome} />
+  }
+
+  return null
+}
