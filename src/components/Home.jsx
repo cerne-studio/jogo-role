@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { Skull, Users } from 'lucide-react'
+import { Skull, Users, Theater, Hash } from 'lucide-react'
 
 const GAMES = [
   {
@@ -15,6 +15,20 @@ const GAMES = [
     desc: 'Leais x traidores. Missões, votação e sabotagem.',
     icon: Users,
     minPlayers: 5,
+  },
+  {
+    id: 'mimica',
+    nome: 'Mímica',
+    desc: 'Um mimica, o resto adivinha. Cronômetro e banco de palavras.',
+    icon: Theater,
+    minPlayers: 3,
+  },
+  {
+    id: 'nota',
+    nome: 'Jogo da Nota',
+    desc: 'Um recebe uma nota secreta, o resto pergunta e tenta acertar o número.',
+    icon: Hash,
+    minPlayers: 3,
   },
 ]
 

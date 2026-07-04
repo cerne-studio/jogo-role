@@ -3,6 +3,8 @@ import Home from './components/Home.jsx'
 import PlayerSetup from './components/PlayerSetup.jsx'
 import ImpostorGame from './components/impostor/ImpostorGame.jsx'
 import ResistenciaGame from './components/resistencia/ResistenciaGame.jsx'
+import MimicaGame from './components/mimica/MimicaGame.jsx'
+import JogoDaNotaGame from './components/nota/JogoDaNotaGame.jsx'
 
 export default function App() {
   const [screen, setScreen] = useState('home')
@@ -47,6 +49,14 @@ export default function App() {
 
   if (screen === 'game' && selectedGame.id === 'resistencia') {
     return <ResistenciaGame players={players} onBack={goHome} />
+  }
+
+  if (screen === 'game' && selectedGame.id === 'mimica') {
+    return <MimicaGame players={players} onBack={goHome} />
+  }
+
+  if (screen === 'game' && selectedGame.id === 'nota') {
+    return <JogoDaNotaGame players={players} onBack={goHome} />
   }
 
   return null
