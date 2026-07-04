@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { Skull, Users, Theater, Hash } from 'lucide-react'
+import { Skull, Users, Theater, Hash, HelpCircle } from 'lucide-react'
 
 const GAMES = [
   {
@@ -28,6 +28,13 @@ const GAMES = [
     nome: 'Jogo da Nota',
     desc: 'Um recebe uma nota secreta, o resto pergunta e tenta acertar o número.',
     icon: Hash,
+    minPlayers: 3,
+  },
+  {
+    id: 'quemsoueu',
+    nome: 'Quem Sou Eu',
+    desc: 'Só você não vê seu personagem. Pergunte e descubra quem é.',
+    icon: HelpCircle,
     minPlayers: 3,
   },
 ]
