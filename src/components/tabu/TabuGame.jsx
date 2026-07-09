@@ -199,12 +199,18 @@ export default function TabuGame({ players, onBack }) {
           </div>
           <h1 className="mt-6 text-4xl font-bold tracking-tight">{carta.palavra}</h1>
 
-          <div className="mt-6 flex flex-col gap-2">
-            {carta.proibidas.map((p) => (
+          <div className="mt-6 overflow-hidden rounded-2xl border border-border-strong bg-elevated">
+            <p className="border-b border-border px-4 py-2 text-[11px] font-semibold uppercase tracking-widest text-danger">
+              Não pode falar
+            </p>
+            {carta.proibidas.map((p, i) => (
               <div
                 key={p}
-                className="rounded-xl border border-danger/30 bg-danger/10 px-4 py-2 text-sm font-medium text-danger"
+                className={`flex items-center gap-2.5 px-4 py-3 text-sm font-medium text-primary ${
+                  i < carta.proibidas.length - 1 ? 'border-b border-border' : ''
+                }`}
               >
+                <Ban className="h-3.5 w-3.5 shrink-0 text-danger" />
                 {p}
               </div>
             ))}
