@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { Skull, Users, Theater, Hash, HelpCircle } from 'lucide-react'
+import { Skull, Users, Theater, Hash, HelpCircle, Ban } from 'lucide-react'
 
 const GAMES = [
   {
@@ -35,6 +35,13 @@ const GAMES = [
     nome: 'Quem Sou Eu',
     desc: 'Só você não vê seu personagem. Pergunte e descubra quem é.',
     icon: HelpCircle,
+    minPlayers: 3,
+  },
+  {
+    id: 'tabu',
+    nome: 'Tabu',
+    desc: 'Descreva a palavra sem falar as proibidas. Duplas rotativas.',
+    icon: Ban,
     minPlayers: 3,
   },
 ]
