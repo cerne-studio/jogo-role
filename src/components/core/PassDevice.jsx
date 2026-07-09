@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { Lock, EyeOff } from 'lucide-react'
+import ExitButton from './ExitButton.jsx'
 
 const AUTO_HIDE_SECONDS = 12
 
@@ -9,7 +10,7 @@ const AUTO_HIDE_SECONDS = 12
  * exige toque explícito pra revelar, e esconde sozinha (auto-hide)
  * se ninguém apertar o botão — nunca depende de alguém lembrar.
  */
-export default function PassDevice({ playerName, index, total, children, onDone }) {
+export default function PassDevice({ playerName, index, total, children, onDone, onExit }) {
   const [revealed, setRevealed] = useState(false)
   const [secondsLeft, setSecondsLeft] = useState(AUTO_HIDE_SECONDS)
 
@@ -36,6 +37,7 @@ export default function PassDevice({ playerName, index, total, children, onDone 
 
   return (
     <div className="flex min-h-[100dvh] flex-col items-center justify-center px-6 py-10">
+      {onExit && <ExitButton onExit={onExit} />}
       <AnimatePresence mode="wait">
         {!revealed ? (
           <motion.div

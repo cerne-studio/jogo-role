@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { Lock } from 'lucide-react'
+import ExitButton from '../core/ExitButton.jsx'
 
 const AUTO_DEFAULT_SECONDS = 20
 const NUMEROS = Array.from({ length: 11 }, (_, i) => i)
 
-export default function SecretGuess({ playerName, index, total, onGuess }) {
+export default function SecretGuess({ playerName, index, total, onGuess, onExit }) {
   const [revealed, setRevealed] = useState(false)
   const [secondsLeft, setSecondsLeft] = useState(AUTO_DEFAULT_SECONDS)
 
@@ -27,6 +28,7 @@ export default function SecretGuess({ playerName, index, total, onGuess }) {
 
   return (
     <div className="flex min-h-[100dvh] flex-col items-center justify-center px-6 py-10">
+      {onExit && <ExitButton onExit={onExit} />}
       <AnimatePresence mode="wait">
         {!revealed ? (
           <motion.div

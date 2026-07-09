@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { ArrowLeft, EyeOff, Lock } from 'lucide-react'
+import ExitButton from '../core/ExitButton.jsx'
 import { sortearPersonagens } from '../../data/personagensBank.js'
 
 export default function QuemSouEuGame({ players, onBack }) {
@@ -31,6 +32,7 @@ export default function QuemSouEuGame({ players, onBack }) {
   if (phase === 'mostrar') {
     return (
       <div className="flex min-h-[100dvh] flex-col items-center justify-center px-6 py-10">
+        <ExitButton onExit={onBack} />
         <AnimatePresence mode="wait">
           {!revelado ? (
             <motion.div
@@ -98,6 +100,7 @@ export default function QuemSouEuGame({ players, onBack }) {
   if (phase === 'perguntas') {
     return (
       <div className="flex min-h-[100dvh] flex-col items-center justify-center px-6 py-10 text-center">
+        <ExitButton onExit={onBack} />
         <div className="w-full max-w-sm">
           <h1 className="text-2xl font-bold tracking-tight">{jogadorAtual} pergunta</h1>
           <p className="mt-2 text-sm text-secondary">
@@ -119,6 +122,7 @@ export default function QuemSouEuGame({ players, onBack }) {
   if (phase === 'confirmacao') {
     return (
       <div className="flex min-h-[100dvh] flex-col items-center justify-center px-6 py-10 text-center">
+        <ExitButton onExit={onBack} />
         <div className="w-full max-w-sm">
           <h1 className="text-2xl font-bold tracking-tight">
             {jogadorAtual} disse quem acha que é
@@ -148,6 +152,7 @@ export default function QuemSouEuGame({ players, onBack }) {
   if (phase === 'resultado') {
     return (
       <div className="flex min-h-[100dvh] flex-col items-center justify-center px-6 py-10 text-center">
+        <ExitButton onExit={onBack} />
         <div className="w-full max-w-sm">
           <h1 className={`text-2xl font-bold tracking-tight ${ultimoResultado ? 'text-success' : 'text-danger'}`}>
             {ultimoResultado ? 'Acertou!' : 'Não era dessa vez'}
@@ -176,6 +181,7 @@ export default function QuemSouEuGame({ players, onBack }) {
     const ordenado = [...players].sort((a, b) => (scores[b] || 0) - (scores[a] || 0))
     return (
       <div className="flex min-h-[100dvh] flex-col px-6 py-8">
+        <ExitButton onExit={onBack} />
         <div className="mx-auto w-full max-w-sm flex-1">
           <button onClick={onBack} className="flex items-center gap-1 text-sm text-secondary">
             <ArrowLeft className="h-4 w-4" /> Sair

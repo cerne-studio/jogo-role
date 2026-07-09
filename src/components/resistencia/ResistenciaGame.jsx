@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion } from 'motion/react'
 import { ArrowLeft } from 'lucide-react'
 import PassDevice from '../core/PassDevice.jsx'
+import ExitButton from '../core/ExitButton.jsx'
 import SecretVote from './SecretVote.jsx'
 import { getComposicao } from '../../data/resistenciaTable.js'
 
@@ -106,6 +107,7 @@ export default function ResistenciaGame({ players, onBack }) {
         playerName={players[roleRevealIndex]}
         index={roleRevealIndex}
         total={players.length}
+        onExit={onBack}
         onDone={() => {
           if (roleRevealIndex + 1 < players.length) {
             setRoleRevealIndex((i) => i + 1)
@@ -153,6 +155,7 @@ export default function ResistenciaGame({ players, onBack }) {
   if (phase === 'propor-equipe') {
     return (
       <div className="flex min-h-[100dvh] flex-col px-6 py-8">
+        <ExitButton onExit={onBack} />
         <div className="mx-auto w-full max-w-sm flex-1">
           <button onClick={onBack} className="flex items-center gap-1 text-sm text-secondary">
             <ArrowLeft className="h-4 w-4" /> Sair
@@ -208,6 +211,7 @@ export default function ResistenciaGame({ players, onBack }) {
   if (phase === 'aprovacao') {
     return (
       <div className="flex min-h-[100dvh] flex-col items-center justify-center px-6 py-10 text-center">
+        <ExitButton onExit={onBack} />
         <div className="w-full max-w-sm">
           {MissionHeader}
           <h1 className="text-2xl font-bold tracking-tight">Aprovam a equipe?</h1>
@@ -247,6 +251,7 @@ export default function ResistenciaGame({ players, onBack }) {
         total={proposedTeam.length}
         isTraidor={roles[jogadorAtualIdx] === 'traidor'}
         onVote={registrarVoto}
+        onExit={onBack}
       />
     )
   }
@@ -254,6 +259,7 @@ export default function ResistenciaGame({ players, onBack }) {
   if (phase === 'resultado-missao') {
     return (
       <div className="flex min-h-[100dvh] flex-col items-center justify-center px-6 py-10 text-center">
+        <ExitButton onExit={onBack} />
         <div className="w-full max-w-sm">
           {MissionHeader}
           <h1 className={`text-3xl font-bold tracking-tight ${lastResult.falhou ? 'text-danger' : 'text-success'}`}>
@@ -278,6 +284,7 @@ export default function ResistenciaGame({ players, onBack }) {
     const traidoresVenceram = fimMotivo === 'traidores' || fimMotivo === 'rejeicoes'
     return (
       <div className="flex min-h-[100dvh] flex-col items-center justify-center px-6 py-10 text-center">
+        <ExitButton onExit={onBack} />
         <div className="w-full max-w-sm">
           <h1 className={`text-3xl font-bold tracking-tight ${traidoresVenceram ? 'text-danger' : 'text-success'}`}>
             {traidoresVenceram ? 'Os traidores venceram' : 'Os leais venceram'}

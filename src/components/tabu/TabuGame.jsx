@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
 import { ArrowLeft, Ban, Check, Minus, Plus, SkipForward } from 'lucide-react'
+import ExitButton from '../core/ExitButton.jsx'
 import { categoriasTabu, sortearCartas } from '../../data/tabuBank.js'
 
 export default function TabuGame({ players, onBack }) {
@@ -79,6 +80,7 @@ export default function TabuGame({ players, onBack }) {
   if (phase === 'setup') {
     return (
       <div className="flex min-h-[100dvh] flex-col px-6 py-8">
+        <ExitButton onExit={onBack} />
         <div className="mx-auto w-full max-w-sm flex-1">
           <button onClick={onBack} className="flex items-center gap-1 text-sm text-secondary">
             <ArrowLeft className="h-4 w-4" /> Voltar
@@ -152,6 +154,7 @@ export default function TabuGame({ players, onBack }) {
   if (phase === 'pronto') {
     return (
       <div className="flex min-h-[100dvh] flex-col items-center justify-center px-6 py-10 text-center">
+        <ExitButton onExit={onBack} />
         <div className="w-full max-w-sm">
           <p className="text-xs font-medium uppercase tracking-widest text-muted">
             Passe o celular para
@@ -188,6 +191,7 @@ export default function TabuGame({ players, onBack }) {
     const carta = cartas[cardIndex]
     return (
       <div className="flex min-h-[100dvh] flex-col items-center justify-center px-6 py-10 text-center">
+        <ExitButton onExit={onBack} />
         <div className="w-full max-w-sm">
           <div className="flex items-center justify-between text-xs text-secondary">
             <span>
@@ -240,6 +244,7 @@ export default function TabuGame({ players, onBack }) {
   if (phase === 'fim-rodada') {
     return (
       <div className="flex min-h-[100dvh] flex-col items-center justify-center px-6 py-10 text-center">
+        <ExitButton onExit={onBack} />
         <div className="w-full max-w-sm">
           <h1 className="text-2xl font-bold tracking-tight">Fim da rodada</h1>
           <p className="mt-2 text-sm text-secondary">
@@ -267,6 +272,7 @@ export default function TabuGame({ players, onBack }) {
     const ordenado = [...players].sort((a, b) => (scores[b] || 0) - (scores[a] || 0))
     return (
       <div className="flex min-h-[100dvh] flex-col px-6 py-8">
+        <ExitButton onExit={onBack} />
         <div className="mx-auto w-full max-w-sm flex-1">
           <h1 className="text-2xl font-bold tracking-tight">Placar</h1>
           <ul className="mt-6 flex flex-col gap-2">

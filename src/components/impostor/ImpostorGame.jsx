@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion } from 'motion/react'
 import { ArrowLeft, Minus, Plus, Skull } from 'lucide-react'
 import PassDevice from '../core/PassDevice.jsx'
+import ExitButton from '../core/ExitButton.jsx'
 import { sortearPalavra } from '../../data/wordBank.js'
 
 function sortearPapeis(players, numImpostores) {
@@ -52,6 +53,7 @@ export default function ImpostorGame({ players, onBack }) {
   if (phase === 'config') {
     return (
       <div className="flex min-h-[100dvh] flex-col px-6 py-8">
+        <ExitButton onExit={onBack} />
         <div className="mx-auto w-full max-w-sm flex-1">
           <button onClick={onBack} className="flex items-center gap-1 text-sm text-secondary">
             <ArrowLeft className="h-4 w-4" /> Voltar
@@ -104,6 +106,7 @@ export default function ImpostorGame({ players, onBack }) {
         playerName={players[revealIndex]}
         index={revealIndex}
         total={players.length}
+        onExit={onBack}
         onDone={() => {
           if (revealIndex + 1 < players.length) {
             setRevealIndex((i) => i + 1)
@@ -141,6 +144,7 @@ export default function ImpostorGame({ players, onBack }) {
   if (phase === 'discussao') {
     return (
       <div className="flex min-h-[100dvh] flex-col items-center justify-center px-6 py-10 text-center">
+        <ExitButton onExit={onBack} />
         <div className="w-full max-w-sm">
           <h1 className="text-2xl font-bold tracking-tight">Todos já viram</h1>
           <p className="mt-2 text-sm text-secondary">
@@ -163,6 +167,7 @@ export default function ImpostorGame({ players, onBack }) {
     const impostores = players.filter((_, i) => roles[i] === 'impostor')
     return (
       <div className="flex min-h-[100dvh] flex-col items-center justify-center px-6 py-10 text-center">
+        <ExitButton onExit={onBack} />
         <div className="w-full max-w-sm">
           <p className="text-xs font-medium uppercase tracking-widest text-secondary">
             A palavra era
@@ -199,6 +204,7 @@ export default function ImpostorGame({ players, onBack }) {
     const ordenado = [...players].sort((a, b) => (scores[b] || 0) - (scores[a] || 0))
     return (
       <div className="flex min-h-[100dvh] flex-col px-6 py-8">
+        <ExitButton onExit={onBack} />
         <div className="mx-auto w-full max-w-sm flex-1">
           <h1 className="text-2xl font-bold tracking-tight">Placar</h1>
           <ul className="mt-6 flex flex-col gap-2">

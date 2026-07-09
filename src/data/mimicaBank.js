@@ -1,31 +1,33 @@
-// Curadoria manual — palavras/ações fáceis de mimicar sem falar.
+// Curadoria manual — palavras difíceis de mimicar sem falar, mesma pegada
+// específica/criativa do banco do Tabu. Nada de "Cachorro" ou "Gato" fácil.
 export const mimicaBank = {
-  Animais: [
-    'Cachorro', 'Gato', 'Macaco', 'Elefante', 'Cobra', 'Sapo', 'Tubarão',
-    'Pinguim', 'Canguru', 'Jacaré', 'Girafa', 'Leão', 'Urso', 'Coelho',
-    'Tartaruga', 'Borboleta', 'Aranha', 'Abelha', 'Cavalo', 'Vaca',
-    'Porco', 'Galinha', 'Pato', 'Coruja', 'Morcego', 'Baleia', 'Polvo',
-    'Caranguejo', 'Formiga', 'Dinossauro',
+  Filmes: [
+    'Titanic', 'Jurassic Park', 'Matrix', 'De Volta para o Futuro',
+    'O Poderoso Chefão', 'Star Wars', 'O Rei Leão', 'Vingadores',
+    'Bacurau', 'Cidade de Deus', 'Coringa', 'La La Land',
   ],
-  Profissões: [
-    'Dentista', 'Professor', 'Bombeiro', 'Jogador de futebol', 'Cantor',
-    'Dançarino', 'Mergulhador', 'Motorista de ônibus', 'Pescador',
-    'Cabeleireiro', 'Palhaço', 'Mágico', 'Astronauta', 'Cozinheiro',
-    'Garçom', 'Faxineiro', 'Pintor', 'Fotógrafo', 'DJ', 'Personal trainer',
-    'Marceneiro', 'Eletricista', 'Encanador', 'Salva-vidas', 'Jardineiro',
-    'Entregador', 'Segurança', 'Recepcionista', 'Veterinário',
-    'Apresentador de TV',
+  'Personagens e Artistas': [
+    'Michael Jackson', 'Charlie Chaplin', 'Silvio Santos', 'Chaves',
+    'Freddie Mercury', 'Batman', 'Darth Vader', 'Zorro',
+    'Drácula', 'Sherlock Holmes', 'Ayrton Senna', 'Cristiano Ronaldo',
   ],
-  'Ações do dia a dia': [
-    'Escovar os dentes', 'Tomar banho', 'Dirigir', 'Dançar forró',
-    'Jogar vôlei', 'Nadar', 'Pescar', 'Tocar violão', 'Andar de bicicleta',
-    'Jogar xadrez', 'Cortar cabelo', 'Fazer pipoca', 'Tirar selfie',
-    'Jogar boliche', 'Andar de skate', 'Pular corda', 'Fazer churrasco',
-    'Lavar louça', 'Passar roupa', 'Jogar baralho',
-    'Trocar canal de TV com controle quebrado', 'Tirar uma soneca',
-    'Correr atrás do ônibus', 'Tropeçar', 'Espirrar', 'Imitar um robô',
-    'Jogar sinuca', 'Fazer malabarismo', 'Andar na chuva sem guarda-chuva',
-    'Tocar bateria',
+  'Emoções e Conceitos': [
+    'Ciúme', 'Nostalgia', 'Déjà vu', 'Procrastinação',
+    'Paranoia', 'Insônia', 'Timidez', 'Arrependimento',
+    'Curiosidade', 'Constrangimento', 'Alívio', 'Impaciência',
+  ],
+  'Profissões Difíceis': [
+    'Arqueólogo', 'Contorcionista', 'Ventríloquo', 'Domador de leões',
+    'Legista', 'Apicultor', 'Sommelier', 'Taxidermista',
+    'Engenheiro de som', 'Alfaiate',
+  ],
+  'Ações Específicas': [
+    'Fazer origami', 'Tocar bateria em uma banda', 'Pilotar um avião',
+    'Costurar um botão', 'Jogar xadrez contra um mestre',
+    'Discar um telefone de disco antigo', 'Trocar um pneu furado',
+    'Empinar pipa com vento fraco', 'Desentupir uma pia',
+    'Fazer malabarismo com tochas de fogo', 'Equilibrar-se numa corda bamba',
+    'Pescar com rede',
   ],
 }
 

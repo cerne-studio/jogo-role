@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { Lock } from 'lucide-react'
+import ExitButton from '../core/ExitButton.jsx'
 
 const AUTO_DEFAULT_SECONDS = 15
 
@@ -9,7 +10,7 @@ const AUTO_DEFAULT_SECONDS = 15
  * esconde e passa — sem contador de progresso visível pro grupo, pra
  * não vazar quem já votou ou hesitação de ninguém.
  */
-export default function SecretVote({ playerName, index, total, isTraidor, onVote }) {
+export default function SecretVote({ playerName, index, total, isTraidor, onVote, onExit }) {
   const [revealed, setRevealed] = useState(false)
   const [secondsLeft, setSecondsLeft] = useState(AUTO_DEFAULT_SECONDS)
 
@@ -31,6 +32,7 @@ export default function SecretVote({ playerName, index, total, isTraidor, onVote
 
   return (
     <div className="flex min-h-[100dvh] flex-col items-center justify-center px-6 py-10">
+      {onExit && <ExitButton onExit={onExit} />}
       <AnimatePresence mode="wait">
         {!revealed ? (
           <motion.div

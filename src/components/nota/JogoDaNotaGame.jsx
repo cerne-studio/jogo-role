@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion } from 'motion/react'
 import { ArrowLeft } from 'lucide-react'
 import PassDevice from '../core/PassDevice.jsx'
+import ExitButton from '../core/ExitButton.jsx'
 import SecretGuess from './SecretGuess.jsx'
 
 export default function JogoDaNotaGame({ players, onBack }) {
@@ -51,6 +52,7 @@ export default function JogoDaNotaGame({ players, onBack }) {
         playerName={donoNome}
         index={donoIndex}
         total={players.length}
+        onExit={onBack}
         onDone={() => setPhase('perguntas')}
       >
         <p className="text-xs font-medium uppercase tracking-widest text-secondary">
@@ -67,6 +69,7 @@ export default function JogoDaNotaGame({ players, onBack }) {
   if (phase === 'perguntas') {
     return (
       <div className="flex min-h-[100dvh] flex-col items-center justify-center px-6 py-10 text-center">
+        <ExitButton onExit={onBack} />
         <div className="w-full max-w-sm">
           <h1 className="text-2xl font-bold tracking-tight">Perguntem pra {donoNome}</h1>
           <p className="mt-2 text-sm text-secondary">
@@ -92,6 +95,7 @@ export default function JogoDaNotaGame({ players, onBack }) {
         index={guessIndex}
         total={outrosJogadores.length}
         onGuess={registrarPalpite}
+        onExit={onBack}
       />
     )
   }
@@ -99,6 +103,7 @@ export default function JogoDaNotaGame({ players, onBack }) {
   if (phase === 'revelacao') {
     return (
       <div className="flex min-h-[100dvh] flex-col items-center justify-center px-6 py-10 text-center">
+        <ExitButton onExit={onBack} />
         <div className="w-full max-w-sm">
           <p className="text-xs font-medium uppercase tracking-widest text-secondary">
             A nota de {donoNome} era
@@ -140,6 +145,7 @@ export default function JogoDaNotaGame({ players, onBack }) {
     const ordenado = [...players].sort((a, b) => (scores[b] || 0) - (scores[a] || 0))
     return (
       <div className="flex min-h-[100dvh] flex-col px-6 py-8">
+        <ExitButton onExit={onBack} />
         <div className="mx-auto w-full max-w-sm flex-1">
           <button onClick={onBack} className="flex items-center gap-1 text-sm text-secondary">
             <ArrowLeft className="h-4 w-4" /> Sair
