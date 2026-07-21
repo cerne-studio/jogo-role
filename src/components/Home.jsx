@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { Skull, Users, Theater, Hash, HelpCircle, Ban } from 'lucide-react'
+import { Skull, Users, Theater, Hash, HelpCircle, Ban, Target } from 'lucide-react'
 
 const GAMES = [
   {
@@ -43,6 +43,13 @@ const GAMES = [
     desc: 'Descreva a palavra sem falar as proibidas. Duplas rotativas.',
     icon: Ban,
     minPlayers: 3,
+  },
+  {
+    id: 'palpite',
+    nome: 'Palpite',
+    desc: 'Perguntas impossíveis de saber. Quem chega mais perto ganha ponto.',
+    icon: Target,
+    minPlayers: 2,
   },
 ]
 
