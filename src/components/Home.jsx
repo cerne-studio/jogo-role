@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { Skull, Users, Theater, Hash, HelpCircle, Ban, Target } from 'lucide-react'
+import { Skull, Users, Theater, Hash, HelpCircle, Ban, Target, Wrench } from 'lucide-react'
 
 const GAMES = [
   {
@@ -50,6 +50,13 @@ const GAMES = [
     desc: 'Perguntas impossíveis de saber. Quem chega mais perto ganha ponto.',
     icon: Target,
     minPlayers: 2,
+  },
+  {
+    id: 'mecanico',
+    nome: 'O Mecânico',
+    desc: 'Cooperativo. Um vê, um sabe, um faz — consertem a máquina antes do tempo acabar.',
+    icon: Wrench,
+    minPlayers: 3,
   },
 ]
 

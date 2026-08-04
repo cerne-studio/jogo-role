@@ -1,0 +1,50 @@
+export const DIFICULDADE = {
+  facil: {
+    nome: 'Fácil',
+    qtdDefeitos: 2,
+    duracaoSegundos: 200,
+    limiteErros: 10,
+    chanceEvento: 0.15,
+    chanceCritico: 0,
+    usarRestricoes: false,
+    segundosInspecao: 25,
+  },
+  normal: {
+    nome: 'Normal',
+    qtdDefeitos: 4,
+    duracaoSegundos: 170,
+    limiteErros: 7,
+    chanceEvento: 0.3,
+    chanceCritico: 0.15,
+    usarRestricoes: true,
+    segundosInspecao: 18,
+  },
+  dificil: {
+    nome: 'Difícil',
+    qtdDefeitos: 6,
+    duracaoSegundos: 130,
+    limiteErros: 5,
+    chanceEvento: 0.45,
+    chanceCritico: 0.3,
+    usarRestricoes: true,
+    segundosInspecao: 12,
+  },
+  caos: {
+    nome: 'Caos',
+    qtdDefeitos: 6,
+    duracaoSegundos: 110,
+    limiteErros: 4,
+    chanceEvento: 0.65,
+    chanceCritico: 0.45,
+    usarRestricoes: true,
+    segundosInspecao: 10,
+  },
+}
+
+export const MODOS = {
+  classico: { nome: 'Clássico', desc: 'Funções fixas até o fim. O jeito clássico de jogar.' },
+  revezamento: { nome: 'Revezamento', desc: 'As funções trocam entre os 3 jogadores a cada defeito corrigido.' },
+  umavida: { nome: 'Uma Vida', desc: 'Qualquer erro grave já encerra a partida na hora.' },
+  contrarrelogio: { nome: 'Contra o Relógio', desc: 'Sem cronômetro regressivo — o tempo conta pra cima. Batam o recorde do aparelho.' },
+  sobrevivencia: { nome: 'Sobrevivência', desc: 'Defeitos sem fim, cada vez com menos tempo. Até onde o grupo aguenta?' },
+}

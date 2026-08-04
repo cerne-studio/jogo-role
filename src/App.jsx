@@ -8,6 +8,7 @@ import JogoDaNotaGame from './components/nota/JogoDaNotaGame.jsx'
 import QuemSouEuGame from './components/quemsoueu/QuemSouEuGame.jsx'
 import TabuGame from './components/tabu/TabuGame.jsx'
 import PalpiteGame from './components/palpite/PalpiteGame.jsx'
+import MecanicoGame from './components/mecanico/MecanicoGame.jsx'
 
 export default function App() {
   const [screen, setScreen] = useState('home')
@@ -72,6 +73,10 @@ export default function App() {
 
   if (screen === 'game' && selectedGame.id === 'palpite') {
     return <PalpiteGame players={players} onBack={goHome} />
+  }
+
+  if (screen === 'game' && selectedGame.id === 'mecanico') {
+    return <MecanicoGame players={players} onBack={goHome} />
   }
 
   return null
