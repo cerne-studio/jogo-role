@@ -4,7 +4,7 @@ import { gerarModulosBomba, criarRand } from '../../data/bombaModulos.js'
 
 const TEMPO_TOTAL = 240
 
-export default function EspecialistaView({ codigo, onExit }) {
+export default function MudoView({ codigo, onExit }) {
   const [modulos] = useState(() => gerarModulosBomba(criarRand(codigo)))
   const [tempoRestante, setTempoRestante] = useState(TEMPO_TOTAL)
 
@@ -24,7 +24,9 @@ export default function EspecialistaView({ codigo, onExit }) {
             {tempoRestante}s
           </span>
         </div>
-        <p className="mt-2 text-xs text-secondary">Escute o Defusador e guie ele por cada módulo.</p>
+        <p className="mt-2 rounded-xl border border-danger/30 bg-danger/10 px-4 py-3 text-xs text-primary">
+          Você não pode falar. Mostre a tela pro Surdo, ou escreva/gesticule as regras pra ele.
+        </p>
 
         <div className="mt-6 flex flex-col gap-4">
           {modulos.map((modulo, i) => (

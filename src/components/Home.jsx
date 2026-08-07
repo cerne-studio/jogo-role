@@ -61,9 +61,9 @@ const GAMES = [
   {
     id: 'bomba',
     nome: 'A Bomba',
-    desc: 'Precisa de 2 celulares. Um vê a bomba, o outro tem o manual — não podem se ver.',
+    desc: 'Cego, Surdo e Mudo. 3 celulares — ninguém tem a informação completa sozinho.',
     icon: Bomb,
-    minPlayers: 2,
+    minPlayers: 3,
   },
 ]
 

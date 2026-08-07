@@ -11,7 +11,7 @@ import {
 
 const TEMPO_TOTAL = 240
 
-export default function DefusadorView({ codigo, onExit }) {
+export default function CegoView({ codigo, onExit }) {
   const [modulos] = useState(() => gerarModulosBomba(criarRand(codigo)))
   const [moduloIndex, setModuloIndex] = useState(0)
   const [tempoRestante, setTempoRestante] = useState(TEMPO_TOTAL)
@@ -175,7 +175,7 @@ export default function DefusadorView({ codigo, onExit }) {
           ))}
         </div>
         <h1 className="mt-4 text-xl font-bold tracking-tight">{moduloAtual.nome}</h1>
-        <p className="mt-1 text-xs text-secondary">Descreva o que você vê pro Especialista.</p>
+        <p className="mt-1 text-xs text-secondary">Escute o Surdo e aperte o que ele mandar.</p>
 
         {feedback && (
           <p className={`mt-3 text-sm font-semibold ${feedback.tipo === 'ok' ? 'text-success' : 'text-danger'}`}>
