@@ -61,6 +61,7 @@ export default function MecanicoGame({ players, onBack }) {
   useEffect(() => {
     if (fase !== 'inspecao' || !gateRevelado) return
     if (segundosInspecao <= 0) {
+      setGateRevelado(false)
       setFase('manual')
       return
     }
@@ -117,6 +118,7 @@ export default function MecanicoGame({ players, onBack }) {
   }
 
   function proximoReveal() {
+    setGateRevelado(false)
     if (revealIndex + 1 < 3) {
       setRevealIndex((i) => i + 1)
     } else {
@@ -125,6 +127,7 @@ export default function MecanicoGame({ players, onBack }) {
   }
 
   function iniciarReparo() {
+    setGateRevelado(false)
     setTentativasModuloAtual(0)
     setEstadoModulo(estadoInicialModulo(defeitoAtual))
     setEventoAtivo(null)
@@ -381,7 +384,10 @@ export default function MecanicoGame({ players, onBack }) {
         </div>
         <motion.button
           whileTap={{ scale: 0.97 }}
-          onClick={() => setFase('manual')}
+          onClick={() => {
+            setGateRevelado(false)
+            setFase('manual')
+          }}
           className="mt-6 w-full rounded-xl bg-accent px-6 py-4 text-base font-semibold text-black"
         >
           Prontos, passar pro Engenheiro

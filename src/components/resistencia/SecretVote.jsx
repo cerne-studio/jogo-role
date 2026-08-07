@@ -22,6 +22,7 @@ export default function SecretVote({ playerName, index, total, isTraidor, onVote
   useEffect(() => {
     if (!revealed) return
     if (secondsLeft <= 0) {
+      setRevealed(false)
       onVote(false)
       return
     }
@@ -29,6 +30,11 @@ export default function SecretVote({ playerName, index, total, isTraidor, onVote
     return () => clearTimeout(t)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [revealed, secondsLeft])
+
+  function votar(sabotou) {
+    setRevealed(false)
+    onVote(sabotou)
+  }
 
   return (
     <div className="flex min-h-[100dvh] flex-col items-center justify-center px-6 py-10">
@@ -70,9 +76,8 @@ export default function SecretVote({ playerName, index, total, isTraidor, onVote
           <motion.div
             key="revealed"
             initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 26 }}
+            animate={{ opacity: 1, y: 0, transition: { type: 'spring', stiffness: 300, damping: 26 } }}
+            exit={{ opacity: 0, y: -8, transition: { duration: 0.12 } }}
             className="w-full max-w-sm text-center"
           >
             <div className="rounded-2xl border border-border-strong bg-elevated px-8 py-12 shadow-[0_20px_60px_-20px_rgba(245,158,11,0.2)]">
@@ -87,14 +92,14 @@ export default function SecretVote({ playerName, index, total, isTraidor, onVote
                   <div className="mt-6 flex flex-col gap-2">
                     <motion.button
                       whileTap={{ scale: 0.96 }}
-                      onClick={() => onVote(false)}
+                      onClick={() => votar(false)}
                       className="w-full rounded-xl bg-success/15 px-6 py-4 text-sm font-semibold text-success"
                     >
                       ✅ Sucesso
                     </motion.button>
                     <motion.button
                       whileTap={{ scale: 0.96 }}
-                      onClick={() => onVote(true)}
+                      onClick={() => votar(true)}
                       className="w-full rounded-xl bg-danger/15 px-6 py-4 text-sm font-semibold text-danger"
                     >
                       💣 Sabotar
@@ -111,7 +116,7 @@ export default function SecretVote({ playerName, index, total, isTraidor, onVote
                   </h2>
                   <motion.button
                     whileTap={{ scale: 0.96 }}
-                    onClick={() => onVote(false)}
+                    onClick={() => votar(false)}
                     className="mt-6 w-full rounded-xl bg-accent px-6 py-4 text-sm font-semibold text-black"
                   >
                     Confirmar sucesso

@@ -19,6 +19,7 @@ export default function GuessInput({ playerName, index, total, pergunta, onGuess
   useEffect(() => {
     if (!revealed) return
     if (secondsLeft <= 0) {
+      setRevealed(false)
       onGuess(0)
       return
     }
@@ -30,6 +31,7 @@ export default function GuessInput({ playerName, index, total, pergunta, onGuess
   function confirmar() {
     const numero = Number(valor)
     if (valor === '' || Number.isNaN(numero)) return
+    setRevealed(false)
     onGuess(numero)
   }
 
@@ -73,9 +75,8 @@ export default function GuessInput({ playerName, index, total, pergunta, onGuess
           <motion.div
             key="revealed"
             initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 26 }}
+            animate={{ opacity: 1, y: 0, transition: { type: 'spring', stiffness: 300, damping: 26 } }}
+            exit={{ opacity: 0, y: -8, transition: { duration: 0.12 } }}
             className="w-full max-w-sm text-center"
           >
             <div className="rounded-2xl border border-border-strong bg-elevated px-6 py-10">

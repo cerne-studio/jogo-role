@@ -18,6 +18,7 @@ export default function SecretGuess({ playerName, index, total, onGuess, onExit 
   useEffect(() => {
     if (!revealed) return
     if (secondsLeft <= 0) {
+      setRevealed(false)
       onGuess(5)
       return
     }
@@ -25,6 +26,11 @@ export default function SecretGuess({ playerName, index, total, onGuess, onExit 
     return () => clearTimeout(t)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [revealed, secondsLeft])
+
+  function escolher(n) {
+    setRevealed(false)
+    onGuess(n)
+  }
 
   return (
     <div className="flex min-h-[100dvh] flex-col items-center justify-center px-6 py-10">
@@ -66,9 +72,8 @@ export default function SecretGuess({ playerName, index, total, onGuess, onExit 
           <motion.div
             key="revealed"
             initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 26 }}
+            animate={{ opacity: 1, y: 0, transition: { type: 'spring', stiffness: 300, damping: 26 } }}
+            exit={{ opacity: 0, y: -8, transition: { duration: 0.12 } }}
             className="w-full max-w-sm text-center"
           >
             <div className="rounded-2xl border border-border-strong bg-elevated px-6 py-10">
@@ -80,7 +85,7 @@ export default function SecretGuess({ playerName, index, total, onGuess, onExit 
                   <motion.button
                     key={n}
                     whileTap={{ scale: 0.92 }}
-                    onClick={() => onGuess(n)}
+                    onClick={() => escolher(n)}
                     className="flex h-14 items-center justify-center rounded-xl border border-border-strong bg-white/5 text-lg font-bold tabular-nums"
                   >
                     {n}

@@ -78,9 +78,8 @@ export default function PassDevice({ playerName, index, total, children, onDone,
           <motion.div
             key="revealed"
             initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 26 }}
+            animate={{ opacity: 1, y: 0, transition: { type: 'spring', stiffness: 300, damping: 26 } }}
+            exit={{ opacity: 0, y: -8, transition: { duration: 0.12 } }}
             className="w-full max-w-sm text-center"
           >
             <div className="rounded-2xl border border-border-strong bg-elevated px-8 py-12 shadow-[0_20px_60px_-20px_rgba(245,158,11,0.2)]">
