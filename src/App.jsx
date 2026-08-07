@@ -9,6 +9,7 @@ import QuemSouEuGame from './components/quemsoueu/QuemSouEuGame.jsx'
 import TabuGame from './components/tabu/TabuGame.jsx'
 import PalpiteGame from './components/palpite/PalpiteGame.jsx'
 import MecanicoGame from './components/mecanico/MecanicoGame.jsx'
+import BombaGame from './components/bomba/BombaGame.jsx'
 
 export default function App() {
   const [screen, setScreen] = useState('home')
@@ -26,7 +27,7 @@ export default function App() {
       <Home
         onSelectGame={(game) => {
           setSelectedGame(game)
-          setScreen('setup')
+          setScreen(game.id === 'bomba' ? 'game' : 'setup')
         }}
       />
     )
@@ -77,6 +78,10 @@ export default function App() {
 
   if (screen === 'game' && selectedGame.id === 'mecanico') {
     return <MecanicoGame players={players} onBack={goHome} />
+  }
+
+  if (screen === 'game' && selectedGame.id === 'bomba') {
+    return <BombaGame onBack={goHome} />
   }
 
   return null

@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { Skull, Users, Theater, Hash, HelpCircle, Ban, Target, Wrench } from 'lucide-react'
+import { Skull, Users, Theater, Hash, HelpCircle, Ban, Target, Wrench, Bomb } from 'lucide-react'
 
 const GAMES = [
   {
@@ -57,6 +57,13 @@ const GAMES = [
     desc: 'Cooperativo. Um vê, um sabe, um faz — consertem a máquina antes do tempo acabar.',
     icon: Wrench,
     minPlayers: 3,
+  },
+  {
+    id: 'bomba',
+    nome: 'A Bomba',
+    desc: 'Precisa de 2 celulares. Um vê a bomba, o outro tem o manual — não podem se ver.',
+    icon: Bomb,
+    minPlayers: 2,
   },
 ]
 
