@@ -10,6 +10,7 @@ import TabuGame from './components/tabu/TabuGame.jsx'
 import PalpiteGame from './components/palpite/PalpiteGame.jsx'
 import MecanicoGame from './components/mecanico/MecanicoGame.jsx'
 import BombaGame from './components/bomba/BombaGame.jsx'
+import PapelitosGame from './components/papelitos/PapelitosGame.jsx'
 
 export default function App() {
   const [screen, setScreen] = useState('home')
@@ -82,6 +83,10 @@ export default function App() {
 
   if (screen === 'game' && selectedGame.id === 'bomba') {
     return <BombaGame onBack={goHome} />
+  }
+
+  if (screen === 'game' && selectedGame.id === 'papelitos') {
+    return <PapelitosGame players={players} onBack={goHome} />
   }
 
   return null

@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { Skull, Users, Theater, Hash, HelpCircle, Ban, Target, Wrench, Bomb } from 'lucide-react'
+import { Skull, Users, Theater, Hash, HelpCircle, Ban, Target, Wrench, Bomb, StickyNote } from 'lucide-react'
 
 const GAMES = [
   {
@@ -64,6 +64,13 @@ const GAMES = [
     desc: 'Cego, Surdo e Mudo. 3 celulares — ninguém tem a informação completa sozinho.',
     icon: Bomb,
     minPlayers: 3,
+  },
+  {
+    id: 'papelitos',
+    nome: 'Papelitos',
+    desc: 'Times escrevem nomes e adivinham os mesmos papelitos em 3 rodadas: descrição, uma palavra e mímica.',
+    icon: StickyNote,
+    minPlayers: 4,
   },
 ]
 
