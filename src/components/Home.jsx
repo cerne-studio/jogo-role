@@ -1,7 +1,15 @@
 import { motion } from 'motion/react'
-import { Skull, Users, Theater, Hash, HelpCircle, Ban, Target, Wrench, Bomb, StickyNote } from 'lucide-react'
+import { Skull, Users, Theater, Hash, HelpCircle, Ban, Target, Wrench, Bomb, StickyNote, TrendingUp } from 'lucide-react'
 
 const GAMES = [
+  {
+    id: 'carreira',
+    nome: 'Carreira de Basquete',
+    desc: 'Crie um jogador, tome decisões e simule uma carreira inteira — da estreia ao retiro.',
+    icon: TrendingUp,
+    minPlayers: 1,
+    destaque: true,
+  },
   {
     id: 'impostor',
     nome: 'Impostor',
@@ -99,13 +107,26 @@ export default function Home({ onSelectGame }) {
                 whileTap={{ scale: 0.98 }}
                 whileHover={{ y: -2 }}
                 onClick={() => onSelectGame(game)}
-                className="flex items-center gap-4 rounded-2xl border border-border bg-surface p-5 text-left"
+                className={`flex items-center gap-4 rounded-2xl border p-5 text-left ${
+                  game.destaque
+                    ? 'border-accent/40 bg-accent/10'
+                    : 'border-border bg-surface'
+                }`}
               >
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent-glow">
+                <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${
+                  game.destaque ? 'bg-accent/20' : 'bg-accent-glow'
+                }`}>
                   <Icon className="h-6 w-6 text-accent" />
                 </div>
-                <div>
-                  <h2 className="font-semibold tracking-tight">{game.nome}</h2>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <h2 className="font-semibold tracking-tight">{game.nome}</h2>
+                    {game.destaque && (
+                      <span className="rounded-full bg-accent px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-black">
+                        Novo
+                      </span>
+                    )}
+                  </div>
                   <p className="mt-0.5 text-xs leading-snug text-secondary">{game.desc}</p>
                 </div>
               </motion.button>
