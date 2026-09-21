@@ -132,8 +132,12 @@ export function simularTemporada(estado, liga) {
   // desempenho relativo ao time (quanto melhor que o plantel, mais destaque)
   const desempenho = clamp(media + (media - timeForca) * 0.18 + rand(-5, 5), 40, 99)
 
-  const jogos = liga.jogos - (estado.jogosLesado ?? 0)
-  const jogosEfetivos = Math.max(0, jogos)
+  const jogosEfetivos = Math.max(0, liga.jogos)
+
+  if (jogosEfetivos === 0) {
+    return { jogos: 0, pontosPorJogo: 0, rebotesPorJogo: 0, assistenciasPorJogo: 0, percentualArremesso: 0, desempenho }
+  }
+
   const minutesMult = clamp((media / 80) * 1.1 + rand(-0.1, 0.1), 0.5, 1.4)
 
   // stats por jogo (base + ajuste pelo desempenho)

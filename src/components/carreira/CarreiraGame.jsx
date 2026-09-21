@@ -190,15 +190,24 @@ function FaseResultado({ estado, stats, manchete, titulos, premios, selecao, onC
         )}
 
         {/* stats */}
-        <div className="mt-4 grid grid-cols-4 gap-2">
-          <StatBadge label="Média" valor={mediaAtual} cor="text-accent" />
-          <StatBadge label="PTS" valor={stats.pontosPorJogo} />
-          <StatBadge label="REB" valor={stats.rebotesPorJogo} />
-          <StatBadge label="AST" valor={stats.assistenciasPorJogo} />
-        </div>
-        <p className="mt-1 text-center text-[10px] text-muted">
-          {stats.percentualArremesso}% arremesso · {stats.jogos} jogos
-        </p>
+        {stats.jogos > 0 ? (
+          <>
+            <div className="mt-4 grid grid-cols-4 gap-2">
+              <StatBadge label="Média" valor={mediaAtual} cor="text-accent" />
+              <StatBadge label="PTS" valor={stats.pontosPorJogo} />
+              <StatBadge label="REB" valor={stats.rebotesPorJogo} />
+              <StatBadge label="AST" valor={stats.assistenciasPorJogo} />
+            </div>
+            <p className="mt-1 text-center text-[10px] text-muted">
+              {stats.percentualArremesso}% arremesso · {stats.jogos} jogos
+            </p>
+          </>
+        ) : (
+          <div className="mt-4 rounded-xl border border-danger/30 bg-danger/10 px-4 py-3 text-center">
+            <p className="text-sm font-semibold text-danger">Temporada perdida</p>
+            <p className="mt-0.5 text-xs text-danger/70">Nenhum jogo disputado</p>
+          </div>
+        )}
 
         {/* atributos */}
         <div className="mt-5 flex flex-col gap-2">
