@@ -11,6 +11,7 @@ import PalpiteGame from './components/palpite/PalpiteGame.jsx'
 import MecanicoGame from './components/mecanico/MecanicoGame.jsx'
 import BombaGame from './components/bomba/BombaGame.jsx'
 import PapelitosGame from './components/papelitos/PapelitosGame.jsx'
+import ManadaGame from './components/manada/ManadaGame.jsx'
 
 export default function App() {
   const [screen, setScreen] = useState('home')
@@ -28,7 +29,7 @@ export default function App() {
       <Home
         onSelectGame={(game) => {
           setSelectedGame(game)
-          setScreen(game.id === 'bomba' ? 'game' : 'setup')
+          setScreen(game.multiDispositivo ? 'game' : 'setup')
         }}
       />
     )
@@ -87,6 +88,10 @@ export default function App() {
 
   if (screen === 'game' && selectedGame.id === 'papelitos') {
     return <PapelitosGame players={players} onBack={goHome} />
+  }
+
+  if (screen === 'game' && selectedGame.id === 'manada') {
+    return <ManadaGame onBack={goHome} />
   }
 
   return null

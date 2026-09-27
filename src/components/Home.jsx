@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { Skull, Users, Theater, Hash, HelpCircle, Ban, Target, Wrench, Bomb, StickyNote } from 'lucide-react'
+import { Skull, Users, Theater, Hash, HelpCircle, Ban, Target, Wrench, Bomb, StickyNote, Milk } from 'lucide-react'
 
 const GAMES = [
   {
@@ -64,6 +64,7 @@ const GAMES = [
     desc: 'Cego, Surdo e Mudo. 3 celulares — ninguém tem a informação completa sozinho.',
     icon: Bomb,
     minPlayers: 3,
+    multiDispositivo: true,
   },
   {
     id: 'papelitos',
@@ -71,6 +72,14 @@ const GAMES = [
     desc: 'Times escrevem nomes e adivinham os mesmos papelitos em 3 rodadas: descrição, uma palavra e mímica.',
     icon: StickyNote,
     minPlayers: 4,
+  },
+  {
+    id: 'manada',
+    nome: 'Efeito Manada',
+    desc: 'Cada um no seu celular. Adivinhe o que a maioria vai responder e fuja da Vaca Rosa.',
+    icon: Milk,
+    minPlayers: 3,
+    multiDispositivo: true,
   },
 ]
 
