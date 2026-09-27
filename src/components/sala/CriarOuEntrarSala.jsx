@@ -3,6 +3,7 @@ import { motion } from 'motion/react'
 import { ArrowLeft } from 'lucide-react'
 import ExitButton from '../core/ExitButton.jsx'
 import { supabase } from '../../lib/supabase.js'
+import { salvarSalaAtiva } from './salaMemoria.js'
 
 export default function CriarOuEntrarSala({ jogo, onEntrou, onExit }) {
   const [fase, setFase] = useState('escolha')
@@ -22,6 +23,7 @@ export default function CriarOuEntrarSala({ jogo, onEntrou, onExit }) {
       setErro(error.message)
       return
     }
+    salvarSalaAtiva(jogo, { codigo: data.codigo, nome: nomeLimpo })
     onEntrou({ salaId: data.sala_id, codigo: data.codigo })
   }
 
@@ -36,6 +38,7 @@ export default function CriarOuEntrarSala({ jogo, onEntrou, onExit }) {
       setErro(error.message)
       return
     }
+    salvarSalaAtiva(jogo, { codigo: data.codigo, nome: nomeLimpo })
     onEntrou({ salaId: data.sala_id, codigo: data.codigo })
   }
 

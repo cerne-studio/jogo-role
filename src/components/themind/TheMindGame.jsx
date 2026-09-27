@@ -1,12 +1,15 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ExitButton from '../core/ExitButton.jsx'
 import CriarOuEntrarSala from '../sala/CriarOuEntrarSala.jsx'
 import SalaLobby from '../sala/SalaLobby.jsx'
 import useJogadorAtual from '../sala/useJogadorAtual.js'
 import useSala from '../sala/useSala.js'
+import { lerSalaAtiva, limparSalaAtiva } from '../sala/salaMemoria.js'
 import { supabase } from '../../lib/supabase.js'
 import TheMindMao from './TheMindMao.jsx'
 import TheMindFim from './TheMindFim.jsx'
+
+const JOGO = 'themind'
 
 function TelaMensagem({ mensagem, onExit }) {
   return (
@@ -20,18 +23,49 @@ function TelaMensagem({ mensagem, onExit }) {
 export default function TheMindGame({ onBack }) {
   const { userId, carregando, erro: erroSessao } = useJogadorAtual()
   const [salaInfo, setSalaInfo] = useState(null)
+  const [reconectando, setReconectando] = useState(true)
   const [erroIniciar, setErroIniciar] = useState('')
   const [iniciando, setIniciando] = useState(false)
   const { sala, jogadores } = useSala(salaInfo?.salaId)
 
-  if (carregando) return <TelaMensagem mensagem="Conectando..." onExit={onBack} />
-  if (erroSessao) return <TelaMensagem mensagem={erroSessao} onExit={onBack} />
-
-  if (!salaInfo) {
-    return <CriarOuEntrarSala jogo="themind" onEntrou={setSalaInfo} onExit={onBack} />
+  function sair() {
+    limparSalaAtiva(JOGO)
+    onBack()
   }
 
-  if (!sala) return <TelaMensagem mensagem="Entrando na sala..." onExit={onBack} />
+  // Reconexão automática: se o celular travou/recarregou no meio de uma
+  // partida real, volta pra sala sem pedir o código de novo.
+  useEffect(() => {
+    if (carregando || !userId) return
+    const lembrada = lerSalaAtiva(JOGO)
+    if (!lembrada) {
+      setReconectando(false)
+      return
+    }
+    let cancelado = false
+    supabase.rpc('entrar_sala', { p_codigo: lembrada.codigo, p_nome: lembrada.nome }).then(({ data, error }) => {
+      if (cancelado) return
+      if (error) {
+        limparSalaAtiva(JOGO)
+      } else {
+        setSalaInfo({ salaId: data.sala_id, codigo: data.codigo })
+      }
+      setReconectando(false)
+    })
+    return () => {
+      cancelado = true
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [carregando, userId])
+
+  if (carregando || reconectando) return <TelaMensagem mensagem="Conectando..." onExit={sair} />
+  if (erroSessao) return <TelaMensagem mensagem={erroSessao} onExit={sair} />
+
+  if (!salaInfo) {
+    return <CriarOuEntrarSala jogo={JOGO} onEntrou={setSalaInfo} onExit={sair} />
+  }
+
+  if (!sala) return <TelaMensagem mensagem="Entrando na sala..." onExit={sair} />
 
   const souHost = sala.host_id === userId
 
@@ -50,14 +84,14 @@ export default function TheMindGame({ onBack }) {
           setIniciando(false)
           if (error) setErroIniciar(error.message)
         }}
-        onExit={onBack}
+        onExit={sair}
       />
     )
   }
 
   if (sala.status === 'finalizado') {
-    return <TheMindFim sala={sala} onExit={onBack} />
+    return <TheMindFim sala={sala} onExit={sair} />
   }
 
-  return <TheMindMao salaId={salaInfo.salaId} userId={userId} sala={sala} jogadores={jogadores} onExit={onBack} />
+  return <TheMindMao salaId={salaInfo.salaId} userId={userId} sala={sala} jogadores={jogadores} onExit={sair} />
 }
