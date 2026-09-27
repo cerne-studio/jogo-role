@@ -10,6 +10,11 @@ Registro de alterações. Mais recente no topo.
 
 ---
 
+## 2026-09-27 — Claude (2)
+- Adiciona o jogo **The Mind** — cooperativo, joga as cartas 1-100 em ordem crescente sem combinar nada, na sintonia do grupo; descarte forçado revela cartas menores e custa 1 vida por evento; shuriken descarta a menor carta de cada jogador sem custar vida
+- Corrige corrida de sessão anônima (StrictMode roda `ensureAnonSession()` duas vezes e podia criar 2 usuários diferentes na mesma aba, fazendo o host não se reconhecer como host) — fix em `src/lib/supabase.js`, beneficia o Efeito Manada também
+- Arquivos: `db/005_themind.sql`, `db/006_rpc_themind.sql`, `src/components/themind/`
+
 ## 2026-09-27 — Claude
 - Adiciona infraestrutura de sala multiplayer em tempo real (Supabase: sessão anônima, RLS, RPCs `security definer`) e o jogo **Efeito Manada** — times respondem em segredo, revelação simultânea, maioria vira "manada" e pontua, isolado único vira Vaca Rosa
 - Arquivos: `db/00{1,2,3,4}_*.sql`, `src/lib/supabase.js`, `src/components/sala/` (sala compartilhada, reaproveitável por outros jogos multi-dispositivo), `src/components/manada/`
