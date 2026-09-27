@@ -12,6 +12,7 @@ import MecanicoGame from './components/mecanico/MecanicoGame.jsx'
 import BombaGame from './components/bomba/BombaGame.jsx'
 import PapelitosGame from './components/papelitos/PapelitosGame.jsx'
 import ManadaGame from './components/manada/ManadaGame.jsx'
+import TheMindGame from './components/themind/TheMindGame.jsx'
 import CarreiraSetup from './components/carreira/CarreiraSetup.jsx'
 import CarreiraGame from './components/carreira/CarreiraGame.jsx'
 
@@ -109,6 +110,10 @@ export default function App() {
 
   if (screen === 'game' && selectedGame.id === 'manada') {
     return <ManadaGame onBack={goHome} />
+  }
+
+  if (screen === 'game' && selectedGame.id === 'themind') {
+    return <TheMindGame onBack={goHome} />
   }
 
   return null

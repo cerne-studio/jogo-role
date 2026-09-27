@@ -149,6 +149,10 @@ begin
     return iniciar_partida_manada(p_sala_id, v_total_jogadores);
   end if;
 
+  if v_sala.jogo = 'themind' then
+    return iniciar_partida_themind(p_sala_id, v_total_jogadores);
+  end if;
+
   raise exception 'jogo % ainda nao tem iniciar_partida implementado', v_sala.jogo;
 end;
 $$;

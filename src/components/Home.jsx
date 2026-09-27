@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { Skull, Users, Theater, Hash, HelpCircle, Ban, Target, Wrench, Bomb, StickyNote, Milk, TrendingUp } from 'lucide-react'
+import { Skull, Users, Theater, Hash, HelpCircle, Ban, Target, Wrench, Bomb, StickyNote, Milk, TrendingUp, Brain } from 'lucide-react'
 
 const GAMES = [
   {
@@ -86,6 +86,14 @@ const GAMES = [
     nome: 'Efeito Manada',
     desc: 'Cada um no seu celular. Adivinhe o que a maioria vai responder e fuja da Vaca Rosa.',
     icon: Milk,
+    minPlayers: 3,
+    multiDispositivo: true,
+  },
+  {
+    id: 'themind',
+    nome: 'The Mind',
+    desc: 'Cooperativo e sem falar nada. Joguem as cartas em ordem crescente só na sintonia do grupo.',
+    icon: Brain,
     minPlayers: 3,
     multiDispositivo: true,
   },
