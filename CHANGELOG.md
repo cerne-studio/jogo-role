@@ -10,6 +10,10 @@ Registro de alterações. Mais recente no topo.
 
 ---
 
+## 2026-10-01 — Claude (2)
+- **P.D.F**: meta de pontos escolhida no lobby (3 rápido, 5 normal, 7 longo; padrão 5). Só o host muda e só antes de começar; os outros veem o valor em tempo real. RPC `pdf_definir_meta` e `iniciar_partida_pdf` respeitando a meta gravada (`db/010_pdf_meta.sql`); `SalaLobby` ganhou slot `children` pra jogos acrescentarem opções; e2e cobre meta (host, não-host, valor inválido, mudança após começar)
+- Arquivos: `db/010_pdf_meta.sql`, `src/components/pdf/PdfMeta.jsx`, `src/components/sala/SalaLobby.jsx`
+
 ## 2026-10-01 — Claude
 - Adiciona o jogo **P.D.F** (18+) — cartas de humor ácido, cada um no seu celular. Juiz rotativo lê a pergunta, todo mundo responde com uma carta da própria mão (10 privadas; perguntas com 0, 1 ou 2 lacunas), respostas viram anônimas e embaralhadas, o juiz escolhe a melhor, o dono leva o ponto. Primeiro a 5 pontos vence. Host destrava a rodada se alguém sumir (45s/60s). Baralho original com 500 cartas (100 pretas + 400 brancas) em `db/data/pdf-baralho.txt`, carregado no banco por `db/009_seed_pdf.sql`; `{JOGADOR}` vira nome sorteado da sala
 - Segurança: mão e jogadas só o dono lê (RLS); baralho (`pdf_cartas`) e cartas usadas sem acesso pelo cliente; RPCs internas revogadas; escritas só via RPC `security definer` com trava na sala. `db/007_hardening.sql` também fecha `manada_perguntas` (estava sem RLS) e as funções internas do Manada/The Mind

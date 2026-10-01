@@ -11,6 +11,7 @@ import PdfEspera from './PdfEspera.jsx'
 import PdfJulgamento from './PdfJulgamento.jsx'
 import PdfResultado from './PdfResultado.jsx'
 import PdfFim from './PdfFim.jsx'
+import PdfMeta from './PdfMeta.jsx'
 
 const JOGO = 'pdf'
 
@@ -87,7 +88,9 @@ export default function PdfGame({ onBack }) {
           if (error) setErroIniciar(error.message)
         }}
         onExit={sair}
-      />
+      >
+        <PdfMeta salaId={salaInfo.salaId} meta={sala.estado?.meta ?? 5} souHost={souHost} />
+      </SalaLobby>
     )
   }
 

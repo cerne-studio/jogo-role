@@ -2,7 +2,7 @@ import { motion } from 'motion/react'
 import { Users } from 'lucide-react'
 import ExitButton from '../core/ExitButton.jsx'
 
-export default function SalaLobby({ codigo, jogadores, souHost, minimo = 3, erro, iniciando, onIniciar, onExit }) {
+export default function SalaLobby({ codigo, jogadores, souHost, minimo = 3, erro, iniciando, onIniciar, onExit, children }) {
   const podeIniciar = jogadores.length >= minimo
 
   return (
@@ -31,6 +31,8 @@ export default function SalaLobby({ codigo, jogadores, souHost, minimo = 3, erro
             </li>
           ))}
         </ul>
+
+        {children}
 
         {!podeIniciar && (
           <p className="mt-4 text-xs text-muted">Faltam {minimo - jogadores.length} jogador(es) pra começar.</p>

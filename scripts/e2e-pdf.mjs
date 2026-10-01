@@ -73,6 +73,10 @@ async function main() {
     ok(`${j.nome} entra na sala`, !r.error, r.error)
   }
 
+  await esperaErro('nao-host nao muda a meta', rpc(B, 'pdf_definir_meta', { p_sala_id: salaId, p_meta: 3 }), 'so o host')
+  await esperaErro('meta invalida e recusada', rpc(A, 'pdf_definir_meta', { p_sala_id: salaId, p_meta: 4 }), 'invalida')
+  const m = await rpc(A, 'pdf_definir_meta', { p_sala_id: salaId, p_meta: 3 })
+  ok('host define meta 3 no lobby', !m.error && m.data?.meta === 3, m.error)
   await esperaErro('nao-host nao inicia', rpc(B, 'iniciar_partida', { p_sala_id: salaId }), 'so o host')
   const d = await rpc(D, 'entrar_sala', { p_codigo: codigo, p_nome: D.nome })
   ok('Duda entra na sala', !d.error, d.error)
@@ -109,6 +113,8 @@ async function main() {
 
   // ---------- rodadas ----------
   const meta = (await estadoDe(A, salaId)).estado.meta
+  ok('partida comeca com a meta escolhida (3)', meta === 3, `meta=${meta}`)
+  await esperaErro('meta nao muda depois de comecar', rpc(A, 'pdf_definir_meta', { p_sala_id: salaId, p_meta: 7 }), 'ja comecou')
   let sala = await estadoDe(A, salaId)
   let primeiraRodadaVerificada = false
   let reconectou = false
