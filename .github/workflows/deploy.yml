@@ -1,0 +1,48 @@
+# Builda e publica o jogo no GitHub Pages (branch gh-pages) a cada push em main.
+# O Pages continua configurado como "Deploy from a branch: gh-pages / (root)" — este workflow só alimenta essa branch.
+#
+# Precisa de 2 Actions *variables* (não secrets: a anon key do Supabase é pública por desenho,
+# vai embutida no JS do navegador de qualquer jeito; o que protege os dados é o RLS):
+#   VITE_SUPABASE_URL        https://<ref>.supabase.co
+#   VITE_SUPABASE_ANON_KEY   chave publishable/anon do projeto
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY }}
+
+      - name: Publica em gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          force_orphan: true
