@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { Skull, Users, Theater, Hash, HelpCircle, Ban, Target, Wrench, Bomb, StickyNote, Milk, TrendingUp, Brain } from 'lucide-react'
+import { Skull, Users, Theater, Hash, HelpCircle, Ban, Target, StickyNote, Milk, TrendingUp, Brain, Layers } from 'lucide-react'
 
 const GAMES = [
   {
@@ -8,7 +8,6 @@ const GAMES = [
     desc: 'Crie um jogador, tome decisões e simule uma carreira inteira — da estreia ao retiro.',
     icon: TrendingUp,
     minPlayers: 1,
-    destaque: true,
   },
   {
     id: 'impostor',
@@ -60,21 +59,6 @@ const GAMES = [
     minPlayers: 2,
   },
   {
-    id: 'mecanico',
-    nome: 'O Mecânico',
-    desc: 'Cooperativo. Um vê, um sabe, um faz — consertem a máquina antes do tempo acabar.',
-    icon: Wrench,
-    minPlayers: 3,
-  },
-  {
-    id: 'bomba',
-    nome: 'A Bomba',
-    desc: 'Cego, Surdo e Mudo. 3 celulares — ninguém tem a informação completa sozinho.',
-    icon: Bomb,
-    minPlayers: 3,
-    multiDispositivo: true,
-  },
-  {
     id: 'papelitos',
     nome: 'Papelitos',
     desc: 'Times escrevem nomes e adivinham os mesmos papelitos em 3 rodadas: descrição, uma palavra e mímica.',
@@ -94,6 +78,14 @@ const GAMES = [
     nome: 'The Mind',
     desc: 'Cooperativo e sem falar nada. Joguem as cartas em ordem crescente só na sintonia do grupo.',
     icon: Brain,
+    minPlayers: 3,
+    multiDispositivo: true,
+  },
+  {
+    id: 'pdf',
+    nome: 'P.D.F',
+    desc: '18+. Cada um no seu celular. O juiz lê a pergunta, todo mundo responde com a pior carta que tem.',
+    icon: Layers,
     minPlayers: 3,
     multiDispositivo: true,
   },
@@ -124,25 +116,14 @@ export default function Home({ onSelectGame }) {
                 whileTap={{ scale: 0.98 }}
                 whileHover={{ y: -2 }}
                 onClick={() => onSelectGame(game)}
-                className={`flex items-center gap-4 rounded-2xl border p-5 text-left ${
-                  game.destaque
-                    ? 'border-accent/40 bg-accent/10'
-                    : 'border-border bg-surface'
-                }`}
+                className="flex items-center gap-4 rounded-2xl border border-border bg-surface p-5 text-left"
               >
-                <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${
-                  game.destaque ? 'bg-accent/20' : 'bg-accent-glow'
-                }`}>
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent-glow">
                   <Icon className="h-6 w-6 text-accent" />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
                     <h2 className="font-semibold tracking-tight">{game.nome}</h2>
-                    {game.destaque && (
-                      <span className="rounded-full bg-accent px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-black">
-                        Novo
-                      </span>
-                    )}
                   </div>
                   <p className="mt-0.5 text-xs leading-snug text-secondary">{game.desc}</p>
                 </div>

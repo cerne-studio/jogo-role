@@ -1,0 +1,500 @@
+P|1|role|A bebida acabou, então a gente passou a beber ____.
+P|1|role|Nunca mais pisei naquele bar depois de ____.
+P|1|role|O segurança da balada me barrou por causa de ____.
+P|1|role|Às 4 da manhã, o grupo concordou que a melhor ideia era ____.
+P|1|role|Na saideira, {JOGADOR} confessou que ____.
+P|1|role|O DJ trocou a música e a pista inteira começou a ____.
+P|2|role|Eu trocaria ____ por ____ sem pensar duas vezes.
+P|1|role|Não sou bêbado, só ____ depois da terceira.
+P|0|role|O que sempre acaba no chão do banheiro de balada?
+P|1|role|Já saí de um rolê mais cedo por causa de ____.
+P|1|role|Churrasco de domingo: começou com picanha e terminou com ____.
+P|1|role|O grupo do zap decidiu: "esse fim de semana a gente vai ____."
+P|1|trabalho|O RH me chamou na sala por causa de ____.
+P|0|trabalho|O que você não deveria pesquisar no Google no trabalho?
+P|1|trabalho|Meu chefe mandou um e-mail com o assunto "URGENTE": ____.
+P|1|trabalho|Na entrevista de emprego, o recrutador pediu pra eu provar que sei ____.
+P|1|trabalho|A reunião que poderia ser um e-mail virou ____.
+P|1|trabalho|Pedi demissão depois de descobrir que o chefe ____.
+P|1|trabalho|Vazou o grupo do escritório. O pior print foi de ____.
+P|1|trabalho|O novo benefício da empresa é ____. Só não tem vale-refeição.
+P|2|trabalho|O coach quântico garantiu: com ____ você alcança ____ em 30 dias.
+P|1|trabalho|{JOGADOR} foi demitido depois de ____.
+P|1|familia|Minha mãe mandou no grupo da família uma foto de ____.
+P|0|familia|Qual é a pior coisa pra ouvir do seu sogro no almoço de domingo?
+P|0|familia|O que o seu pai nunca vai admitir que gosta?
+P|1|familia|Minha avó, 82 anos, descobriu ____ e agora não para.
+P|1|familia|No Natal, o tio bêbado levantou o copo e brindou a ____.
+P|1|familia|Dica de ouro da minha avó: nunca confie em quem ____.
+P|1|familia|Meu pai ficou três dias sem falar comigo depois de ____.
+P|0|familia|O que a gente encontra na gaveta de bagunça da casa dos pais?
+P|1|familia|Minha cunhada trouxe pra ceia de Natal ____.
+P|1|familia|Descobri no velório do meu bisavô que ele tinha ____.
+P|1|sexo|A pior coisa que já aconteceu comigo num motel foi ____.
+P|1|sexo|Meu ex nunca me superou. Ele ainda guarda ____.
+P|1|sexo|Estava tudo indo bem no primeiro encontro até ele pedir ____.
+P|1|sexo|A pior coisa pra dizer na hora H é "____".
+P|1|sexo|Meu perfil no app de namoro diz: "Procuro alguém que goste de ____."
+P|0|sexo|O que faz um date acabar mais cedo?
+P|1|sexo|{JOGADOR} acordou na casa de um desconhecido, ao lado de ____.
+P|1|sexo|Meu casamento acabou por causa de ____.
+P|1|sexo|A palavra de segurança do casal é "____".
+P|2|sexo|Ele disse que era solteiro, mas aí a mulher dele chegou carregando ____ e gritando ____.
+P|0|sexo|O que a gente encontra no bolso da calça depois do rolê?
+P|1|sexo|Minha mãe me flagrou com ____.
+P|1|internet|A última pesquisa no histórico de {JOGADOR} foi ____.
+P|1|internet|Meu OnlyFans vai ser só sobre ____.
+P|1|internet|O vídeo que viralizou no TikTok mostra ____.
+P|1|internet|Fui cancelado no Twitter depois de postar ____.
+P|1|internet|O algoritmo me conhece tanto que só me recomenda ____.
+P|1|internet|Print do chat: "Amigo, para de mandar ____ às 3 da manhã."
+P|0|internet|O que o seu histórico de compras diz sobre você?
+P|1|internet|O novo app do momento promete ____ em três toques.
+P|1|internet|Gravei um áudio de 6 minutos só pra explicar ____.
+P|1|internet|A live do influencer terminou quando ele mostrou ____.
+P|1|grana|Gastei meu 13º salário todo em ____.
+P|1|grana|Meu investimento "infalível" era ____.
+P|1|grana|Pedi um empréstimo ao banco pra comprar ____.
+P|2|grana|O Procon multou a loja por vender ____ como se fosse ____.
+P|1|grana|Pagar o aluguel ficou impossível depois que descobri ____.
+P|1|grana|Meu primo cripto jura que ____ vai bombar no ano que vem.
+P|1|grana|Meu cartão de crédito está estourado por causa de ____.
+P|0|grana|O que você faria se ganhasse na Mega-Sena, só pra ser feliz de verdade?
+P|1|grana|Não é pelo dinheiro, é por ____.
+P|1|corpo|O médico olhou meu exame, suspirou e disse: "isso aqui é ____."
+P|1|corpo|Meu corpo é um templo. Um templo abandonado, cheio de ____.
+P|0|corpo|O que faz um Uber ser cancelado depois de aceitar a corrida?
+P|1|corpo|Minha dieta começa segunda e acaba terça com ____.
+P|1|corpo|A academia me baniu depois que eu levei ____.
+P|1|corpo|Descobri que sou alérgico a ____.
+P|1|corpo|Meu remédio tem como efeito colateral ____.
+P|1|brasil|A prefeitura anunciou que vai trocar todos os semáforos por ____.
+P|1|brasil|Na CPI de hoje, a principal prova foi ____.
+P|2|brasil|Direto de Brasília: o novo ministro da ____ foi flagrado com ____.
+P|1|brasil|Pesquisa Datafolha: 7 em cada 10 brasileiros trocariam o fim de semana por ____.
+P|2|brasil|URGENTE: a Anvisa proibiu ____ depois de ____.
+P|2|brasil|O Ministério da Saúde adverte: ____ pode causar ____.
+P|1|brasil|Vazou o áudio: "pode mandar ____ que eu resolvo".
+P|1|brasil|O novo reality show da TV aberta vai se chamar ____.
+P|1|brasil|A banda de forró universitário se chama ____.
+P|2|brasil|Segundo um estudo da USP que ninguém leu, ____ aumenta em 40% a chance de ____.
+P|1|brasil|A escola de samba levou pra avenida um enredo sobre ____.
+P|1|fe|O padre levantou a hóstia e, em vez da bênção, soltou ____.
+P|1|fe|Meu horóscopo diz que hoje devo evitar ____.
+P|1|fe|A cartomante olhou minha mão e disse: "vejo muito ____ no seu futuro."
+P|1|fe|O culto de domingo teve uma participação especial de ____.
+P|2|fe|Prometi pra Santo Antônio que, se eu achasse ____, eu largava ____.
+P|1|vida|O que ninguém conta sobre ter 30 anos é ____.
+P|1|vida|Eu tinha um sonho. Aí vi ____ e desisti de tudo.
+P|1|vida|Na minha lápide vai estar escrito: "Morreu por causa de ____."
+P|0|vida|O que a gente encontra no fundo da mochila de todo universitário?
+P|1|vida|Meu terapeuta anotou "____" e fechou o caderno devagar.
+P|0|vida|Qual é o pior nome pra dar a um filho?
+P|1|vida|Descobri que meu vizinho vende ____ pelo Instagram.
+P|1|vida|O motoboy tocou a campainha às 3 da manhã só pra entregar ____.
+P|1|vida|"Gente, calma, é só ____", disse o bombeiro.
+P|1|vida|O maior talento escondido de {JOGADOR} é ____.
+P|1|vida|Se {JOGADOR} fosse preso, seria por ____.
+P|1|vida|Nunca imaginei que {JOGADOR} fosse o tipo de pessoa que ____ no primeiro encontro.
+P|1|vida|{JOGADOR} só chora quando ____.
+P|0|vida|O que sempre sobra depois de toda festa de formatura?
+B|role|Um shot de cachaça com canela
+B|role|Beber água da torneira do banheiro
+B|role|A fila do banheiro feminino
+B|role|O primo que sempre traz o violão
+B|role|Um pastel de feira às 6 da manhã
+B|role|Vomitar no Uber e ainda dar cinco estrelas
+B|role|Um churrasqueiro que se acha chef
+B|role|Gelo derretido no copo de vodka
+B|role|A playlist do primo
+B|role|Dançar sozinho em cima da mesa
+B|role|Esquecer o nome de quem te apresentaram no começo da festa
+B|role|Um beijo triplo
+B|role|Pedir pizza às 3 da manhã e esquecer que pediu
+B|role|O último pão de alho da churrascaria
+B|role|Um cooler cheio de latinha quente
+B|role|Acordar com o rosto marcado de tapete
+B|role|Brigar por causa da caixa de som
+B|role|O karaokê desafinado de "Evidências"
+B|role|Um brinde com água benta
+B|role|Passar mal com o drink colorido
+B|role|Sair pra comprar cigarro e voltar só de manhã
+B|role|A tia que dança mais que os sobrinhos
+B|role|Entrar na festa sem convite
+B|role|Um DJ que só toca funk de 2009
+B|role|O copo de plástico cheio de bituca
+B|role|Fazer uma tatuagem inesperada
+B|role|Perder o último ônibus de propósito
+B|role|Bêbado dando conselho de amor
+B|role|Um jogo de truco que acabou em briga
+B|role|A carteira desaparecida na festa
+B|role|Dormir no sofá do anfitrião
+B|role|Beber vinho de caixinha com classe
+B|role|Um amigo que só aparece quando alguém paga
+B|role|Encontrar o ex na fila da balada
+B|role|Cantar pagode na calçada às 5 da manhã
+B|role|Um pedido de música que ninguém quer ouvir
+B|role|Uma batida de limão com leite condensado demais
+B|role|Foto de grupo onde todo mundo está de olho fechado
+B|role|Acordar com um número escrito no braço
+B|role|O jogo de "eu nunca" que revelou demais
+B|trabalho|Um crachá com o nome errado
+B|trabalho|A reunião que não terminava nunca
+B|trabalho|Mandar o e-mail pro destinatário errado
+B|trabalho|O estagiário que sabe mais que o diretor
+B|trabalho|Fingir que está ocupado quando o chefe passa
+B|trabalho|Um café requentado da copa
+B|trabalho|A promoção que nunca vem
+B|trabalho|O PowerPoint com 87 slides
+B|trabalho|Trabalhar de pijama na videochamada
+B|trabalho|Dar bom dia no grupo da empresa às 6h
+B|trabalho|O colega que "só vai dar uma olhadinha" e fica duas horas
+B|trabalho|Um chefe que fala "vamos alinhar" sem alinhar nada
+B|trabalho|Roubar o grampeador do setor ao lado
+B|trabalho|O amigo secreto do escritório com limite de R$ 20
+B|trabalho|Esquecer o microfone mutado
+B|trabalho|Um e-mail que começa com "conforme combinado"
+B|trabalho|O sistema que cai toda sexta às 17h59
+B|trabalho|A planilha de Excel que ninguém ousa mexer
+B|trabalho|Atualização forçada do computador no meio da apresentação
+B|trabalho|Mentir no currículo que sabe inglês
+B|trabalho|Uma folga que virou plantão
+B|trabalho|O diretor que vira "coach" depois do happy hour
+B|trabalho|Chorar no banheiro da firma
+B|trabalho|O feedback que foi um xingamento educado
+B|trabalho|Almoçar marmita fria no carro
+B|trabalho|Pedir demissão por áudio de WhatsApp
+B|trabalho|A confraternização que ninguém queria ir
+B|trabalho|Trabalhar 14 horas por "experiência"
+B|trabalho|Um cartão de ponto adulterado
+B|trabalho|A impressora com ódio de você
+B|trabalho|Fazer hora extra pra fugir de casa
+B|trabalho|O novo CEO de 24 anos
+B|trabalho|Dividir a mesa com o cara que come de boca aberta
+B|trabalho|Uma entrevista de emprego feita pelo irmão do dono
+B|familia|A bronca da mãe em voz baixa
+B|familia|O tio do zap que manda corrente
+B|familia|Panetone com passa em dezembro
+B|familia|A prima que se acha influencer
+B|familia|O almoço de domingo que dura 6 horas
+B|familia|O pai explicando Pix pro vizinho
+B|familia|Uma foto de bebê pelado no álbum da sala
+B|familia|Herança dividida em briga de família
+B|familia|O primo que deve dinheiro a todo mundo
+B|familia|O sogro que nunca gostou de você
+B|familia|Uma tia que reza por você sem avisar
+B|familia|O cunhado dono de uma "startup"
+B|familia|A avó que dá dinheiro escondido
+B|familia|Perguntar "e o namorado?" na festa de família
+B|familia|O irmão mais novo que sabe todos os seus segredos
+B|familia|Um álbum de fotos de formatura
+B|familia|Churrasco em laje com 40 parentes
+B|familia|A mãe que lê todas as suas mensagens
+B|familia|Chamar o padrasto de "tio"
+B|familia|O pai que dorme no sofá com o jogo ligado
+B|familia|Uma briga de família por causa de um terreno
+B|familia|O primo gamer de 34 anos
+B|familia|A madrinha que só liga pra dar fofoca
+B|familia|O avô que ainda usa celular de flip
+B|familia|Mandar a mãe pra uma live de culto
+B|familia|A tia que traz a própria comida na festa
+B|familia|O irmão que pede dinheiro emprestado e some
+B|familia|Fingir que não conhece o parente bêbado
+B|familia|A sogra que reorganiza sua cozinha
+B|familia|O réveillon na casa da avó sem sinal
+B|familia|A mensagem "me liga" da mãe
+B|familia|O pai herói do próprio churrasco
+B|familia|Uma festa de 15 anos com tema de filme de terror
+B|familia|O cachorro mais querido do que os filhos
+B|familia|Fazer as pazes por causa de um bolo
+B|familia|Uma viagem de carro com sete pessoas
+B|familia|O parente que "só vem de visita" e fica 3 meses
+B|familia|A reunião de condomínio
+B|familia|A foto de família com cara de velório
+B|familia|Uma mãe que posta tudo no Facebook
+B|sexo|Mandar nude pro grupo errado
+B|sexo|Aquela posição que ninguém aguentou
+B|sexo|Um date com o primo da melhor amiga
+B|sexo|Gemer o nome do ex
+B|sexo|Uma camisinha vencida
+B|sexo|Dormir de conchinha com o carrapato
+B|sexo|Uma playlist de música pra transar
+B|sexo|Fingir orgasmo em horário comercial
+B|sexo|Ficar sem sinal de internet na hora H
+B|sexo|Um casal que se pega no elevador
+B|sexo|Um vibrador sem pilha
+B|sexo|O vizinho que escuta tudo pela parede
+B|sexo|Uma noite de sexo seguida de ressaca moral
+B|sexo|Apagar o histórico antes que a mãe veja
+B|sexo|Casar com o primeiro namorado
+B|sexo|Um pedido de casamento no estádio
+B|sexo|Uma aliança de ouro falso
+B|sexo|O crush que visualiza e não responde
+B|sexo|Brigar por causa de uma fatia de pizza
+B|sexo|Um término por mensagem de voz
+B|sexo|O ex que volta na época do Natal
+B|sexo|Uma sessão de terapia de casal
+B|sexo|Casar só por causa do imposto
+B|sexo|Transar com a luz acesa por engano
+B|sexo|Um beijo de língua no primeiro encontro
+B|sexo|Contar tudo pro melhor amigo
+B|sexo|Dar match com o chefe
+B|sexo|Uma tatuagem com o nome do ex
+B|sexo|Um casamento no cartório sem convidados
+B|sexo|A casa dos pais do namorado
+B|sexo|O cheiro de perfume barato
+B|sexo|Namorar à distância por três anos
+B|sexo|Combinar de se ver "só pra conversar"
+B|sexo|O amigo que vira "ficante"
+B|sexo|Mandar "oi, sumido" pro ex às 2 da manhã
+B|sexo|Ciúmes do melhor amigo
+B|sexo|Esconder o ex dentro do armário
+B|sexo|Uma noite de pizza e Netflix que virou outra coisa
+B|sexo|O cara do app que mora com a mãe
+B|sexo|Uma lingerie que não entra mais
+B|sexo|O avô dançando coladinho com a vizinha
+B|sexo|Um relacionamento aberto sem combinar
+B|sexo|Dividir a conta no primeiro encontro
+B|sexo|O amigo que sempre pega quem você gosta
+B|sexo|Pedir desculpas com um buquê de posto de gasolina
+B|sexo|Um fetiche que ninguém quer comentar
+B|sexo|A chave do motel esquecida no bolso
+B|sexo|Um jantar à luz de velas no apagão
+B|sexo|A tia que casou quatro vezes e ainda acredita no amor
+B|sexo|Beijar na boca na festa de Ano Novo
+B|internet|Um áudio de 5 minutos que podia ser uma frase
+B|internet|Cancelar a assinatura e pagar de novo no mês seguinte
+B|internet|O print vazado do grupo da família
+B|internet|Um meme usado até a morte
+B|internet|Perder o celular dentro do vaso
+B|internet|O Wi-Fi do vizinho
+B|internet|A senha "123456"
+B|internet|Ver stories de quem te bloqueou
+B|internet|Um golpe do falso Pix
+B|internet|Uma live com 3 espectadores, todos parentes
+B|internet|Pedir "amém" em post de desconhecido
+B|internet|Seguidores comprados
+B|internet|Fingir que está viajando no Instagram
+B|internet|Um comentário de ódio num vídeo de gatinho
+B|internet|A fatura do cartão que ninguém lembra de ter gastado
+B|internet|Uma rifa online que nunca sorteia
+B|internet|A foto antes e depois do filtro
+B|internet|Curtir sem querer uma foto de 2014
+B|internet|O vídeo "tutorial" de 40 minutos
+B|internet|Entrar numa chamada com a câmera ligada sem querer
+B|internet|Um influencer vendendo curso de como ser influencer
+B|internet|Mandar "bom dia" com glitter em GIF
+B|internet|O grupo da turma de 2003
+B|internet|Um vídeo do Reels que dura 90 segundos de propaganda
+B|internet|Uma conta fake pra stalkear o ex
+B|internet|Excluir o app depois de 3 dias
+B|internet|A bateria em 1%
+B|internet|O corretor automático que muda tudo
+B|internet|Um desafio do TikTok que acabou no pronto-socorro
+B|internet|O "visto por último" que te denuncia
+B|internet|Um cupom de desconto falso
+B|internet|Ficar online às 3 da manhã sem motivo
+B|internet|A correntinha de "repasse para 10 pessoas"
+B|internet|O print do WhatsApp apagado
+B|internet|Uma audiência de 5 mil perfis fantasmas
+B|internet|O vídeo do gato que virou prejuízo
+B|internet|Uma assinatura de 12 streamings
+B|internet|O primo que vende "licença" de TV pirata
+B|internet|Atualizar a página do banco 40 vezes
+B|internet|Um tutorial que ensina o que você já sabia
+B|grana|Um saldo de R$ 3,50 na conta
+B|grana|Parcelar a pizza em 12 vezes
+B|grana|O 13º que evaporou em dezembro
+B|grana|Uma rifa de celular usado
+B|grana|Vender o carro pra pagar uma festa
+B|grana|O sonho da casa própria aos 60 anos
+B|grana|Um Pix de R$ 0,01 só pra cutucar
+B|grana|Pedir adiantamento do salário
+B|grana|O boleto que chega no dia 5
+B|grana|Uma moeda de bitcoin comprada no topo
+B|grana|O cheque especial que virou estilo de vida
+B|grana|Um cunhado que investe em "pirâmide"
+B|grana|O estorno que nunca cai
+B|grana|Uma conta de luz do tamanho de um aluguel
+B|grana|Dividir um Uber de 6 reais
+B|grana|O pai que fala "no meu tempo era tudo mais barato"
+B|grana|Pagar R$ 40 numa água na balada
+B|grana|A dívida do consignado
+B|grana|O troco dado em bala
+B|grana|Dinheiro dentro do colchão
+B|grana|Um empréstimo pra pagar outro empréstimo
+B|grana|Comprar cripto depois de uma live do YouTube
+B|grana|O bolo da festa pago em 3 vezes
+B|grana|Um sorteio de brinde que era um golpe
+B|grana|Uma gorjeta de 2 reais
+B|grana|A dona do açougue que "faz um preço pra você"
+B|grana|O leilão de uma geladeira de segunda mão
+B|grana|Uma vaquinha online pra comprar cerveja
+B|grana|O imposto de renda caindo na malha fina
+B|grana|Um carnê de loja de departamento
+B|corpo|Uma dor nas costas que veio com o aniversário
+B|corpo|O joelho que estala ao levantar
+B|corpo|A barriguinha de chopp
+B|corpo|Um pelo no lugar errado
+B|corpo|O encontro com o ex no consultório
+B|corpo|Uma ressaca moral e física
+B|corpo|Os efeitos de um brigadeiro vencido
+B|corpo|Um bafo de onça de segunda-feira
+B|corpo|Dormir de boca aberta
+B|corpo|Uma unha encravada
+B|corpo|A visita ao proctologista
+B|corpo|Um exame de sangue assustador
+B|corpo|O suor na hora da apresentação
+B|corpo|Uma crise de riso no velório
+B|corpo|A dor de barriga em reunião importante
+B|corpo|Uma calça que não fecha mais
+B|corpo|Passar mal de tanto comer no rodízio
+B|corpo|O cabelo que cai no ralo
+B|corpo|Um espirro que faz xixi escapar
+B|corpo|Fazer a barba só de um lado
+B|corpo|Beber três litros de água e correr pro banheiro
+B|corpo|Um arroto no meio do silêncio
+B|corpo|Descobrir que o "bronzeado" era sujeira
+B|corpo|A caspa no ombro do terno
+B|corpo|Um calo no pé que atrapalha a vida
+B|corpo|Uma lipoaspiração feita na garagem
+B|corpo|A balança que mente a favor
+B|corpo|Esquecer o desodorante em dia de calor
+B|corpo|A academia da esquina que só tem uma esteira
+B|corpo|Uma tosse seca em lugar silencioso
+B|corpo|Dormir com a perna pra fora da cama
+B|corpo|O dentista que fala sem parar
+B|corpo|Ficar sem camisa na festa e se arrepender
+B|corpo|O pé fedendo no sofá
+B|corpo|O cheiro do próprio suvaco
+B|brasil|Um político pego com dinheiro na meia
+B|brasil|O corte de energia no meio da final da Copa
+B|brasil|Um tiozão do churrasco explicando política
+B|brasil|O motorista de ônibus que dirige como piloto de F1
+B|brasil|Um buraco que já tem nome na avenida
+B|brasil|Uma enchente no meio do bairro
+B|brasil|O prefeito que inaugura a mesma obra três vezes
+B|brasil|Um jeitinho brasileiro
+B|brasil|Um comício com bolo e refrigerante grátis
+B|brasil|Um jingle de candidato que ninguém esquece
+B|brasil|A fila do INSS
+B|brasil|O IPTU que chegou sem aviso
+B|brasil|Uma lei que "não pegou"
+B|brasil|O guardador de carro que também é seu amigo
+B|brasil|O rodízio de carros em dia de chuva
+B|brasil|O fiscal da prefeitura aceitando café
+B|brasil|O candidato que promete "mudar tudo"
+B|brasil|Um vereador sem projeto nenhum
+B|brasil|Os "dez mandamentos" do síndico
+B|brasil|O calor de 45 graus em dezembro
+B|brasil|A tia pedindo "intervenção" no grupo da família
+B|brasil|O motoboy que fura sinal
+B|brasil|Um brasileiro ultraeducado com o Uber
+B|brasil|O pastel de feira com caldo de cana
+B|brasil|O 7x1 revivido em toda roda de amigos
+B|brasil|Uma novela das nove que durou dois anos a mais
+B|brasil|O dólar a R$ 6,00
+B|brasil|O troco do ônibus em moeda de 5 centavos
+B|brasil|Um carnaval fora de época
+B|brasil|Uma greve de caminhoneiros em plena Black Friday
+B|brasil|Um vendedor de água no semáforo
+B|brasil|O banheiro químico da festa de rua
+B|brasil|A aposentadoria depois dos 70
+B|brasil|A volta da CPMF
+B|brasil|O presidente do condomínio que se acha presidente da república
+B|fe|Um padre que bebe vinho demais
+B|fe|A promessa feita no desespero
+B|fe|Uma vela acesa pro santo errado
+B|fe|Um pastor que pede o 13º do fiel
+B|fe|Um terço pendurado no retrovisor
+B|fe|Rezar pra passar na prova sem ter estudado
+B|fe|Um feitiço contra o ex
+B|fe|Uma benzedeira que cobra no Pix
+B|fe|O horóscopo dizendo que o dia será "intenso"
+B|fe|Uma romaria só pra descobrir que o santo é de gesso
+B|fe|Um sermão de 3 horas no sol
+B|fe|Pular sete ondas na virada
+B|fe|A imagem de Santo Antônio de cabeça pra baixo
+B|fe|O mapa astral que acertou demais
+B|fe|Uma simpatia que só funciona na lua cheia
+B|fe|Um anjo da guarda cansado de você
+B|fe|Um pacto com o capeta numa encruzilhada
+B|fe|Cartas de tarô que só mostram problemas
+B|fe|O padre que bate no peito durante a missa de Natal
+B|fe|A reza da avó pra afastar o mau-olhado
+B|vida|Uma cadeira de balanço com 30 anos
+B|vida|Um sofá que veio com a casa e com o passado
+B|vida|Montar um móvel sozinho
+B|vida|O vizinho que usa furadeira às 7 da manhã
+B|vida|O síndico espionando pelo olho mágico
+B|vida|Uma planta que morreu de abandono
+B|vida|Um apartamento sem janela
+B|vida|A geladeira com só um limão e uma cerveja
+B|vida|Um churrasco na laje que virou briga de torcida
+B|vida|Uma dívida de infância cobrada na vida adulta
+B|vida|O ex que tem a senha do seu Wi-Fi
+B|vida|A lista de supermercado ignorada
+B|vida|Um boleto rasgado em protesto
+B|vida|O móvel do apartamento comprado de segunda mão
+B|vida|Uma ligação do banco às 8 da manhã
+B|vida|Um cobrador pelo WhatsApp
+B|vida|Um gato que derruba tudo de propósito
+B|vida|A conta de condomínio atrasada
+B|vida|Um papagaio que repete xingamentos
+B|vida|Um cachorro que persegue o carteiro
+B|vida|Uma carteira de motorista vencida
+B|vida|Um carro com o IPVA em atraso
+B|vida|A sensação de ter esquecido o gás ligado
+B|vida|Um ventilador com ódio no verão
+B|vida|O grupo do condomínio
+B|vida|O almoço de marmitex no capô do carro
+B|vida|Uma viagem de ônibus de 18 horas
+B|vida|O bilhete único sem saldo
+B|vida|Um pneu furado na chuva
+B|vida|O aluguel que sobe mais que o salário
+B|vida|Um professor que só dá prova surpresa
+B|vida|Uma matrícula na academia que ninguém usa
+B|vida|O jantar com o chefe e a mulher dele
+B|vida|O cara que se apresenta como "empreendedor"
+B|vida|Um passarinho dentro de casa
+B|vida|Um pedreiro que sumiu com o adiantamento
+B|vida|Uma biografia que ninguém leu
+B|vida|Um churros de R$ 25
+B|vida|O voo que saiu 6 horas atrasado
+B|vida|Um terapeuta que dorme na sessão
+B|pop|Um sósia do Roberto Carlos no karaokê
+B|pop|Um coach quântico
+B|pop|Um mágico de aniversário infantil depois de três cervejas
+B|pop|Uma banda cover do Legião Urbana
+B|pop|O sertanejo universitário de plantão
+B|pop|Um youtuber chorando por causa de um comentário
+B|pop|Um cantor de funk que virou vereador
+B|pop|O ator de novela que "só faz teatro"
+B|pop|Um reality show com gente pelada numa ilha
+B|pop|O cantor de pagode que acorda às 3 da tarde
+B|pop|A atriz que "ama o Brasil e mora em Miami"
+B|pop|Uma live de domingo que acabou em delegacia
+B|pop|Um filme de ação com 17 sequências
+B|pop|Um mascote de supermercado
+B|pop|O apresentador que fala "oi, gente" 40 vezes
+B|pop|O cantor de forró que fez dueto com um robô
+B|pop|O vilão de novela mexicana
+B|pop|Um humorista cancelado e ressuscitado
+B|pop|O jogador de futebol vendendo curso de investimento
+B|pop|Um programa de auditório com plateia paga
+B|pop|Uma sessão de fotos de casamento no cemitério
+B|pop|A trilha sonora de elevador
+B|pop|Um rapper que só fala de dinheiro que não tem
+B|pop|O carioca que acha que tudo é "a melhor praia do mundo"
+B|pop|Uma lenda urbana que ninguém sabe de onde veio
+B|pop|Um super-herói aposentado do INSS
+B|pop|O Papai Noel de shopping fumando atrás da árvore
+B|pop|Um unicórnio de pelúcia vendido por R$ 300
+B|pop|O mágico que cortou a assistente de verdade
+B|pop|Um curso de como virar coach
+B|pop|O ChatGPT que escreveu seu TCC
+B|pop|Um dueto de sertanejo com um cachorro
+B|pop|Uma estátua de cera de um personagem de novela
+B|pop|Uma sunga de crochê
+B|pop|O pastor de ovelhas que virou DJ
+B|trabalho|Uma reunião de alinhamento sobre a reunião de alinhamento

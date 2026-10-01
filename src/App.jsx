@@ -8,11 +8,10 @@ import JogoDaNotaGame from './components/nota/JogoDaNotaGame.jsx'
 import QuemSouEuGame from './components/quemsoueu/QuemSouEuGame.jsx'
 import TabuGame from './components/tabu/TabuGame.jsx'
 import PalpiteGame from './components/palpite/PalpiteGame.jsx'
-import MecanicoGame from './components/mecanico/MecanicoGame.jsx'
-import BombaGame from './components/bomba/BombaGame.jsx'
 import PapelitosGame from './components/papelitos/PapelitosGame.jsx'
 import ManadaGame from './components/manada/ManadaGame.jsx'
 import TheMindGame from './components/themind/TheMindGame.jsx'
+import PdfGame from './components/pdf/PdfGame.jsx'
 import CarreiraSetup from './components/carreira/CarreiraSetup.jsx'
 import CarreiraGame from './components/carreira/CarreiraGame.jsx'
 
@@ -98,12 +97,6 @@ export default function App() {
   if (screen === 'game' && selectedGame.id === 'palpite') {
     return <PalpiteGame players={players} onBack={goHome} />
   }
-  if (screen === 'game' && selectedGame.id === 'mecanico') {
-    return <MecanicoGame players={players} onBack={goHome} />
-  }
-  if (screen === 'game' && selectedGame.id === 'bomba') {
-    return <BombaGame onBack={goHome} />
-  }
   if (screen === 'game' && selectedGame.id === 'papelitos') {
     return <PapelitosGame players={players} onBack={goHome} />
   }
@@ -114,6 +107,10 @@ export default function App() {
 
   if (screen === 'game' && selectedGame.id === 'themind') {
     return <TheMindGame onBack={goHome} />
+  }
+
+  if (screen === 'game' && selectedGame.id === 'pdf') {
+    return <PdfGame onBack={goHome} />
   }
 
   return null
