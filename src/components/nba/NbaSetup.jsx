@@ -28,6 +28,14 @@ const CAMINHOS = [
   },
 ]
 
+// Windows não desenha bandeira em emoji (vira "BR"); aqui a gente usa a imagem da bandeira e cai pro código se falhar.
+function Bandeira({ emoji }) {
+  const [falhou, setFalhou] = useState(false)
+  const iso = [...emoji].map((c) => String.fromCharCode(c.codePointAt(0) - 0x1f1e6 + 97)).join('')
+  if (falhou) return <span className="text-sm font-bold">{iso.toUpperCase()}</span>
+  return <img src={`https://flagcdn.com/w40/${iso}.png`} alt={iso.toUpperCase()} width={28} height={20} loading="lazy" onError={() => setFalhou(true)} className="h-5 w-7 rounded-sm object-cover" />
+}
+
 function Cartao({ selecionado, onClick, children }) {
   return (
     <motion.button
@@ -67,7 +75,7 @@ export default function NbaSetup({ onStart, onBack }) {
   }
 
   return (
-    <div className="mx-auto flex min-h-[100dvh] w-full flex-col px-6 py-10 lg:max-w-xl">
+    <div className="mx-auto flex min-h-[100dvh] w-full flex-col px-6 py-10 lg:max-w-4xl">
       <button onClick={passo === 0 ? onBack : () => setPasso((p) => p - 1)} className="flex items-center gap-1.5 text-xs text-secondary">
         <ChevronLeft className="h-4 w-4" /> {passo === 0 ? 'Voltar' : passos[passo - 1]}
       </button>
@@ -109,7 +117,7 @@ export default function NbaSetup({ onStart, onBack }) {
               <div>
                 <h1 className="text-2xl font-bold tracking-tight">Sua posição</h1>
                 <p className="mt-1 text-sm text-secondary">Define o jeito de jogar e quais números você vai produzir.</p>
-                <div className="mt-6 flex flex-col gap-2">
+                <div className="mt-6 grid grid-cols-1 gap-2 lg:grid-cols-3">
                   {POSICOES.map((p) => (
                     <Cartao key={p.id} selecionado={posicao === p.id} onClick={() => setPosicao(p.id)}>
                       <div className="flex items-center justify-between">
@@ -127,10 +135,10 @@ export default function NbaSetup({ onStart, onBack }) {
               <div>
                 <h1 className="text-2xl font-bold tracking-tight">De onde você vem?</h1>
                 <p className="mt-1 text-sm text-secondary">Seu país entra nas manchetes e na seleção.</p>
-                <div className="mt-6 grid grid-cols-2 gap-2">
+                <div className="mt-6 grid grid-cols-2 gap-2 lg:grid-cols-4">
                   {PAISES.map((p) => (
                     <Cartao key={p.id} selecionado={pais === p.id} onClick={() => setPais(p.id)}>
-                      <span className="text-lg">{p.bandeira}</span>
+                      <Bandeira emoji={p.bandeira} />
                       <p className="mt-1 text-sm font-medium">{p.nome}</p>
                     </Cartao>
                   ))}
@@ -142,7 +150,7 @@ export default function NbaSetup({ onStart, onBack }) {
               <div>
                 <h1 className="text-2xl font-bold tracking-tight">Seu caminho até a NBA</h1>
                 <p className="mt-1 text-sm text-secondary">Ninguém nasce na liga. Como você chega lá?</p>
-                <div className="mt-6 flex flex-col gap-2">
+                <div className="mt-6 grid grid-cols-1 gap-2 lg:grid-cols-3">
                   {CAMINHOS.map((c) => {
                     const Icon = c.icon
                     return (
