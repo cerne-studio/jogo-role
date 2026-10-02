@@ -10,6 +10,10 @@ Registro de alterações. Mais recente no topo.
 
 ---
 
+## 2026-10-02 — Claude
+- **P.D.F**: leva de **humor negro** no pacote Sem censura — +27 pretas e +92 brancas (tema `morte`: velório, herança, hospital, doença, IML, inferno/purgatório, apocalipse, execução). Pacote `extremo` agora com 70 pretas + 247 brancas. Sem ódio contra grupo, menor, tragédia com nome ou vítima real. Seed idempotente: `db/013_seed_pdf_extremo.sql`
+- Arquivos: `db/data/pdf-baralho-extremo.txt`
+
 ## 2026-10-01 — Claude (4)
 - **P.D.F**: pacote **Sem censura** — 43 pretas + 155 brancas explícitas, com palavrão, sem filtro (sexo, corpo, rolê, grana, internet; sem ódio contra grupo, menor ou vítima nomeada). Agora o baralho tem dois pacotes: `pesado` (o original) e `extremo`. O host escolhe no lobby; padrão é **Sem censura** (pesado + extremo). O sorteio de pretas e brancas filtra pelo pacote gravado na sala (`pdf_definir_pacote`, `pdf_pacotes_da_sala`)
 - Arquivos: `db/012_pdf_pacote.sql`, `db/013_seed_pdf_extremo.sql`, `db/data/pdf-baralho-extremo.txt`, `src/components/pdf/PdfMeta.jsx`

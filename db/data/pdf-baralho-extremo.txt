@@ -196,3 +196,122 @@ B|internet|Ficar com tesão num vídeo de culinária
 B|grana|Gastar o aluguel numa noite de puteiro
 B|grana|Pagar um boquete com Pix agendado
 B|grana|Um agiota que cobra em juros e em sexo
+P|1|morte|Na missa de sétimo dia, o padre não aguentou e riu quando leram ____.
+P|1|morte|O testamento do vovô tinha uma única exigência: ____.
+P|1|morte|No meu velório quero tocando ____.
+P|1|morte|A causa da morte no atestado era "____".
+P|1|morte|Minhas últimas palavras foram: "____."
+P|1|morte|O caixão estava fechado porque ____.
+P|0|morte|Qual é a pior coisa pra gritar num velório?
+P|1|morte|O tio morreu do jeito que viveu: ____.
+P|1|morte|O médico olhou meu exame, suspirou e disse: "vai sobrar pouco tempo pra ____."
+P|1|morte|Antes de morrer, o milionário deixou todo o dinheiro pra ____.
+P|1|morte|A tia chegou no velório e a primeira coisa que fez foi ____.
+P|1|morte|Descobri na hora da herança que meu pai tinha ____.
+P|2|morte|O legista concluiu que a vítima morreu de ____ depois de ____.
+P|1|morte|No hospital, a enfermeira avisou: "o senhor tem três meses, então aproveite ____."
+P|1|morte|O epitáfio de {JOGADOR} devia ser: "____."
+P|1|morte|O cemitério da cidade está lotado por causa de ____.
+P|1|morte|No fim do mundo, a última coisa que eu faria é ____.
+P|1|morte|Eu preferia morrer a ____.
+P|0|morte|Qual é a morte mais ridícula que você já imaginou pra um parente chato?
+P|1|morte|O jeito mais rápido de acabar com uma festa é chegar com ____.
+P|1|morte|Disseram que ele foi cremado, mas na urna só tinha ____.
+P|1|morte|{JOGADOR} pediu pra ser enterrado com ____.
+P|1|vida|A fome era tanta que o grupo começou a comer ____.
+P|1|morte|Nunca vou esquecer a cara do viúvo quando leram ____.
+P|1|vida|O ônibus tombou e o primeiro a sair correndo foi o cara que ____.
+P|1|vida|Passei três dias sem comer e já considero ____ um prato de luxo.
+P|1|morte|No dia da minha morte, a primeira ligação vai ser pra ____.
+B|morte|Um velório com open bar
+B|morte|Morrer no dia do aniversário
+B|morte|O defunto sentando no caixão
+B|morte|Uma urna com só metade das cinzas
+B|morte|Cremar o sogro junto com o cachorro
+B|morte|Um caixão com defeito de fábrica
+B|morte|Um coveiro com pressa
+B|morte|A herança que sumiu antes do enterro
+B|morte|Uma tia que chora mais que a viúva
+B|morte|Um enterro com chuva de granizo
+B|morte|O primeiro peido do velório
+B|morte|Esquecer o corpo no ônibus
+B|morte|Vender um rim pra pagar a faculdade
+B|morte|Um câncer descoberto no dia da promoção
+B|morte|Uma metástase no meio do churrasco
+B|morte|Uma quimioterapia de segunda mão
+B|morte|Uma UTI cara com Wi-Fi ruim
+B|morte|Um plano de saúde que nega tudo menos o boleto
+B|morte|Morrer na fila do SUS com a senha 4
+B|morte|Escorregar em casca de banana e morrer de verdade
+B|morte|Cair do 13º andar de bunda
+B|morte|Morrer afogado na própria cerveja
+B|morte|Um atropelamento filmado e postado
+B|morte|Uma overdose de energético com fé
+B|morte|Um infarto no meio do motel
+B|morte|Gozar e morrer junto
+B|morte|Um velório que virou festa
+B|morte|Um bêbado dormindo dentro do caixão vazio
+B|morte|O caixão mais barato da funerária
+B|morte|Uma cova rasa feita às pressas
+B|morte|Um defunto de cueca
+B|morte|O cheiro da geladeira do IML
+B|morte|Um necrotério com fila de espera
+B|morte|Um coveiro que cobra por hora
+B|morte|Um pulo de bungee jump sem corda
+B|morte|Uma bala perdida que acha o alvo certo
+B|morte|Um assalto com cara de piada
+B|morte|Uma facada de amigo
+B|morte|Veneno no bolo de aniversário
+B|morte|Matar o chefe e ainda tirar foto
+B|morte|Queimar o corpo no quintal
+B|morte|Um corpo escondido no freezer do churrasco
+B|morte|Um cadáver no porta-malas do Uber
+B|morte|O sumiço repentino do sócio
+B|morte|Uma delação premiada no leito de morte
+B|morte|A viúva alegre
+B|morte|O viúvo com tesão
+B|morte|Um testamento que deixa tudo pro cachorro
+B|morte|Uma herança só de dívidas
+B|morte|O defunto que deve dinheiro pra todo mundo
+B|morte|O primo que só aparece em enterro
+B|morte|Um velório com cheiro de coxinha
+B|morte|Uma coroa de flores escrito "Parabéns"
+B|morte|Morrer de tédio na reunião
+B|morte|Morrer de vergonha em público
+B|morte|Morrer de rir de piada de tio
+B|morte|Um asilo que serve sopa fria
+B|morte|A sensação de ter desperdiçado uma vida
+B|morte|Cobrar ingresso pra ver o defunto
+B|morte|Uma doação de órgãos mal explicada
+B|morte|Uma cirurgia feita num bar
+B|morte|Um médico que opera bêbado
+B|morte|Um dentista que arranca o dente errado e some
+B|morte|Um plano funerário em 36 vezes
+B|morte|Uma indenização pela morte do hamster
+B|morte|Uma ambulância presa no engarrafamento
+B|morte|Uma UPA com a luz queimada
+B|morte|Um motoboy sem capacete e sem futuro
+B|morte|Um colapso nervoso em horário comercial
+B|morte|Uma crise de pânico no meio do Carnaval
+B|morte|Uma ressaca que faz pensar em testamento
+B|morte|Ir ao próprio velório de penetra
+B|morte|Um fantasma que cobra aluguel
+B|morte|Uma assombração fiel ao ex
+B|morte|O espírito do sogro vindo cobrar
+B|morte|Um exorcismo de R$ 50 no Pix
+B|morte|Um pastor que ressuscita em 10x no cartão
+B|morte|Um pacto com o diabo em prestações
+B|morte|O paraíso lotado de gente chata
+B|morte|O inferno com Wi-Fi bom
+B|morte|Uma fila no purgatório
+B|morte|São Pedro pedindo o CPF
+B|morte|Uma hóstia vencida
+B|morte|O apocalipse num domingo de futebol
+B|morte|O fim do mundo no meio do rodízio
+B|morte|A última refeição do condenado: pizza fria
+B|morte|Uma execução em horário nobre
+B|morte|A cadeira elétrica com defeito
+B|morte|Uma forca mal amarrada
+B|morte|A fome que faz comer o próprio sapato
+B|morte|Roubar o caixão do vizinho
+B|morte|Um cavalo morto no meio da avenida
