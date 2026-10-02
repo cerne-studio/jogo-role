@@ -10,6 +10,11 @@ Registro de alterações. Mais recente no topo.
 
 ---
 
+## 2026-10-02 — Claude (2)
+- **Carreira NBA** (substitui a Carreira de Basquete): do college, clube no exterior ou "sem recrutamento" (duas vias/G League) até o Hall da Fama. Draft com projeção e noite do draft, 30 times reais (só nomes e cores; escudos próprios em SVG, sem logos oficiais), contratos (renovação, agência livre, anel), temporada regular com stats por jogo, play-in e playoffs mata-mata com linha do usuário jogo a jogo, prêmios (MVP, DPOY, ROY, 6MOY, MIP, All-Star, All-NBA, All-Defensive, líderes), marcos e ranking histórico (pontos, assistências, rebotes), lesões, patrimônio e patrocínio, rivais reais como adversários neutros, 153 eventos com escolhas e risco, manchetes, gráfico de overall e legado final com texto pra compartilhar. Salva sozinho no aparelho (`jogo-role:nba:v2`) e continua depois de recarregar. Motor puro com semente (`src/nba/engine`), simulador de balanceamento em `scripts/sim-nba.mjs` e validador de eventos em `scripts/valida-eventos.mjs`
+- Remove `src/components/carreira/*` e `src/data/carreiraBank.js`; `ExitButton` aceita `mensagem`
+- Arquivos: `src/nba/**`, `src/components/nba/**`, `src/App.jsx`, `src/components/Home.jsx`
+
 ## 2026-10-02 — Claude
 - **P.D.F**: leva de **humor negro** no pacote Sem censura — +27 pretas e +92 brancas (tema `morte`: velório, herança, hospital, doença, IML, inferno/purgatório, apocalipse, execução). Pacote `extremo` agora com 70 pretas + 247 brancas. Sem ódio contra grupo, menor, tragédia com nome ou vítima real. Seed idempotente: `db/013_seed_pdf_extremo.sql`
 - Arquivos: `db/data/pdf-baralho-extremo.txt`

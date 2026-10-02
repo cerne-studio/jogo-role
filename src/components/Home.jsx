@@ -4,8 +4,8 @@ import { Skull, Users, Theater, Hash, HelpCircle, Ban, Target, StickyNote, Milk,
 const GAMES = [
   {
     id: 'carreira',
-    nome: 'Carreira de Basquete',
-    desc: 'Crie um jogador, tome decisões e simule uma carreira inteira — da estreia ao retiro.',
+    nome: 'Carreira NBA',
+    desc: 'Do college ao Hall da Fama: draft, contratos, playoffs, prêmios e recordes. Salva sozinho.',
     icon: TrendingUp,
     minPlayers: 1,
   },

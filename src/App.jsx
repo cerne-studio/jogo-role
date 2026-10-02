@@ -12,20 +12,17 @@ import PapelitosGame from './components/papelitos/PapelitosGame.jsx'
 import ManadaGame from './components/manada/ManadaGame.jsx'
 import TheMindGame from './components/themind/TheMindGame.jsx'
 import PdfGame from './components/pdf/PdfGame.jsx'
-import CarreiraSetup from './components/carreira/CarreiraSetup.jsx'
-import CarreiraGame from './components/carreira/CarreiraGame.jsx'
+import NbaCarreira from './components/nba/NbaCarreira.jsx'
 
 export default function App() {
   const [screen, setScreen] = useState('home')
   const [selectedGame, setSelectedGame] = useState(null)
   const [players, setPlayers] = useState([])
-  const [carreiraConfig, setCarreiraConfig] = useState(null)
 
   function goHome() {
     setScreen('home')
     setSelectedGame(null)
     setPlayers([])
-    setCarreiraConfig(null)
   }
 
   if (screen === 'home') {
@@ -34,7 +31,7 @@ export default function App() {
         onSelectGame={(game) => {
           setSelectedGame(game)
           if (game.id === 'carreira') {
-            setScreen('carreira_setup')
+            setScreen('carreira')
           } else if (game.multiDispositivo) {
             setScreen('game')
           } else {
@@ -45,20 +42,8 @@ export default function App() {
     )
   }
 
-  if (screen === 'carreira_setup') {
-    return (
-      <CarreiraSetup
-        onBack={goHome}
-        onStart={(config) => {
-          setCarreiraConfig(config)
-          setScreen('carreira_game')
-        }}
-      />
-    )
-  }
-
-  if (screen === 'carreira_game') {
-    return <CarreiraGame config={carreiraConfig} onBack={goHome} />
+  if (screen === 'carreira') {
+    return <NbaCarreira onBack={goHome} />
   }
 
   if (screen === 'setup') {

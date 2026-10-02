@@ -6,7 +6,7 @@ import { X } from 'lucide-react'
  * Botão de saída fixo, presente em qualquer fase de qualquer jogo.
  * Confirma antes de sair pra não derrubar a partida com um toque sem querer.
  */
-export default function ExitButton({ onExit }) {
+export default function ExitButton({ onExit, mensagem = 'O progresso dessa partida vai se perder.' }) {
   const [confirming, setConfirming] = useState(false)
 
   return (
@@ -37,7 +37,7 @@ export default function ExitButton({ onExit }) {
             >
               <h2 className="text-lg font-semibold tracking-tight">Sair do jogo?</h2>
               <p className="mt-2 text-sm text-secondary">
-                O progresso dessa partida vai se perder.
+                {mensagem}
               </p>
               <div className="mt-6 flex flex-col gap-2">
                 <motion.button
