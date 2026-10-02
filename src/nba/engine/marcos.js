@@ -63,7 +63,7 @@ const MARCOS = [
 
 function rankingTexto(lista, valor, rotulo) {
   const ultrapassados = lista.filter((x) => valor > x.valor)
-  return ultrapassados.map((x) => `Ultrapassou ${x.nome} em ${rotulo} da carreira (${fmt(x.valor)})`)
+  return ultrapassados.map((x) => `Ultrapassou ${x.nome} em ${rotulo} da carreira (${x.nome === 'LeBron James' ? 'mais de 42.000' : fmt(x.valor)})`)
 }
 
 // Retorna { estado, novos: [texto] } com os marcos recém-conquistados.

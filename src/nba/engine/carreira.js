@@ -5,6 +5,7 @@ import { executarDraft, projetarDraft, ofertasSemDraft, descreverPick } from './
 import { gerarPropostas, aplicarContrato, SALARIO_DUAS_VIAS } from './contrato.js'
 import { simularTemporadaBase, simularTemporadaNba, avancarAno } from './temporada.js'
 import { classificarCarreira } from './legado.js'
+import { selecionarEventos, resolverEscolha, aplicarEfeitos, registrarVisto } from './eventos.js'
 
 export const IDADE_MAX_BASE = 22
 
@@ -133,8 +134,19 @@ export function autoJogar(estado, rng, { ficarNaBaseAteSeguro = true } = {}) {
       e = assinarProposta(e, melhor)
     }
 
-    // 3) temporada
-    const { estado: e2, relatorio } = simularAno(e, rng)
+    // 3) eventos da pré-temporada (escolha aleatória no piloto automático)
+    let pend = {}
+    const qtdEv = ehBase(e) ? 1 : 2
+    for (const ev of selecionarEventos(e, rng, qtdEv, 'pre')) {
+      const esc = rng.pick(ev.escolhas)
+      const r = resolverEscolha(esc, rng)
+      const ap = aplicarEfeitos(registrarVisto(e, ev), r.efeitos, pend)
+      e = ap.estado
+      pend = ap.pend
+    }
+
+    // 4) temporada
+    const { estado: e2, relatorio } = simularAno(e, rng, pend)
     relatorios.push(relatorio)
     e = e2
 
