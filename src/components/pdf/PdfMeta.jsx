@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { supabase } from '../../lib/supabase.js'
 
 const OPCOES = [3, 5, 7]
+// Tem que bater com pdf_max_jogadores() no banco (db/011_pdf_max_jogadores.sql).
+const MAX_JOGADORES = 20
 
 // Meta de pontos no lobby. O host escolhe; os outros só veem o valor (atualiza em tempo real).
 export default function PdfMeta({ salaId, meta = 5, souHost }) {
@@ -41,6 +43,7 @@ export default function PdfMeta({ salaId, meta = 5, souHost }) {
         })}
       </div>
       {!souHost && <p className="mt-2 text-xs text-muted">Só o host muda a meta.</p>}
+      <p className="mt-2 text-xs text-muted">De 3 a {MAX_JOGADORES} jogadores.</p>
       {erro && <p className="mt-2 text-xs text-danger">{erro}</p>}
     </div>
   )

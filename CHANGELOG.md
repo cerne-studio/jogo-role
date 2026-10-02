@@ -10,6 +10,10 @@ Registro de alterações. Mais recente no topo.
 
 ---
 
+## 2026-10-01 — Claude (3)
+- **P.D.F**: limite de jogadores sobe de 10 pra **20**. O número vive em `pdf_max_jogadores()` (`db/011_pdf_max_jogadores.sql`); mudar de novo é recriar essa função. Agora `entrar_sala` barra na entrada ("sala cheia"), em vez de deixar encher o lobby e só reclamar ao iniciar; quem já está na sala reconecta normalmente mesmo cheia. Testado no banco com 20 jogadores: 200 cartas em mão no início, partida completa até vencedor, baralho (400 brancas) quase esgotado e reembaralhado sem travar, 21º jogador recusado
+- Arquivos: `db/011_pdf_max_jogadores.sql`, `src/components/pdf/PdfMeta.jsx`
+
 ## 2026-10-01 — Claude (2)
 - **P.D.F**: meta de pontos escolhida no lobby (3 rápido, 5 normal, 7 longo; padrão 5). Só o host muda e só antes de começar; os outros veem o valor em tempo real. RPC `pdf_definir_meta` e `iniciar_partida_pdf` respeitando a meta gravada (`db/010_pdf_meta.sql`); `SalaLobby` ganhou slot `children` pra jogos acrescentarem opções; e2e cobre meta (host, não-host, valor inválido, mudança após começar)
 - Arquivos: `db/010_pdf_meta.sql`, `src/components/pdf/PdfMeta.jsx`, `src/components/sala/SalaLobby.jsx`
