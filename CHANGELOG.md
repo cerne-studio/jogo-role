@@ -10,6 +10,12 @@ Registro de alterações. Mais recente no topo.
 
 ---
 
+## 2026-10-02 — Claude (5)
+- **Carreira NBA**: tocar no cartão do jogador abre a tela de **habilidades** (bola de 3, arremesso de média, finalização, lance livre, ball handling, passe, visão de jogo, defesa de perímetro e de garrafão, roubo de bola, toco, rebote, velocidade, força, salto e QI), com pontos fortes, pontos a melhorar, nota por grupo e a variação desde a temporada passada. Derivadas dos 6 atributos base, da posição e da altura, com um "jeito" fixo por jogador
+- **Carreira NBA**: escolhas dos eventos deixaram de ter resposta óbvia. `equilibrio.js` mede o valor de cada opção e cobra um custo da melhor (e dá um alento à pior); a vantagem mediana da melhor escolha caiu e quase nenhum evento tem opção dominante (`scripts/audita-escolhas.mjs`)
+- **Carreira NBA**: a manchete do resumo do ano agora vem da decisão que mais pesou na temporada (com a manchete de desempenho logo abaixo), e o resumo lista as escolhas feitas no ano
+- Arquivos: `src/nba/engine/{habilidades,pesos,manchetes,eventos,temporada}.js`, `src/nba/data/equilibrio.js`, `src/components/nba/HabilidadesFolha.jsx`
+
 ## 2026-10-02 — Claude (4)
 - **Carreira NBA**: botão **Status** em toda tela abre um painel com barras de moral, fama, técnico, vestiário, imagem e desgaste, a variação desde o começo da temporada e o efeito real de cada uma na simulação (moral mexe no overall em quadra, vestiário na força do time, técnico nos minutos, fama no valor de contrato, imagem nos patrocínios, desgaste no risco de lesão). As barras também aparecem no resumo do ano
 - **Carreira NBA**: aba **Dinheiro** com o que o patrimônio compra: equipe pessoal cobrada todo ano (preparador, nutricionista, equipe médica, psicólogo, agente, assessoria de imagem), gastos da temporada (férias, doação, treino individual de um atributo, investimento com risco) e academia em casa. Conforto financeiro: patrimônio abaixo de US$ 0,3 mi pesa na moral, acima de US$ 25 mi ajuda. Sem dinheiro pra manter a equipe, ela é cortada

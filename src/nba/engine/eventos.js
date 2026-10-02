@@ -124,3 +124,11 @@ export function aplicarEfeitos(estado, efeitos, pend = {}) {
 export function registrarVisto(estado, ev) {
   return { ...estado, eventosVistos: { ...(estado.eventosVistos ?? {}), [ev.id]: estado.temporada } }
 }
+
+// Guarda o que foi decidido na temporada (alimenta a manchete e o resumo do ano).
+export function registrarDecisao(estado, ev, escolha, r) {
+  return {
+    ...estado,
+    decisoesAno: [...(estado.decisoesAno ?? []), { titulo: ev.titulo, rotulo: escolha.rotulo, resultado: r.resultado, efeitos: r.efeitos ?? {} }],
+  }
+}

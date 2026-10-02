@@ -9,7 +9,7 @@ import {
   aceitarDuasVias, temContratoVencendo, propostasDeContrato, assinarProposta, simularAno, aposentar, fimForcado, avancarAno,
   ehExterior, irParaExterior, propostasDeVolta, IDADE_APOSENTAR,
 } from '../../nba/engine/carreira.js'
-import { selecionarEventos, resolverEscolha, aplicarEfeitos, registrarVisto } from '../../nba/engine/eventos.js'
+import { selecionarEventos, resolverEscolha, aplicarEfeitos, registrarVisto, registrarDecisao } from '../../nba/engine/eventos.js'
 import NbaSetup from './NbaSetup.jsx'
 import { PainelJogador } from './PainelJogador.jsx'
 import { BotaoPrimario, CartaoJogador, SeloLiga, Titulo } from './ui.jsx'
@@ -103,7 +103,7 @@ export default function NbaCarreira({ onBack }) {
     const ev = EVENTOS_POR_ID[j.fila[j.idx]]
     const r = resolverEscolha(ev.escolhas[i], rng)
     const ap = aplicarEfeitos(registrarVisto(j.estado, ev), r.efeitos, j.pend)
-    setJ({ ...j, estado: ap.estado, pend: ap.pend, resposta: r })
+    setJ({ ...j, estado: registrarDecisao(ap.estado, ev, ev.escolhas[i], r), pend: ap.pend, resposta: r })
   }
 
   function proximoEvento() {

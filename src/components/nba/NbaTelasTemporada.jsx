@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { Trophy, Star, Medal, Activity, TrendingUp, Wallet, Handshake, ChevronRight } from 'lucide-react'
 import { TIMES_POR_ID } from '../../nba/data/times.js'
-import { gerarManchete } from '../../nba/engine/manchetes.js'
+import { gerarManchete, mancheteDaEscolha } from '../../nba/engine/manchetes.js'
 import { papelTexto } from '../../nba/engine/jogador.js'
 import { StatusBarras } from './PainelJogador.jsx'
 import { BotaoPrimario, CartaoJogador, GraficoOvr, Stat, TimeEscudo, SeloLiga, Titulo, fmtMi, NOMES_PREMIO } from './ui.jsx'
@@ -358,7 +358,10 @@ export function PremiosTela({ estado, relatorio, onContinuar }) {
 
 // ── Resumo do ano: dinheiro, contrato, manchete ────────────
 export function ResumoAnoTela({ estado, relatorio, onProximo, onAposentar, podeAposentar }) {
-  const manchete = gerarManchete(estado, relatorio)
+  const mancheteBase = gerarManchete(estado, relatorio)
+  const mancheteEscolha = mancheteDaEscolha(estado)
+  const manchete = mancheteEscolha ?? mancheteBase
+  const decisoes = estado.decisoesAno ?? []
   const c = estado.contrato
   return (
     <Pagina>
@@ -366,7 +369,23 @@ export function ResumoAnoTela({ estado, relatorio, onProximo, onAposentar, podeA
       <motion.div {...entrada} className="mt-4 rounded-2xl border border-border-strong bg-surface p-5">
         <p className="text-[11px] font-bold uppercase tracking-widest text-accent">Manchete</p>
         <p className="mt-2 text-[17px] font-semibold leading-snug">{manchete}</p>
+        {mancheteEscolha && <p className="mt-2 text-xs text-secondary">{mancheteBase}</p>}
       </motion.div>
+
+      {decisoes.length > 0 && (
+        <div className="mt-3 rounded-2xl border border-border bg-surface p-4">
+          <p className="text-[11px] font-medium uppercase tracking-widest text-muted">Suas escolhas no ano</p>
+          <ul className="mt-2 flex flex-col gap-2">
+            {decisoes.map((d, i) => (
+              <li key={i} className="text-xs leading-snug">
+                <span className="font-semibold text-primary">{d.titulo}</span>
+                <span className="text-muted"> · </span>
+                <span className="text-secondary">{d.rotulo}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <div className="mt-4 grid grid-cols-2 gap-2">
         <div className="rounded-2xl border border-border bg-surface p-4">

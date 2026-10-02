@@ -476,6 +476,8 @@ export function avancarAno(estado, rng, { foco = {}, campeaoId = null } = {}) {
   const novo = {
     ...base,
     focoAno: null,
+    atrsAnterior: estado.atrs,
+    decisoesAno: [],
     atrs,
     media,
     idade: estado.idade + 1,

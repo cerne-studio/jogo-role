@@ -1,4 +1,5 @@
 import { TIMES_POR_ID } from '../data/times.js'
+import { PESOS_EFEITO as W } from './pesos.js'
 
 function sorteio(arr, seed) {
   return arr[Math.abs(Math.floor(seed)) % arr.length]
@@ -48,4 +49,34 @@ export function gerarManchete(estado, rel) {
     `${nome} segue evoluindo no ${time}.`,
     `${time} termina com ${rel.vitorias} vitórias e ${nome} ganha confiança.`,
   ], seed)
+}
+
+const ATRIBUTOS = { arremesso: 'o arremesso', infiltracao: 'as infiltrações', passe: 'o passe', defesa: 'a defesa', fisico: 'o físico', qi: 'a leitura de jogo' }
+
+// Manchete baseada na decisão que mais pesou no ano. null se não houve decisão relevante.
+export function mancheteDaEscolha(estado) {
+  const nome = estado.jogador.sobrenome
+  const decisoes = estado.decisoesAno ?? []
+  let melhor = null
+  for (const d of decisoes) {
+    for (const [k, v] of Object.entries(d.efeitos)) {
+      if (typeof v !== 'number' || !W[k]) continue
+      const peso = Math.abs(W[k] * v)
+      if (peso >= 6 && (!melhor || peso > melhor.peso)) melhor = { d, k, v, sinal: W[k] * v > 0 ? 1 : -1, peso }
+    }
+  }
+  if (!melhor) return null
+  const t = `"${melhor.d.titulo}"`
+  const { k, sinal } = melhor
+  const bom = sinal > 0
+  if (k === 'fama') return bom ? `${nome} vira assunto nas redes depois de ${t}.` : `${nome} some do radar depois de ${t}.`
+  if (k === 'imagem') return bom ? `A atitude de ${nome} em ${t} melhora a imagem do jogador.` : `Polêmica: ${nome} arranha a própria imagem em ${t}.`
+  if (k === 'vestiario') return bom ? `${nome} conquista o vestiário depois de ${t}.` : `Clima estranho no elenco depois de ${t}.`
+  if (k === 'tecnico') return bom ? `O técnico aprova a postura de ${nome} em ${t}.` : `O técnico fecha a cara pra ${nome} depois de ${t}.`
+  if (k === 'moral') return bom ? `${nome} chega mais leve pros jogos depois de ${t}.` : `${nome} carrega o peso de ${t} pra dentro da quadra.`
+  if (k === 'desgaste') return bom ? `${nome} se cuida e chega inteiro depois de ${t}.` : `O corpo de ${nome} cobra o preço de ${t}.`
+  if (k === 'dinheiro' || k === 'patrocinio') return bom ? `${nome} faz bons negócios: ${t} rende dinheiro novo.` : `${t} pesa no bolso de ${nome}.`
+  if (ATRIBUTOS[k]) return bom ? `${nome} sai de ${t} melhorando ${ATRIBUTOS[k]}.` : `${t} deixa ${nome} pior em ${ATRIBUTOS[k]}.`
+  if (k === 'risco') return `${nome} corre risco depois de ${t}.`
+  return `${nome} se vira com as consequências de ${t}.`
 }

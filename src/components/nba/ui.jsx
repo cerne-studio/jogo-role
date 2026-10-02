@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { motion } from 'motion/react'
+import { AnimatePresence, motion } from 'motion/react'
 import { TIMES_POR_ID, POSICOES } from '../../nba/data/times.js'
+import { HabilidadesFolha } from './HabilidadesFolha.jsx'
 
 // ── Logos oficiais vêm do CDN da própria NBA (não ficam no repositório). Se a imagem falhar, cai no emblema próprio. ──
 const LOGO_TIME = (nbaId) => `https://cdn.nba.com/logos/nba/${nbaId}/global/L/logo.svg`
@@ -106,13 +107,22 @@ export const fmtMi = (v, casas = 1) => `US$ ${Number(v).toLocaleString('pt-BR', 
 export const fmtNum = (n) => Math.round(n).toLocaleString('pt-BR')
 
 // ── Cartão do jogador (estilo carta colecionável) ──
-export function CartaoJogador({ estado, compacto }) {
+export function CartaoJogador({ estado, compacto, semToque }) {
+  const [aberto, setAberto] = useState(false)
   const t = estado.time ? TIMES_POR_ID[estado.time] : null
   const [c1, c2] = t?.cores ?? ['#2a2a31', '#8b8b9a']
   const ovr = estado.media
   const tier = ovr >= 90 ? 'Lenda' : ovr >= 82 ? 'Superestrela' : ovr >= 75 ? 'All-Star' : ovr >= 68 ? 'Titular' : ovr >= 60 ? 'Rotação' : 'Prospecto'
   return (
-    <div className="relative overflow-hidden rounded-3xl border border-white/10" style={{ background: `linear-gradient(145deg, ${c1}, #0b0b0d 70%)` }}>
+    <>
+    <div
+      role={semToque ? undefined : 'button'}
+      tabIndex={semToque ? undefined : 0}
+      onClick={semToque ? undefined : () => setAberto(true)}
+      onKeyDown={semToque ? undefined : (ev) => { if (ev.key === 'Enter' || ev.key === ' ') setAberto(true) }}
+      className={`relative overflow-hidden rounded-3xl border border-white/10 ${semToque ? '' : 'cursor-pointer active:scale-[0.99]'}`}
+      style={{ background: `linear-gradient(145deg, ${c1}, #0b0b0d 70%)` }}
+    >
       <div className="pointer-events-none absolute -right-6 -top-10 select-none text-[150px] font-black leading-none text-white/[0.06]">{estado.jogador.numero}</div>
       <div className={`relative flex items-center gap-4 ${compacto ? 'p-4' : 'p-5'}`}>
         <div className="flex h-[72px] w-[72px] shrink-0 flex-col items-center justify-center rounded-2xl border-2 bg-black/40" style={{ borderColor: c2 }}>
@@ -131,7 +141,10 @@ export function CartaoJogador({ estado, compacto }) {
         </div>
         <span className="absolute right-3 top-3 rounded-full bg-black/40 px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-white/70">{tier}</span>
       </div>
+      {!semToque && <p className="relative border-t border-white/10 bg-black/25 px-4 py-1.5 text-center text-[10px] font-semibold uppercase tracking-widest text-white/55">Toque para ver as habilidades</p>}
     </div>
+    <AnimatePresence>{aberto && <HabilidadesFolha estado={estado} onFechar={() => setAberto(false)} />}</AnimatePresence>
+    </>
   )
 }
 
