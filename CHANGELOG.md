@@ -10,6 +10,11 @@ Registro de alterações. Mais recente no topo.
 
 ---
 
+## 2026-10-02 — Claude (4)
+- **Carreira NBA**: botão **Status** em toda tela abre um painel com barras de moral, fama, técnico, vestiário, imagem e desgaste, a variação desde o começo da temporada e o efeito real de cada uma na simulação (moral mexe no overall em quadra, vestiário na força do time, técnico nos minutos, fama no valor de contrato, imagem nos patrocínios, desgaste no risco de lesão). As barras também aparecem no resumo do ano
+- **Carreira NBA**: aba **Dinheiro** com o que o patrimônio compra: equipe pessoal cobrada todo ano (preparador, nutricionista, equipe médica, psicólogo, agente, assessoria de imagem), gastos da temporada (férias, doação, treino individual de um atributo, investimento com risco) e academia em casa. Conforto financeiro: patrimônio abaixo de US$ 0,3 mi pesa na moral, acima de US$ 25 mi ajuda. Sem dinheiro pra manter a equipe, ela é cortada
+- Arquivos: `src/nba/engine/status.js` (novo), `src/components/nba/PainelJogador.jsx` (novo), `contrato.js`, `temporada.js`, `estado.js`
+
 ## 2026-10-02 — Claude (3)
 - **Carreira NBA**: logos oficiais da NBA, da G League e dos 30 times (carregados do CDN da NBA, não ficam no repositório; se a imagem falhar, cai no emblema de texto)
 - **Carreira NBA**: carreira não acaba mais cedo. Sem proposta de contrato, passando batido no draft ou por escolha, o jogador vai jogar no exterior (12 ligas: NBB, ACB, Turquia, Itália, China, Japão e outras) com salário, prêmios de liga, títulos e 10 eventos próprios, e pode receber proposta de volta pra NBA. A carreira só termina aos 40 anos (ou 36+ com overall baixo demais), e dá pra se aposentar quando quiser a partir dos 30. Legado conta a carreira fora da NBA; novos títulos "Carreira rodando o mundo" e "Veterano de várias ligas"

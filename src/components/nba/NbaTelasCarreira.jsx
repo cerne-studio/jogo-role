@@ -9,7 +9,7 @@ import { IDADE_APOSENTAR } from '../../nba/engine/carreira.js'
 import { BotaoPrimario, CartaoJogador, GraficoOvr, Stat, TimeEscudo, Titulo, fmtMi, fmtNum, NOMES_PREMIO, posicaoSigla } from './ui.jsx'
 
 const Pagina = ({ children }) => (
-  <div className="mx-auto flex min-h-[100dvh] w-full max-w-sm flex-col px-5 py-6">{children}</div>
+  <div className="mx-auto flex min-h-[100dvh] w-full max-w-sm flex-col px-5 pb-6 pt-14">{children}</div>
 )
 const entrada = { initial: { opacity: 0, y: 10 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.25 } }
 

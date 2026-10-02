@@ -1,5 +1,6 @@
 import { TIMES } from '../data/times.js'
 import { clamp, arred } from './rng.js'
+import { custoServicos } from './status.js'
 
 // Valores em US$ milhões por ano. Teto salarial simplificado (~US$ 150 mi); contrato máximo ≈ 35% do teto.
 export const TETO_SALARIAL = 150
@@ -16,6 +17,7 @@ export function valorMercado(estado) {
   else if (estado.idade >= 33) v *= 0.85
   else if (estado.idade <= 22) v *= 1.05
   if (estado.lesaoAtual?.grave) v *= 0.85
+  if (estado.servicos?.agente) v *= 1.05
   return arred(clamp(v, SALARIO_MINIMO, SALARIO_MAXIMO))
 }
 
@@ -111,14 +113,15 @@ export function patrocinioAnual(estado) {
   // US$ mi/ano em patrocínios, só começa a valer com fama
   const base = Math.max(0, estado.fama - 35) ** 1.5 * 0.06
   const imagem = 1 + (estado.imagem - 50) * 0.008
-  return arred(clamp(base * imagem + (estado.patrocinioExtra ?? 0), 0, 90))
+  const agente = estado.servicos?.agente ? 1.1 : 1
+  return arred(clamp(base * imagem * agente + (estado.patrocinioExtra ?? 0), 0, 90))
 }
 
 // Patrimônio líquido ganho no ano: salário depois de imposto e empresário + patrocínio - gastos de vida.
 export function rendaLiquidaAno(estado) {
   const bruto = estado.contrato?.salario ?? 0
   const liquido = bruto * 0.52
-  return arred(liquido + patrocinioAnual(estado) * 0.7 - 0.25 - (estado.gastoExtra ?? 0))
+  return arred(liquido + patrocinioAnual(estado) * 0.7 - 0.25 - (estado.gastoExtra ?? 0) - custoServicos(estado))
 }
 
 // Salário em ligas fora da NBA (US$ mi/ano): cresce com o overall, bem abaixo da NBA.

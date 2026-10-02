@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
-import { motion } from 'motion/react'
-import { Play, Plus } from 'lucide-react'
+import { AnimatePresence, motion } from 'motion/react'
+import { Play, Plus, SlidersHorizontal } from 'lucide-react'
 import ExitButton from '../core/ExitButton.jsx'
 import { criarRng } from '../../nba/engine/rng.js'
 import { EVENTOS } from '../../nba/data/eventos.js'
@@ -11,6 +11,7 @@ import {
 } from '../../nba/engine/carreira.js'
 import { selecionarEventos, resolverEscolha, aplicarEfeitos, registrarVisto } from '../../nba/engine/eventos.js'
 import NbaSetup from './NbaSetup.jsx'
+import { PainelJogador } from './PainelJogador.jsx'
 import { BotaoPrimario, CartaoJogador, SeloLiga, Titulo } from './ui.jsx'
 import { EventoTela, TemporadaTela, PlayoffsTela, PremiosTela, ResumoAnoTela } from './NbaTelasTemporada.jsx'
 import { DraftDecisaoTela, DraftNoiteTela, SemDraftTela, ContratoTela, FimTela } from './NbaTelasCarreira.jsx'
@@ -47,6 +48,7 @@ export default function NbaCarreira({ onBack }) {
   const rng = useMemo(() => criarRng(null), [])
   const [save] = useState(() => lerSave())
   const [j, setJ] = useState({ fase: 'inicio' })
+  const [painel, setPainel] = useState(false)
   const MENSAGEM_SAIR = 'Sua carreira fica salva neste aparelho. Dá pra continuar depois.'
 
   // grava depois de cada passo (menos nas telas de início/montagem)
@@ -233,10 +235,26 @@ export default function NbaCarreira({ onBack }) {
     tela = <FimTela estado={e} legado={j.extra.legado} onNova={recomecar} onSair={sairParaHome} />
   }
 
+  const comPainel = j.fase !== 'fim'
   return (
     <>
       {sair}
+      {comPainel && (
+        <motion.button
+          whileTap={{ scale: 0.9 }}
+          onClick={() => setPainel(true)}
+          aria-label="Status e dinheiro"
+          className="fixed left-4 top-4 z-40 flex h-9 items-center gap-1.5 rounded-full border border-border-strong bg-surface/90 px-3 text-xs font-semibold text-secondary backdrop-blur"
+        >
+          <SlidersHorizontal className="h-4 w-4" /> Status
+        </motion.button>
+      )}
       {tela}
+      <AnimatePresence>
+        {painel && comPainel && (
+          <PainelJogador estado={e} rng={rng} onMudar={(ne) => setJ((p) => ({ ...p, estado: ne }))} onFechar={() => setPainel(false)} />
+        )}
+      </AnimatePresence>
     </>
   )
 }

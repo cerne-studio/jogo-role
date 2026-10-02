@@ -4,10 +4,11 @@ import { Trophy, Star, Medal, Activity, TrendingUp, Wallet, Handshake, ChevronRi
 import { TIMES_POR_ID } from '../../nba/data/times.js'
 import { gerarManchete } from '../../nba/engine/manchetes.js'
 import { papelTexto } from '../../nba/engine/jogador.js'
+import { StatusBarras } from './PainelJogador.jsx'
 import { BotaoPrimario, CartaoJogador, GraficoOvr, Stat, TimeEscudo, SeloLiga, Titulo, fmtMi, NOMES_PREMIO } from './ui.jsx'
 
 const Pagina = ({ children }) => (
-  <div className="mx-auto flex min-h-[100dvh] w-full max-w-sm flex-col px-5 py-6">{children}</div>
+  <div className="mx-auto flex min-h-[100dvh] w-full max-w-sm flex-col px-5 pb-6 pt-14">{children}</div>
 )
 const entrada = { initial: { opacity: 0, y: 10 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.25 } }
 
@@ -384,6 +385,9 @@ export function ResumoAnoTela({ estado, relatorio, onProximo, onAposentar, podeA
           Renda líquida do ano: {fmtMi(relatorio.renda, 1)}{relatorio.patrocinio > 0 ? ` (inclui US$ ${relatorio.patrocinio.toLocaleString('pt-BR')} mi/ano em patrocínios)` : ''}
         </p>
       )}
+
+      <p className="mt-5 text-[11px] font-medium uppercase tracking-widest text-muted">Status do jogador</p>
+      <div className="mt-2"><StatusBarras estado={estado} /></div>
 
       <p className="mt-5 text-[11px] font-medium uppercase tracking-widest text-muted">Evolução do overall</p>
       <div className="mt-2 rounded-2xl border border-border bg-surface p-3"><GraficoOvr historico={estado.historico} /></div>

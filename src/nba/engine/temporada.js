@@ -5,6 +5,7 @@ import { avaliarPremios, sorteiaMvpFinais } from './premios.js'
 import { montarTabelas, forcaEfetivaUsuario, driftLiga } from './liga.js'
 import { simularPlayoffs, faseAlcancada } from './playoffs.js'
 import { checarMarcos } from './marcos.js'
+import { riscoLesao, modificadores, aplicarServicos, fotoStatus } from './status.js'
 import { rendaLiquidaAno, patrocinioAnual, salarioExterior } from './contrato.js'
 
 export const LESOES = [
@@ -28,7 +29,7 @@ const POS = {
 }
 
 export function sortearLesao(estado, rng, risco = 0) {
-  const prob = 0.1 + estado.desgaste * 0.004 + risco + (estado.idade >= 33 ? 0.05 : 0)
+  const prob = riscoLesao(estado) + risco
   if (!rng.chance(prob)) return null
   // lesões graves são mais raras e mais prováveis com desgaste alto
   const pesoGrave = 0.18 + estado.desgaste * 0.004
@@ -129,8 +130,9 @@ export function simularTemporadaNba(estado, rng, pend = {}) {
   const novato = estado.ultimaTemporadaNba === 0
 
   // lesão
+  const mod = modificadores(estado)
   const lesao = sortearLesao(estado, rng, pend.risco ?? 0)
-  const jogosLesado = lesao ? rng.int(lesao.jogosFora[0], lesao.jogosFora[1]) : 0
+  const jogosLesado = lesao ? Math.round(rng.int(lesao.jogosFora[0], lesao.jogosFora[1]) * mod.duracaoLesao) : 0
   const disp = clamp((82 - jogosLesado) / 82, 0, 1)
 
   let { papel, rel } = determinarPapel(estado, forcaTime, pend)
@@ -140,13 +142,14 @@ export function simularTemporadaNba(estado, rng, pend = {}) {
   // dias de descanso/jogos perdidos além de lesão (reserva joga menos)
   const jogosBase = papel === 'banco' ? rng.int(48, 76) : papel === 'rotacao' ? rng.int(62, 82) : 82
   const jogosNba = papel === 'g_league' ? clamp(Math.round((rel + 20) * 2.2), 0, 38) : Math.max(0, Math.min(jogosBase, 82 - jogosLesado))
-  const stats = gerarStats(estado, papel === 'g_league' ? 'banco' : papel, jogosNba, rng)
+  const emForma = { ...estado, media: estado.media + mod.forma }
+  const stats = gerarStats(emForma, papel === 'g_league' ? 'banco' : papel, jogosNba, rng)
   const statsG = papel === 'g_league' || (duasVias && papel === 'banco')
-    ? gerarStats({ ...estado, media: estado.media + 6 }, 'titular', Math.max(12, 50 - jogosNba), rng, 1.18)
+    ? gerarStats({ ...emForma, media: emForma.media + 6 }, 'titular', Math.max(12, 50 - jogosNba), rng, 1.18)
     : null
 
   // time na tabela
-  const fe = forcaEfetivaUsuario(forcaTime, estado.media, papel, disp)
+  const fe = forcaEfetivaUsuario(forcaTime, estado.media, papel, disp) + mod.quimica
   const tabelas = montarTabelas(estado.liga, rng, { id: estado.time, forca: fe })
   const minha = tabelas[time.conf].find((x) => x.id === estado.time)
   const playoffs = simularPlayoffs(tabelas, rng, estado.time)
@@ -301,7 +304,7 @@ export function simularTemporadaNba(estado, rng, pend = {}) {
     jogosPlayoffs,
     pontosPlayoffs,
   }
-  return { estado: comMarcos, relatorio }
+  return { estado: aplicarServicos(comMarcos), relatorio }
 }
 
 // ── temporada de base (faculdade / clube no exterior) ────────
@@ -376,11 +379,12 @@ export function sortearClubeExterior(pais, rng, ligaAtual = null) {
 }
 
 export function simularTemporadaExterior(estado, rng) {
+  const mod = modificadores(estado)
   const lesao = sortearLesao(estado, rng, 0)
-  const jogosLesado = lesao ? Math.min(rng.int(lesao.jogosFora[0], lesao.jogosFora[1]), 30) : 0
+  const jogosLesado = lesao ? Math.min(Math.round(rng.int(lesao.jogosFora[0], lesao.jogosFora[1]) * mod.duracaoLesao), 30) : 0
   const jogos = Math.max(0, 34 - Math.round(jogosLesado * 0.4))
   const papel = estado.media >= 60 ? 'estrela' : estado.media >= 52 ? 'titular' : 'rotacao'
-  const stats = gerarStats({ ...estado, media: estado.media + 4 }, papel, jogos, rng, 1.05)
+  const stats = gerarStats({ ...estado, media: estado.media + 4 + mod.forma }, papel, jogos, rng, 1.05)
 
   // 35% de chance de trocar de clube (e de liga) a cada ano; o contrato anual acompanha o overall
   let equipe = estado.equipe
@@ -451,7 +455,7 @@ export function simularTemporadaExterior(estado, rng) {
     historico: [...estado.historico, linha],
   }
   return {
-    estado: novo,
+    estado: aplicarServicos(novo),
     relatorio: {
       kind: 'base', exterior: true, pro: true, papel, stats, fase, campeao, premios, equipe, liga, trocou, salario, renda, patrimonio,
       lesao: lesao ? { ...lesao, jogosFora: jogosLesado } : null,
@@ -462,13 +466,16 @@ export function simularTemporadaExterior(estado, rng) {
 // ── virada de ano: envelhece, evolui atributos, mexe na liga ──
 export function avancarAno(estado, rng, { foco = {}, campeaoId = null } = {}) {
   const base = { ...estado, mediaAnterior: estado.media }
-  const atrs = evoluirAtributos(estado, rng, foco)
+  const focoTotal = { ...foco }
+  if (estado.focoAno) focoTotal[estado.focoAno] = (focoTotal[estado.focoAno] ?? 0) + 2
+  const atrs = evoluirAtributos(estado, rng, focoTotal)
   const media = calcMedia(atrs, estado.jogador.posicao)
   const contrato = estado.contrato
     ? { ...estado.contrato, anosRestantes: Math.max(0, estado.contrato.anosRestantes - (estado.nivel === 'nba' || estado.nivel === 'gleague' ? 1 : 0)) }
     : null
-  return {
+  const novo = {
     ...base,
+    focoAno: null,
     atrs,
     media,
     idade: estado.idade + 1,
@@ -480,4 +487,6 @@ export function avancarAno(estado, rng, { foco = {}, campeaoId = null } = {}) {
     lesaoAtual: null,
     mediaAnterior: estado.media,
   }
+  novo.statusInicio = fotoStatus(novo)
+  return novo
 }
