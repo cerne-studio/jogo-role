@@ -10,6 +10,12 @@ Registro de alterações. Mais recente no topo.
 
 ---
 
+## 2026-10-02 — Claude (6)
+- **Carreira NBA — modo computador**: em tela larga (≥1024px) o jogo ganha uma coluna fixa à esquerda com o cartão do jogador (clicável pras habilidades), nível da carreira, patrimônio (abre gastos e equipe) e as barras de status, e a ação principal fica numa coluna mais larga à direita. No celular continua igual, com o botão Status
+- **Carreira NBA — treino**: toda temporada começa com a tela de treino. O técnico recomenda um foco com base na posição e no espaço de evolução de cada atributo; técnico que confia em você acerta mais, técnico desconfiado dá palpite. Treinar um atributo dá +1 na virada do ano (+2 se seguir o técnico e ele confiar), custa um pouco de desgaste e seguir a recomendação sobe a confiança dele. Também dá pra descansar (desgaste −10)
+- **Carreira NBA — níveis e dificuldade**: carreira mais generosa (atributos iniciais e potencial maiores, corte de contrato menos duro, moral alta e técnico confiante ajudam a evoluir). Novos níveis: Aspirante, Role player, Bom jogador, All-Star, Superestrela, Hall da Fama, Lenda da NBA e Entre os maiores de todos os tempos. No simulador cerca de 29% ficam em Role player, 28% em Bom jogador, 19% All-Star, 9% Superestrela, 8% Hall da Fama, 3% Lenda e 1% no topo. Fama e imagem entram na nota de legado, então as escolhas pesam no nível final. Barra de progresso do nível aparece durante a carreira, e a tela final mostra a escada de níveis e as escolhas que mais marcaram
+- Arquivos: `src/nba/engine/{treino,legado,jogador,contrato,carreira,temporada}.js`, `src/components/nba/{NbaTreino,LateralJogador,PainelJogador,NbaCarreira}.jsx`
+
 ## 2026-10-02 — Claude (5)
 - **Carreira NBA**: tocar no cartão do jogador abre a tela de **habilidades** (bola de 3, arremesso de média, finalização, lance livre, ball handling, passe, visão de jogo, defesa de perímetro e de garrafão, roubo de bola, toco, rebote, velocidade, força, salto e QI), com pontos fortes, pontos a melhorar, nota por grupo e a variação desde a temporada passada. Derivadas dos 6 atributos base, da posição e da altura, com um "jeito" fixo por jogador
 - **Carreira NBA**: escolhas dos eventos deixaram de ter resposta óbvia. `equilibrio.js` mede o valor de cada opção e cobra um custo da melhor (e dá um alento à pior); a vantagem mediana da melhor escolha caiu e quase nenhum evento tem opção dominante (`scripts/audita-escolhas.mjs`)

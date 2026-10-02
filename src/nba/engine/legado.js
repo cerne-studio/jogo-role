@@ -26,27 +26,40 @@ export function pontuarLegado(e) {
     (p.roy ?? 0) * 6 +
     c.tripleDuplas * 0.8 +
     e.marcos.length * 1.5 +
-    exteriorScore(e)
+    exteriorScore(e) +
+    Math.max(0, e.fama - 20) * 0.7 +
+    Math.max(0, e.imagem - 40) * 0.3
   return Math.round(score)
 }
 
+// Níveis da carreira, do pior ao melhor. `min` é a nota de legado necessária.
 export const NIVEIS_LEGADO = [
-  { min: 1250, id: 'goat', titulo: 'Entre os maiores de todos os tempos', hof: true },
-  { min: 850, id: 'lenda', titulo: 'Lenda da NBA', hof: true },
-  { min: 560, id: 'hof', titulo: 'Hall da Fama', hof: true },
-  { min: 280, id: 'estrela', titulo: 'Estrela da liga', hof: false },
-  { min: 120, id: 'titular', titulo: 'Titular respeitado', hof: false },
-  { min: 50, id: 'rotacao', titulo: 'Jogador de rotação', hof: false },
-  { min: 0, id: 'passagem', titulo: 'Passagem rápida pela liga', hof: false },
+  { id: 'passagem', min: 0, titulo: 'Aspirante', hof: false },
+  { id: 'role', min: 60, titulo: 'Role player', hof: false },
+  { id: 'bom', min: 160, titulo: 'Bom jogador', hof: false },
+  { id: 'allstar', min: 270, titulo: 'All-Star', hof: false },
+  { id: 'superestrela', min: 430, titulo: 'Superestrela', hof: false },
+  { id: 'hof', min: 640, titulo: 'Hall da Fama', hof: true },
+  { id: 'lenda', min: 1050, titulo: 'Lenda da NBA', hof: true },
+  { id: 'goat', min: 1400, titulo: 'Entre os maiores de todos os tempos', hof: true },
 ]
 
 export function classificarCarreira(e) {
   const score = pontuarLegado(e)
-  let nivel = NIVEIS_LEGADO.find((n) => score >= n.min)
-  const anosFora = e.carreiraExterior?.anos ?? 0
-  if (nivel.id === 'passagem' && anosFora >= 4) nivel = { ...nivel, id: 'mundo', titulo: 'Carreira rodando o mundo' }
-  else if (nivel.id === 'rotacao' && anosFora >= 6) nivel = { ...nivel, id: 'mundo_rotacao', titulo: 'Veterano de várias ligas' }
+  let nivel = NIVEIS_LEGADO[0]
+  for (const n of NIVEIS_LEGADO) if (score >= n.min) nivel = n
   return { score, ...nivel }
+}
+
+// Nível agora, próximo nível e quanto falta (0 a 1) — pra mostrar a barra de progresso durante a carreira.
+export function nivelAtual(e) {
+  const score = pontuarLegado(e)
+  let i = 0
+  NIVEIS_LEGADO.forEach((n, idx) => { if (score >= n.min) i = idx })
+  const atual = NIVEIS_LEGADO[i]
+  const proximo = NIVEIS_LEGADO[i + 1] ?? null
+  const progresso = proximo ? Math.min(1, (score - atual.min) / (proximo.min - atual.min)) : 1
+  return { score, indice: i, atual, proximo, progresso }
 }
 
 // Camisa aposentada: lenda no time onde passou mais anos

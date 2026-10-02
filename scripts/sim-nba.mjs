@@ -87,3 +87,5 @@ for (const r of res) niveis[r.legado.titulo] = (niveis[r.legado.titulo] ?? 0) + 
 console.log('legado:')
 for (const [k, v] of Object.entries(niveis).sort((a, b) => b[1] - a[1])) console.log(`  ${k.padEnd(40)} ${pct(v)}`)
 console.log(`HOF: ${pct(res.filter((r) => r.legado.hof).length)} (real: ~1% dos jogadores que passam pela NBA, mas aqui só simulamos quem tem chance)`)
+const scores = res.map((r) => r.legado.score)
+console.log('cortes de nota de legado por quantil (alvo 5/35/63/81/90/97/99,5%):', [0.05, 0.35, 0.63, 0.81, 0.9, 0.97, 0.995].map((q) => quant(scores, q)).join(' · '))

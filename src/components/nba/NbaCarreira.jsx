@@ -12,6 +12,9 @@ import {
 import { selecionarEventos, resolverEscolha, aplicarEfeitos, registrarVisto, registrarDecisao } from '../../nba/engine/eventos.js'
 import NbaSetup from './NbaSetup.jsx'
 import { PainelJogador } from './PainelJogador.jsx'
+import { LateralJogador } from './LateralJogador.jsx'
+import { TreinoTela } from './NbaTreino.jsx'
+import { recomendarTreino, aplicarTreino } from '../../nba/engine/treino.js'
 import { BotaoPrimario, CartaoJogador, SeloLiga, Titulo } from './ui.jsx'
 import { EventoTela, TemporadaTela, PlayoffsTela, PremiosTela, ResumoAnoTela } from './NbaTelasTemporada.jsx'
 import { DraftDecisaoTela, DraftNoiteTela, SemDraftTela, ContratoTela, FimTela } from './NbaTelasCarreira.jsx'
@@ -48,7 +51,7 @@ export default function NbaCarreira({ onBack }) {
   const rng = useMemo(() => criarRng(null), [])
   const [save] = useState(() => lerSave())
   const [j, setJ] = useState({ fase: 'inicio' })
-  const [painel, setPainel] = useState(false)
+  const [painel, setPainel] = useState(null) // null | 'status' | 'dinheiro'
   const MENSAGEM_SAIR = 'Sua carreira fica salva neste aparelho. Dá pra continuar depois.'
 
   // grava depois de cada passo (menos nas telas de início/montagem)
@@ -62,7 +65,13 @@ export default function NbaCarreira({ onBack }) {
     setJ({ fase: 'temporada', estado, relatorio })
   }
 
+  // começa a temporada: primeiro o treino (o técnico recomenda), depois os eventos
   function abrirTemporada(e) {
+    setJ({ fase: 'treino', estado: e, extra: { rec: recomendarTreino(e, rng) } })
+  }
+
+  function confirmarTreino(escolha) {
+    const e = aplicarTreino(j.estado, escolha, j.extra.rec)
     const eventos = selecionarEventos(e, rng, ehBase(e) ? 1 : 2, 'pre')
     if (!eventos.length) return rodarTemporada(e, {})
     setJ({ fase: 'evento', estado: e, fila: eventos.map((x) => x.id), idx: 0, resposta: null, pend: {} })
@@ -163,7 +172,7 @@ export default function NbaCarreira({ onBack }) {
 
   if (j.fase === 'inicio') {
     return (
-      <div className="mx-auto flex min-h-[100dvh] w-full max-w-sm flex-col px-5 py-8">
+      <div className="mx-auto flex min-h-[100dvh] w-full max-w-sm flex-col px-5 py-8 lg:max-w-md">
         <ExitButton onExit={onBack} mensagem="Voltar pro início?" />
         <Titulo pequeno="Jogo do Rolê" sub="Do primeiro treino ao Hall da Fama. Draft, contratos, prêmios, playoffs e recordes.">Carreira NBA</Titulo>
         <div className="mt-6 flex items-center gap-2 text-xs text-secondary"><SeloLiga tipo="nba" /><SeloLiga tipo="gleague" /><span>30 times reais da liga</span></div>
@@ -194,7 +203,9 @@ export default function NbaCarreira({ onBack }) {
   const e = j.estado
   let tela = null
 
-  if (j.fase === 'evento') {
+  if (j.fase === 'treino') {
+    tela = <TreinoTela estado={e} rec={j.extra.rec} onConfirmar={confirmarTreino} />
+  } else if (j.fase === 'evento') {
     const ev = EVENTOS_POR_ID[j.fila[j.idx]]
     tela = <EventoTela estado={e} evento={ev} indice={j.idx} total={j.fila.length} resposta={j.resposta} onEscolher={escolherEvento} onContinuar={proximoEvento} />
   } else if (j.fase === 'temporada') {
@@ -242,17 +253,22 @@ export default function NbaCarreira({ onBack }) {
       {comPainel && (
         <motion.button
           whileTap={{ scale: 0.9 }}
-          onClick={() => setPainel(true)}
+          onClick={() => setPainel('status')}
           aria-label="Status e dinheiro"
-          className="fixed left-4 top-4 z-40 flex h-9 items-center gap-1.5 rounded-full border border-border-strong bg-surface/90 px-3 text-xs font-semibold text-secondary backdrop-blur"
+          className="fixed left-4 top-4 z-40 flex h-9 items-center gap-1.5 rounded-full border border-border-strong bg-surface/90 px-3 text-xs font-semibold text-secondary backdrop-blur lg:hidden"
         >
           <SlidersHorizontal className="h-4 w-4" /> Status
         </motion.button>
       )}
-      {tela}
+      {comPainel ? (
+        <div className="lg:mx-auto lg:flex lg:max-w-6xl lg:justify-center lg:gap-10 lg:px-8">
+          <LateralJogador estado={e} onDinheiro={() => setPainel('dinheiro')} />
+          <main className="min-w-0 flex-1 lg:max-w-2xl">{tela}</main>
+        </div>
+      ) : tela}
       <AnimatePresence>
         {painel && comPainel && (
-          <PainelJogador estado={e} rng={rng} onMudar={(ne) => setJ((p) => ({ ...p, estado: ne }))} onFechar={() => setPainel(false)} />
+          <PainelJogador estado={e} rng={rng} abaInicial={painel} onMudar={(ne) => setJ((p) => ({ ...p, estado: ne }))} onFechar={() => setPainel(null)} />
         )}
       </AnimatePresence>
     </>

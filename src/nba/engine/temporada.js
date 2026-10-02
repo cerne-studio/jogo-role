@@ -5,6 +5,7 @@ import { avaliarPremios, sorteiaMvpFinais } from './premios.js'
 import { montarTabelas, forcaEfetivaUsuario, driftLiga } from './liga.js'
 import { simularPlayoffs, faseAlcancada } from './playoffs.js'
 import { checarMarcos } from './marcos.js'
+import { utilidade } from './pesos.js'
 import { riscoLesao, modificadores, aplicarServicos, fotoStatus } from './status.js'
 import { rendaLiquidaAno, patrocinioAnual, salarioExterior } from './contrato.js'
 
@@ -468,6 +469,7 @@ export function avancarAno(estado, rng, { foco = {}, campeaoId = null } = {}) {
   const base = { ...estado, mediaAnterior: estado.media }
   const focoTotal = { ...foco }
   if (estado.focoAno) focoTotal[estado.focoAno] = (focoTotal[estado.focoAno] ?? 0) + 2
+  if (estado.focoTreino) focoTotal[estado.focoTreino.atributo] = (focoTotal[estado.focoTreino.atributo] ?? 0) + estado.focoTreino.bonus
   const atrs = evoluirAtributos(estado, rng, focoTotal)
   const media = calcMedia(atrs, estado.jogador.posicao)
   const contrato = estado.contrato
@@ -476,6 +478,11 @@ export function avancarAno(estado, rng, { foco = {}, campeaoId = null } = {}) {
   const novo = {
     ...base,
     focoAno: null,
+    focoTreino: null,
+    decisoesCarreira: [
+      ...(estado.decisoesCarreira ?? []),
+      ...(estado.decisoesAno ?? []).map((d) => ({ ano: estado.ano, idade: estado.idade, titulo: d.titulo, rotulo: d.rotulo, impacto: Math.round(utilidade(d.efeitos)), efeitos: d.efeitos })),
+    ].slice(-150),
     atrsAnterior: estado.atrs,
     decisoesAno: [],
     atrs,

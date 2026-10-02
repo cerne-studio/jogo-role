@@ -6,6 +6,7 @@ import { gerarPropostas, aplicarContrato, SALARIO_DUAS_VIAS, salarioExterior } f
 import { simularTemporadaBase, simularTemporadaNba, simularTemporadaExterior, sortearClubeExterior, avancarAno } from './temporada.js'
 import { classificarCarreira } from './legado.js'
 import { selecionarEventos, resolverEscolha, aplicarEfeitos, registrarVisto } from './eventos.js'
+import { recomendarTreino, aplicarTreino } from './treino.js'
 
 export const IDADE_MAX_BASE = 22
 
@@ -106,7 +107,7 @@ export function irParaExterior(estado, rng) {
 // Quem joga fora às vezes recebe proposta de volta pra NBA. [] = sem proposta neste ano.
 export function propostasDeVolta(estado, rng) {
   if (!ehExterior(estado) || estado.idade > 36) return []
-  const folga = estado.media - (56 + Math.max(0, estado.idade - 21) * 1.6)
+  const folga = estado.media - (55.5 + Math.max(0, estado.idade - 21) * 1.5)
   if (folga < 0 || !rng.chance(clamp(0.2 + folga * 0.04, 0.2, 0.7))) return []
   return gerarPropostas(estado, rng)
 }
@@ -167,7 +168,9 @@ export function autoJogar(estado, rng, { ficarNaBaseAteSeguro = true } = {}) {
       if (volta.length) e = assinarProposta(e, [...volta].sort((a, b) => b.salario - a.salario)[0])
     }
 
-    // 3) eventos da pré-temporada (escolha aleatória no piloto automático)
+    // 3) treino (o piloto automático segue o técnico em 70% das vezes) e eventos da pré-temporada (escolha aleatória)
+    const rec = recomendarTreino(e, rng)
+    e = aplicarTreino(e, rng.chance(0.7) ? rec.recomendado : rng.pick(rec.opcoes).id, rec)
     let pend = {}
     const qtdEv = ehBase(e) ? 1 : 2
     for (const ev of selecionarEventos(e, rng, qtdEv, 'pre')) {

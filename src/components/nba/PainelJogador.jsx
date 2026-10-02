@@ -6,6 +6,7 @@ import {
   SERVICOS, BENS, ACOES, NOMES_ATRIBUTO, alternarServico, comprarBem, usarAcao,
 } from '../../nba/engine/status.js'
 import { rendaLiquidaAno } from '../../nba/engine/contrato.js'
+import { nivelAtual, NIVEIS_LEGADO } from '../../nba/engine/legado.js'
 import { fmtMi } from './ui.jsx'
 
 const sg = (v, c = 1) => `${v >= 0 ? '+' : '−'}${Math.abs(v).toFixed(c).replace('.', ',')}`
@@ -56,6 +57,31 @@ function linhas(e) {
       bom: e.desgaste < 35, ruim: e.desgaste >= 60,
     },
   ]
+}
+
+// Nível da carreira (Role player → Bom jogador → All-Star → ...) e quanto falta pro próximo.
+export function NivelCarreira({ estado }) {
+  const n = nivelAtual(estado)
+  return (
+    <div className="rounded-2xl border border-accent/30 bg-accent-glow p-3.5">
+      <div className="flex items-center justify-between">
+        <p className="text-[10px] font-bold uppercase tracking-widest text-accent">Nível da carreira</p>
+        <p className="text-[10px] tabular-nums text-secondary">nota {n.score}</p>
+      </div>
+      <p className="mt-1 text-lg font-bold leading-tight">{n.atual.titulo}</p>
+      <div className="mt-2 flex gap-1">
+        {NIVEIS_LEGADO.map((nv, i) => (
+          <div key={nv.id} className={`h-1.5 flex-1 rounded-full ${i <= n.indice ? 'bg-accent' : 'bg-border'}`} />
+        ))}
+      </div>
+      <div className="mt-2 h-1 overflow-hidden rounded-full bg-border">
+        <motion.div initial={{ width: 0 }} animate={{ width: `${Math.round(n.progresso * 100)}%` }} transition={{ duration: 0.5 }} className="h-full rounded-full bg-emerald-400" />
+      </div>
+      <p className="mt-1.5 text-[11px] leading-snug text-secondary">
+        {n.proximo ? `Faltam ${n.proximo.min - n.score} pontos pra ${n.proximo.titulo}.` : 'Você chegou ao topo.'} Sobe com estatísticas, prêmios, títulos, fama e boas escolhas.
+      </p>
+    </div>
+  )
 }
 
 export function StatusBarras({ estado }) {
@@ -223,11 +249,11 @@ function AbaDinheiro({ estado, rng, onMudar }) {
 }
 
 // Folha em tela cheia com status (barras + efeito) e a aba de dinheiro.
-export function PainelJogador({ estado, rng, onMudar, onFechar }) {
-  const [aba, setAba] = useState('status')
+export function PainelJogador({ estado, rng, onMudar, onFechar, abaInicial = 'status' }) {
+  const [aba, setAba] = useState(abaInicial)
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 overflow-y-auto bg-[#0a0a0b]">
-      <div className="mx-auto w-full max-w-sm px-5 pb-8 pt-5">
+      <div className="mx-auto w-full max-w-sm px-5 pb-8 pt-5 lg:max-w-xl">
         <div className="sticky top-0 z-10 -mx-5 flex items-center gap-2 bg-[#0a0a0b]/95 px-5 pb-3 pt-1 backdrop-blur">
           {[['status', 'Status'], ['dinheiro', 'Dinheiro']].map(([id, rotulo]) => (
             <button key={id} onClick={() => setAba(id)} className={`rounded-full border px-4 py-2 text-sm font-semibold ${aba === id ? 'border-accent bg-accent-glow text-accent' : 'border-border-strong text-secondary'}`}>
@@ -241,6 +267,7 @@ export function PainelJogador({ estado, rng, onMudar, onFechar }) {
         {aba === 'status' ? (
           <>
             <p className="mb-3 text-xs leading-relaxed text-secondary">Esses números mexem de verdade na simulação. A mudança ao lado de cada barra é desde o começo da temporada.</p>
+            <div className="mb-3"><NivelCarreira estado={estado} /></div>
             <StatusBarras estado={estado} />
           </>
         ) : (

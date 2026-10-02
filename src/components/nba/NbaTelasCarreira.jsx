@@ -6,10 +6,12 @@ import { descreverPick } from '../../nba/engine/draft.js'
 import { RANKING_PONTOS, RECORDES_LIGA } from '../../nba/engine/marcos.js'
 import { valorMercado } from '../../nba/engine/contrato.js'
 import { IDADE_APOSENTAR } from '../../nba/engine/carreira.js'
+import { NIVEIS_LEGADO } from '../../nba/engine/legado.js'
+import { utilidade } from '../../nba/engine/pesos.js'
 import { BotaoPrimario, CartaoJogador, GraficoOvr, Stat, TimeEscudo, Titulo, fmtMi, fmtNum, NOMES_PREMIO, posicaoSigla } from './ui.jsx'
 
 const Pagina = ({ children }) => (
-  <div className="mx-auto flex min-h-[100dvh] w-full max-w-sm flex-col px-5 pb-6 pt-14">{children}</div>
+  <div className="mx-auto flex min-h-[100dvh] w-full max-w-sm flex-col px-5 pb-6 pt-14 lg:max-w-2xl">{children}</div>
 )
 const entrada = { initial: { opacity: 0, y: 10 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.25 } }
 
@@ -191,6 +193,13 @@ function resumoTexto(estado, legado) {
 export function FimTela({ estado, legado, onNova, onSair }) {
   const [copiado, setCopiado] = useState(false)
   const c = estado.carreira
+  const marcantes = [
+    ...(estado.decisoesCarreira ?? []),
+    ...(estado.decisoesAno ?? []).map((d) => ({ idade: estado.idade, titulo: d.titulo, rotulo: d.rotulo, impacto: Math.round(utilidade(d.efeitos)) })),
+  ]
+    .filter((d) => d.titulo !== 'Treino da temporada')
+    .sort((a, b) => Math.abs(b.impacto) - Math.abs(a.impacto))
+    .slice(0, 5)
   const p = estado.premios
   const nba = estado.historico.filter((h) => h.time)
   const pico = Math.max(...estado.historico.map((h) => h.ovr))
@@ -220,6 +229,23 @@ export function FimTela({ estado, legado, onNova, onSair }) {
       </motion.div>
 
       <div className="mt-5"><CartaoJogador estado={estado} compacto /></div>
+
+      <div className="mt-4 rounded-2xl border border-border bg-surface p-4">
+        <p className="text-[11px] font-medium uppercase tracking-widest text-muted">Escada da carreira</p>
+        <div className="mt-3 flex flex-col gap-1.5">
+          {[...NIVEIS_LEGADO].reverse().map((n) => {
+            const atingido = legado.score >= n.min
+            const atual = n.id === legado.id
+            return (
+              <div key={n.id} className={`flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-sm ${atual ? 'border border-accent bg-accent-glow font-bold text-accent' : atingido ? 'text-primary' : 'text-muted'}`}>
+                <span className={`h-2 w-2 rounded-full ${atingido ? 'bg-accent' : 'bg-border'}`} />
+                <span className="flex-1">{n.titulo}</span>
+                {atual && <span className="text-[10px] font-bold uppercase tracking-widest">Você</span>}
+              </div>
+            )
+          })}
+        </div>
+      </div>
 
       <div className="mt-4 grid grid-cols-3 gap-2">
         <Stat rotulo="Pontos" valor={fmtNum(c.pontos)} destaque />
@@ -294,6 +320,20 @@ export function FimTela({ estado, legado, onNova, onSair }) {
               <span key={k} className="rounded-full border border-border-strong bg-surface px-2.5 py-1 text-[11px] font-semibold">{v}x {NOMES_PREMIO[k] ?? k}</span>
             ))}
           </div>
+        </>
+      )}
+
+      {marcantes.length > 0 && (
+        <>
+          <p className="mt-5 text-[11px] font-medium uppercase tracking-widest text-muted">Escolhas que marcaram a carreira</p>
+          <ul className="mt-2 flex flex-col gap-1.5">
+            {marcantes.map((d, i) => (
+              <li key={i} className="flex items-start gap-2 rounded-xl border border-border bg-surface px-3 py-2 text-xs">
+                <span className={`mt-0.5 font-bold ${d.impacto >= 0 ? 'text-emerald-300' : 'text-red-300'}`}>{d.impacto >= 0 ? '▲' : '▼'}</span>
+                <span><b>{d.titulo}</b> <span className="text-muted">· {d.idade} anos</span><br /><span className="text-secondary">{d.rotulo}</span></span>
+              </li>
+            ))}
+          </ul>
         </>
       )}
 

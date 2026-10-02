@@ -42,7 +42,7 @@ function elegibilidadeTime(time, estado) {
 // Propostas ao fim do contrato: renovação com o time atual + ofertas de outros times + veterano mínimo pra contender.
 // Ninguém te contrata abaixo desse overall; o corte sobe com a idade (a liga é implacável com veterano fraco).
 export function overallMinimoParaContrato(idade) {
-  return 56 + Math.max(0, idade - 21) * 1.6
+  return 55.5 + Math.max(0, idade - 21) * 1.5
 }
 
 export function gerarPropostas(estado, rng) {

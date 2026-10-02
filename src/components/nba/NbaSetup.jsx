@@ -67,7 +67,7 @@ export default function NbaSetup({ onStart, onBack }) {
   }
 
   return (
-    <div className="flex min-h-[100dvh] flex-col px-6 py-10">
+    <div className="mx-auto flex min-h-[100dvh] w-full flex-col px-6 py-10 lg:max-w-xl">
       <button onClick={passo === 0 ? onBack : () => setPasso((p) => p - 1)} className="flex items-center gap-1.5 text-xs text-secondary">
         <ChevronLeft className="h-4 w-4" /> {passo === 0 ? 'Voltar' : passos[passo - 1]}
       </button>

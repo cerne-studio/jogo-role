@@ -8,12 +8,12 @@ export function calcMedia(atrs, posicao) {
 
 export function gerarAtributosIniciais(posicao, rng, caminho) {
   const base = {
-    arremesso: rng.int(46, 62),
-    infiltracao: rng.int(46, 62),
-    passe: rng.int(44, 60),
-    defesa: rng.int(44, 60),
-    fisico: rng.int(46, 62),
-    qi: rng.int(48, 64),
+    arremesso: rng.int(48, 64),
+    infiltracao: rng.int(48, 64),
+    passe: rng.int(46, 62),
+    defesa: rng.int(46, 62),
+    fisico: rng.int(48, 64),
+    qi: rng.int(50, 66),
   }
   if (posicao === 'armador') { base.passe += 6; base.qi += 4 }
   if (posicao === 'ala_armador') { base.arremesso += 6; base.infiltracao += 3 }
@@ -21,15 +21,15 @@ export function gerarAtributosIniciais(posicao, rng, caminho) {
   if (posicao === 'ala_pivo') { base.fisico += 6; base.defesa += 4 }
   if (posicao === 'pivo') { base.fisico += 8; base.infiltracao += 4 }
   // Sem recrutamento = modo difícil: parte mais baixo
-  const ajuste = caminho === 'sem_recrutamento' ? -5 : 0
+  const ajuste = caminho === 'sem_recrutamento' ? -3 : 0
   return Object.fromEntries(Object.entries(base).map(([k, v]) => [k, clamp(v + ajuste, 38, 76)]))
 }
 
 // Potencial: o teto de overall. Distribuição enviesada pra baixo (poucos viram superastros).
 export function gerarPotencial(media, rng, caminho) {
-  const sorte = rng.r() ** 3
-  const bonus = caminho === 'sem_recrutamento' ? -3 : 0
-  return clamp(Math.round(media + 7 + sorte * 26 + bonus), 58, 99)
+  const sorte = rng.r() ** 2.7
+  const bonus = caminho === 'sem_recrutamento' ? -2 : 0
+  return clamp(Math.round(media + 8 + sorte * 27 + bonus), 62, 99)
 }
 
 export function alturaSorteada(posicao, rng) {
@@ -56,9 +56,14 @@ export function evoluirAtributos(estado, rng, foco = {}) {
   const { atrs, potencial, idade, desgaste } = estado
   const ganho = ganhoPorIdade(idade, rng)
   const penDesgaste = desgaste > 65 ? -rng.int(1, 2) : 0
+  // cabeça e confiança do técnico também desenvolvem (ou travam) o jogador
+  let bonusStatus = 0
+  if (estado.moral >= 75 && rng.chance(0.5)) bonusStatus += 1
+  else if (estado.moral <= 25 && rng.chance(0.5)) bonusStatus -= 1
+  if (idade <= 27 && estado.tecnico >= 70 && rng.chance(0.5)) bonusStatus += 1
   const novos = { ...atrs }
   for (const k of Object.keys(novos)) {
-    let delta = ganho + penDesgaste + (foco[k] ?? 0) + rng.int(-1, 1) * (idade < 27 ? 1 : 0)
+    let delta = ganho + penDesgaste + bonusStatus + (foco[k] ?? 0) + rng.int(-1, 1) * (idade < 27 ? 1 : 0)
     if (k === 'fisico' && idade >= 30) delta -= 1
     if (k === 'qi' && idade <= 32) delta += 1
     if (k === 'arremesso' && idade >= 30 && delta < 0) delta += 1 // arremesso envelhece melhor
