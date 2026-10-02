@@ -7,6 +7,7 @@ import { EVENTOS } from '../../nba/data/eventos.js'
 import {
   iniciarCarreira, ehBase, podeDeclarar, draftObrigatorio, projetarDraft, realizarDraft, opcoesSemDraft,
   aceitarDuasVias, temContratoVencendo, propostasDeContrato, assinarProposta, simularAno, aposentar, fimForcado, avancarAno,
+  ehExterior, irParaExterior, propostasDeVolta, IDADE_APOSENTAR,
 } from '../../nba/engine/carreira.js'
 import { selecionarEventos, resolverEscolha, aplicarEfeitos, registrarVisto } from '../../nba/engine/eventos.js'
 import NbaSetup from './NbaSetup.jsx'
@@ -79,10 +80,15 @@ export default function NbaCarreira({ onBack }) {
       return abrirTemporada(e)
     }
     if (temContratoVencendo(e)) {
-      const propostas = propostasDeContrato(e, rng)
-      if (!propostas.length) return finalizar(e)
-      setJ({ fase: 'contrato', estado: e, extra: { propostas } })
+      setJ({ fase: 'contrato', estado: e, extra: { propostas: propostasDeContrato(e, rng), modo: 'vencendo' } })
       return
+    }
+    if (ehExterior(e)) {
+      const propostas = propostasDeVolta(e, rng)
+      if (propostas.length) {
+        setJ({ fase: 'contrato', estado: e, extra: { propostas, modo: 'volta' } })
+        return
+      }
     }
     abrirTemporada(e)
   }
@@ -158,7 +164,7 @@ export default function NbaCarreira({ onBack }) {
       <div className="mx-auto flex min-h-[100dvh] w-full max-w-sm flex-col px-5 py-8">
         <ExitButton onExit={onBack} mensagem="Voltar pro início?" />
         <Titulo pequeno="Jogo do Rolê" sub="Do primeiro treino ao Hall da Fama. Draft, contratos, prêmios, playoffs e recordes.">Carreira NBA</Titulo>
-        <div className="mt-6 flex items-center gap-2 text-xs text-secondary"><SeloLiga tipo="nba" /><SeloLiga tipo="gleague" /><span>Times reais (só nomes e cores)</span></div>
+        <div className="mt-6 flex items-center gap-2 text-xs text-secondary"><SeloLiga tipo="nba" /><SeloLiga tipo="gleague" /><span>30 times reais da liga</span></div>
         {save && (
           <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="mt-6">
             <p className="mb-2 text-[11px] font-medium uppercase tracking-widest text-muted">Carreira salva</p>
@@ -196,7 +202,7 @@ export default function NbaCarreira({ onBack }) {
   } else if (j.fase === 'premios') {
     tela = <PremiosTela estado={e} relatorio={j.relatorio} onContinuar={() => setJ({ ...j, fase: 'resumo' })} />
   } else if (j.fase === 'resumo') {
-    tela = <ResumoAnoTela estado={e} relatorio={j.relatorio} onProximo={fecharAno} onAposentar={() => finalizar(e)} podeAposentar={!ehBase(e) && e.idade >= 33} />
+    tela = <ResumoAnoTela estado={e} relatorio={j.relatorio} onProximo={fecharAno} onAposentar={() => finalizar(e)} podeAposentar={!ehBase(e) && e.idade >= IDADE_APOSENTAR} />
   } else if (j.fase === 'draft_decisao') {
     tela = <DraftDecisaoTela estado={e} projecao={j.extra.projecao} obrigatorio={j.extra.obrigatorio} onDeclarar={declararDraft} onFicar={() => abrirTemporada(e)} />
   } else if (j.fase === 'draft_noite') {
@@ -209,10 +215,20 @@ export default function NbaCarreira({ onBack }) {
         podeVoltar={e.idade < 21}
         onEscolher={(o) => abrirTemporada(aceitarDuasVias({ ...e }, o))}
         onVoltar={() => abrirTemporada({ ...e, draft: null })}
+        onExterior={() => abrirTemporada(irParaExterior(e, rng))}
       />
     )
   } else if (j.fase === 'contrato') {
-    tela = <ContratoTela estado={e} propostas={j.extra.propostas} onEscolher={(p) => abrirTemporada(assinarProposta(e, p))} onAposentar={() => finalizar(e)} />
+    tela = (
+      <ContratoTela
+        estado={e}
+        propostas={j.extra.propostas}
+        modo={j.extra.modo}
+        onEscolher={(p) => abrirTemporada(assinarProposta(e, p))}
+        onAposentar={() => finalizar(e)}
+        onExterior={() => abrirTemporada(j.extra.modo === 'volta' ? e : irParaExterior(e, rng))}
+      />
+    )
   } else if (j.fase === 'fim') {
     tela = <FimTela estado={e} legado={j.extra.legado} onNova={recomecar} onSair={sairParaHome} />
   }

@@ -8,6 +8,16 @@ function sorteio(arr, seed) {
 export function gerarManchete(estado, rel) {
   const nome = estado.jogador.sobrenome
   const seed = estado.temporada * 7 + estado.idade
+  if (rel.exterior) {
+    if (rel.campeao) return `${nome} é campeão da ${rel.liga} com o ${rel.equipe}.`
+    if (rel.premios.length) return `${nome} é ${rel.premios[0].nome.toLowerCase()} na ${rel.liga}.`
+    if (rel.trocou) return `${nome} assina com o ${rel.equipe} e segue a carreira na ${rel.liga}.`
+    return sorteio([
+      `${nome} fecha mais uma temporada na ${rel.liga}: ${rel.stats.ppg} pontos por jogo.`,
+      `${nome} é peça importante do ${rel.equipe} e segue em quadra.`,
+      `${nome} mantém a rotina fora da NBA e a torcida do ${rel.equipe} agradece.`,
+    ], seed)
+  }
   if (rel.kind === 'base') {
     if (rel.fase?.startsWith('Campeão')) return `${nome} lidera ${rel.equipe} ao título e vira o rosto da temporada.`
     if (rel.premios.length) return `${nome} é eleito ${rel.premios[0].nome} e já aparece nos mock drafts.`

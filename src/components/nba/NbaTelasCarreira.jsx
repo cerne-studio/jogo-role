@@ -5,6 +5,7 @@ import { TIMES_POR_ID } from '../../nba/data/times.js'
 import { descreverPick } from '../../nba/engine/draft.js'
 import { RANKING_PONTOS, RECORDES_LIGA } from '../../nba/engine/marcos.js'
 import { valorMercado } from '../../nba/engine/contrato.js'
+import { IDADE_APOSENTAR } from '../../nba/engine/carreira.js'
 import { BotaoPrimario, CartaoJogador, GraficoOvr, Stat, TimeEscudo, Titulo, fmtMi, fmtNum, NOMES_PREMIO, posicaoSigla } from './ui.jsx'
 
 const Pagina = ({ children }) => (
@@ -101,10 +102,10 @@ export function DraftNoiteTela({ estado, draft, onContinuar }) {
 }
 
 // ── Sem draft: ofertas de duas vias ────────────────────────
-export function SemDraftTela({ estado, ofertas, onEscolher, podeVoltar, onVoltar }) {
+export function SemDraftTela({ estado, ofertas, onEscolher, podeVoltar, onVoltar, onExterior }) {
   return (
     <Pagina>
-      <Titulo pequeno="Depois do draft" sub="Três franquias ligaram com contrato de duas vias: você divide o tempo entre a NBA e a G League.">Sua chance</Titulo>
+      <Titulo pequeno="Depois do draft" sub={ofertas.length ? 'Franquias ligaram com contrato de duas vias: você divide o tempo entre a NBA e a G League. Ou você pode tentar a vida em outro país.' : 'Nenhuma franquia ligou. Dá pra tentar a vida em outro país e voltar mais forte.'}>Sua chance</Titulo>
       <div className="mt-5 flex flex-col gap-2.5">
         {ofertas.map((o) => (
           <motion.button key={o.time} whileTap={{ scale: 0.98 }} onClick={() => onEscolher(o)} className="flex items-center gap-3 rounded-2xl border border-border-strong bg-surface p-4 text-left">
@@ -117,17 +118,28 @@ export function SemDraftTela({ estado, ofertas, onEscolher, podeVoltar, onVoltar
         ))}
       </div>
       <div className="flex-1" />
-      {podeVoltar && <div className="pt-6"><BotaoPrimario secundario onClick={onVoltar}>Voltar pra base e tentar de novo no ano que vem</BotaoPrimario></div>}
+      <div className="flex flex-col gap-2 pt-6">
+        <BotaoPrimario secundario={ofertas.length > 0} onClick={onExterior}>Jogar no exterior</BotaoPrimario>
+        {podeVoltar && <BotaoPrimario secundario onClick={onVoltar}>Voltar pra base e tentar de novo no ano que vem</BotaoPrimario>}
+      </div>
     </Pagina>
   )
 }
 
 // ── Contrato ───────────────────────────────────────────────
-export function ContratoTela({ estado, propostas, onEscolher, onAposentar }) {
+export function ContratoTela({ estado, propostas, modo = 'vencendo', onEscolher, onAposentar, onExterior }) {
   const mercado = valorMercado(estado)
+  const volta = modo === 'volta'
+  const vazio = propostas.length === 0
+  const titulo = volta ? 'A NBA ligou' : vazio ? 'Sem propostas' : 'Fim de contrato'
+  const sub = volta
+    ? `Times da NBA querem você de volta. Aceitar ou continuar no ${estado.equipe}?`
+    : vazio
+      ? 'Nenhum time da NBA quis fechar com você agora. A carreira não acaba aqui: dá pra jogar fora e tentar voltar.'
+      : `Seu contrato acabou. O mercado avalia você em torno de ${fmtMi(mercado, 1)} por ano.`
   return (
     <Pagina>
-      <Titulo pequeno={`Temporada ${estado.temporada} · ${estado.ano}`} sub={`Seu contrato acabou. O mercado avalia você em torno de ${fmtMi(mercado, 1)} por ano.`}>Fim de contrato</Titulo>
+      <Titulo pequeno={`Temporada ${estado.temporada} · ${estado.ano}`} sub={sub}>{titulo}</Titulo>
       <div className="mt-5 flex flex-col gap-2.5">
         {propostas.map((p) => {
           const t = TIMES_POR_ID[p.time]
@@ -153,7 +165,10 @@ export function ContratoTela({ estado, propostas, onEscolher, onAposentar }) {
         })}
       </div>
       <div className="flex-1" />
-      {estado.idade >= 33 && <div className="pt-6"><BotaoPrimario secundario onClick={onAposentar}>Pendurar as chuteiras</BotaoPrimario></div>}
+      <div className="flex flex-col gap-2 pt-6">
+        <BotaoPrimario secundario={!vazio} onClick={onExterior}>{volta ? `Continuar no ${estado.equipe}` : 'Jogar no exterior'}</BotaoPrimario>
+        {estado.idade >= IDADE_APOSENTAR && <BotaoPrimario secundario onClick={onAposentar}>Pendurar as chuteiras</BotaoPrimario>}
+      </div>
     </Pagina>
   )
 }
@@ -167,6 +182,7 @@ function resumoTexto(estado, legado) {
     `${legado.titulo} · Legado ${legado.score}${legado.hof ? ' · Hall da Fama' : ''}`,
     `${fmtNum(c.jogos)} jogos · ${fmtNum(c.pontos)} pts · ${fmtNum(c.rebotes)} reb · ${fmtNum(c.assistencias)} ast`,
     `${estado.titulos.length} título(s) · ${p.mvp ?? 0} MVP · ${p.allstar ?? 0} All-Star`,
+    ...(estado.carreiraExterior ? [`Fora da NBA: ${estado.carreiraExterior.anos} temporada(s) · ${fmtNum(estado.carreiraExterior.pontos)} pts · ${estado.carreiraExterior.titulos} título(s) de liga`] : []),
     `Pico de overall: ${Math.max(...estado.historico.map((h) => h.ovr))} · Patrimônio: ${fmtMi(estado.dinheiro.patrimonio, 0)}`,
   ]
   return linhas.join('\n')
@@ -217,6 +233,17 @@ export function FimTela({ estado, legado, onNova, onSair }) {
         <Stat rotulo="Patrimônio" valor={`US$ ${Math.round(estado.dinheiro.patrimonio)}mi`} />
       </div>
 
+      {estado.carreiraExterior && (
+        <>
+          <p className="mt-5 text-[11px] font-medium uppercase tracking-widest text-muted">Fora da NBA</p>
+          <div className="mt-2 grid grid-cols-3 gap-2">
+            <Stat rotulo="Temporadas" valor={estado.carreiraExterior.anos} />
+            <Stat rotulo="Pontos" valor={fmtNum(estado.carreiraExterior.pontos)} destaque />
+            <Stat rotulo="Títulos" valor={estado.carreiraExterior.titulos} />
+          </div>
+        </>
+      )}
+
       <p className="mt-5 text-[11px] font-medium uppercase tracking-widest text-muted">Evolução do overall</p>
       <div className="mt-2 rounded-2xl border border-border bg-surface p-3"><GraficoOvr historico={estado.historico} /></div>
 
@@ -248,7 +275,7 @@ export function FimTela({ estado, legado, onNova, onSair }) {
             {estado.historico.map((h, i) => (
               <tr key={i} className={`border-b border-border/50 ${h.campeao ? 'bg-accent-glow' : ''}`}>
                 <td className="px-2 py-1.5 tabular-nums">{h.idade}{h.campeao ? ' 🏆' : ''}</td>
-                <td className="px-1 py-1.5">{h.time ? TIMES_POR_ID[h.time].sigla : (h.equipe ?? '').slice(0, 6)}</td>
+                <td className="px-1 py-1.5">{h.time ? TIMES_POR_ID[h.time].sigla : (h.equipe ?? '').slice(0, 8)}</td>
                 <td className="px-1 py-1.5 text-right tabular-nums">{h.ovr}</td>
                 <td className="px-1 py-1.5 text-right tabular-nums">{h.stats.ppg.toFixed(1)}</td>
                 <td className="px-1 py-1.5 text-right tabular-nums">{h.stats.rpg.toFixed(1)}</td>

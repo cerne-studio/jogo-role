@@ -10,6 +10,11 @@ Registro de alterações. Mais recente no topo.
 
 ---
 
+## 2026-10-02 — Claude (3)
+- **Carreira NBA**: logos oficiais da NBA, da G League e dos 30 times (carregados do CDN da NBA, não ficam no repositório; se a imagem falhar, cai no emblema de texto)
+- **Carreira NBA**: carreira não acaba mais cedo. Sem proposta de contrato, passando batido no draft ou por escolha, o jogador vai jogar no exterior (12 ligas: NBB, ACB, Turquia, Itália, China, Japão e outras) com salário, prêmios de liga, títulos e 10 eventos próprios, e pode receber proposta de volta pra NBA. A carreira só termina aos 40 anos (ou 36+ com overall baixo demais), e dá pra se aposentar quando quiser a partir dos 30. Legado conta a carreira fora da NBA; novos títulos "Carreira rodando o mundo" e "Veterano de várias ligas"
+- Arquivos: `src/components/nba/*`, `src/nba/engine/{carreira,temporada,legado,eventos,manchetes,contrato}.js`, `src/nba/data/{times,eventosExterior}.js`, `scripts/sim-exterior.mjs`
+
 ## 2026-10-02 — Claude (2)
 - **Carreira NBA** (substitui a Carreira de Basquete): do college, clube no exterior ou "sem recrutamento" (duas vias/G League) até o Hall da Fama. Draft com projeção e noite do draft, 30 times reais (só nomes e cores; escudos próprios em SVG, sem logos oficiais), contratos (renovação, agência livre, anel), temporada regular com stats por jogo, play-in e playoffs mata-mata com linha do usuário jogo a jogo, prêmios (MVP, DPOY, ROY, 6MOY, MIP, All-Star, All-NBA, All-Defensive, líderes), marcos e ranking histórico (pontos, assistências, rebotes), lesões, patrimônio e patrocínio, rivais reais como adversários neutros, 153 eventos com escolhas e risco, manchetes, gráfico de overall e legado final com texto pra compartilhar. Salva sozinho no aparelho (`jogo-role:nba:v2`) e continua depois de recarregar. Motor puro com semente (`src/nba/engine`), simulador de balanceamento em `scripts/sim-nba.mjs` e validador de eventos em `scripts/valida-eventos.mjs`
 - Remove `src/components/carreira/*` e `src/data/carreiraBank.js`; `ExitButton` aceita `mensagem`

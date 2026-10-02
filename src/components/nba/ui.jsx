@@ -1,21 +1,21 @@
+import { useState } from 'react'
 import { motion } from 'motion/react'
 import { TIMES_POR_ID, POSICOES } from '../../nba/data/times.js'
 
-// ── Emblema de time: círculo com as cores da franquia e a sigla. NÃO é o logo oficial. ──
-export function TimeEscudo({ id, nome, tamanho = 40 }) {
+// ── Logos oficiais vêm do CDN da própria NBA (não ficam no repositório). Se a imagem falhar, cai no emblema próprio. ──
+const LOGO_TIME = (nbaId) => `https://cdn.nba.com/logos/nba/${nbaId}/global/L/logo.svg`
+const LOGO_LIGA = {
+  nba: 'https://cdn.nba.com/logos/leagues/logo-nba.svg',
+  gleague: 'https://cdn.nba.com/logos/leagues/logo-gleague.svg',
+}
+
+function EmblemaTexto({ id, nome, tamanho }) {
   const t = id ? TIMES_POR_ID[id] : null
   const [c1, c2] = t?.cores ?? ['#3f3f46', '#a1a1aa']
   const sigla = t?.sigla ?? (nome ? nome.slice(0, 3).toUpperCase() : '—')
-  const gid = `g-${id ?? sigla}-${tamanho}`
   return (
     <svg width={tamanho} height={tamanho} viewBox="0 0 48 48" aria-label={t?.nome ?? nome} className="shrink-0">
-      <defs>
-        <linearGradient id={gid} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor={c1} />
-          <stop offset="1" stopColor={c1} />
-        </linearGradient>
-      </defs>
-      <circle cx="24" cy="24" r="22" fill={`url(#${gid})`} />
+      <circle cx="24" cy="24" r="22" fill={c1} />
       <circle cx="24" cy="24" r="22" fill="none" stroke={c2} strokeWidth="3" />
       <circle cx="24" cy="24" r="17" fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="1" />
       <text x="24" y="29" textAnchor="middle" fontSize={sigla.length > 3 ? 11 : 14} fontWeight="800" fill={c2} fontFamily="Geist, system-ui, sans-serif" letterSpacing="0.5">
@@ -25,12 +25,32 @@ export function TimeEscudo({ id, nome, tamanho = 40 }) {
   )
 }
 
-// Selos de texto (não são os logos oficiais da NBA / G League).
-export function SeloLiga({ tipo = 'nba' }) {
-  const g = tipo === 'gleague'
+export function TimeEscudo({ id, nome, tamanho = 40 }) {
+  const t = id ? TIMES_POR_ID[id] : null
+  const [falhou, setFalhou] = useState(false)
+  if (!t?.nbaId || falhou) return <EmblemaTexto id={id} nome={nome} tamanho={tamanho} />
+  const miolo = Math.round(tamanho * 0.8)
   return (
-    <span className={`inline-flex items-center rounded-md border px-1.5 py-0.5 text-[10px] font-extrabold uppercase tracking-widest ${g ? 'border-emerald-400/40 text-emerald-300' : 'border-accent/50 text-accent'}`}>
-      {g ? 'G League' : 'NBA'}
+    <span className="inline-flex shrink-0 items-center justify-center rounded-full bg-white/95" style={{ width: tamanho, height: tamanho }}>
+      <img src={LOGO_TIME(t.nbaId)} alt={t.nome} width={miolo} height={miolo} loading="lazy" decoding="async" onError={() => setFalhou(true)} className="object-contain" />
+    </span>
+  )
+}
+
+// Logo da liga (NBA / G League) num chip claro pra aparecer bem no tema escuro.
+export function SeloLiga({ tipo = 'nba', altura = 18 }) {
+  const [falhou, setFalhou] = useState(false)
+  const g = tipo === 'gleague'
+  if (falhou) {
+    return (
+      <span className={`inline-flex items-center rounded-md border px-1.5 py-0.5 text-[10px] font-extrabold uppercase tracking-widest ${g ? 'border-emerald-400/40 text-emerald-300' : 'border-accent/50 text-accent'}`}>
+        {g ? 'G League' : 'NBA'}
+      </span>
+    )
+  }
+  return (
+    <span className="inline-flex items-center rounded-md bg-white/95 px-1.5 py-1">
+      <img src={LOGO_LIGA[tipo]} alt={g ? 'NBA G League' : 'NBA'} height={altura} style={{ height: altura, width: 'auto' }} loading="lazy" decoding="async" onError={() => setFalhou(true)} />
     </span>
   )
 }
@@ -150,5 +170,5 @@ export const NOMES_PREMIO = {
   mvp: 'MVP', fmvp: 'MVP das Finais', dpoy: 'Defensor do Ano', roy: 'Novato do Ano', sixth: 'Sexto Homem', mip: 'Mais Evoluiu',
   allstar: 'All-Star', allnba1: 'All-NBA 1º', allnba2: 'All-NBA 2º', allnba3: 'All-NBA 3º', alldef: 'Quinteto Defensivo',
   ptsleader: 'Cestinha', rebleader: 'Líder em rebotes', astleader: 'Líder em assistências', stlleader: 'Líder em roubos', blkleader: 'Líder em tocos',
-  allamerican: 'All-American', calouro: 'Calouro do Ano', jogador_ano: 'Jogador do Ano (NCAA)',
+  allamerican: 'All-American', calouro: 'Calouro do Ano', jogador_ano: 'Jogador do Ano (NCAA)', mvp_liga: 'MVP da liga', selecao_liga: 'Seleção da liga',
 }

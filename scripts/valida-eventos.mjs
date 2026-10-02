@@ -13,7 +13,7 @@ for (const ev of EVENTOS) {
   ids.add(ev.id)
   porFase[ev.fase] = (porFase[ev.fase] ?? 0) + 1
   if (!ev.titulo || !ev.texto) err(`${ev.id}: sem título/texto`)
-  if (!['base', 'nba'].includes(ev.fase)) err(`${ev.id}: fase inválida ${ev.fase}`)
+  if (!['base', 'nba', 'exterior'].includes(ev.fase)) err(`${ev.id}: fase inválida ${ev.fase}`)
   for (const k of Object.keys(ev.cond ?? {})) if (!COND.has(k)) err(`${ev.id}: condição desconhecida ${k}`)
   if (!ev.escolhas?.length || ev.escolhas.length > 4) err(`${ev.id}: precisa de 1 a 4 escolhas`)
   for (const [i, c] of (ev.escolhas ?? []).entries()) {

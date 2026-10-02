@@ -1,11 +1,11 @@
-import { TIMES_POR_ID } from '../data/times.js'
+import { TIMES_POR_ID, LIGAS_EXTERIOR } from '../data/times.js'
 import { clamp, arred, sigmoide } from './rng.js'
 import { calcMedia, evoluirAtributos } from './jogador.js'
 import { avaliarPremios, sorteiaMvpFinais } from './premios.js'
 import { montarTabelas, forcaEfetivaUsuario, driftLiga } from './liga.js'
 import { simularPlayoffs, faseAlcancada } from './playoffs.js'
 import { checarMarcos } from './marcos.js'
-import { rendaLiquidaAno, patrocinioAnual } from './contrato.js'
+import { rendaLiquidaAno, patrocinioAnual, salarioExterior } from './contrato.js'
 
 export const LESOES = [
   { nome: 'entorse de tornozelo', jogosFora: [3, 12], sequela: 0, grave: false },
@@ -364,6 +364,98 @@ export function simularTemporadaBase(estado, rng) {
   return {
     estado: novo,
     relatorio: { kind: 'base', papel, stats, fase, premios, lesao: lesao ? { ...lesao, jogosFora: jogosLesado } : null, equipe: estado.equipe, pro },
+  }
+}
+
+// ── temporada fora da NBA (clube estrangeiro, depois de não rolar ou por escolha) ──
+export function sortearClubeExterior(pais, rng, ligaAtual = null) {
+  const ligas = LIGAS_EXTERIOR.filter((l) => l.liga !== ligaAtual)
+  const doPais = ligas.filter((l) => l.pais === pais)
+  const liga = doPais.length && rng.chance(0.5) ? rng.pick(doPais) : rng.pick(ligas)
+  return { liga: liga.liga, clube: rng.pick(liga.clubes) }
+}
+
+export function simularTemporadaExterior(estado, rng) {
+  const lesao = sortearLesao(estado, rng, 0)
+  const jogosLesado = lesao ? Math.min(rng.int(lesao.jogosFora[0], lesao.jogosFora[1]), 30) : 0
+  const jogos = Math.max(0, 34 - Math.round(jogosLesado * 0.4))
+  const papel = estado.media >= 60 ? 'estrela' : estado.media >= 52 ? 'titular' : 'rotacao'
+  const stats = gerarStats({ ...estado, media: estado.media + 4 }, papel, jogos, rng, 1.05)
+
+  // 35% de chance de trocar de clube (e de liga) a cada ano; o contrato anual acompanha o overall
+  let equipe = estado.equipe
+  let liga = estado.ligaExterior
+  let trocou = false
+  if (!liga || rng.chance(0.35)) {
+    const c = sortearClubeExterior(estado.jogador.pais, rng, liga)
+    trocou = !!liga
+    equipe = c.clube
+    liga = c.liga
+  }
+  const salario = salarioExterior(estado.media)
+  const contrato = { tipo: 'exterior', salario, anos: 1, anosRestantes: 1 }
+
+  const forcaEquipe = clamp(56 + rng.norm(10, 8), 50, 90)
+  const forcaEf = forcaEquipe + (estado.media - 55) * 0.25
+  const p = sigmoide((forcaEf - 74) / 5)
+  const campeao = rng.chance(p * 0.55)
+  const fase = campeao ? 'Campeão da liga' : rng.chance(p) ? 'Semifinal da liga' : forcaEf >= 62 ? 'Playoffs da liga' : 'Fora dos playoffs'
+
+  const premios = []
+  if (stats.ppg >= 19 && estado.media >= 60 && rng.chance(0.35)) premios.push({ id: 'mvp_liga', nome: 'MVP da liga', tier: 2 })
+  else if (stats.ppg >= 14 && rng.chance(0.45)) premios.push({ id: 'selecao_liga', nome: 'Seleção da liga', tier: 3 })
+
+  const fama = clamp(estado.fama + (premios.length ? 3 : 0) + (campeao ? 3 : 0) - 1, 0, 100)
+  const moral = clamp(estado.moral + (campeao ? 8 : fase === 'Fora dos playoffs' ? -3 : 1) + rng.int(-3, 3), 0, 100)
+  const desgaste = clamp(estado.desgaste + rng.int(2, 6) - (lesao ? 5 : 0), 0, 100)
+  const atrs = { ...estado.atrs }
+  if (lesao) {
+    const queda = Math.floor(lesao.sequela / 3)
+    if (queda) for (const k of Object.keys(atrs)) atrs[k] = clamp(atrs[k] - queda, 1, estado.potencial)
+  }
+  const premiosCont = { ...estado.premios }
+  for (const pr of premios) premiosCont[pr.id] = (premiosCont[pr.id] ?? 0) + 1
+
+  const renda = rendaLiquidaAno({ ...estado, contrato, fama })
+  const patrimonio = arred(estado.dinheiro.patrimonio + renda)
+  const x = estado.carreiraExterior ?? { anos: 0, jogos: 0, pontos: 0, rebotes: 0, assistencias: 0, titulos: 0 }
+  const carreiraExterior = {
+    anos: x.anos + 1,
+    jogos: x.jogos + stats.jogos,
+    pontos: x.pontos + Math.round(stats.ppg * stats.jogos),
+    rebotes: x.rebotes + Math.round(stats.rpg * stats.jogos),
+    assistencias: x.assistencias + Math.round(stats.apg * stats.jogos),
+    titulos: x.titulos + (campeao ? 1 : 0),
+  }
+
+  const linha = {
+    ano: estado.ano, idade: estado.idade, temporada: estado.temporada, time: null, equipe,
+    nivel: 'exterior', papel, ovr: estado.media, stats, fase, campeao, premios: premios.map((pr) => pr.id), salario,
+    lesao: lesao ? lesao.nome : null, jogosLesado,
+  }
+  const novo = {
+    ...estado,
+    equipe,
+    ligaExterior: liga,
+    contrato,
+    atrs,
+    fama,
+    moral,
+    desgaste,
+    premios: premiosCont,
+    carreiraExterior,
+    dinheiro: { patrimonio },
+    media: calcMedia(atrs, estado.jogador.posicao),
+    lesaoAtual: lesao ? { ...lesao, jogosFora: jogosLesado } : null,
+    lesoes: lesao ? [...estado.lesoes, { ano: estado.ano, nome: lesao.nome, jogos: jogosLesado }] : estado.lesoes,
+    historico: [...estado.historico, linha],
+  }
+  return {
+    estado: novo,
+    relatorio: {
+      kind: 'base', exterior: true, pro: true, papel, stats, fase, campeao, premios, equipe, liga, trocou, salario, renda, patrimonio,
+      lesao: lesao ? { ...lesao, jogosFora: jogosLesado } : null,
+    },
   }
 }
 

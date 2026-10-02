@@ -3,37 +3,37 @@
 
 export const TIMES = [
   // ── Conferência Leste ──
-  { id: 'bos', nome: 'Boston Celtics', cidade: 'Boston', sigla: 'BOS', conf: 'Leste', cores: ['#007A33', '#BA9653'], forca: 84 },
-  { id: 'bkn', nome: 'Brooklyn Nets', cidade: 'Brooklyn', sigla: 'BKN', conf: 'Leste', cores: ['#111111', '#E5E5E5'], forca: 58 },
-  { id: 'nyk', nome: 'New York Knicks', cidade: 'Nova York', sigla: 'NYK', conf: 'Leste', cores: ['#006BB6', '#F58426'], forca: 83 },
-  { id: 'phi', nome: 'Philadelphia 76ers', cidade: 'Filadélfia', sigla: 'PHI', conf: 'Leste', cores: ['#006BB6', '#ED174C'], forca: 74 },
-  { id: 'tor', nome: 'Toronto Raptors', cidade: 'Toronto', sigla: 'TOR', conf: 'Leste', cores: ['#CE1141', '#1A1A1A'], forca: 66 },
-  { id: 'chi', nome: 'Chicago Bulls', cidade: 'Chicago', sigla: 'CHI', conf: 'Leste', cores: ['#CE1141', '#111111'], forca: 63 },
-  { id: 'cle', nome: 'Cleveland Cavaliers', cidade: 'Cleveland', sigla: 'CLE', conf: 'Leste', cores: ['#860038', '#FDBB30'], forca: 86 },
-  { id: 'det', nome: 'Detroit Pistons', cidade: 'Detroit', sigla: 'DET', conf: 'Leste', cores: ['#C8102E', '#1D42BA'], forca: 77 },
-  { id: 'ind', nome: 'Indiana Pacers', cidade: 'Indiana', sigla: 'IND', conf: 'Leste', cores: ['#002D62', '#FDBB30'], forca: 79 },
-  { id: 'mil', nome: 'Milwaukee Bucks', cidade: 'Milwaukee', sigla: 'MIL', conf: 'Leste', cores: ['#00471B', '#EEE1C6'], forca: 76 },
-  { id: 'atl', nome: 'Atlanta Hawks', cidade: 'Atlanta', sigla: 'ATL', conf: 'Leste', cores: ['#E03A3E', '#C1D32F'], forca: 68 },
-  { id: 'cha', nome: 'Charlotte Hornets', cidade: 'Charlotte', sigla: 'CHA', conf: 'Leste', cores: ['#1D1160', '#00788C'], forca: 58 },
-  { id: 'mia', nome: 'Miami Heat', cidade: 'Miami', sigla: 'MIA', conf: 'Leste', cores: ['#98002E', '#F9A01B'], forca: 71 },
-  { id: 'orl', nome: 'Orlando Magic', cidade: 'Orlando', sigla: 'ORL', conf: 'Leste', cores: ['#0077C0', '#C4CED4'], forca: 77 },
-  { id: 'was', nome: 'Washington Wizards', cidade: 'Washington', sigla: 'WAS', conf: 'Leste', cores: ['#002B5C', '#E31837'], forca: 54 },
+  { id: 'bos', nbaId: 1610612738, nome: 'Boston Celtics', cidade: 'Boston', sigla: 'BOS', conf: 'Leste', cores: ['#007A33', '#BA9653'], forca: 84 },
+  { id: 'bkn', nbaId: 1610612751, nome: 'Brooklyn Nets', cidade: 'Brooklyn', sigla: 'BKN', conf: 'Leste', cores: ['#111111', '#E5E5E5'], forca: 58 },
+  { id: 'nyk', nbaId: 1610612752, nome: 'New York Knicks', cidade: 'Nova York', sigla: 'NYK', conf: 'Leste', cores: ['#006BB6', '#F58426'], forca: 83 },
+  { id: 'phi', nbaId: 1610612755, nome: 'Philadelphia 76ers', cidade: 'Filadélfia', sigla: 'PHI', conf: 'Leste', cores: ['#006BB6', '#ED174C'], forca: 74 },
+  { id: 'tor', nbaId: 1610612761, nome: 'Toronto Raptors', cidade: 'Toronto', sigla: 'TOR', conf: 'Leste', cores: ['#CE1141', '#1A1A1A'], forca: 66 },
+  { id: 'chi', nbaId: 1610612741, nome: 'Chicago Bulls', cidade: 'Chicago', sigla: 'CHI', conf: 'Leste', cores: ['#CE1141', '#111111'], forca: 63 },
+  { id: 'cle', nbaId: 1610612739, nome: 'Cleveland Cavaliers', cidade: 'Cleveland', sigla: 'CLE', conf: 'Leste', cores: ['#860038', '#FDBB30'], forca: 86 },
+  { id: 'det', nbaId: 1610612765, nome: 'Detroit Pistons', cidade: 'Detroit', sigla: 'DET', conf: 'Leste', cores: ['#C8102E', '#1D42BA'], forca: 77 },
+  { id: 'ind', nbaId: 1610612754, nome: 'Indiana Pacers', cidade: 'Indiana', sigla: 'IND', conf: 'Leste', cores: ['#002D62', '#FDBB30'], forca: 79 },
+  { id: 'mil', nbaId: 1610612749, nome: 'Milwaukee Bucks', cidade: 'Milwaukee', sigla: 'MIL', conf: 'Leste', cores: ['#00471B', '#EEE1C6'], forca: 76 },
+  { id: 'atl', nbaId: 1610612737, nome: 'Atlanta Hawks', cidade: 'Atlanta', sigla: 'ATL', conf: 'Leste', cores: ['#E03A3E', '#C1D32F'], forca: 68 },
+  { id: 'cha', nbaId: 1610612766, nome: 'Charlotte Hornets', cidade: 'Charlotte', sigla: 'CHA', conf: 'Leste', cores: ['#1D1160', '#00788C'], forca: 58 },
+  { id: 'mia', nbaId: 1610612748, nome: 'Miami Heat', cidade: 'Miami', sigla: 'MIA', conf: 'Leste', cores: ['#98002E', '#F9A01B'], forca: 71 },
+  { id: 'orl', nbaId: 1610612753, nome: 'Orlando Magic', cidade: 'Orlando', sigla: 'ORL', conf: 'Leste', cores: ['#0077C0', '#C4CED4'], forca: 77 },
+  { id: 'was', nbaId: 1610612764, nome: 'Washington Wizards', cidade: 'Washington', sigla: 'WAS', conf: 'Leste', cores: ['#002B5C', '#E31837'], forca: 54 },
   // ── Conferência Oeste ──
-  { id: 'den', nome: 'Denver Nuggets', cidade: 'Denver', sigla: 'DEN', conf: 'Oeste', cores: ['#0E2240', '#FEC524'], forca: 84 },
-  { id: 'min', nome: 'Minnesota Timberwolves', cidade: 'Minnesota', sigla: 'MIN', conf: 'Oeste', cores: ['#0C2340', '#78BE20'], forca: 82 },
-  { id: 'okc', nome: 'Oklahoma City Thunder', cidade: 'Oklahoma City', sigla: 'OKC', conf: 'Oeste', cores: ['#007AC1', '#EF3B24'], forca: 92 },
-  { id: 'por', nome: 'Portland Trail Blazers', cidade: 'Portland', sigla: 'POR', conf: 'Oeste', cores: ['#E03A3E', '#1A1A1A'], forca: 62 },
-  { id: 'uta', nome: 'Utah Jazz', cidade: 'Utah', sigla: 'UTA', conf: 'Oeste', cores: ['#4B2E83', '#F9A01B'], forca: 56 },
-  { id: 'gsw', nome: 'Golden State Warriors', cidade: 'São Francisco', sigla: 'GSW', conf: 'Oeste', cores: ['#1D428A', '#FFC72C'], forca: 77 },
-  { id: 'lac', nome: 'Los Angeles Clippers', cidade: 'Los Angeles', sigla: 'LAC', conf: 'Oeste', cores: ['#C8102E', '#1D428A'], forca: 70 },
-  { id: 'lal', nome: 'Los Angeles Lakers', cidade: 'Los Angeles', sigla: 'LAL', conf: 'Oeste', cores: ['#552583', '#FDB927'], forca: 78 },
-  { id: 'phx', nome: 'Phoenix Suns', cidade: 'Phoenix', sigla: 'PHX', conf: 'Oeste', cores: ['#1D1160', '#E56020'], forca: 64 },
-  { id: 'sac', nome: 'Sacramento Kings', cidade: 'Sacramento', sigla: 'SAC', conf: 'Oeste', cores: ['#5A2D81', '#63727A'], forca: 66 },
-  { id: 'dal', nome: 'Dallas Mavericks', cidade: 'Dallas', sigla: 'DAL', conf: 'Oeste', cores: ['#00538C', '#B8C4CA'], forca: 69 },
-  { id: 'hou', nome: 'Houston Rockets', cidade: 'Houston', sigla: 'HOU', conf: 'Oeste', cores: ['#CE1141', '#C4CED4'], forca: 83 },
-  { id: 'mem', nome: 'Memphis Grizzlies', cidade: 'Memphis', sigla: 'MEM', conf: 'Oeste', cores: ['#5D76A9', '#12173F'], forca: 72 },
-  { id: 'nop', nome: 'New Orleans Pelicans', cidade: 'Nova Orleans', sigla: 'NOP', conf: 'Oeste', cores: ['#0C2340', '#C8102E'], forca: 60 },
-  { id: 'sas', nome: 'San Antonio Spurs', cidade: 'San Antonio', sigla: 'SAS', conf: 'Oeste', cores: ['#6B7280', '#111111'], forca: 75 },
+  { id: 'den', nbaId: 1610612743, nome: 'Denver Nuggets', cidade: 'Denver', sigla: 'DEN', conf: 'Oeste', cores: ['#0E2240', '#FEC524'], forca: 84 },
+  { id: 'min', nbaId: 1610612750, nome: 'Minnesota Timberwolves', cidade: 'Minnesota', sigla: 'MIN', conf: 'Oeste', cores: ['#0C2340', '#78BE20'], forca: 82 },
+  { id: 'okc', nbaId: 1610612760, nome: 'Oklahoma City Thunder', cidade: 'Oklahoma City', sigla: 'OKC', conf: 'Oeste', cores: ['#007AC1', '#EF3B24'], forca: 92 },
+  { id: 'por', nbaId: 1610612757, nome: 'Portland Trail Blazers', cidade: 'Portland', sigla: 'POR', conf: 'Oeste', cores: ['#E03A3E', '#1A1A1A'], forca: 62 },
+  { id: 'uta', nbaId: 1610612762, nome: 'Utah Jazz', cidade: 'Utah', sigla: 'UTA', conf: 'Oeste', cores: ['#4B2E83', '#F9A01B'], forca: 56 },
+  { id: 'gsw', nbaId: 1610612744, nome: 'Golden State Warriors', cidade: 'São Francisco', sigla: 'GSW', conf: 'Oeste', cores: ['#1D428A', '#FFC72C'], forca: 77 },
+  { id: 'lac', nbaId: 1610612746, nome: 'Los Angeles Clippers', cidade: 'Los Angeles', sigla: 'LAC', conf: 'Oeste', cores: ['#C8102E', '#1D428A'], forca: 70 },
+  { id: 'lal', nbaId: 1610612747, nome: 'Los Angeles Lakers', cidade: 'Los Angeles', sigla: 'LAL', conf: 'Oeste', cores: ['#552583', '#FDB927'], forca: 78 },
+  { id: 'phx', nbaId: 1610612756, nome: 'Phoenix Suns', cidade: 'Phoenix', sigla: 'PHX', conf: 'Oeste', cores: ['#1D1160', '#E56020'], forca: 64 },
+  { id: 'sac', nbaId: 1610612758, nome: 'Sacramento Kings', cidade: 'Sacramento', sigla: 'SAC', conf: 'Oeste', cores: ['#5A2D81', '#63727A'], forca: 66 },
+  { id: 'dal', nbaId: 1610612742, nome: 'Dallas Mavericks', cidade: 'Dallas', sigla: 'DAL', conf: 'Oeste', cores: ['#00538C', '#B8C4CA'], forca: 69 },
+  { id: 'hou', nbaId: 1610612745, nome: 'Houston Rockets', cidade: 'Houston', sigla: 'HOU', conf: 'Oeste', cores: ['#CE1141', '#C4CED4'], forca: 83 },
+  { id: 'mem', nbaId: 1610612763, nome: 'Memphis Grizzlies', cidade: 'Memphis', sigla: 'MEM', conf: 'Oeste', cores: ['#5D76A9', '#12173F'], forca: 72 },
+  { id: 'nop', nbaId: 1610612740, nome: 'New Orleans Pelicans', cidade: 'Nova Orleans', sigla: 'NOP', conf: 'Oeste', cores: ['#0C2340', '#C8102E'], forca: 60 },
+  { id: 'sas', nbaId: 1610612759, nome: 'San Antonio Spurs', cidade: 'San Antonio', sigla: 'SAS', conf: 'Oeste', cores: ['#6B7280', '#111111'], forca: 75 },
 ]
 
 export const TIMES_POR_ID = Object.fromEntries(TIMES.map((t) => [t.id, t]))
@@ -50,6 +50,22 @@ export const CLUBES_EUROPA = [
 ]
 
 export const CLUBES_BRASIL = ['Flamengo', 'Franca', 'Minas', 'Paulistano', 'Bauru', 'Brasília', 'Pinheiros', 'Corinthians']
+
+// Ligas fora da NBA pra onde a carreira segue quando não rola (ou quando o jogador prefere).
+export const LIGAS_EXTERIOR = [
+  { liga: 'NBB (Brasil)', pais: 'brasil', clubes: CLUBES_BRASIL },
+  { liga: 'Liga ACB (Espanha)', clubes: ['Real Madrid', 'Barcelona', 'Baskonia', 'Valencia', 'Unicaja', 'Joventut'] },
+  { liga: 'Euroliga / Grécia', clubes: ['Olympiacos', 'Panathinaikos', 'AEK Atenas', 'PAOK'] },
+  { liga: 'Liga Turca', clubes: ['Fenerbahçe', 'Anadolu Efes', 'Beşiktaş', 'Bursaspor'] },
+  { liga: 'Liga Italiana', clubes: ['Olimpia Milano', 'Virtus Bolonha', 'Reggio Emilia', 'Trento'] },
+  { liga: 'Liga Francesa', clubes: ['Mónaco', 'ASVEL', 'Limoges', 'Nanterre'] },
+  { liga: 'Bundesliga (Alemanha)', clubes: ['Bayern de Munique', 'Alba Berlim', 'Ratiopharm Ulm', 'Bamberg'] },
+  { liga: 'Liga Adriática', clubes: ['Estrela Vermelha', 'Partizan', 'Cedevita Olimpija', 'Budućnost'] },
+  { liga: 'CBA (China)', clubes: ['Guangdong', 'Liaoning', 'Pequim', 'Xangai'] },
+  { liga: 'NBL (Austrália)', clubes: ['Sydney Kings', 'Melbourne United', 'Perth Wildcats', 'Illawarra Hawks'] },
+  { liga: 'B.League (Japão)', clubes: ['Chiba Jets', 'Alvark Tóquio', 'Ryukyu Golden Kings', 'Utsunomiya Brex'] },
+  { liga: 'Liga Argentina', clubes: ['Boca Juniors', 'Obras Sanitarias', 'Quimsa', 'Instituto'] },
+]
 
 // Pessoas que podem aparecer como rivais ou comparações, só pelo nome (nunca com fala ou acusação).
 export const ESTRELAS_ATUAIS = [

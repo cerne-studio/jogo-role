@@ -104,7 +104,7 @@ export function TemporadaTela({ estado, relatorio, onContinuar, temPlayoffs }) {
   if (rel.kind === 'base') {
     return (
       <Pagina>
-        <Titulo pequeno={`Temporada ${estado.temporada} · ${estado.ano}`} sub={rel.fase}>{rel.equipe}</Titulo>
+        <Titulo pequeno={`Temporada ${estado.temporada} · ${estado.ano}${rel.liga ? ` · ${rel.liga}` : ''}`} sub={rel.fase}>{rel.equipe}</Titulo>
         <div className="mt-5 grid grid-cols-3 gap-2">
           <Stat rotulo="PTS" valor={s.ppg.toFixed(1)} destaque />
           <Stat rotulo="REB" valor={s.rpg.toFixed(1)} />
@@ -113,6 +113,7 @@ export function TemporadaTela({ estado, relatorio, onContinuar, temPlayoffs }) {
           <Stat rotulo="Min" valor={s.mpg.toFixed(0)} />
           <Stat rotulo="FG%" valor={`${s.fgp.toFixed(0)}`} />
         </div>
+        {rel.exterior && <p className="mt-3 text-xs text-secondary">{rel.trocou ? 'Novo clube neste ano. ' : ''}Salário: {fmtMi(rel.salario, 1)} por ano. Renda líquida: {fmtMi(rel.renda, 1)}.</p>}
         {rel.lesao && (
           <div className="mt-4 flex items-start gap-3 rounded-2xl border border-red-500/30 bg-red-500/5 p-4">
             <Activity className="mt-0.5 h-4 w-4 shrink-0 text-red-300" />
@@ -331,7 +332,7 @@ export function PremiosTela({ estado, relatorio, onContinuar }) {
         {campeao && (
           <motion.div {...entrada} className="flex items-center gap-3 rounded-2xl border border-accent/50 bg-accent-glow p-4">
             <Trophy className="h-6 w-6 text-accent" />
-            <div><p className="text-sm font-bold">Campeão da NBA</p><p className="text-xs text-secondary">{estado.titulos.length}º título da carreira</p></div>
+            <div><p className="text-sm font-bold">{relatorio.exterior ? `Campeão da ${relatorio.liga}` : 'Campeão da NBA'}</p><p className="text-xs text-secondary">{relatorio.exterior ? `${estado.carreiraExterior?.titulos ?? 1}º título fora da NBA` : `${estado.titulos.length}º título da carreira`}</p></div>
           </motion.div>
         )}
         {premios.map((p, i) => (
@@ -378,7 +379,7 @@ export function ResumoAnoTela({ estado, relatorio, onProximo, onAposentar, podeA
           <p className="text-[11px] uppercase tracking-widest text-muted">Salário/ano{c ? ` · ${c.anosRestantes} ano(s)` : ''}</p>
         </div>
       </div>
-      {relatorio.kind === 'nba' && (
+      {(relatorio.kind === 'nba' || relatorio.exterior) && (
         <p className="mt-2 text-xs text-secondary">
           Renda líquida do ano: {fmtMi(relatorio.renda, 1)}{relatorio.patrocinio > 0 ? ` (inclui US$ ${relatorio.patrocinio.toLocaleString('pt-BR')} mi/ano em patrocínios)` : ''}
         </p>

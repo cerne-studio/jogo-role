@@ -120,3 +120,8 @@ export function rendaLiquidaAno(estado) {
   const liquido = bruto * 0.52
   return arred(liquido + patrocinioAnual(estado) * 0.7 - 0.25 - (estado.gastoExtra ?? 0))
 }
+
+// Salário em ligas fora da NBA (US$ mi/ano): cresce com o overall, bem abaixo da NBA.
+export function salarioExterior(media) {
+  return arred(clamp(0.2 + Math.max(0, media - 52) ** 1.5 * 0.035, 0.2, 10))
+}

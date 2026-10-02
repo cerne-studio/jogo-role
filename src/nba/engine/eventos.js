@@ -12,13 +12,25 @@ import { adicionarLinha } from './estado.js'
 
 const ATRS = ['arremesso', 'infiltracao', 'passe', 'defesa', 'fisico', 'qi']
 
+// Eventos da fase 'nba' que só fazem sentido dentro da liga americana (rivais, G League, título...).
+const SO_NBA = /NBA|G League|franquia|All-Star|draft|Finais|MVP|Jokić|Curry|Wembanyama|Giannis|Dončić|Durant|LeBron|Embiid|Tatum|Edwards|Gilgeous|Booker|Jordan|anel|playoffs|camisa aposentada/i
+const cacheSoNba = new Map()
+function soNba(ev) {
+  if (!cacheSoNba.has(ev.id)) {
+    cacheSoNba.set(ev.id, SO_NBA.test(`${ev.titulo} ${ev.texto} ${ev.escolhas.map((c) => c.rotulo).join(' ')}`))
+  }
+  return cacheSoNba.get(ev.id)
+}
+
 function condOk(ev, e) {
   const c = ev.cond ?? {}
   const nbaTemps = e.ultimaTemporadaNba
   const naBase = e.nivel === 'college' || e.nivel === 'pro_exterior'
   const ultimo = e.historico[e.historico.length - 1]
+  const exterior = e.nivel === 'exterior'
   if (ev.fase === 'base' && !naBase) return false
-  if (ev.fase === 'nba' && naBase) return false
+  if (ev.fase === 'exterior' && !exterior) return false
+  if (ev.fase === 'nba' && (naBase || (exterior && soNba(ev)))) return false
   if (c.idadeMin != null && e.idade < c.idadeMin) return false
   if (c.idadeMax != null && e.idade > c.idadeMax) return false
   if (c.mediaMin != null && e.media < c.mediaMin) return false

@@ -2,8 +2,8 @@ import { TIMES_POR_ID } from '../data/times.js'
 import { criarEstado, adicionarLinha } from './estado.js'
 import { clamp } from './rng.js'
 import { executarDraft, projetarDraft, ofertasSemDraft, descreverPick } from './draft.js'
-import { gerarPropostas, aplicarContrato, SALARIO_DUAS_VIAS } from './contrato.js'
-import { simularTemporadaBase, simularTemporadaNba, avancarAno } from './temporada.js'
+import { gerarPropostas, aplicarContrato, SALARIO_DUAS_VIAS, salarioExterior } from './contrato.js'
+import { simularTemporadaBase, simularTemporadaNba, simularTemporadaExterior, sortearClubeExterior, avancarAno } from './temporada.js'
 import { classificarCarreira } from './legado.js'
 import { selecionarEventos, resolverEscolha, aplicarEfeitos, registrarVisto } from './eventos.js'
 
@@ -85,7 +85,37 @@ export function assinarProposta(estado, proposta) {
   return adicionarLinha(e, `Assinou com o ${t.nome}: US$ ${proposta.salario.toFixed(1)} mi por ano, ${proposta.anos} ${proposta.anos > 1 ? 'anos' : 'ano'}.`, 'contrato')
 }
 
+export function ehExterior(estado) {
+  return estado.nivel === 'exterior'
+}
+
+// Não rolou na NBA (ou o jogador prefere): segue carreira num clube estrangeiro até a hora de parar.
+export function irParaExterior(estado, rng) {
+  const c = sortearClubeExterior(estado.jogador.pais, rng)
+  const e = {
+    ...estado,
+    nivel: 'exterior',
+    time: null,
+    equipe: c.clube,
+    ligaExterior: c.liga,
+    contrato: { tipo: 'exterior', salario: salarioExterior(estado.media), anos: 1, anosRestantes: 1 },
+  }
+  return adicionarLinha(e, `Foi jogar no exterior: ${c.clube} (${c.liga}).`, 'contrato')
+}
+
+// Quem joga fora às vezes recebe proposta de volta pra NBA. [] = sem proposta neste ano.
+export function propostasDeVolta(estado, rng) {
+  if (!ehExterior(estado) || estado.idade > 36) return []
+  const folga = estado.media - (56 + Math.max(0, estado.idade - 21) * 1.6)
+  if (folga < 0 || !rng.chance(clamp(0.2 + folga * 0.04, 0.2, 0.7))) return []
+  return gerarPropostas(estado, rng)
+}
+
+// Dá pra aposentar por conta própria a partir daqui.
+export const IDADE_APOSENTAR = 30
+
 export function simularAno(estado, rng, pend = {}) {
+  if (ehExterior(estado)) return simularTemporadaExterior(estado, rng)
   return ehBase(estado) ? simularTemporadaBase(estado, rng) : simularTemporadaNba(estado, rng, pend)
 }
 
@@ -96,8 +126,8 @@ export function aposentar(estado) {
 
 // Quando deve acabar de qualquer jeito (idade ou declínio).
 export function fimForcado(estado) {
-  if (estado.idade >= 42) return true
-  if (estado.idade >= 34 && estado.media < 55) return true
+  if (estado.idade >= 40) return true
+  if (estado.idade >= 36 && estado.media < 48) return true
   return false
 }
 
@@ -117,7 +147,7 @@ export function autoJogar(estado, rng, { ficarNaBaseAteSeguro = true } = {}) {
         e = r.estado
         if (r.draft.fora) {
           const ofertas = opcoesSemDraft(e, rng)
-          e = aceitarDuasVias(e, ofertas[0])
+          e = ofertas.length ? aceitarDuasVias(e, ofertas[0]) : irParaExterior(e, rng)
         }
         continue
       }
@@ -126,12 +156,15 @@ export function autoJogar(estado, rng, { ficarNaBaseAteSeguro = true } = {}) {
     // 2) contrato vencendo
     if (temContratoVencendo(e)) {
       const propostas = propostasDeContrato(e, rng)
-      if (!propostas.length || fimForcado(e)) {
+      if (fimForcado(e)) {
         e = aposentar(e).estado
         break
       }
-      const melhor = [...propostas].sort((a, b) => b.salario - a.salario)[0]
-      e = assinarProposta(e, melhor)
+      if (!propostas.length) e = irParaExterior(e, rng)
+      else e = assinarProposta(e, [...propostas].sort((a, b) => b.salario - a.salario)[0])
+    } else if (ehExterior(e)) {
+      const volta = propostasDeVolta(e, rng)
+      if (volta.length) e = assinarProposta(e, [...volta].sort((a, b) => b.salario - a.salario)[0])
     }
 
     // 3) eventos da pré-temporada (escolha aleatória no piloto automático)
