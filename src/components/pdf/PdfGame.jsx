@@ -89,7 +89,12 @@ export default function PdfGame({ onBack }) {
         }}
         onExit={sair}
       >
-        <PdfMeta salaId={salaInfo.salaId} meta={sala.estado?.meta ?? 5} souHost={souHost} />
+        <PdfMeta
+          salaId={salaInfo.salaId}
+          meta={sala.estado?.meta ?? 5}
+          pacote={sala.estado?.pacote ?? 'extremo'}
+          souHost={souHost}
+        />
       </SalaLobby>
     )
   }

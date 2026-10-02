@@ -10,6 +10,10 @@ Registro de alterações. Mais recente no topo.
 
 ---
 
+## 2026-10-01 — Claude (4)
+- **P.D.F**: pacote **Sem censura** — 43 pretas + 155 brancas explícitas, com palavrão, sem filtro (sexo, corpo, rolê, grana, internet; sem ódio contra grupo, menor ou vítima nomeada). Agora o baralho tem dois pacotes: `pesado` (o original) e `extremo`. O host escolhe no lobby; padrão é **Sem censura** (pesado + extremo). O sorteio de pretas e brancas filtra pelo pacote gravado na sala (`pdf_definir_pacote`, `pdf_pacotes_da_sala`)
+- Arquivos: `db/012_pdf_pacote.sql`, `db/013_seed_pdf_extremo.sql`, `db/data/pdf-baralho-extremo.txt`, `src/components/pdf/PdfMeta.jsx`
+
 ## 2026-10-01 — Claude (3)
 - **P.D.F**: limite de jogadores sobe de 10 pra **20**. O número vive em `pdf_max_jogadores()` (`db/011_pdf_max_jogadores.sql`); mudar de novo é recriar essa função. Agora `entrar_sala` barra na entrada ("sala cheia"), em vez de deixar encher o lobby e só reclamar ao iniciar; quem já está na sala reconecta normalmente mesmo cheia. Testado no banco com 20 jogadores: 200 cartas em mão no início, partida completa até vencedor, baralho (400 brancas) quase esgotado e reembaralhado sem travar, 21º jogador recusado
 - Arquivos: `db/011_pdf_max_jogadores.sql`, `src/components/pdf/PdfMeta.jsx`
