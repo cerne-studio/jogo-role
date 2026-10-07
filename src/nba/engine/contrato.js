@@ -41,12 +41,12 @@ function elegibilidadeTime(time, estado) {
 
 // Propostas ao fim do contrato: renovação com o time atual + ofertas de outros times + veterano mínimo pra contender.
 // Ninguém te contrata abaixo desse overall; o corte sobe com a idade (a liga é implacável com veterano fraco).
-export function overallMinimoParaContrato(idade) {
-  return 55.5 + Math.max(0, idade - 21) * 1.5
+export function overallMinimoParaContrato(idade, facil = false) {
+  return 55.5 - (facil ? 4 : 0) + Math.max(0, idade - 21) * (facil ? 1.3 : 1.5)
 }
 
 export function gerarPropostas(estado, rng) {
-  if (estado.media < overallMinimoParaContrato(estado.idade)) return []
+  if (estado.media < overallMinimoParaContrato(estado.idade, estado.dificuldade === 'facil')) return []
   const mercado = valorMercado(estado)
   const propostas = []
   const timeAtual = TIMES.find((t) => t.id === estado.time)

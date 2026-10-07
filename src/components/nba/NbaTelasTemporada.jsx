@@ -357,7 +357,7 @@ export function PremiosTela({ estado, relatorio, onContinuar }) {
 }
 
 // ── Resumo do ano: dinheiro, contrato, manchete ────────────
-export function ResumoAnoTela({ estado, relatorio, onProximo, onAposentar, podeAposentar }) {
+export function ResumoAnoTela({ estado, relatorio, onProximo, onAposentar, podeAposentar, onSimularTudo, rapido }) {
   const mancheteBase = gerarManchete(estado, relatorio)
   const mancheteEscolha = mancheteDaEscolha(estado)
   const manchete = mancheteEscolha ?? mancheteBase
@@ -422,6 +422,7 @@ export function ResumoAnoTela({ estado, relatorio, onProximo, onAposentar, podeA
         <BotaoPrimario onClick={onProximo}>
           <span className="inline-flex items-center justify-center gap-2">Próxima temporada <ChevronRight className="h-4 w-4" /></span>
         </BotaoPrimario>
+        {onSimularTudo && <BotaoPrimario secundario onClick={onSimularTudo}>Simular até a aposentadoria</BotaoPrimario>}
         {podeAposentar && <BotaoPrimario secundario onClick={onAposentar}>Aposentar agora</BotaoPrimario>}
       </div>
     </Pagina>

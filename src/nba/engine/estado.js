@@ -11,9 +11,11 @@ export function ligaInicial() {
 // config = { sobrenome, numero, posicao, pais, caminho: 'college' | 'internacional' | 'sem_recrutamento' }
 export function criarEstado(config, rng) {
   const { sobrenome, numero, posicao, pais, caminho } = config
-  const atrs = gerarAtributosIniciais(posicao, rng, caminho)
+  const dificuldade = config.dificuldade ?? 'facil'
+  const modo = config.modo ?? 'completo'
+  const atrs = gerarAtributosIniciais(posicao, rng, caminho, dificuldade)
   const media = calcMedia(atrs, posicao)
-  const potencial = gerarPotencial(media, rng, caminho)
+  const potencial = gerarPotencial(media, rng, caminho, dificuldade)
 
   let nivel = 'college'
   let equipe = rng.pick(FACULDADES)
@@ -35,6 +37,8 @@ export function criarEstado(config, rng) {
 
   return {
     v: 2,
+    modo, // completo | rapido
+    dificuldade, // facil | normal
     jogador: { sobrenome, numero, posicao, pais, caminho, altura: alturaSorteada(posicao, rng) },
     nivel, // college | pro_exterior | gleague | nba
     equipe,

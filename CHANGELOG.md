@@ -10,6 +10,11 @@ Registro de alterações. Mais recente no topo.
 
 ---
 
+## 2026-10-06 — Claude
+- **Carreira NBA — modo rápido**: novo passo "Como você quer jogar?" na criação. No modo rápido não tem treino, eventos, status nem gastos: o técnico treina por você, o draft é declarado quando faz sentido (obrigatório aos 22), contratos e volta do exterior são automáticos (aceita a melhor proposta) e playoffs não param em tela. Sobram 2 a 3 toques por ano (temporada, prêmios se houver, resumo) e o botão **Simular até a aposentadoria** no resumo do ano
+- **Carreira NBA — dificuldade**: escolha Fácil (padrão) ou Normal. Fácil começa com atributos e potencial maiores, evolui um pouco mais e o corte de contrato é mais brando. No simulador: Fácil termina com ~32% All-Star, 16% Superestrela e ~18% Hall da Fama; Normal segue como antes (pico médio de overall ~73 contra ~77 no Fácil)
+- Arquivos: `src/components/nba/{NbaSetup,NbaCarreira,NbaTelasTemporada}.jsx`, `src/nba/engine/{estado,jogador,contrato,carreira}.js`, `scripts/sim-nba.mjs` (agora aceita a dificuldade)
+
 ## 2026-10-02 — Claude (6)
 - **Carreira NBA — modo computador**: em tela larga (≥1024px) o jogo ganha uma coluna fixa à esquerda com o cartão do jogador (clicável pras habilidades), nível da carreira, patrimônio (abre gastos e equipe) e as barras de status, e a ação principal fica numa coluna mais larga à direita. No celular continua igual, com o botão Status
 - **Carreira NBA — treino**: toda temporada começa com a tela de treino. O técnico recomenda um foco com base na posição e no espaço de evolução de cada atributo; técnico que confia em você acerta mais, técnico desconfiado dá palpite. Treinar um atributo dá +1 na virada do ano (+2 se seguir o técnico e ele confiar), custa um pouco de desgaste e seguir a recomendação sobe a confiança dele. Também dá pra descansar (desgaste −10)

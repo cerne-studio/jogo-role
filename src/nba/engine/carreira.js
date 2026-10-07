@@ -2,7 +2,7 @@ import { TIMES_POR_ID } from '../data/times.js'
 import { criarEstado, adicionarLinha } from './estado.js'
 import { clamp } from './rng.js'
 import { executarDraft, projetarDraft, ofertasSemDraft, descreverPick } from './draft.js'
-import { gerarPropostas, aplicarContrato, SALARIO_DUAS_VIAS, salarioExterior } from './contrato.js'
+import { gerarPropostas, aplicarContrato, SALARIO_DUAS_VIAS, salarioExterior, overallMinimoParaContrato } from './contrato.js'
 import { simularTemporadaBase, simularTemporadaNba, simularTemporadaExterior, sortearClubeExterior, avancarAno } from './temporada.js'
 import { classificarCarreira } from './legado.js'
 import { selecionarEventos, resolverEscolha, aplicarEfeitos, registrarVisto } from './eventos.js'
@@ -107,7 +107,7 @@ export function irParaExterior(estado, rng) {
 // Quem joga fora às vezes recebe proposta de volta pra NBA. [] = sem proposta neste ano.
 export function propostasDeVolta(estado, rng) {
   if (!ehExterior(estado) || estado.idade > 36) return []
-  const folga = estado.media - (55.5 + Math.max(0, estado.idade - 21) * 1.5)
+  const folga = estado.media - overallMinimoParaContrato(estado.idade, estado.dificuldade === 'facil')
   if (folga < 0 || !rng.chance(clamp(0.2 + folga * 0.04, 0.2, 0.7))) return []
   return gerarPropostas(estado, rng)
 }
@@ -135,7 +135,7 @@ export function fimForcado(estado) {
 export { avancarAno }
 
 // ── piloto automático (usado pelos testes de balanceamento) ──
-export function autoJogar(estado, rng, { ficarNaBaseAteSeguro = true } = {}) {
+export function autoJogar(estado, rng, { ficarNaBaseAteSeguro = true, semEventos = false } = {}) {
   let e = estado
   const relatorios = []
   let guarda = 0
@@ -173,7 +173,7 @@ export function autoJogar(estado, rng, { ficarNaBaseAteSeguro = true } = {}) {
     e = aplicarTreino(e, rng.chance(0.7) ? rec.recomendado : rng.pick(rec.opcoes).id, rec)
     let pend = {}
     const qtdEv = ehBase(e) ? 1 : 2
-    for (const ev of selecionarEventos(e, rng, qtdEv, 'pre')) {
+    for (const ev of semEventos ? [] : selecionarEventos(e, rng, qtdEv, 'pre')) {
       const esc = rng.pick(ev.escolhas)
       const r = resolverEscolha(esc, rng)
       const ap = aplicarEfeitos(registrarVisto(e, ev), r.efeitos, pend)

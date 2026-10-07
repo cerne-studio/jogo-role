@@ -3,11 +3,12 @@ import { AnimatePresence, motion } from 'motion/react'
 import { Play, Plus, SlidersHorizontal } from 'lucide-react'
 import ExitButton from '../core/ExitButton.jsx'
 import { criarRng } from '../../nba/engine/rng.js'
+import { classificarCarreira } from '../../nba/engine/legado.js'
 import { EVENTOS } from '../../nba/data/eventos.js'
 import {
   iniciarCarreira, ehBase, podeDeclarar, draftObrigatorio, projetarDraft, realizarDraft, opcoesSemDraft,
   aceitarDuasVias, temContratoVencendo, propostasDeContrato, assinarProposta, simularAno, aposentar, fimForcado, avancarAno,
-  ehExterior, irParaExterior, propostasDeVolta, IDADE_APOSENTAR,
+  ehExterior, irParaExterior, propostasDeVolta, IDADE_APOSENTAR, autoJogar,
 } from '../../nba/engine/carreira.js'
 import { selecionarEventos, resolverEscolha, aplicarEfeitos, registrarVisto, registrarDecisao } from '../../nba/engine/eventos.js'
 import NbaSetup from './NbaSetup.jsx'
@@ -67,7 +68,10 @@ export default function NbaCarreira({ onBack }) {
 
   // começa a temporada: primeiro o treino (o técnico recomenda), depois os eventos
   function abrirTemporada(e) {
-    setJ({ fase: 'treino', estado: e, extra: { rec: recomendarTreino(e, rng) } })
+    const rec = recomendarTreino(e, rng)
+    // modo rápido: segue o técnico sozinho e vai direto pra temporada (sem treino nem eventos)
+    if (e.modo === 'rapido') return rodarTemporada(aplicarTreino(e, rec.recomendado, rec), {})
+    setJ({ fase: 'treino', estado: e, extra: { rec } })
   }
 
   function confirmarTreino(escolha) {
@@ -82,7 +86,25 @@ export default function NbaCarreira({ onBack }) {
     setJ({ fase: 'fim', estado, extra: { legado } })
   }
 
+  const melhorProposta = (ps) => [...ps].sort((a, b) => b.salario - a.salario)[0]
+
   function iniciarAno(e) {
+    const rapido = e.modo === 'rapido'
+    if (rapido) {
+      if (ehBase(e)) {
+        if (draftObrigatorio(e) || (podeDeclarar(e) && projetarDraft(e, rng).central <= 45)) return declararDraftCom(e)
+        return abrirTemporada(e)
+      }
+      if (temContratoVencendo(e)) {
+        const ps = propostasDeContrato(e, rng)
+        return abrirTemporada(ps.length ? assinarProposta(e, melhorProposta(ps)) : irParaExterior(e, rng))
+      }
+      if (ehExterior(e)) {
+        const ps = propostasDeVolta(e, rng)
+        if (ps.length) return abrirTemporada(assinarProposta(e, melhorProposta(ps)))
+      }
+      return abrirTemporada(e)
+    }
     if (ehBase(e)) {
       if (draftObrigatorio(e) || podeDeclarar(e)) {
         setJ({ fase: 'draft_decisao', estado: e, extra: { projecao: projetarDraft(e, rng), obrigatorio: draftObrigatorio(e) } })
@@ -122,7 +144,7 @@ export default function NbaCarreira({ onBack }) {
 
   function depoisDaTemporada() {
     const rel = j.relatorio
-    if (rel.kind === 'nba' && rel.playoffs.classificado && rel.playoffs.series.length) {
+    if (j.estado.modo !== 'rapido' && rel.kind === 'nba' && rel.playoffs.classificado && rel.playoffs.series.length) {
       setJ({ ...j, fase: 'playoffs' })
     } else {
       depoisDosPlayoffs()
@@ -143,14 +165,31 @@ export default function NbaCarreira({ onBack }) {
     iniciarAno(ne)
   }
 
-  function declararDraft() {
-    const r = realizarDraft(j.estado, rng)
+  function declararDraftCom(e) {
+    const r = realizarDraft(e, rng)
     setJ({ fase: 'draft_noite', estado: r.estado, extra: { draft: r.draft } })
+  }
+
+  function declararDraft() {
+    declararDraftCom(j.estado)
+  }
+
+  // modo rápido: do ponto atual até a aposentadoria, sem parar em tela nenhuma
+  function simularTudo() {
+    const rel = j.relatorio
+    const campeaoId = rel?.kind === 'nba' ? rel.playoffs?.campeao : null
+    const ne = avancarAno(j.estado, rng, { campeaoId })
+    if (fimForcado(ne)) return finalizar(ne)
+    const { estado } = autoJogar(ne, rng, { semEventos: true })
+    setJ({ fase: 'fim', estado, extra: { legado: classificarCarreira(estado) } })
   }
 
   function depoisDoDraft() {
     const d = j.extra.draft
-    if (d.fora) {
+    if (d.fora && j.estado.modo === 'rapido') {
+      const ofertas = opcoesSemDraft(j.estado, rng)
+      abrirTemporada(ofertas.length ? aceitarDuasVias(j.estado, ofertas[0]) : irParaExterior(j.estado, rng))
+    } else if (d.fora) {
       setJ({ fase: 'sem_draft', estado: j.estado, extra: { ofertas: opcoesSemDraft(j.estado, rng) } })
     } else {
       abrirTemporada(j.estado)
@@ -215,7 +254,7 @@ export default function NbaCarreira({ onBack }) {
   } else if (j.fase === 'premios') {
     tela = <PremiosTela estado={e} relatorio={j.relatorio} onContinuar={() => setJ({ ...j, fase: 'resumo' })} />
   } else if (j.fase === 'resumo') {
-    tela = <ResumoAnoTela estado={e} relatorio={j.relatorio} onProximo={fecharAno} onAposentar={() => finalizar(e)} podeAposentar={!ehBase(e) && e.idade >= IDADE_APOSENTAR} />
+    tela = <ResumoAnoTela estado={e} relatorio={j.relatorio} onProximo={fecharAno} onAposentar={() => finalizar(e)} podeAposentar={!ehBase(e) && e.idade >= IDADE_APOSENTAR} onSimularTudo={e.modo === 'rapido' ? simularTudo : undefined} />
   } else if (j.fase === 'draft_decisao') {
     tela = <DraftDecisaoTela estado={e} projecao={j.extra.projecao} obrigatorio={j.extra.obrigatorio} onDeclarar={declararDraft} onFicar={() => abrirTemporada(e)} />
   } else if (j.fase === 'draft_noite') {
@@ -246,7 +285,7 @@ export default function NbaCarreira({ onBack }) {
     tela = <FimTela estado={e} legado={j.extra.legado} onNova={recomecar} onSair={sairParaHome} />
   }
 
-  const comPainel = j.fase !== 'fim'
+  const comPainel = j.fase !== 'fim' && e?.modo !== 'rapido'
   return (
     <>
       {sair}

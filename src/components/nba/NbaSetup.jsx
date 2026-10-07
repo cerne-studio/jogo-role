@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { ChevronLeft, ChevronRight, GraduationCap, Globe2, Flame, Dices } from 'lucide-react'
+import { ChevronLeft, ChevronRight, GraduationCap, Globe2, Flame, Dices, Zap, Layers } from 'lucide-react'
 import { POSICOES, PAISES, SOBRENOMES } from '../../nba/data/times.js'
 import { BotaoPrimario } from './ui.jsx'
 
@@ -55,13 +55,16 @@ export default function NbaSetup({ onStart, onBack }) {
   const [posicao, setPosicao] = useState(null)
   const [pais, setPais] = useState(null)
   const [caminho, setCaminho] = useState(null)
-  const passos = ['Identidade', 'Posição', 'País', 'Caminho']
+  const [modo, setModo] = useState('rapido')
+  const [dificuldade, setDificuldade] = useState('facil')
+  const passos = ['Identidade', 'Posição', 'País', 'Caminho', 'Modo']
 
   const pode = [
     sobrenome.trim().length > 0 && numero.trim().length > 0,
     posicao !== null,
     pais !== null,
     caminho !== null,
+    true,
   ][passo]
 
   function sortear() {
@@ -70,8 +73,8 @@ export default function NbaSetup({ onStart, onBack }) {
   }
 
   function avancar() {
-    if (passo < 3) setPasso((p) => p + 1)
-    else onStart({ sobrenome: sobrenome.trim(), numero: numero.trim().slice(0, 2), posicao, pais, caminho })
+    if (passo < 4) setPasso((p) => p + 1)
+    else onStart({ sobrenome: sobrenome.trim(), numero: numero.trim().slice(0, 2), posicao, pais, caminho, modo, dificuldade })
   }
 
   return (
@@ -173,6 +176,44 @@ export default function NbaSetup({ onStart, onBack }) {
                 </div>
               </div>
             )}
+
+            {passo === 4 && (
+              <div>
+                <h1 className="text-2xl font-bold tracking-tight">Como você quer jogar?</h1>
+                <p className="mt-1 text-sm text-secondary">Dá pra mudar a cada carreira nova.</p>
+                <div className="mt-6 grid grid-cols-1 gap-2 lg:grid-cols-2">
+                  <Cartao selecionado={modo === 'rapido'} onClick={() => setModo('rapido')}>
+                    <div className="flex items-start gap-3">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent-glow"><Zap className="h-5 w-5 text-accent" /></div>
+                      <div>
+                        <p className="font-semibold">Modo rápido</p>
+                        <p className="mt-1 text-xs leading-snug text-secondary">Sem treino, eventos, status nem gastos. Só draft, contratos automáticos e a temporada, com poucos toques. Tem botão pra simular até a aposentadoria.</p>
+                      </div>
+                    </div>
+                  </Cartao>
+                  <Cartao selecionado={modo === 'completo'} onClick={() => setModo('completo')}>
+                    <div className="flex items-start gap-3">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent-glow"><Layers className="h-5 w-5 text-accent" /></div>
+                      <div>
+                        <p className="font-semibold">Carreira completa</p>
+                        <p className="mt-1 text-xs leading-snug text-secondary">Treino com o técnico, eventos com escolhas, status, dinheiro, contratos e playoffs jogo a jogo.</p>
+                      </div>
+                    </div>
+                  </Cartao>
+                </div>
+                <p className="mt-6 text-[11px] font-medium uppercase tracking-widest text-muted">Dificuldade</p>
+                <div className="mt-2 grid grid-cols-2 gap-2">
+                  <Cartao selecionado={dificuldade === 'facil'} onClick={() => setDificuldade('facil')}>
+                    <p className="font-semibold">Fácil</p>
+                    <p className="mt-1 text-xs leading-snug text-secondary">Começa mais forte, evolui mais e é mais difícil ficar sem time.</p>
+                  </Cartao>
+                  <Cartao selecionado={dificuldade === 'normal'} onClick={() => setDificuldade('normal')}>
+                    <p className="font-semibold">Normal</p>
+                    <p className="mt-1 text-xs leading-snug text-secondary">Mais realista: poucos chegam ao topo.</p>
+                  </Cartao>
+                </div>
+              </div>
+            )}
           </motion.div>
         </AnimatePresence>
       </div>
@@ -180,7 +221,7 @@ export default function NbaSetup({ onStart, onBack }) {
       <div className="pt-6">
         <BotaoPrimario disabled={!pode} onClick={avancar}>
           <span className="inline-flex items-center justify-center gap-2">
-            {passo < 3 ? 'Continuar' : 'Começar carreira'} <ChevronRight className="h-4 w-4" />
+            {passo < 4 ? 'Continuar' : 'Começar carreira'} <ChevronRight className="h-4 w-4" />
           </span>
         </BotaoPrimario>
       </div>

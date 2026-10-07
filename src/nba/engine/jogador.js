@@ -6,7 +6,7 @@ export function calcMedia(atrs, posicao) {
   return Math.round(Object.keys(pesos).reduce((acc, k) => acc + atrs[k] * pesos[k], 0))
 }
 
-export function gerarAtributosIniciais(posicao, rng, caminho) {
+export function gerarAtributosIniciais(posicao, rng, caminho, dificuldade = 'normal') {
   const base = {
     arremesso: rng.int(48, 64),
     infiltracao: rng.int(48, 64),
@@ -21,14 +21,14 @@ export function gerarAtributosIniciais(posicao, rng, caminho) {
   if (posicao === 'ala_pivo') { base.fisico += 6; base.defesa += 4 }
   if (posicao === 'pivo') { base.fisico += 8; base.infiltracao += 4 }
   // Sem recrutamento = modo difícil: parte mais baixo
-  const ajuste = caminho === 'sem_recrutamento' ? -3 : 0
+  const ajuste = (caminho === 'sem_recrutamento' ? -3 : 0) + (dificuldade === 'facil' ? 2 : 0)
   return Object.fromEntries(Object.entries(base).map(([k, v]) => [k, clamp(v + ajuste, 38, 76)]))
 }
 
 // Potencial: o teto de overall. Distribuição enviesada pra baixo (poucos viram superastros).
-export function gerarPotencial(media, rng, caminho) {
+export function gerarPotencial(media, rng, caminho, dificuldade = 'normal') {
   const sorte = rng.r() ** 2.7
-  const bonus = caminho === 'sem_recrutamento' ? -2 : 0
+  const bonus = (caminho === 'sem_recrutamento' ? -2 : 0) + (dificuldade === 'facil' ? 2 : 0)
   return clamp(Math.round(media + 8 + sorte * 27 + bonus), 62, 99)
 }
 
@@ -61,6 +61,7 @@ export function evoluirAtributos(estado, rng, foco = {}) {
   if (estado.moral >= 75 && rng.chance(0.5)) bonusStatus += 1
   else if (estado.moral <= 25 && rng.chance(0.5)) bonusStatus -= 1
   if (idade <= 27 && estado.tecnico >= 70 && rng.chance(0.5)) bonusStatus += 1
+  if (estado.dificuldade === 'facil' && idade <= 28 && rng.chance(0.3)) bonusStatus += 1
   const novos = { ...atrs }
   for (const k of Object.keys(novos)) {
     let delta = ganho + penDesgaste + bonusStatus + (foco[k] ?? 0) + rng.int(-1, 1) * (idade < 27 ? 1 : 0)

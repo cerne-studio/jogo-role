@@ -1,11 +1,12 @@
 // Balanceamento da Carreira NBA: simula N carreiras no piloto automático e imprime a distribuição.
-//   node scripts/sim-nba.mjs [N=3000] [semente=1]
+//   node scripts/sim-nba.mjs [N=3000] [semente=1] [dificuldade=facil|normal]
 import { criarRng } from '../src/nba/engine/rng.js'
 import { iniciarCarreira, autoJogar } from '../src/nba/engine/carreira.js'
 import { classificarCarreira } from '../src/nba/engine/legado.js'
 
 const N = Number(process.argv[2] ?? 3000)
 const semente = Number(process.argv[3] ?? 1)
+const dificuldade = process.argv[4] ?? 'facil'
 const rng = criarRng(semente)
 const POSICOES = ['armador', 'ala_armador', 'ala', 'ala_pivo', 'pivo']
 const CAMINHOS = ['college', 'internacional', 'sem_recrutamento']
@@ -26,6 +27,7 @@ for (let i = 0; i < N; i++) {
     posicao: POSICOES[i % 5],
     pais: 'eua',
     caminho: CAMINHOS[i % 3],
+    dificuldade,
   }
   const { estado, relatorios } = autoJogar(iniciarCarreira(config, rng), rng)
   const nba = relatorios.filter((r) => r.kind === 'nba')
