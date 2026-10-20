@@ -14,6 +14,7 @@ import TheMindGame from './components/themind/TheMindGame.jsx'
 import PdfGame from './components/pdf/PdfGame.jsx'
 import NbaCarreira from './components/nba/NbaCarreira.jsx'
 import FutebolDemo from './components/futebol/FutebolDemo.jsx'
+import DraftGame from './components/futebol/draft/DraftGame.jsx'
 
 export default function App() {
   if (new URLSearchParams(window.location.search).get('demo') === 'futebol') return <FutebolDemo />
@@ -99,6 +100,10 @@ export default function App() {
 
   if (screen === 'game' && selectedGame.id === 'pdf') {
     return <PdfGame onBack={goHome} />
+  }
+
+  if (screen === 'game' && selectedGame.id === 'draft') {
+    return <DraftGame onBack={goHome} />
   }
 
   return null

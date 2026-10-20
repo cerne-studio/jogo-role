@@ -7,6 +7,7 @@ import { FORMACOES, LISTA_FORMACOES, podeJogarNoSlot } from './formacoes.js'
 import { criarEstatisticas, registrarPartida, indisponiveis, premios, rankings, classificacao } from './campeonatoStats.js'
 import { estatisticasParciais } from './parciais.js'
 import { simularCampeonatoDemo } from './campeonatoDemo.js'
+import { timeParaMotor, notaGeral, medidores, iniciais } from './adaptador.js'
 
 const A = (extra = {}) => gerarTime({ id: 'a', nome: 'Alfa', nivel: 78, semente: 1, ...extra })
 const B = (extra = {}) => gerarTime({ id: 'b', nome: 'Beta', nivel: 78, semente: 2, ...extra })
@@ -306,4 +307,25 @@ test('campeonato completo: 15 jogos, campeão válido, estatísticas e prêmios 
   const dois = simularCampeonatoDemo({ semente: 3 })
   assert.equal(dois.campeao.id, c.campeao.id)
   assert.deepEqual(dois.premios.artilheiro, c.premios.artilheiro)
+})
+
+test('adaptador: picks do draft viram time do motor e a partida roda', () => {
+  const picks = FORMACOES['4-3-3'].map((slot, i) => ({
+    slot: i + 1, pid: 100 + i, nome: `Jogador ${i + 1}`, posicoes: [slot.papel === 'G' ? 'GK' : 'CM'], overall: 80 + (i % 5),
+    ritmo: 70, chute: 60, passe: 70, drible: 65, defesa: 60, fisico: 70, agressividade: 50, penaltis: 60, goleiro: slot.papel === 'G' ? 85 : null,
+  }))
+  const a = timeParaMotor({ id: 'x', nome: 'X FC', formacao: '4-3-3', picks: [...picks].reverse() })
+  assert.equal(a.jogadores.length, 11)
+  assert.equal(a.jogadores[0].gol, 85)
+  assert.equal(a.jogadores[0].num, 1)
+  assert.equal(a.jogadores[5].gol, 12)
+  const b = gerarTime({ id: 'b', nome: 'B', nivel: 80, semente: 3 })
+  const sim = simularPartida(a, b, { semente: 5 })
+  assert.equal(sim.escalacoes.A.length, 11)
+  assert.ok(notaGeral(picks) > 79 && notaGeral(picks) < 85)
+  const m = medidores(picks, '4-3-3')
+  assert.ok(m.ataque > 0 && m.meio > 0 && m.defesa > 0 && m.goleiro > 0)
+  assert.throws(() => timeParaMotor({ id: 'y', nome: 'Y', formacao: '4-3-3', picks: picks.slice(0, 10) }), /precisa de 11/)
+  assert.equal(iniciais('Cristiano Ronaldo'), 'CR')
+  assert.equal(iniciais('Neymar'), 'NE')
 })

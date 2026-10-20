@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { Skull, Users, Theater, Hash, HelpCircle, Ban, Target, StickyNote, Milk, TrendingUp, Brain, Layers } from 'lucide-react'
+import { Skull, Users, Theater, Hash, HelpCircle, Ban, Target, StickyNote, Milk, TrendingUp, Brain, Layers, Trophy } from 'lucide-react'
 
 const GAMES = [
   {
@@ -87,6 +87,14 @@ const GAMES = [
     desc: '18+. Cada um no seu celular. O juiz lê a pergunta, todo mundo responde com a pior carta que tem.',
     icon: Layers,
     minPlayers: 3,
+    multiDispositivo: true,
+  },
+  {
+    id: 'draft',
+    nome: 'Draft FC',
+    desc: 'Monte um time de futebol sorteando letras, escolha a tática e dispute o campeonato. Solo ou com os amigos.',
+    icon: Trophy,
+    minPlayers: 1,
     multiDispositivo: true,
   },
 ]
