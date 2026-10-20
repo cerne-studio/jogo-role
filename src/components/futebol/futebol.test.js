@@ -5,6 +5,8 @@ import { simularPartida, montarEscalacao, TATICAS } from './motor.js'
 import { gerarTime } from './amostras.js'
 import { FORMACOES, LISTA_FORMACOES, podeJogarNoSlot } from './formacoes.js'
 import { criarEstatisticas, registrarPartida, indisponiveis, premios, rankings, classificacao } from './campeonatoStats.js'
+import { estatisticasParciais } from './parciais.js'
+import { simularCampeonatoDemo } from './campeonatoDemo.js'
 
 const A = (extra = {}) => gerarTime({ id: 'a', nome: 'Alfa', nivel: 78, semente: 1, ...extra })
 const B = (extra = {}) => gerarTime({ id: 'b', nome: 'Beta', nivel: 78, semente: 2, ...extra })
@@ -272,4 +274,36 @@ test('suspensão: vermelho = 1 jogo fora; 3 amarelos = 1 jogo fora; cumprida dep
   registrarPartida(est, dados(), fake(todos({ [volante]: { amarelos: 1 } })))
   assert.deepEqual(indisponiveis(est, 'a'), [volante])
   assert.equal(est.jogadores[volante].amarelosAcum, 0)
+})
+
+test('estatísticas parciais no fim da partida = estatísticas do motor', () => {
+  for (const s of lote(150, { id: 'a', nome: 'A', agressividade: 70 }, { id: 'b', nome: 'B' }, { mataMata: true })) {
+    const p = estatisticasParciais(s.eventos, s.posseMin)
+    for (const lado of ['A', 'B']) {
+      for (const k of ['finalizacoes', 'noAlvo', 'escanteios', 'faltas', 'amarelos', 'vermelhos', 'impedimentos', 'defesas']) {
+        assert.equal(p[lado][k], s.stats[lado][k], `${lado}.${k}`)
+      }
+    }
+    assert.ok(Math.abs(p.A.posse - s.stats.A.posse) <= 1)
+  }
+})
+
+test('campeonato completo: 15 jogos, campeão válido, estatísticas e prêmios coerentes', () => {
+  const c = simularCampeonatoDemo({ semente: 3 })
+  assert.equal(c.jogos.length, 15)
+  assert.equal(c.jogos.filter((j) => j.fase === 'grupos').length, 12)
+  assert.equal(c.jogos.filter((j) => j.fase === 'mata-mata').length, 3)
+  assert.ok(c.times.some((t) => t.id === c.campeao.id))
+  assert.notEqual(c.campeao.id, c.vice.id)
+  const totalGols = c.jogos.reduce((s, j) => s + j.resultado.golsA + j.resultado.golsB, 0)
+  const golsJog = Object.values(c.est.jogadores).reduce((s, p) => s + p.gols + p.golsContra, 0)
+  assert.equal(golsJog, totalGols)
+  for (const j of c.jogos.filter((x) => x.fase === 'mata-mata')) assert.ok(j.resultado.vencedor)
+  const p = c.premios
+  assert.ok(p.artilheiro && p.garcom && p.melhorJogador && p.melhorGoleiro && p.acougueiro)
+  assert.equal(p.selecao.length, 11)
+  assert.ok(p.selecao.filter((x) => x.jogador).length >= 8)
+  const dois = simularCampeonatoDemo({ semente: 3 })
+  assert.equal(dois.campeao.id, c.campeao.id)
+  assert.deepEqual(dois.premios.artilheiro, c.premios.artilheiro)
 })

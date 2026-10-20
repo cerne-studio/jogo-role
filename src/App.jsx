@@ -13,8 +13,11 @@ import ManadaGame from './components/manada/ManadaGame.jsx'
 import TheMindGame from './components/themind/TheMindGame.jsx'
 import PdfGame from './components/pdf/PdfGame.jsx'
 import NbaCarreira from './components/nba/NbaCarreira.jsx'
+import FutebolDemo from './components/futebol/FutebolDemo.jsx'
 
 export default function App() {
+  if (new URLSearchParams(window.location.search).get('demo') === 'futebol') return <FutebolDemo />
+
   const [screen, setScreen] = useState('home')
   const [selectedGame, setSelectedGame] = useState(null)
   const [players, setPlayers] = useState([])
