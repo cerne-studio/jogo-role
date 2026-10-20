@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../../../lib/supabase.js'
 
-// Enquanto o FC26 não estiver carregado no banco, "Atual" fica desligado (o servidor também recusa).
-export const ATUAL_DISPONIVEL = false
+// "Atual" = elencos do EA FC26 (pool 'atual' no banco). Se um dia o banco ficar sem esses dados, o servidor recusa e este flag desliga o botão.
+export const ATUAL_DISPONIVEL = true
 
 const MODOS = [
   { id: 'historico', nome: 'Histórico', desc: 'O auge de cada craque, FIFA 15 ao 23.' },
-  { id: 'atual', nome: 'Atual', desc: 'Elencos de hoje.' },
+  { id: 'atual', nome: 'Atual', desc: 'Elencos do EA FC 26.' },
   { id: 'liga', nome: 'Por liga', desc: 'Só jogadores de uma liga.' },
 ]
 const TORNEIOS = [8, 16, 20]

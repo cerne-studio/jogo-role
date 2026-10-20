@@ -4,7 +4,7 @@
 
 import { readFileSync, writeFileSync } from 'node:fs'
 import { lerCsv } from './lib-csv.mjs'
-import { FORMACOES, ACEITA } from '../src/components/futebol/formacoes.js'
+import { gerarSiglas, melhorTime } from './lib-clubes.mjs'
 
 const [entrada, saida] = process.argv.slice(2)
 if (!entrada || !saida) {
@@ -46,34 +46,11 @@ for (const l of linhas) {
   })
 }
 
-// Escala os 11 melhores numa formação (guloso por vaga, goleiro primeiro). null se faltar gente pra alguma vaga.
-function escalar(jogadores, formacao) {
-  const usados = new Set()
-  const picks = []
-  const slots = FORMACOES[formacao].map((s, i) => ({ ...s, idx: i + 1 }))
-  const ordem = [...slots].sort((a, b) => (a.papel === 'G' ? -1 : 0) - (b.papel === 'G' ? -1 : 0))
-  for (const s of ordem) {
-    const aceitas = ACEITA[s.rotulo]
-    const cand = jogadores.filter((j) => !usados.has(j) && j.posicoes.some((p) => aceitas.includes(p))).sort((a, b) => b.overall - a.overall)[0]
-    if (!cand) return null
-    usados.add(cand)
-    picks.push({ slot: s.idx, ...cand })
-  }
-  picks.sort((a, b) => a.slot - b.slot)
-  return picks
-}
-
 const melhorPorClube = new Map()
 for (const g of grupos.values()) {
   const jogadores = [...g.jogadores.values()].filter((j) => j.overall)
   if (jogadores.length < 14) continue
-  let melhor = null
-  for (const f of Object.keys(FORMACOES)) {
-    const picks = escalar(jogadores, f)
-    if (!picks) continue
-    const media = picks.reduce((s, p) => s + p.overall, 0) / 11
-    if (!melhor || media > melhor.media) melhor = { formacao: f, picks, media }
-  }
+  const melhor = melhorTime(jogadores)
   if (!melhor) continue
   const atual = melhorPorClube.get(g.clubeId)
   if (!atual || melhor.media > atual.media) {
@@ -93,18 +70,7 @@ for (const [, [nome, qtd]] of Object.entries(LIGAS)) {
   escolhidos.push(...(porLiga[nome] ?? []).sort((a, b) => b.overall - a.overall).slice(0, qtd))
 }
 
-// Sigla de 3 letras, única
-const SEM = new Set(['FC', 'CF', 'SC', 'AC', 'AS', 'SSC', 'RCD', 'RC', 'SL', 'SK', 'JK', 'CD', 'UD', 'SV', 'VfL', 'VfB', 'TSG', '1.'])
-const usadas = new Set()
-for (const c of escolhidos) {
-  const pal = c.nome.replace(/[^\p{L}\s]/gu, '').split(/\s+/).filter((p) => !SEM.has(p) && p.length > 1)
-  const base = (pal.length >= 2 ? pal[0][0] + pal[1].slice(0, 2) : (pal[0] ?? c.nome).slice(0, 3)).toUpperCase()
-  const semAcento = base.normalize('NFD').replace(/[̀-ͯ]/g, '')
-  let sig = semAcento
-  for (let i = 2; usadas.has(sig); i++) sig = semAcento.slice(0, 2) + i
-  usadas.add(sig)
-  c.sigla = sig
-}
+gerarSiglas(escolhidos)
 
 escolhidos.sort((a, b) => b.overall - a.overall)
 writeFileSync(saida, JSON.stringify(escolhidos))
