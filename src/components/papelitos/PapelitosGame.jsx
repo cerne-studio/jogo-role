@@ -3,6 +3,7 @@ import { motion } from 'motion/react'
 import { Check, Minus, Plus, Shuffle, SkipForward, StickyNote, Trophy } from 'lucide-react'
 import ExitButton from '../core/ExitButton.jsx'
 import PapelitoCollect from './PapelitoCollect.jsx'
+import { embaralhar, vibrar } from '../../lib/aleatorio.js'
 
 const ROUND_INFO = [
   {
@@ -19,9 +20,6 @@ const ROUND_INFO = [
   },
 ]
 
-function embaralhar(arr) {
-  return [...arr].sort(() => Math.random() - 0.5)
-}
 
 function distribuirTimes(players) {
   const ordemAleatoria = embaralhar(players)
@@ -57,6 +55,7 @@ export default function PapelitosGame({ players, onBack }) {
   useEffect(() => {
     if (phase !== 'turno-ativo') return
     if (secondsLeft <= 0) {
+      vibrar([300, 100, 300])
       setPhase('turno-fim')
       return
     }

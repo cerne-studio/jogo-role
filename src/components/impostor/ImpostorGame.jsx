@@ -1,18 +1,21 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
 import { ArrowLeft, Minus, Plus, Skull } from 'lucide-react'
 import PassDevice from '../core/PassDevice.jsx'
 import ExitButton from '../core/ExitButton.jsx'
 import { sortearPalavra } from '../../data/wordBank.js'
+import { embaralhar, sortearUm, vibrar } from '../../lib/aleatorio.js'
 
 function sortearPapeis(players, numImpostores) {
-  const indices = players.map((_, i) => i)
-  for (let i = indices.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[indices[i], indices[j]] = [indices[j], indices[i]]
-  }
+  const indices = embaralhar(players.map((_, i) => i))
   const impostores = new Set(indices.slice(0, numImpostores))
   return players.map((_, i) => (impostores.has(i) ? 'impostor' : 'normal'))
+}
+
+function formatarTempo(seg) {
+  const m = Math.floor(seg / 60)
+  const r = seg % 60
+  return `${m}:${String(r).padStart(2, '0')}`
 }
 
 export default function ImpostorGame({ players, onBack }) {
@@ -25,8 +28,21 @@ export default function ImpostorGame({ players, onBack }) {
   const [usedWords, setUsedWords] = useState([])
   const [revealIndex, setRevealIndex] = useState(0)
   const [scores, setScores] = useState({})
+  const [quemComeca, setQuemComeca] = useState('')
+  const [tempoDiscussao, setTempoDiscussao] = useState(null)
 
   const maxImpostores = Math.max(1, players.length - 2)
+
+  // Cronômetro opcional da discussão: avisa (vibra) quando acaba
+  useEffect(() => {
+    if (phase !== 'discussao' || tempoDiscussao == null) return
+    if (tempoDiscussao <= 0) {
+      vibrar([300, 100, 300, 100, 300])
+      return
+    }
+    const t = setTimeout(() => setTempoDiscussao((x) => x - 1), 1000)
+    return () => clearTimeout(t)
+  }, [phase, tempoDiscussao])
 
   function iniciarRodada() {
     const { item, index } = sortearPalavra(usedWords)
@@ -34,6 +50,8 @@ export default function ImpostorGame({ players, onBack }) {
     setPalavra(item)
     setRoles(sortearPapeis(players, numImpostores))
     setRevealIndex(0)
+    setQuemComeca(sortearUm(players))
+    setTempoDiscussao(null)
     setPhase('reveal')
   }
 
@@ -120,6 +138,7 @@ export default function ImpostorGame({ players, onBack }) {
             <p className="text-xs font-medium uppercase tracking-widest text-danger">
               Você é o impostor
             </p>
+            <p className="mt-2 inline-block rounded-full border border-border px-3 py-1 text-[11px] text-secondary">Categoria: {palavra.categoria}</p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight">{palavra.impostor}</h2>
             <p className="mt-4 text-sm text-secondary">
               Essa não é a palavra real. Blefe com base nela — e tente descobrir a
@@ -131,6 +150,7 @@ export default function ImpostorGame({ players, onBack }) {
             <p className="text-xs font-medium uppercase tracking-widest text-secondary">
               A palavra é
             </p>
+            <p className="mt-2 inline-block rounded-full border border-border px-3 py-1 text-[11px] text-secondary">Categoria: {palavra.categoria}</p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight">{palavra.base}</h2>
             <p className="mt-4 text-sm text-secondary">
               Um dos jogadores não sabe essa palavra. Descubra quem, discutindo.
@@ -148,9 +168,36 @@ export default function ImpostorGame({ players, onBack }) {
         <div className="w-full max-w-sm">
           <h1 className="text-2xl font-bold tracking-tight">Todos já viram</h1>
           <p className="mt-2 text-sm text-secondary">
-            Conversem, façam perguntas, tentem descobrir quem é o impostor. Sem pressa —
-            quando decidirem, toquem abaixo.
+            Cada um fala uma dica sobre a palavra, sem entregar demais. Quem começa:
           </p>
+          <p className="mt-1 text-2xl font-black text-accent">{quemComeca}</p>
+          <p className="mt-3 text-xs text-muted">
+            Depois de uma volta, discutam e votem em quem parece o impostor.
+          </p>
+
+          {tempoDiscussao == null ? (
+            <div className="mt-6 flex justify-center gap-2">
+              {[120, 180, 300].map((s) => (
+                <button
+                  key={s}
+                  onClick={() => setTempoDiscussao(s)}
+                  className="rounded-xl border border-border-strong px-3 py-2 text-xs font-semibold text-secondary"
+                >
+                  ⏱ {s / 60} min
+                </button>
+              ))}
+            </div>
+          ) : (
+            <div className="mt-6">
+              <p className={`text-4xl font-black tabular-nums ${tempoDiscussao <= 10 ? 'text-danger' : 'text-primary'}`}>
+                {tempoDiscussao > 0 ? formatarTempo(tempoDiscussao) : 'Hora de votar!'}
+              </p>
+              <button onClick={() => setTempoDiscussao(null)} className="mt-1 text-xs text-muted">
+                parar cronômetro
+              </button>
+            </div>
+          )}
+
           <motion.button
             whileTap={{ scale: 0.97 }}
             onClick={() => setPhase('revelacao')}

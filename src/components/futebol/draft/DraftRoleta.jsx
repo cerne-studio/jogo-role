@@ -68,7 +68,7 @@ export default function DraftRoleta({ letra, ate, agora, rodada, total }) {
             </span>
           ))}
         </div>
-        <div className="absolute inset-[72px] flex items-center justify-center rounded-full border-2 border-accent bg-base shadow-[inset_0_0_30px_rgba(245,158,11,.25)]">
+        <div className="absolute inset-[72px] flex items-center justify-center rounded-full border-2 border-accent bg-canvas shadow-[inset_0_0_30px_rgba(245,158,11,.25)]">
           <span className={`text-[92px] font-black leading-none text-accent ${parou ? 'animate-[popLetra_.35s_ease-out]' : ''}`}>{mostrada}</span>
         </div>
       </div>

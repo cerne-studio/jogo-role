@@ -4,11 +4,14 @@ import { ArrowLeft } from 'lucide-react'
 import PassDevice from '../core/PassDevice.jsx'
 import ExitButton from '../core/ExitButton.jsx'
 import SecretGuess from './SecretGuess.jsx'
+import { sortearTema } from '../../data/notaBank.js'
 
 export default function JogoDaNotaGame({ players, onBack }) {
   const [phase, setPhase] = useState('distribuir-nota')
   const [donoIndex, setDonoIndex] = useState(0)
   const [nota, setNota] = useState(() => Math.floor(Math.random() * 11))
+  const [temaAtual, setTemaAtual] = useState(() => sortearTema())
+  const [temasUsados, setTemasUsados] = useState([])
   const [guessIndex, setGuessIndex] = useState(0)
   const [palpites, setPalpites] = useState([])
   const [scores, setScores] = useState({})
@@ -39,6 +42,9 @@ export default function JogoDaNotaGame({ players, onBack }) {
   }
 
   function proximoDono() {
+    const usados = [...temasUsados, temaAtual.index]
+    setTemasUsados(usados)
+    setTemaAtual(sortearTema(usados))
     setDonoIndex((i) => (i + 1) % players.length)
     setNota(Math.floor(Math.random() * 11))
     setGuessIndex(0)
@@ -55,12 +61,13 @@ export default function JogoDaNotaGame({ players, onBack }) {
         onExit={onBack}
         onDone={() => setPhase('perguntas')}
       >
-        <p className="text-xs font-medium uppercase tracking-widest text-secondary">
-          Sua nota secreta é
-        </p>
-        <h2 className="mt-3 text-5xl font-bold tracking-tight text-accent">{nota}</h2>
+        <p className="text-xs font-medium uppercase tracking-widest text-secondary">Tema</p>
+        <h2 className="mt-1 text-lg font-bold leading-snug tracking-tight">{temaAtual.item.tema}</h2>
+        <p className="mt-1 text-xs text-muted">0 = {temaAtual.item.zero} · 10 = {temaAtual.item.dez}</p>
+        <p className="mt-5 text-xs font-medium uppercase tracking-widest text-secondary">Sua nota secreta é</p>
+        <h2 className="mt-2 text-6xl font-black tracking-tight text-accent">{nota}</h2>
         <p className="mt-4 text-sm text-secondary">
-          Responda as perguntas dos outros com sinceridade, sem entregar o número.
+          Responda as perguntas dos outros como se a sua resposta fosse desse tamanho, sem entregar o número.
         </p>
       </PassDevice>
     )
@@ -71,7 +78,10 @@ export default function JogoDaNotaGame({ players, onBack }) {
       <div className="flex min-h-[100dvh] flex-col items-center justify-center px-6 py-10 text-center">
         <ExitButton onExit={onBack} />
         <div className="w-full max-w-sm">
-          <h1 className="text-2xl font-bold tracking-tight">Perguntem pra {donoNome}</h1>
+          <p className="text-xs font-medium uppercase tracking-widest text-accent">Tema</p>
+          <h2 className="mt-1 text-xl font-bold leading-snug tracking-tight">{temaAtual.item.tema}</h2>
+          <p className="mt-1 text-xs text-muted">0 = {temaAtual.item.zero} · 10 = {temaAtual.item.dez}</p>
+          <h1 className="mt-6 text-2xl font-bold tracking-tight">Perguntem pra {donoNome}</h1>
           <p className="mt-2 text-sm text-secondary">
             O resto do grupo faz perguntas em voz alta pra tentar descobrir a nota. Sem
             pressa — quando acharem que sabem, toquem abaixo.
@@ -122,7 +132,7 @@ export default function JogoDaNotaGame({ players, onBack }) {
                 >
                   <span className="text-sm font-medium">{nome}</span>
                   <span className={`text-sm font-bold tabular-nums ${acertou ? 'text-success' : 'text-secondary'}`}>
-                    {palpites[i]} {acertou ? '✅' : ''}
+                    {palpites[i] == null ? 'sem palpite' : palpites[i]} {acertou ? '✅' : ''}
                   </span>
                 </li>
               )

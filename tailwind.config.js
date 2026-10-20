@@ -7,7 +7,7 @@ export default {
         sans: ['Geist', 'system-ui', 'sans-serif'],
       },
       colors: {
-        base: '#0a0a0b',
+        canvas: '#0a0a0b',
         surface: '#111113',
         elevated: '#1a1a1f',
         border: 'rgba(255,255,255,0.08)',

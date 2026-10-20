@@ -5,7 +5,8 @@ import ExitButton from '../core/ExitButton.jsx'
 import { sortearPersonagens } from '../../data/personagensBank.js'
 
 export default function QuemSouEuGame({ players, onBack }) {
-  const [personagens] = useState(() => sortearPersonagens(players.length))
+  const [personagens, setPersonagens] = useState(() => sortearPersonagens(players.length))
+  const [jaSairam, setJaSairam] = useState([])
   const [currentIndex, setCurrentIndex] = useState(0)
   const [revelado, setRevelado] = useState(false)
   const [phase, setPhase] = useState('mostrar')
@@ -24,6 +25,12 @@ export default function QuemSouEuGame({ players, onBack }) {
   }
 
   function proximoJogador() {
+    // Deu a volta em todos os jogadores: sorteia personagens novos (sem repetir os que já saíram)
+    if (currentIndex + 1 >= players.length) {
+      const usados = [...jaSairam, ...personagens]
+      setJaSairam(usados)
+      setPersonagens(sortearPersonagens(players.length, usados))
+    }
     setCurrentIndex((i) => (i + 1) % players.length)
     setRevelado(false)
     setPhase('mostrar')

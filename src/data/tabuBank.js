@@ -1,5 +1,7 @@
 // Curadoria manual — cartas de Tabu: palavra secreta + palavras proibidas
 // (as dicas óbvias demais, que entregariam a resposta na hora).
+import { embaralhar } from '../lib/aleatorio.js'
+
 export const tabuBank = {
   Esportes: [
     { palavra: 'Futebol', proibidas: ['Bola', 'Gol', 'Time', 'Campo', 'Chute'] },
@@ -169,6 +171,6 @@ export function sortearCartas(categoriasAtivas, excluir = [], quantidade = 12) {
   const pool = categoriasAtivas.flatMap((cat) => tabuBank[cat] || [])
   const disponiveis = pool.filter((c) => !excluir.includes(c.palavra))
   const fonte = disponiveis.length >= quantidade ? disponiveis : pool
-  const embaralhado = [...fonte].sort(() => Math.random() - 0.5)
+  const embaralhado = embaralhar(fonte)
   return embaralhado.slice(0, quantidade)
 }

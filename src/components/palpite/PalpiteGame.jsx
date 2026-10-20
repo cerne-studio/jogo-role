@@ -22,9 +22,10 @@ export default function PalpiteGame({ players, onBack }) {
 
   function computarResultado(todosPalpites) {
     const resposta = rodada.resposta
-    const diffs = todosPalpites.map((v) => Math.abs(v - resposta))
+    // palpite null = o tempo acabou sem resposta: não concorre
+    const diffs = todosPalpites.map((v) => (v == null ? Infinity : Math.abs(v - resposta)))
     const exatosIdx = todosPalpites
-      .map((v, i) => (v === resposta ? i : -1))
+      .map((v, i) => (v != null && v === resposta ? i : -1))
       .filter((i) => i >= 0)
 
     let vencedoresIdx
@@ -34,7 +35,7 @@ export default function PalpiteGame({ players, onBack }) {
       tipo = 'exato'
     } else {
       const minDiff = Math.min(...diffs)
-      vencedoresIdx = diffs.map((d, i) => (d === minDiff ? i : -1)).filter((i) => i >= 0)
+      vencedoresIdx = minDiff === Infinity ? [] : diffs.map((d, i) => (d === minDiff ? i : -1)).filter((i) => i >= 0)
       tipo = 'proximo'
     }
 
@@ -150,11 +151,13 @@ export default function PalpiteGame({ players, onBack }) {
                   </span>
                   <span className="text-right text-sm">
                     <span className="font-bold tabular-nums text-primary">
-                      {formatNumero(valor)}
+                      {valor == null ? 'sem palpite' : formatNumero(valor)}
                     </span>
-                    <span className="ml-2 text-xs text-muted">
-                      dif. {formatNumero(diff)}
-                    </span>
+                    {valor != null && (
+                      <span className="ml-2 text-xs text-muted">
+                        dif. {formatNumero(diff)}
+                      </span>
+                    )}
                   </span>
                 </li>
               )

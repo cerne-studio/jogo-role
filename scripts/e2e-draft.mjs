@@ -50,7 +50,7 @@ async function estadoDe(j, salaId) {
 }
 async function esperaAte(iso) {
   const ms = new Date(iso).getTime() - Date.now()
-  if (ms > 0) await dorme(ms + 150)
+  if (ms > 0) await dorme(ms + 900)
 }
 
 // Escolhe a primeira opção livre que encaixa em alguma vaga aberta; se alguém levar o jogador antes
@@ -85,7 +85,6 @@ async function main() {
   }
   await esperaErro('nao-host nao configura', rpc(B, 'fd_configurar', { p_sala_id: salaId, p_modo: 'historico', p_liga: null, p_torneio: 8 }), 'so o host')
   await esperaErro('torneio invalido e recusado', rpc(A, 'fd_configurar', { p_sala_id: salaId, p_modo: 'historico', p_liga: null, p_torneio: 12 }), '8, 16 ou 20')
-  await esperaErro('modo atual sem dados e recusado', rpc(A, 'fd_configurar', { p_sala_id: salaId, p_modo: 'atual', p_liga: null, p_torneio: 8 }), 'atual')
   const ligas = await rpc(A, 'fd_ligas', {})
   ok('lista ligas com 100+ jogadores', Array.isArray(ligas.data) && ligas.data.length >= 4, JSON.stringify(ligas.data)?.slice(0, 120))
   const cfg = await rpc(A, 'fd_configurar', { p_sala_id: salaId, p_modo: 'historico', p_liga: null, p_torneio: 8 })

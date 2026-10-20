@@ -3,6 +3,7 @@ import { motion } from 'motion/react'
 import { ArrowLeft, Ban, Check, Minus, Plus, SkipForward } from 'lucide-react'
 import ExitButton from '../core/ExitButton.jsx'
 import { categoriasTabu, sortearCartas } from '../../data/tabuBank.js'
+import { vibrar } from '../../lib/aleatorio.js'
 
 export default function TabuGame({ players, onBack }) {
   const [phase, setPhase] = useState('setup')
@@ -16,6 +17,7 @@ export default function TabuGame({ players, onBack }) {
   const [secondsLeft, setSecondsLeft] = useState(0)
   const [scores, setScores] = useState({})
   const [roundAcertos, setRoundAcertos] = useState(0)
+  const [roundPenalidades, setRoundPenalidades] = useState(0)
 
   const descritorNome = players[rodadaIndex % players.length]
   const adivinhadorNome = players[(rodadaIndex + 1) % players.length]
@@ -23,6 +25,7 @@ export default function TabuGame({ players, onBack }) {
   useEffect(() => {
     if (phase !== 'ativa') return
     if (secondsLeft <= 0) {
+      vibrar([300, 100, 300])
       setPhase('fim-rodada')
       return
     }
@@ -45,6 +48,7 @@ export default function TabuGame({ players, onBack }) {
     setCartas(novasCartas)
     setCardIndex(0)
     setRoundAcertos(0)
+    setRoundPenalidades(0)
     setPhase('pronto')
   }
 
@@ -68,6 +72,17 @@ export default function TabuGame({ players, onBack }) {
       [descritorNome]: (prev[descritorNome] || 0) + 1,
     }))
     setRoundAcertos((n) => n + 1)
+    avancarCarta()
+  }
+
+  // Falou uma palavra proibida: a dupla perde 1 ponto e a carta passa
+  function marcarProibida() {
+    setScores((prev) => ({
+      ...prev,
+      [adivinhadorNome]: (prev[adivinhadorNome] || 0) - 1,
+      [descritorNome]: (prev[descritorNome] || 0) - 1,
+    }))
+    setRoundPenalidades((n) => n + 1)
     avancarCarta()
   }
 
@@ -233,7 +248,14 @@ export default function TabuGame({ players, onBack }) {
               onClick={avancarCarta}
               className="flex w-full items-center justify-center gap-2 rounded-xl border border-border-strong px-6 py-4 text-sm font-semibold text-secondary"
             >
-              <SkipForward className="h-5 w-5" /> Pular / falou proibida
+              <SkipForward className="h-5 w-5" /> Pular
+            </motion.button>
+            <motion.button
+              whileTap={{ scale: 0.97 }}
+              onClick={marcarProibida}
+              className="flex w-full items-center justify-center gap-2 rounded-xl bg-danger/15 px-6 py-3 text-sm font-semibold text-danger"
+            >
+              <Ban className="h-5 w-5" /> Falou proibida (−1 ponto)
             </motion.button>
           </div>
         </div>
@@ -249,7 +271,7 @@ export default function TabuGame({ players, onBack }) {
           <h1 className="text-2xl font-bold tracking-tight">Fim da rodada</h1>
           <p className="mt-2 text-sm text-secondary">
             {descritorNome} e {adivinhadorNome} acertaram {roundAcertos} de {cartas.length}{' '}
-            cartas.
+            cartas{roundPenalidades > 0 ? ` e perderam ${roundPenalidades} ponto(s) por palavra proibida` : ''}.
           </p>
           <div className="mt-8 flex flex-col gap-2">
             <motion.button

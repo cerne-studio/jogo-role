@@ -11,7 +11,7 @@ const ATRIBUTOS = [
   ['ritmo', 'Ritmo'], ['chute', 'Chute'], ['passe', 'Passe'], ['drible', 'Drible'], ['defesa', 'Defesa'], ['fisico', 'Físico'],
 ]
 
-// Tela principal do draft: 7 s pra escolher alguém com a letra sorteada e encaixar numa vaga aberta.
+// Tela principal do draft: 30 s pra escolher alguém com a letra sorteada e encaixar numa vaga aberta.
 export default function DraftEscolha({ salaId, userId, est, jogadores, agora, times, onExit }) {
   const [lista, setLista] = useState([])
   const [carregou, setCarregou] = useState(false)
@@ -118,10 +118,10 @@ export default function DraftEscolha({ salaId, userId, est, jogadores, agora, ti
               ))}
             </div>
           </div>
-          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-[3px] border-accent bg-base text-3xl font-black text-accent shadow-[0_0_22px_rgba(245,158,11,.45)]">
+          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-[3px] border-accent bg-canvas text-3xl font-black text-accent shadow-[0_0_22px_rgba(245,158,11,.45)]">
             {est.letra === '*' ? '?' : est.letra}
           </div>
-          <Cronometro restante={restante} total={Math.max(7, restante)} tam={64} />
+          <Cronometro restante={restante} total={Math.max(30, restante)} tam={64} />
         </div>
 
         <div className="mt-4 grid grid-cols-[1.25fr_1fr] gap-3">
@@ -224,7 +224,7 @@ export default function DraftEscolha({ salaId, userId, est, jogadores, agora, ti
         </div>
       </div>
 
-      <div className="fixed inset-x-0 bottom-0 z-30 bg-gradient-to-t from-base via-base to-transparent px-5 pb-5 pt-6">
+      <div className="fixed inset-x-0 bottom-0 z-30 bg-gradient-to-t from-canvas via-canvas to-transparent px-5 pb-5 pt-6">
         <div className="mx-auto w-full max-w-sm">
           <button
             disabled={!selecionado || enviando}

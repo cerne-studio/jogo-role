@@ -3,6 +3,7 @@ import { motion } from 'motion/react'
 import { ArrowLeft, Check, Minus, Plus, SkipForward, Theater } from 'lucide-react'
 import ExitButton from '../core/ExitButton.jsx'
 import { categorias, sortearPalavras } from '../../data/mimicaBank.js'
+import { vibrar } from '../../lib/aleatorio.js'
 
 export default function MimicaGame({ players, onBack }) {
   const [phase, setPhase] = useState('setup')
@@ -24,6 +25,8 @@ export default function MimicaGame({ players, onBack }) {
   useEffect(() => {
     if (phase !== 'ativa') return
     if (secondsLeft <= 0) {
+      vibrar([300, 100, 300])
+      setEscolhendoQuem(false)
       setPhase('fim-rodada')
       return
     }
@@ -223,7 +226,7 @@ export default function MimicaGame({ players, onBack }) {
         <div className="w-full max-w-sm">
           <div className="flex items-center justify-between text-xs text-secondary">
             <span>
-              Palavra {wordIndex + 1} de {palavras.length}
+              {roundAcertos} {roundAcertos === 1 ? 'acerto' : 'acertos'}
             </span>
             <span className={`font-bold tabular-nums ${secondsLeft <= 10 ? 'text-danger' : 'text-primary'}`}>
               {secondsLeft}s
@@ -259,7 +262,7 @@ export default function MimicaGame({ players, onBack }) {
         <div className="w-full max-w-sm">
           <h1 className="text-2xl font-bold tracking-tight">Fim da rodada</h1>
           <p className="mt-2 text-sm text-secondary">
-            {mimicoNome} acertou {roundAcertos} de {palavras.length} palavras.
+            {mimicoNome} acertou {roundAcertos} {roundAcertos === 1 ? 'palavra' : 'palavras'}.
           </p>
           <div className="mt-8 flex flex-col gap-2">
             <motion.button

@@ -20,7 +20,7 @@ export default function GuessInput({ playerName, index, total, pergunta, onGuess
     if (!revealed) return
     if (secondsLeft <= 0) {
       setRevealed(false)
-      onGuess(0)
+      onGuess(null) // sem palpite: não vale como "0"
       return
     }
     const t = setTimeout(() => setSecondsLeft((s) => s - 1), 1000)

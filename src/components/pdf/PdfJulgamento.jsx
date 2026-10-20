@@ -58,7 +58,7 @@ export default function PdfJulgamento({ salaId, userId, sala, jogadores, juizNom
       </div>
 
       {souJuiz && (
-        <div className="fixed inset-x-0 bottom-0 border-t border-border bg-base/95 px-5 py-4 backdrop-blur">
+        <div className="fixed inset-x-0 bottom-0 border-t border-border bg-canvas/95 px-5 py-4 backdrop-blur">
           <div className="mx-auto w-full max-w-sm">
             {erro && <p className="mb-2 text-center text-sm text-danger">{erro}</p>}
             <BotaoPrimario disabled={escolhida === null} carregando={enviando} onClick={confirmar}>

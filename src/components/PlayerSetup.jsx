@@ -2,16 +2,48 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { ArrowLeft, Plus, X } from 'lucide-react'
 
+const CHAVE_GRUPO = 'jogo-role:ultimo-grupo'
+
+function lerUltimoGrupo() {
+  try {
+    const lista = JSON.parse(localStorage.getItem(CHAVE_GRUPO) ?? '[]')
+    return Array.isArray(lista) ? lista.filter((n) => typeof n === 'string').slice(0, 20) : []
+  } catch {
+    return []
+  }
+}
+
+function salvarUltimoGrupo(players) {
+  try {
+    localStorage.setItem(CHAVE_GRUPO, JSON.stringify(players))
+  } catch {
+    // sem localStorage: só não lembra da turma
+  }
+}
+
 export default function PlayerSetup({ gameName, minPlayers, maxPlayers, onBack, onStart }) {
   const [players, setPlayers] = useState([])
   const [nameInput, setNameInput] = useState('')
+  const [erro, setErro] = useState('')
+  const [ultimoGrupo] = useState(lerUltimoGrupo)
 
   function addPlayer() {
-    const nome = nameInput.trim()
+    const nome = nameInput.trim().slice(0, 20)
     if (!nome) return
     if (maxPlayers && players.length >= maxPlayers) return
+    // Os jogos guardam placar e papéis pelo nome: nome repetido embaralha tudo
+    if (players.some((p) => p.toLowerCase() === nome.toLowerCase())) {
+      setErro(`Já tem alguém chamado "${nome}". Use um apelido pra diferenciar.`)
+      return
+    }
+    setErro('')
     setPlayers((p) => [...p, nome])
     setNameInput('')
+  }
+
+  function usarUltimoGrupo() {
+    setPlayers(maxPlayers ? ultimoGrupo.slice(0, maxPlayers) : ultimoGrupo)
+    setErro('')
   }
 
   function removePlayer(i) {
@@ -56,6 +88,16 @@ export default function PlayerSetup({ gameName, minPlayers, maxPlayers, onBack, 
           </motion.button>
         </form>
 
+        {erro && <p className="mt-2 text-xs text-danger">{erro}</p>}
+        {players.length === 0 && ultimoGrupo.length > 0 && (
+          <button
+            onClick={usarUltimoGrupo}
+            className="mt-3 w-full rounded-xl border border-dashed border-border-strong px-4 py-3 text-left text-xs text-secondary"
+          >
+            ↺ Usar a mesma turma da última vez: <span className="text-primary">{ultimoGrupo.join(', ')}</span>
+          </button>
+        )}
+
         <ul className="mt-4 flex flex-col gap-2">
           <AnimatePresence initial={false}>
             {players.map((name, i) => (
@@ -84,7 +126,10 @@ export default function PlayerSetup({ gameName, minPlayers, maxPlayers, onBack, 
         <motion.button
           whileTap={{ scale: canStart ? 0.97 : 1 }}
           disabled={!canStart}
-          onClick={() => onStart(players)}
+          onClick={() => {
+            salvarUltimoGrupo(players)
+            onStart(players)
+          }}
           className="w-full rounded-xl bg-accent px-6 py-4 text-base font-semibold text-black disabled:opacity-30"
         >
           {canStart ? 'Continuar' : `Faltam ${Math.max(0, minPlayers - players.length)} jogador(es)`}

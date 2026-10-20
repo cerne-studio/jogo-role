@@ -10,6 +10,13 @@ Registro de alterações. Mais recente no topo.
 
 ---
 
+## 2026-10-21 — Claude
+- **Draft FC**: tempo de escolha de 7 s para **30 s** (a rodada fecha assim que todos escolhem). `db/021`
+- **Home nova**: Draft FC em destaque, jogos separados em "cada um no seu celular", "um celular, passa de mão em mão" e "solo", cartões com cor própria. Site carrega só o jogo que for usado (de 1 MB pra 280 KB na Home) e o botão voltar do celular volta pra Home
+- **Bug do texto invisível corrigido**: a cor `base` do Tailwind colidia com `text-base` e deixava textos quase pretos em vários botões (ex.: "Esconder e passar"). Renomeada pra `canvas`
+- **Jogos antigos**: Impostor (categoria visível, quem começa, cronômetro opcional, 215 pares de palavras), Mímica (30 palavras por rodada até o tempo acabar, 280 palavras, corrigido estado travado quando o tempo estoura), Tabu (botão "falou proibida" tira 1 ponto), Quem Sou Eu (não repete personagem na volta seguinte, 270 personagens), Jogo da Nota (agora tem tema e escala 0–10, 60 temas), Palpite e Jogo da Nota (tempo esgotado não vale mais como palpite "0"/"5"), Papelitos e Tabu (embaralhamento justo). Nomes repetidos na lista de jogadores são recusados e o app lembra a última turma
+- **Efeito Manada**: 25 → 182 perguntas. `db/022`
+
 ## 2026-10-20 — Claude
 - **Draft FC (novo jogo, solo ou com amigos)**: monte um time de futebol sorteando uma letra por rodada (11 rodadas, 7 s por escolha), cada jogador deve ter uma palavra do nome começando com a letra e jogar na posição da vaga. Jogador pego por um humano fica travado pros outros ("Pego por X"), disputa dá +3 s ao perdedor e tempo esgotado escolhe o melhor disponível. 7 formações, tática escolhida depois do draft
 - **Campeonato de 8, 16 ou 20 times**: grupos + mata-mata com bots de clubes reais (Fácil/Normal/Difícil), partida ao vivo em campo de futebol de botão com passes, câmera lenta nos gols, faltas, cartões por agressividade, VAR, pênaltis, estatísticas por jogador e premiação final (artilheiro, garçom, melhor jogador/goleiro, seleção)

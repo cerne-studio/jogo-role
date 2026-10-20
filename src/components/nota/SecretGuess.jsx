@@ -19,7 +19,7 @@ export default function SecretGuess({ playerName, index, total, onGuess, onExit 
     if (!revealed) return
     if (secondsLeft <= 0) {
       setRevealed(false)
-      onGuess(5)
+      onGuess(null) // sem palpite: não vale como um número qualquer
       return
     }
     const t = setTimeout(() => setSecondsLeft((s) => s - 1), 1000)
