@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import MatchPitch, { CORES_PADRAO } from './MatchPitch.jsx'
 import { useReprodutor } from './useReprodutor.js'
 import { estatisticasParciais } from './parciais.js'
@@ -78,11 +78,15 @@ export function BarraStat({ rotulo, a, b, pct }) {
 
 // Partida ao vivo: placar, campo com as peças, controles e abas (lances, estatísticas, jogadores).
 // `sim` vem de simularPartida(cfg.A, cfg.B); aqui só se reproduz o resultado já decidido.
-export default function PartidaAoVivo({ sim, cfg, abaExtra, controlesExtras, onOutra, replayInicial = true }) {
+export default function PartidaAoVivo({ sim, cfg, abaExtra, controlesExtras, onOutra, onFim, rotuloTopo, replayInicial = true }) {
   const [aba, setAba] = useState('lances')
   const [replay, setReplay] = useState(replayInicial)
 
   const r = useReprodutor(sim, cfg, { replay })
+  useEffect(() => {
+    if (r.estado === 'fim') onFim?.()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [r.estado])
   const nomes = useMemo(() => Object.fromEntries(Object.values(sim.jogadores).map((j) => [j.id, j.nome.split(' ').slice(-1)[0]])), [sim])
   const numeros = useMemo(() => Object.fromEntries(Object.values(sim.jogadores).map((j) => [j.id, j.num])), [sim])
   const parciais = useMemo(() => estatisticasParciais(r.vistos, r.posseVista), [r.vistos, r.posseVista])
@@ -107,6 +111,7 @@ export default function PartidaAoVivo({ sim, cfg, abaExtra, controlesExtras, onO
   return (
     <div className="space-y-3">
       <div className="rounded-2xl bg-[#111113] p-3">
+        {rotuloTopo && <div className="mb-2 text-center text-[11px] font-bold uppercase tracking-[0.2em] text-[#8b8b9a]">{rotuloTopo}</div>}
         <div className="flex items-center justify-between">
           <div className="flex-1 text-center">
             <div className="mx-auto mb-1 h-8 w-8 rounded-full border-2 border-[#4c1d95] bg-[#7c3aed]" />

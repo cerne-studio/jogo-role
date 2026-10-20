@@ -5,10 +5,10 @@ import { FORMACOES } from './formacoes.js'
 
 const v = (x, padrao = 30) => (x == null ? padrao : x)
 
-export function jogadorParaMotor(p, indiceSlot) {
+export function jogadorParaMotor(p, indiceSlot, timeId = 't') {
   const goleiro = p.posicoes?.[0] === 'GK'
   return {
-    id: `p${p.pid}`,
+    id: `${timeId}:${p.pid ?? `s${p.slot}`}`,
     nome: p.nome,
     num: goleiro ? 1 : indiceSlot + 1,
     ovr: p.overall,
@@ -26,7 +26,7 @@ export function jogadorParaMotor(p, indiceSlot) {
 export function timeParaMotor({ id, nome, formacao, tatica = 'equilibrada', picks }) {
   const ordenados = [...picks].sort((a, b) => a.slot - b.slot)
   if (ordenados.length !== 11) throw new Error(`time ${nome} tem ${ordenados.length} jogadores (precisa de 11)`)
-  return { id, nome, formacao, tatica, jogadores: ordenados.map((p, i) => jogadorParaMotor(p, i)) }
+  return { id, nome, formacao, tatica, jogadores: ordenados.map((p, i) => jogadorParaMotor(p, i, id)) }
 }
 
 const media = (xs) => (xs.length ? xs.reduce((s, x) => s + x, 0) / xs.length : 0)

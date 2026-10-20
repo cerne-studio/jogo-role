@@ -14,6 +14,7 @@ import DraftFormacao from './DraftFormacao.jsx'
 import DraftProntos from './DraftProntos.jsx'
 import DraftRoleta from './DraftRoleta.jsx'
 import DraftTatica from './DraftTatica.jsx'
+import TorneioGame from '../torneio/TorneioGame.jsx'
 import { TOTAL_RODADAS } from './draftUtils.jsx'
 import { useAvancador, useRelogio, useTick, useTimes } from './useServidor.js'
 
@@ -36,7 +37,7 @@ function LobbyDraft({ salaInfo, sala, jogadores, souHost, onExit }) {
 
   async function mudar(novo) {
     setErro('')
-    const { error } = await supabase.rpc('fd_configurar', { p_sala_id: salaInfo.salaId, p_modo: novo.modo, p_liga: novo.liga, p_torneio: novo.torneio })
+    const { error } = await supabase.rpc('fd_configurar', { p_sala_id: salaInfo.salaId, p_modo: novo.modo, p_liga: novo.liga, p_torneio: novo.torneio, p_dificuldade: novo.dificuldade ?? 'normal' })
     if (error) setErro(error.message)
   }
 
@@ -122,6 +123,7 @@ export default function DraftGame({ onBack }) {
   if (est.fase === 'formacao') return <DraftFormacao {...base} />
   if (est.fase === 'tatica') return <DraftTatica {...base} />
   if (est.fase === 'prontos') return <DraftProntos {...base} />
+  if (est.fase === 'torneio') return <TorneioGame {...base} />
 
   if (est.fase === 'draft') {
     const escolhaIni = Date.parse(est.escolha_ini)

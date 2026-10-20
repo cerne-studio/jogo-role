@@ -10,6 +10,11 @@ const MODOS = [
   { id: 'liga', nome: 'Por liga', desc: 'Só jogadores de uma liga.' },
 ]
 const TORNEIOS = [8, 16, 20]
+const DIFICULDADES = [
+  { id: 'facil', nome: 'Fácil', desc: 'Clubes mais fracos' },
+  { id: 'normal', nome: 'Normal', desc: 'De tudo um pouco' },
+  { id: 'dificil', nome: 'Difícil', desc: 'Os gigantes' },
+]
 
 export function useLigas() {
   const [ligas, setLigas] = useState([])
@@ -29,7 +34,7 @@ export function useLigas() {
 // `valor` = { modo, liga, torneio }. Só o host muda no lobby (somenteLeitura pros outros).
 export default function DraftConfig({ valor, onChange, somenteLeitura = false, erro = '' }) {
   const ligas = useLigas()
-  const { modo, liga, torneio } = valor
+  const { modo, liga, torneio, dificuldade = 'normal' } = valor
 
   function escolher(patch) {
     if (somenteLeitura) return
@@ -91,6 +96,22 @@ export default function DraftConfig({ valor, onChange, somenteLeitura = false, e
           >
             <span className="block text-xl font-bold tabular-nums">{n}</span>
             <span className="block text-[10px] uppercase tracking-widest text-muted">times</span>
+          </button>
+        ))}
+      </div>
+      <p className="mt-6 text-xs font-medium uppercase tracking-widest text-muted">Adversários (bots)</p>
+      <div className="mt-3 grid grid-cols-3 gap-2">
+        {DIFICULDADES.map((d) => (
+          <button
+            key={d.id}
+            disabled={somenteLeitura}
+            onClick={() => escolher({ dificuldade: d.id })}
+            className={`rounded-xl border px-2 py-3 text-left transition disabled:cursor-default ${
+              d.id === dificuldade ? 'border-accent bg-accent-glow text-primary' : 'border-border bg-surface text-secondary'
+            }`}
+          >
+            <span className="block text-sm font-bold">{d.nome}</span>
+            <span className="block text-[10px] leading-snug text-muted">{d.desc}</span>
           </button>
         ))}
       </div>

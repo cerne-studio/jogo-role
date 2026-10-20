@@ -57,7 +57,7 @@ for (const l of linhas) {
       overall: ovr, ritmo: num(l[col.pace]), chute: num(l[col.shooting]), passe: num(l[col.passing]), drible: num(l[col.dribbling]),
       defesa: num(l[col.defending]), fisico: num(l[col.physic]), agressividade: num(l[col.mentality_aggression]),
       penaltis: num(l[col.mentality_penalties]), goleiro: Math.round(gk.reduce((a, b) => a + b, 0) / 4),
-      clube: l[col.club_name], liga: l[col.league_name], pais: l[col.nationality_name], idade: num(l[col.age]),
+      clube: l[col.club_name], liga: l[col.league_id] === '7' ? 'Brasileirão' : l[col.league_name], pais: l[col.nationality_name], idade: num(l[col.age]),
     })
   }
 }

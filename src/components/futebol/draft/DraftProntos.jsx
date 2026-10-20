@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import ExitButton from '../../core/ExitButton.jsx'
+import { supabase } from '../../../lib/supabase.js'
 import { medidores, notaGeral, timeParaMotor } from '../adaptador.js'
 import { gerarTime } from '../amostras.js'
 import { simularPartida } from '../motor.js'
@@ -18,8 +19,10 @@ function Amistoso({ cfg, sim, onVoltar, onOutro }) {
 
 // Fim do draft: todos os times montados. Daqui sai o campeonato; por enquanto dá pra jogar um amistoso
 // com o motor de partida (contra o rival, ou contra um time de bots no modo solo).
-export default function DraftProntos({ userId, est, times, onExit }) {
+export default function DraftProntos({ salaId, userId, est, times, onExit }) {
   const [amistoso, setAmistoso] = useState(null)
+  const [iniciando, setIniciando] = useState(false)
+  const [erro, setErro] = useState('')
   const [rodada, setRodada] = useState(0)
 
   const meu = times.find((t) => t.user_id === userId)
@@ -56,7 +59,7 @@ export default function DraftProntos({ userId, est, times, onExit }) {
         <p className="text-xs font-semibold uppercase tracking-[0.25em] text-accent">Draft concluído</p>
         <h1 className="mt-1 text-2xl font-bold tracking-tight">Times prontos</h1>
         <p className="mt-1 text-sm text-secondary">
-          {est.config?.torneio ?? 8} times vão disputar o campeonato. O chaveamento com os bots de clubes reais é a próxima etapa.
+          {est.config?.torneio ?? 8} times vão disputar o campeonato, com os bots completando as vagas com clubes reais.
         </p>
 
         <ul className="mt-5 flex flex-col gap-3">
@@ -81,7 +84,20 @@ export default function DraftProntos({ userId, est, times, onExit }) {
         {meu && <div className="mt-5"><MiniCampo formacao={meu.formacao} picks={meu.picks} mostrarNomes grande /></div>}
 
         <div className="mt-6 flex flex-col gap-2">
-          <BotaoPrincipal onClick={() => setAmistoso('bot')}>Jogar amistoso vs bots</BotaoPrincipal>
+          <BotaoPrincipal
+            disabled={iniciando}
+            onClick={async () => {
+              setIniciando(true)
+              setErro('')
+              const { error } = await supabase.rpc('fd_torneio_preparar', { p_sala_id: salaId })
+              if (error) setErro(error.message)
+              setIniciando(false)
+            }}
+          >
+            {iniciando ? 'Montando...' : 'Começar campeonato'}
+          </BotaoPrincipal>
+          {erro && <p className="text-sm text-danger">{erro}</p>}
+          <button onClick={() => setAmistoso('bot')} className="w-full rounded-2xl border border-border-strong bg-elevated px-6 py-3.5 text-sm font-bold">Jogar amistoso vs bots</button>
           {rivais.map((r) => (
             <button key={r.user_id} onClick={() => setAmistoso(r.user_id)} className="w-full rounded-2xl border border-border-strong bg-elevated px-6 py-3.5 text-sm font-bold">
               Amistoso contra {r.nome} FC

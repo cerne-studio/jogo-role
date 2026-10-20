@@ -11,7 +11,7 @@ import { BotaoPrincipal } from './draftUtils.jsx'
 export default function DraftEntrada({ jogo, onSolo, onAmigos, onExit }) {
   const [fase, setFase] = useState('modo')
   const [nome, setNome] = useState('')
-  const [cfg, setCfg] = useState({ modo: 'historico', liga: null, torneio: 8 })
+  const [cfg, setCfg] = useState({ modo: 'historico', liga: null, torneio: 8, dificuldade: 'normal' })
   const [enviando, setEnviando] = useState(false)
   const [erro, setErro] = useState('')
 
@@ -23,7 +23,7 @@ export default function DraftEntrada({ jogo, onSolo, onAmigos, onExit }) {
     try {
       const { data: sala, error } = await supabase.rpc('criar_sala', { p_jogo: jogo, p_nome: nomeLimpo })
       if (error) throw error
-      const { error: e2 } = await supabase.rpc('fd_configurar', { p_sala_id: sala.sala_id, p_modo: cfg.modo, p_liga: cfg.liga, p_torneio: cfg.torneio })
+      const { error: e2 } = await supabase.rpc('fd_configurar', { p_sala_id: sala.sala_id, p_modo: cfg.modo, p_liga: cfg.liga, p_torneio: cfg.torneio, p_dificuldade: cfg.dificuldade })
       if (e2) throw e2
       const { error: e3 } = await supabase.rpc('iniciar_partida', { p_sala_id: sala.sala_id })
       if (e3) throw e3
