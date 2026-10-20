@@ -100,7 +100,7 @@ begin
     return jsonb_build_object('versao', (select versao from fd_torneio where sala_id = p_sala_id));
   end if;
   v_est := v_sala.estado;
-  if v_est->>'fase' <> 'prontos' then
+  if coalesce(v_est->>'fase', '') <> 'prontos' then
     raise exception 'o draft ainda nao terminou';
   end if;
 

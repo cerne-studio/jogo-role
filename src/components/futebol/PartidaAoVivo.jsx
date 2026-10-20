@@ -78,11 +78,15 @@ export function BarraStat({ rotulo, a, b, pct }) {
 
 // Partida ao vivo: placar, campo com as peças, controles e abas (lances, estatísticas, jogadores).
 // `sim` vem de simularPartida(cfg.A, cfg.B); aqui só se reproduz o resultado já decidido.
-export default function PartidaAoVivo({ sim, cfg, abaExtra, controlesExtras, onOutra, onFim, rotuloTopo, replayInicial = true }) {
+export default function PartidaAoVivo({ sim, cfg, abaExtra, controlesExtras, onOutra, onFim, rotuloTopo, autoIniciar = false, replayInicial = true }) {
   const [aba, setAba] = useState('lances')
   const [replay, setReplay] = useState(replayInicial)
 
   const r = useReprodutor(sim, cfg, { replay })
+  useEffect(() => {
+    if (autoIniciar) r.iniciar()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   useEffect(() => {
     if (r.estado === 'fim') onFim?.()
     // eslint-disable-next-line react-hooks/exhaustive-deps

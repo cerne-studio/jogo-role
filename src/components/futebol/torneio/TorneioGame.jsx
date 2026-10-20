@@ -55,7 +55,7 @@ function Sorteio({ torneio, meuId, onSeguir }) {
   )
 }
 
-function Campeao({ torneio, meuId }) {
+function Campeao({ torneio, meuId, userId, onExit }) {
   const campeao = timePorId(torneio, torneio.campeaoId)
   const [aba, setAba] = useState('premios')
   return (
@@ -64,12 +64,13 @@ function Campeao({ torneio, meuId }) {
         <p className="text-xs font-bold uppercase tracking-[0.3em] text-accent">Campeão</p>
         <div className="mt-4 flex justify-center"><Escudo time={campeao} tam={84} destaque /></div>
         <h1 className="mt-3 text-3xl font-black tracking-tight">{campeao.nome}</h1>
-        {campeao.tipo === 'humano' && <p className="mt-1 text-sm text-secondary">{campeao.user_id === meuId ? 'É o seu time!' : 'Técnico humano'}</p>}
+        {campeao.tipo === 'humano' && <p className="mt-1 text-sm text-secondary">{campeao.user_id === userId ? 'É o seu time!' : 'Técnico humano'}</p>}
       </div>
       <Abas abas={[['premios', 'Premiação'], ['rank', 'Rankings'], ['mata', 'Mata-mata']]} valor={aba} onChange={setAba} />
       {aba === 'premios' && <Premiacao est={torneio.est} />}
       {aba === 'rank' && <Rankings est={torneio.est} />}
-      {aba === 'mata' && <Chaveamento torneio={torneio} ate={torneio.cursor} meuId={campeao.id === meuId ? meuId : null} />}
+      {aba === 'mata' && <Chaveamento torneio={torneio} ate={torneio.cursor} meuId={meuId} />}
+      <BotaoPrincipal onClick={onExit}>Voltar ao início</BotaoPrincipal>
     </>
   )
 }
@@ -107,7 +108,7 @@ export default function TorneioGame({ salaId, userId, est, jogadores, onExit }) 
   const meuId = meuTime?.id ?? null
 
   if (torneio.campeaoId) {
-    return <Moldura onExit={onExit}><Campeao torneio={torneio} meuId={meuId} /></Moldura>
+    return <Moldura onExit={onExit}><Campeao torneio={torneio} meuId={meuId} userId={userId} onExit={onExit} /></Moldura>
   }
 
   if (!sorteioVisto) {
