@@ -10,6 +10,12 @@ Registro de alterações. Mais recente no topo.
 
 ---
 
+## 2026-10-20 — Claude
+- **Draft FC (novo jogo, solo ou com amigos)**: monte um time de futebol sorteando uma letra por rodada (11 rodadas, 7 s por escolha), cada jogador deve ter uma palavra do nome começando com a letra e jogar na posição da vaga. Jogador pego por um humano fica travado pros outros ("Pego por X"), disputa dá +3 s ao perdedor e tempo esgotado escolhe o melhor disponível. 7 formações, tática escolhida depois do draft
+- **Campeonato de 8, 16 ou 20 times**: grupos + mata-mata com bots de clubes reais (Fácil/Normal/Difícil), partida ao vivo em campo de futebol de botão com passes, câmera lenta nos gols, faltas, cartões por agressividade, VAR, pênaltis, estatísticas por jogador e premiação final (artilheiro, garçom, melhor jogador/goleiro, seleção)
+- **Modos**: Histórico (FIFA 15–23 + 87 lendas), Atual (EA FC 26) e Por liga. Dados dos jogadores ficam no Supabase sem leitura direta pelo cliente
+- Arquivos: `src/components/futebol/**`, `db/014`–`020`, `scripts/{e2e-draft,e2e-torneio,bots-draft,montar-*}.mjs`. Testes: `npm run test:futebol`
+
 ## 2026-10-06 — Claude
 - **Carreira NBA — modo rápido**: novo passo "Como você quer jogar?" na criação. No modo rápido não tem treino, eventos, status nem gastos: o técnico treina por você, o draft é declarado quando faz sentido (obrigatório aos 22), contratos e volta do exterior são automáticos (aceita a melhor proposta) e playoffs não param em tela. Sobram 2 a 3 toques por ano (temporada, prêmios se houver, resumo) e o botão **Simular até a aposentadoria** no resumo do ano
 - **Carreira NBA — dificuldade**: escolha Fácil (padrão) ou Normal. Fácil começa com atributos e potencial maiores, evolui um pouco mais e o corte de contrato é mais brando. No simulador: Fácil termina com ~32% All-Star, 16% Superestrela e ~18% Hall da Fama; Normal segue como antes (pico médio de overall ~73 contra ~77 no Fácil)
