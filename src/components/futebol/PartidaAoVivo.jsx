@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState } from 'react'
 import MatchPitch, { CORES_PADRAO } from './MatchPitch.jsx'
 import { useReprodutor } from './useReprodutor.js'
 import { estatisticasParciais } from './parciais.js'
+import EscudoSvg from './EscudoSvg.jsx'
+import { coresDaPartida, escudoDoTime } from './escudo.js'
 
 // Texto de cada lance da lista (os mesmos tipos que o motor emite).
 function textoLance(e) {
@@ -78,11 +80,14 @@ export function BarraStat({ rotulo, a, b, pct }) {
 
 // Partida ao vivo: placar, campo com as peças, controles e abas (lances, estatísticas, jogadores).
 // `sim` vem de simularPartida(cfg.A, cfg.B); aqui só se reproduz o resultado já decidido.
-export default function PartidaAoVivo({ sim, cfg, abaExtra, controlesExtras, onOutra, onFim, rotuloTopo, autoIniciar = false, replayInicial = true }) {
+export default function PartidaAoVivo({ sim, cfg, escudos, abaExtra, controlesExtras, onOutra, onFim, rotuloTopo, autoIniciar = false, replayInicial = true }) {
   const [aba, setAba] = useState('lances')
   const [replay, setReplay] = useState(replayInicial)
 
   const r = useReprodutor(sim, cfg, { replay })
+  const escA = escudos?.A ? escudoDoTime(escudos.A) : null
+  const escB = escudos?.B ? escudoDoTime(escudos.B) : null
+  const cores = escA && escB ? coresDaPartida(escA, escB) : CORES_PADRAO
   useEffect(() => {
     if (autoIniciar) r.iniciar()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -118,7 +123,7 @@ export default function PartidaAoVivo({ sim, cfg, abaExtra, controlesExtras, onO
         {rotuloTopo && <div className="mb-2 text-center text-[11px] font-bold uppercase tracking-[0.2em] text-[#8b8b9a]">{rotuloTopo}</div>}
         <div className="flex items-center justify-between">
           <div className="flex-1 text-center">
-            <div className="mx-auto mb-1 h-8 w-8 rounded-full border-2 border-[#4c1d95] bg-[#7c3aed]" />
+            {escA ? <div className="mx-auto mb-1 flex justify-center"><EscudoSvg escudo={escA} tam={34} /></div> : <div className="mx-auto mb-1 h-8 w-8 rounded-full border-2 border-[#4c1d95] bg-[#7c3aed]" />}
             <div className="text-[13px] font-bold text-[#f0f0f2]">{cfg.A.nome}</div>
           </div>
           <div className="px-3 text-center">
@@ -127,7 +132,7 @@ export default function PartidaAoVivo({ sim, cfg, abaExtra, controlesExtras, onO
             {pen.length > 0 && <div className="text-[12px] text-[#8b8b9a]">pênaltis {pen[pen.length - 1].parcial.A} x {pen[pen.length - 1].parcial.B}</div>}
           </div>
           <div className="flex-1 text-center">
-            <div className="mx-auto mb-1 h-8 w-8 rounded-full border-2 border-[#9ca3af] bg-[#f3f4f6]" />
+            {escB ? <div className="mx-auto mb-1 flex justify-center"><EscudoSvg escudo={escB} tam={34} /></div> : <div className="mx-auto mb-1 h-8 w-8 rounded-full border-2 border-[#9ca3af] bg-[#f3f4f6]" />}
             <div className="text-[13px] font-bold text-[#f0f0f2]">{cfg.B.nome}</div>
           </div>
         </div>
@@ -137,7 +142,7 @@ export default function PartidaAoVivo({ sim, cfg, abaExtra, controlesExtras, onO
       </div>
 
       <div className="relative">
-        <MatchPitch sim={sim} cfg={cfg} visual={r.visual} nomes={nomes} numeros={numeros} cores={CORES_PADRAO} />
+        <MatchPitch sim={sim} cfg={cfg} visual={r.visual} nomes={nomes} numeros={numeros} cores={cores} />
         <Banner b={r.banner} />
       </div>
 

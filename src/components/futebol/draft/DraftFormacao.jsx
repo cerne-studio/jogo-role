@@ -4,6 +4,7 @@ import ExitButton from '../../core/ExitButton.jsx'
 import { supabase } from '../../../lib/supabase.js'
 import { LISTA_FORMACOES } from '../formacoes.js'
 import MiniCampo from './MiniCampo.jsx'
+import EditorEscudo from './EditorEscudo.jsx'
 import { BotaoPrincipal } from './draftUtils.jsx'
 import { useTick } from './useServidor.js'
 
@@ -66,6 +67,7 @@ export default function DraftFormacao({ salaId, userId, est, jogadores, agora, o
             ))}
           </ul>
         )}
+        <EditorEscudo salaId={salaId} estado={est} userId={userId} nomeTime={jogadores.find((j) => j.user_id === userId)?.nome} />
         {erro && <p className="mt-3 text-sm text-danger">{erro}</p>}
       </div>
       {!jaConfirmei && (

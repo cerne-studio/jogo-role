@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test:futebol": "node --test src/components/futebol/futebol.test.js src/components/futebol/torneio.test.js"
+    "test:futebol": "node --test src/components/futebol/futebol.test.js src/components/futebol/torneio.test.js src/components/futebol/escudo.test.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.117.2",

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import EscudoSvg from '../EscudoSvg.jsx'
 
 export function corDoTime(time) {
   const texto = String(time?.id ?? time?.nome ?? '')
@@ -7,14 +8,11 @@ export function corDoTime(time) {
   return `hsl(${h % 360}, 62%, 42%)`
 }
 
-// Escudo genérico: círculo colorido com a sigla (sem escudos oficiais).
+// Escudo do time (o que o jogador montou ou o escudo gerado do clube). `tam` é a altura aproximada em px.
 export function Escudo({ time, tam = 40, destaque = false }) {
   return (
-    <span
-      className={`flex shrink-0 items-center justify-center rounded-full font-extrabold text-white ${destaque ? 'ring-2 ring-accent' : ''}`}
-      style={{ width: tam, height: tam, background: corDoTime(time), fontSize: tam * 0.3, border: '2px solid rgba(255,255,255,.25)' }}
-    >
-      {time?.sigla ?? '?'}
+    <span className={`inline-flex shrink-0 ${destaque ? 'drop-shadow-[0_0_6px_rgba(255,186,56,.9)]' : ''}`} style={{ width: tam * 0.84 }}>
+      <EscudoSvg time={time} tam={tam * 0.84} />
     </span>
   )
 }

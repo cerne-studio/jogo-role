@@ -56,7 +56,7 @@ export default function JogoTorneio({ salaId, torneio, etapa, jogo, onAssistiu, 
 
   return (
     <div style={{ fontFamily: 'Geist, system-ui, sans-serif' }}>
-      <PartidaAoVivo sim={partida.sim} cfg={partida.cfg} rotuloTopo={rotulo} autoIniciar onFim={() => { setFim(true); onAssistiu() }} />
+      <PartidaAoVivo sim={partida.sim} cfg={partida.cfg} escudos={{ A, B }} rotuloTopo={rotulo} autoIniciar onFim={() => { setFim(true); onAssistiu() }} />
       <button
         onClick={() => { onAssistiu(); onVoltar() }}
         className={`mt-4 w-full rounded-xl py-3 text-[15px] font-extrabold uppercase tracking-wide ${fim ? 'bg-accent text-black' : 'bg-elevated text-secondary'}`}

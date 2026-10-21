@@ -34,6 +34,10 @@ const rpc = async (j, fn, args) => {
   const { data, error } = await j.c.rpc(fn, args)
   return { data, error: error?.message ?? null }
 }
+async function esperaErro(nome, promessa, trecho) {
+  const { error } = await promessa
+  ok(nome, !!error && error.toLowerCase().includes(trecho.toLowerCase()), `erro recebido: ${error}`)
+}
 const estadoDe = async (j, salaId) => (await j.c.from('salas').select('estado').eq('id', salaId).single()).data.estado
 const esperaAte = async (iso) => {
   const ms = new Date(iso).getTime() - Date.now()
@@ -79,6 +83,14 @@ async function main() {
   est = await estadoDe(A, salaId)
   ok('draft pronto', est.fase === 'prontos', est.fase)
 
+  // ---------- escudos ----------
+  const escudoA = { forma: 'hexagono', padrao: 'vertical', simbolo: 'coroa', cor1: '#2563eb', cor2: '#facc15', sigla: 'ANA' }
+  const eOk = await rpc(A, 'fd_definir_escudo', { p_sala_id: salaId, p_escudo: escudoA })
+  ok('Ana define o escudo', !eOk.error, eOk.error)
+  await esperaErro('escudo com cor invalida e recusado', rpc(B, 'fd_definir_escudo', { p_sala_id: salaId, p_escudo: { ...escudoA, cor1: 'azul' } }), 'invalido')
+  await esperaErro('escudo com forma inventada e recusado', rpc(B, 'fd_definir_escudo', { p_sala_id: salaId, p_escudo: { ...escudoA, forma: 'cubo' } }), 'invalido')
+  await esperaErro('escudo sem campos e recusado', rpc(B, 'fd_definir_escudo', { p_sala_id: salaId, p_escudo: {} }), 'invalido')
+
   // ---------- montar o campeonato ----------
   const { data: semDraft } = await rpc(A, 'fd_torneio_obter', { p_sala_id: salaId })
   ok('ainda nao existe campeonato', semDraft == null)
@@ -92,6 +104,10 @@ async function main() {
   const { data: obt } = await rpc(A, 'fd_torneio_obter', { p_sala_id: salaId })
   const times = obt.dados.times
   ok(`${tamanho} times: 2 humanos + bots`, times.length === Number(tamanho) && times.filter((t) => t.tipo === 'humano').length === 2)
+  const tA = times.find((t) => t.user_id === A.id)
+  const tB = times.find((t) => t.user_id === B.id)
+  ok('escudo da Ana vai pro time dela', tA.escudo?.forma === 'hexagono' && tA.escudo?.sigla === 'ANA' && tA.sigla === 'ANA', JSON.stringify(tA.escudo))
+  ok('quem nao montou escudo fica sem (o app gera um estavel)', tB.escudo == null)
   ok('todo time tem 11 jogadores', times.every((t) => t.picks.length === 11))
   ok('bots sao clubes reais com sigla', times.filter((t) => t.tipo === 'bot').every((t) => t.sigla && t.clube_id))
   if (modo === 'liga') ok('bots so da liga escolhida', times.filter((t) => t.tipo === 'bot').every((t) => t.liga === liga))

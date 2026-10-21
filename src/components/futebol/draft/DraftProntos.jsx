@@ -6,20 +6,23 @@ import { gerarTime } from '../amostras.js'
 import { simularPartida } from '../motor.js'
 import PartidaAoVivo from '../PartidaAoVivo.jsx'
 import MiniCampo from './MiniCampo.jsx'
+import EditorEscudo from './EditorEscudo.jsx'
+import EscudoSvg from '../EscudoSvg.jsx'
+import { escudoAleatorio, escudoValido, siglaDe } from '../escudo.js'
 import { BotaoPrincipal } from './draftUtils.jsx'
 
-function Amistoso({ cfg, sim, onVoltar, onOutro }) {
+function Amistoso({ cfg, sim, escudos, onVoltar, onOutro }) {
   return (
     <div className="mx-auto w-full max-w-[480px] px-4 pb-10 pt-4" style={{ fontFamily: 'Geist, system-ui, sans-serif' }}>
       <button onClick={onVoltar} className="mb-3 text-sm text-secondary">← Voltar pros times</button>
-      <PartidaAoVivo sim={sim} cfg={cfg} onOutra={onOutro} />
+      <PartidaAoVivo sim={sim} cfg={cfg} escudos={escudos} onOutra={onOutro} />
     </div>
   )
 }
 
 // Fim do draft: todos os times montados. Daqui sai o campeonato; por enquanto dá pra jogar um amistoso
 // com o motor de partida (contra o rival, ou contra um time de bots no modo solo).
-export default function DraftProntos({ salaId, userId, est, times, onExit }) {
+export default function DraftProntos({ salaId, userId, est, times, jogadores, onExit }) {
   const [amistoso, setAmistoso] = useState(null)
   const [iniciando, setIniciando] = useState(false)
   const [erro, setErro] = useState('')
@@ -39,19 +42,25 @@ export default function DraftProntos({ salaId, userId, est, times, onExit }) {
       B = timeParaMotor({ id: 'rival', nome: `${r.nome} FC`, formacao: r.formacao, tatica: est.taticas?.[r.user_id] ?? 'equilibrada', picks: r.picks })
     }
     const semente = 1000 + rodada * 7 + (amistoso === 'bot' ? 1 : 2)
-    return { cfg: { A, B }, sim: simularPartida(A, B, { semente, mataMata: false }) }
+    const escudoHum = (t) => ({ id: `h${String(t.user_id).slice(0, 8)}`, nome: t.nome, escudo: est.escudos?.[t.user_id] })
+    const rival = amistoso === 'bot' ? { id: 'bot', nome: 'Bots FC' } : (() => { const r = times.find((t) => t.user_id === amistoso); return escudoHum(r) })()
+    return { cfg: { A, B }, escudos: { A: escudoHum(meu), B: rival }, sim: simularPartida(A, B, { semente, mataMata: false }) }
   }, [amistoso, meu, times, est.taticas, userId, rodada])
 
   if (jogo) {
     return (
       <div className="min-h-[100dvh]">
         <ExitButton onExit={onExit} />
-        <Amistoso cfg={jogo.cfg} sim={jogo.sim} onVoltar={() => setAmistoso(null)} onOutro={() => setRodada((r) => r + 1)} />
+        <Amistoso cfg={jogo.cfg} sim={jogo.sim} escudos={jogo.escudos} onVoltar={() => setAmistoso(null)} onOutro={() => setRodada((r) => r + 1)} />
       </div>
     )
   }
 
   const todos = times.filter((t) => t.picks.length === 11)
+  const escudoDe = (t) => {
+    const salvo = est.escudos?.[t.user_id]
+    return escudoValido(salvo) ? salvo : escudoAleatorio(`h${String(t.user_id).slice(0, 8)}`, siglaDe(t.nome))
+  }
   return (
     <div className="flex min-h-[100dvh] flex-col px-6 py-8">
       <ExitButton onExit={onExit} />
@@ -68,8 +77,9 @@ export default function DraftProntos({ salaId, userId, est, times, onExit }) {
             const eu = t.user_id === userId
             return (
               <li key={t.user_id} className={`rounded-2xl border p-4 ${eu ? 'border-accent bg-accent-glow' : 'border-border bg-surface'}`}>
-                <div className="flex items-center justify-between">
-                  <div>
+                <div className="flex items-center justify-between gap-3">
+                  <EscudoSvg escudo={escudoDe(t)} tam={34} />
+                  <div className="min-w-0 flex-1">
                     <p className="font-bold">{t.nome} FC {eu && <span className="text-xs font-semibold text-accent">(você)</span>}</p>
                     <p className="text-xs text-secondary">{t.formacao} · <span className="capitalize">{est.taticas?.[t.user_id] ?? 'equilibrada'}</span></p>
                   </div>
@@ -80,6 +90,8 @@ export default function DraftProntos({ salaId, userId, est, times, onExit }) {
             )
           })}
         </ul>
+
+        <EditorEscudo salaId={salaId} estado={est} userId={userId} nomeTime={meu?.nome} />
 
         {meu && <div className="mt-5"><MiniCampo formacao={meu.formacao} picks={meu.picks} mostrarNomes grande /></div>}
 

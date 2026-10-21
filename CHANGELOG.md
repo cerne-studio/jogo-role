@@ -10,6 +10,10 @@ Registro de alterações. Mais recente no topo.
 
 ---
 
+## 2026-10-21 — Claude (5)
+- **Draft FC — escudos**: todo time do campeonato tem escudo (forma, padrão, símbolo, duas cores e sigla). Os humanos montam o próprio na tela de formação e na de "Times prontos" (forma, padrão, símbolo, cores e sigla) ou tocam em **Sortear**; os bots recebem um escudo gerado a partir do clube, sempre o mesmo em todo celular. Aparece no sorteio dos grupos, tabelas, chaveamento, resumos, campeão e no placar da partida; as peças do campo usam as cores dos escudos (se forem parecidas, o time B troca). `db/023` valida e guarda o escudo (`fd_definir_escudo`) e o leva pro time no campeonato
+- Prompts pro ChatGPT gerar as capas dos 8 jogos que faltam: `referencias/prompts-capas-restantes.md` (fora do repo)
+
 ## 2026-10-21 — Claude (4)
 - **Artes do Rolê (pacote role-assets-v1)**: logo vetorial na Home, banner verde do Draft FC (texto à esquerda, arte à direita), capas do Impostor, Efeito Manada, The Mind e Mímica nos cartões da Home. Os outros jogos ganharam um bloco na cor própria com o ícone grande, na mesma proporção. Capas também nas telas de sala (Manada, The Mind, Draft FC), na configuração da Mímica e na entrada do Draft FC; o personagem do Impostor aparece na revelação e na configuração, e a vaca na vitória do Efeito Manada
 - Paleta nova do pacote: fundo `#101114`, superfície `#1b1d22`, texto `#f4f2ed`, primária `#ffba38`
