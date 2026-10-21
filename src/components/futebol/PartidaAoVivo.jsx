@@ -168,8 +168,8 @@ export default function PartidaAoVivo({ sim, cfg, abaExtra, controlesExtras, onO
       {aba === 'lances' && (
         <ul className="space-y-1">
           {lances.length === 0 && <li className="rounded-xl bg-[#111113] p-3 text-[14px] text-[#8b8b9a]">Aperte "Começar jogo".</li>}
-          {lances.slice(0, 60).map((e) => (
-            <li key={e.ordem} className={`flex gap-3 rounded-xl bg-[#111113] px-3 py-2 text-[14px] ${COR_TIPO[e.tipo] ?? 'text-[#f0f0f2]'}`}>
+          {lances.slice(0, 60).map((e, i) => (
+            <li key={`${e.ordem}-${i}`} className={`flex gap-3 rounded-xl bg-[#111113] px-3 py-2 text-[14px] ${COR_TIPO[e.tipo] ?? 'text-[#f0f0f2]'}`}>
               <span className="w-12 shrink-0 font-bold text-[#8b8b9a]">{e.rotulo}</span>
               <span className={e.time === 'A' ? 'border-l-2 border-[#7c3aed] pl-2' : e.time === 'B' ? 'border-l-2 border-[#d1d5db] pl-2' : 'pl-2'}>{textoLance(e)}</span>
             </li>
