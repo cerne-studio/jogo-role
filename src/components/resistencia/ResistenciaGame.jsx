@@ -1,19 +1,76 @@
 import { useState } from 'react'
 import { motion } from 'motion/react'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, Check, Crown, Skull, ShieldCheck } from 'lucide-react'
+import Confete from '../core/Confete.jsx'
+import { embaralhar } from '../../lib/aleatorio.js'
 import PassDevice from '../core/PassDevice.jsx'
 import ExitButton from '../core/ExitButton.jsx'
 import SecretVote from './SecretVote.jsx'
 import { getComposicao } from '../../data/resistenciaTable.js'
 
 function sortearPapeis(players, numTraidores) {
-  const indices = players.map((_, i) => i)
-  for (let i = indices.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[indices[i], indices[j]] = [indices[j], indices[i]]
-  }
+  const indices = embaralhar(players.map((_, i) => i))
   const traidores = new Set(indices.slice(0, numTraidores))
   return players.map((_, i) => (traidores.has(i) ? 'traidor' : 'leal'))
+}
+
+function corDoNome(nome) {
+  let h = 7
+  for (let i = 0; i < nome.length; i++) h = (h * 31 + nome.charCodeAt(i)) >>> 0
+  return `hsl(${h % 360}, 55%, 42%)`
+}
+
+function Avatar({ nome, tam = 32 }) {
+  return (
+    <span
+      className="flex shrink-0 items-center justify-center rounded-full font-bold text-white"
+      style={{ width: tam, height: tam, background: corDoNome(nome), fontSize: tam * 0.4 }}
+    >
+      {nome.trim().slice(0, 1).toUpperCase()}
+    </span>
+  )
+}
+
+// Trilha das 5 missões: verde = sucesso, vermelho = sabotada, âmbar = a da vez. O número é o tamanho da equipe.
+function TrilhaMissoes({ resultados, atual, composicao }) {
+  return (
+    <div className="flex items-center justify-between gap-1.5">
+      {composicao.missoes.map((tam, i) => {
+        const r = resultados[i]
+        const ehAtual = i === atual && !r
+        return (
+          <div key={i} className="flex flex-1 flex-col items-center gap-1">
+            <div
+              className={`flex h-11 w-11 items-center justify-center rounded-full border-2 text-base font-extrabold ${
+                r === 'sucesso'
+                  ? 'border-success bg-success/20 text-success'
+                  : r === 'falha'
+                    ? 'border-danger bg-danger/20 text-danger'
+                    : ehAtual
+                      ? 'border-accent bg-accent-glow text-accent shadow-[0_0_16px_rgba(245,158,11,.45)]'
+                      : 'border-border-strong text-muted'
+              }`}
+            >
+              {r === 'sucesso' ? <Check className="h-5 w-5" /> : r === 'falha' ? <Skull className="h-5 w-5" /> : tam}
+            </div>
+            <span className="text-[9px] uppercase tracking-widest text-muted">
+              {composicao.falhasNecessarias[i] > 1 ? '2 falhas' : `Missão ${i + 1}`}
+            </span>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
+function PontosRejeicao({ n }) {
+  return (
+    <div className="flex items-center gap-1.5" title={`${n} de 5 propostas rejeitadas`}>
+      {Array.from({ length: 5 }, (_, i) => (
+        <span key={i} className={`h-2 w-2 rounded-full ${i < n ? 'bg-danger' : 'bg-white/15'}`} />
+      ))}
+    </div>
+  )
 }
 
 export default function ResistenciaGame({ players, onBack }) {
@@ -31,6 +88,7 @@ export default function ResistenciaGame({ players, onBack }) {
   const [voteIndex, setVoteIndex] = useState(0)
   const [collectedVotes, setCollectedVotes] = useState([])
   const [lastResult, setLastResult] = useState(null)
+  const [resultados, setResultados] = useState([])
   const [fimMotivo, setFimMotivo] = useState(null)
 
   const teamSize = composicao.missoes[missionIndex]
@@ -73,7 +131,8 @@ export default function ResistenciaGame({ players, onBack }) {
     }
     const sabotagens = novosVotos.filter(Boolean).length
     const falhou = sabotagens >= composicao.falhasNecessarias[missionIndex]
-    setLastResult({ sabotagens, falhou })
+    setLastResult({ sabotagens, falhou, cartas: embaralhar(novosVotos) })
+    setResultados((r) => [...r, falhou ? 'falha' : 'sucesso'])
     if (falhou) setFailCount((c) => c + 1)
     else setSuccessCount((c) => c + 1)
     setPhase('resultado-missao')
@@ -142,13 +201,18 @@ export default function ResistenciaGame({ players, onBack }) {
   }
 
   const MissionHeader = (
-    <div className="mb-6 flex items-center justify-between text-xs">
-      <span className="rounded-full border border-border px-3 py-1 text-secondary">
-        Missão {missionIndex + 1} de 5 · {teamSize} pessoas
-      </span>
-      <span className="text-secondary">
-        ✅ {successCount} · 💥 {failCount}
-      </span>
+    <div className="mb-6">
+      <TrilhaMissoes resultados={resultados} atual={missionIndex} composicao={composicao} />
+      <div className="mt-4 flex items-center justify-between text-xs text-secondary">
+        <span className="rounded-full border border-border px-3 py-1">
+          Missão {missionIndex + 1} · {teamSize} {teamSize === 1 ? 'pessoa' : 'pessoas'}
+          {composicao.falhasNecessarias[missionIndex] > 1 ? ' · precisa de 2 sabotagens' : ''}
+        </span>
+        <span className="flex items-center gap-2">
+          <span className="text-success">✓ {successCount}</span>
+          <span className="text-danger">✗ {failCount}</span>
+        </span>
+      </div>
     </div>
   )
 
@@ -161,33 +225,36 @@ export default function ResistenciaGame({ players, onBack }) {
             <ArrowLeft className="h-4 w-4" /> Sair
           </button>
           <div className="mt-6">{MissionHeader}</div>
-          <h1 className="text-xl font-bold tracking-tight">
-            Líder: {players[leaderIndex]}
-          </h1>
+          <div className="flex items-center gap-2">
+            <Crown className="h-5 w-5 text-accent" />
+            <h1 className="text-xl font-bold tracking-tight">Líder: {players[leaderIndex]}</h1>
+          </div>
           <p className="mt-1 text-sm text-secondary">
             O líder escolhe {teamSize} jogador(es) em voz alta pra missão. Toque nos nomes
             escolhidos.
           </p>
-          {rejectionsInARow > 0 && (
-            <p className="mt-2 text-xs text-danger">
-              {rejectionsInARow} rejeição(ões) seguida(s) — 5 e os traidores vencem.
-            </p>
-          )}
+          <div className="mt-3 flex items-center gap-2 text-xs text-secondary">
+            <PontosRejeicao n={rejectionsInARow} />
+            <span>{rejectionsInARow > 0 ? `${rejectionsInARow}/5 rejeições seguidas — 5 e os traidores vencem` : 'proposta rejeitada 5 vezes seguidas = traidores vencem'}</span>
+          </div>
 
-          <ul className="mt-6 flex flex-col gap-2">
+          <ul className="mt-5 flex flex-col gap-2">
             {players.map((name, i) => {
               const selecionado = proposedTeam.includes(i)
               return (
                 <li key={name + i}>
                   <button
                     onClick={() => toggleProposto(i)}
-                    className={`w-full rounded-xl border px-4 py-3 text-left text-sm font-medium transition ${
+                    className={`flex w-full items-center gap-3 rounded-xl border px-4 py-3 text-left text-sm font-medium transition ${
                       selecionado
                         ? 'border-accent bg-accent-glow text-primary'
                         : 'border-border bg-surface text-secondary'
                     }`}
                   >
-                    {name}
+                    <Avatar nome={name} />
+                    <span className="flex-1">{name}</span>
+                    {i === leaderIndex && <Crown className="h-4 w-4 text-accent" />}
+                    {selecionado && <Check className="h-4 w-4 text-accent" />}
                   </button>
                 </li>
               )
@@ -266,8 +333,23 @@ export default function ResistenciaGame({ players, onBack }) {
             {lastResult.falhou ? 'Missão sabotada' : 'Missão bem-sucedida'}
           </h1>
           <p className="mt-2 text-sm text-secondary">
-            {lastResult.sabotagens} carta(s) de sabotagem foram jogadas.
+            {lastResult.sabotagens === 0 ? 'Nenhuma carta de sabotagem.' : `${lastResult.sabotagens} carta(s) de sabotagem foram jogadas.`}
           </p>
+          <div className="mt-6 flex flex-wrap justify-center gap-2">
+            {lastResult.cartas.map((sabotou, i) => (
+              <motion.div
+                key={i}
+                initial={{ rotateY: 90, opacity: 0 }}
+                animate={{ rotateY: 0, opacity: 1 }}
+                transition={{ delay: 0.35 * i + 0.2, type: 'spring', stiffness: 220, damping: 18 }}
+                className={`flex h-20 w-14 items-center justify-center rounded-xl border-2 ${
+                  sabotou ? 'border-danger bg-danger/20 text-danger' : 'border-success bg-success/15 text-success'
+                }`}
+              >
+                {sabotou ? <Skull className="h-7 w-7" /> : <ShieldCheck className="h-7 w-7" />}
+              </motion.div>
+            ))}
+          </div>
           <motion.button
             whileTap={{ scale: 0.97 }}
             onClick={proximaMissao}
@@ -285,6 +367,7 @@ export default function ResistenciaGame({ players, onBack }) {
     return (
       <div className="flex min-h-[100dvh] flex-col items-center justify-center px-6 py-10 text-center">
         <ExitButton onExit={onBack} />
+        <Confete quantidade={40} />
         <div className="w-full max-w-sm">
           <h1 className={`text-3xl font-bold tracking-tight ${traidoresVenceram ? 'text-danger' : 'text-success'}`}>
             {traidoresVenceram ? 'Os traidores venceram' : 'Os leais venceram'}
@@ -297,7 +380,16 @@ export default function ResistenciaGame({ players, onBack }) {
           <p className="mt-6 text-xs font-medium uppercase tracking-widest text-secondary">
             Os traidores eram
           </p>
-          <h2 className="mt-1 text-xl font-semibold">{traidoresNomes.join(', ')}</h2>
+          <h2 className="mt-1 text-xl font-semibold text-danger">{traidoresNomes.join(', ')}</h2>
+          <ul className="mt-5 grid grid-cols-2 gap-2 text-left">
+            {players.map((nome, i) => (
+              <li key={nome} className="flex items-center gap-2 rounded-xl border border-border bg-surface px-3 py-2 text-xs">
+                <Avatar nome={nome} tam={24} />
+                <span className="flex-1 truncate font-medium">{nome}</span>
+                <span className={roles[i] === 'traidor' ? 'font-bold text-danger' : 'text-success'}>{roles[i] === 'traidor' ? 'traidor' : 'leal'}</span>
+              </li>
+            ))}
+          </ul>
 
           <motion.button
             whileTap={{ scale: 0.97 }}

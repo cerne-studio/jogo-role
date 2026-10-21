@@ -10,6 +10,12 @@ Registro de alterações. Mais recente no topo.
 
 ---
 
+## 2026-10-21 — Claude (3)
+- **P.D.F**: carta preta com cara de carta (marca d'água P.D.F), cartas brancas entram em cascata e sobem quando escolhidas, placar com barra de progresso até a meta, revelação do resultado em sequência com coroa e confete pro vencedor, pódio e confete no fim
+- **A Resistência**: trilha das 5 missões (verde = sucesso, vermelho = sabotada, âmbar = a da vez), contador de propostas rejeitadas, lista de jogadores com avatar e coroa do líder, aviso quando a missão precisa de 2 sabotagens, cartas de voto viradas uma a uma no resultado, fim com a lista de quem era leal ou traidor. Sorteio de traidores com embaralhamento justo
+- **Carreira NBA**: tela inicial nova (recursos, mosaico dos 30 times, carreira salva em destaque), escudos próprios no lugar dos logos do CDN da NBA (que falhavam em silêncio e deixavam círculos brancos vazios), texto do emblema sempre legível, e a temporada universitária agora mostra o cartão do jogador
+- Novo `core/Confete.jsx`
+
 ## 2026-10-21 — Claude (2)
 - **Salas multiplayer (todos os jogos de sala)**: a tela agora se atualiza sozinha a cada 3 s e quando a aba volta a ficar visível, além do realtime. Antes, se o realtime caísse em silêncio o jogador ficava preso em "Abrindo a próxima rodada..." até recarregar (pego no Draft FC, modo Por liga)
 - Home: tirado o selo "Novo" do Draft FC

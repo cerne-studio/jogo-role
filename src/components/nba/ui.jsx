@@ -3,11 +3,22 @@ import { AnimatePresence, motion } from 'motion/react'
 import { TIMES_POR_ID, POSICOES } from '../../nba/data/times.js'
 import { HabilidadesFolha } from './HabilidadesFolha.jsx'
 
-// ── Logos oficiais vêm do CDN da própria NBA (não ficam no repositório). Se a imagem falhar, cai no emblema próprio. ──
-const LOGO_TIME = (nbaId) => `https://cdn.nba.com/logos/nba/${nbaId}/global/L/logo.svg`
-const LOGO_LIGA = {
-  nba: 'https://cdn.nba.com/logos/leagues/logo-nba.svg',
-  gleague: 'https://cdn.nba.com/logos/leagues/logo-gleague.svg',
+// ── Escudos: emblema próprio (cores e sigla do time). Logos do CDN da NBA falhavam em silêncio (ficava um círculo branco vazio) e criavam dependência externa. ──
+// Luminância relativa de uma cor #rrggbb (pra escolher texto legível em cima do emblema)
+function luminancia(hex) {
+  const n = parseInt(hex.slice(1), 16)
+  const c = [(n >> 16) & 255, (n >> 8) & 255, n & 255].map((v) => {
+    const x = v / 255
+    return x <= 0.03928 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4
+  })
+  return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]
+}
+function corLegivel(fundo, preferida) {
+  const lf = luminancia(fundo)
+  const lp = luminancia(preferida)
+  const contraste = (Math.max(lf, lp) + 0.05) / (Math.min(lf, lp) + 0.05)
+  if (contraste >= 2.6) return preferida
+  return lf > 0.35 ? '#111111' : '#ffffff'
 }
 
 function EmblemaTexto({ id, nome, tamanho }) {
@@ -19,7 +30,7 @@ function EmblemaTexto({ id, nome, tamanho }) {
       <circle cx="24" cy="24" r="22" fill={c1} />
       <circle cx="24" cy="24" r="22" fill="none" stroke={c2} strokeWidth="3" />
       <circle cx="24" cy="24" r="17" fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="1" />
-      <text x="24" y="29" textAnchor="middle" fontSize={sigla.length > 3 ? 11 : 14} fontWeight="800" fill={c2} fontFamily="Geist, system-ui, sans-serif" letterSpacing="0.5">
+      <text x="24" y="29" textAnchor="middle" fontSize={sigla.length > 3 ? 11 : 14} fontWeight="800" fill={corLegivel(c1, c2)} fontFamily="Geist, system-ui, sans-serif" letterSpacing="0.5">
         {sigla}
       </text>
     </svg>
@@ -27,31 +38,15 @@ function EmblemaTexto({ id, nome, tamanho }) {
 }
 
 export function TimeEscudo({ id, nome, tamanho = 40 }) {
-  const t = id ? TIMES_POR_ID[id] : null
-  const [falhou, setFalhou] = useState(false)
-  if (!t?.nbaId || falhou) return <EmblemaTexto id={id} nome={nome} tamanho={tamanho} />
-  const miolo = Math.round(tamanho * 0.8)
-  return (
-    <span className="inline-flex shrink-0 items-center justify-center rounded-full bg-white/95" style={{ width: tamanho, height: tamanho }}>
-      <img src={LOGO_TIME(t.nbaId)} alt={t.nome} width={miolo} height={miolo} loading="lazy" decoding="async" onError={() => setFalhou(true)} className="object-contain" />
-    </span>
-  )
+  return <EmblemaTexto id={id} nome={nome} tamanho={tamanho} />
 }
 
-// Logo da liga (NBA / G League) num chip claro pra aparecer bem no tema escuro.
-export function SeloLiga({ tipo = 'nba', altura = 18 }) {
-  const [falhou, setFalhou] = useState(false)
+// Selo da liga (NBA / G League) em texto.
+export function SeloLiga({ tipo = 'nba' }) {
   const g = tipo === 'gleague'
-  if (falhou) {
-    return (
-      <span className={`inline-flex items-center rounded-md border px-1.5 py-0.5 text-[10px] font-extrabold uppercase tracking-widest ${g ? 'border-emerald-400/40 text-emerald-300' : 'border-accent/50 text-accent'}`}>
-        {g ? 'G League' : 'NBA'}
-      </span>
-    )
-  }
   return (
-    <span className="inline-flex items-center rounded-md bg-white/95 px-1.5 py-1">
-      <img src={LOGO_LIGA[tipo]} alt={g ? 'NBA G League' : 'NBA'} height={altura} style={{ height: altura, width: 'auto' }} loading="lazy" decoding="async" onError={() => setFalhou(true)} />
+    <span className={`inline-flex items-center rounded-md border px-1.5 py-0.5 text-[10px] font-extrabold uppercase tracking-widest ${g ? 'border-emerald-400/40 text-emerald-300' : 'border-accent/50 text-accent'}`}>
+      {g ? 'G League' : 'NBA'}
     </span>
   )
 }

@@ -16,7 +16,8 @@ import { PainelJogador } from './PainelJogador.jsx'
 import { LateralJogador } from './LateralJogador.jsx'
 import { TreinoTela } from './NbaTreino.jsx'
 import { recomendarTreino, aplicarTreino } from '../../nba/engine/treino.js'
-import { BotaoPrimario, CartaoJogador, SeloLiga, Titulo } from './ui.jsx'
+import { BotaoPrimario, CartaoJogador, SeloLiga, TimeEscudo } from './ui.jsx'
+import { TIMES } from '../../nba/data/times.js'
 import { EventoTela, TemporadaTela, PlayoffsTela, PremiosTela, ResumoAnoTela } from './NbaTelasTemporada.jsx'
 import { DraftDecisaoTela, DraftNoiteTela, SemDraftTela, ContratoTela, FimTela } from './NbaTelasCarreira.jsx'
 
@@ -210,19 +211,45 @@ export default function NbaCarreira({ onBack }) {
   const sair = <ExitButton onExit={sairParaHome} mensagem={j.fase === 'fim' ? 'Voltar pro início?' : MENSAGEM_SAIR} />
 
   if (j.fase === 'inicio') {
+    const RECURSOS = [
+      ['Draft', 'da faculdade ou da G League, com a sua nota na mão'],
+      ['Contratos', 'propostas reais, salário, renovação e intercâmbio'],
+      ['Temporadas', 'treino, eventos, jogos, playoffs e finais'],
+      ['Prêmios e recordes', 'MVP, All-Star, títulos e Hall da Fama'],
+    ]
     return (
-      <div className="mx-auto flex min-h-[100dvh] w-full max-w-sm flex-col px-5 py-8 lg:max-w-md">
+      <div className="relative mx-auto flex min-h-[100dvh] w-full max-w-sm flex-col px-5 pb-8 pt-8 lg:max-w-md">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.18),transparent_70%)]" />
         <ExitButton onExit={onBack} mensagem="Voltar pro início?" />
-        <Titulo pequeno="Jogo do Rolê" sub="Do primeiro treino ao Hall da Fama. Draft, contratos, prêmios, playoffs e recordes.">Carreira NBA</Titulo>
-        <div className="mt-6 flex items-center gap-2 text-xs text-secondary"><SeloLiga tipo="nba" /><SeloLiga tipo="gleague" /><span>30 times reais da liga</span></div>
+        <div className="relative">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-accent">Jogo do Rolê</p>
+          <h1 className="mt-2 text-4xl font-black tracking-tight">Carreira NBA</h1>
+          <p className="mt-2 text-sm text-secondary">Do primeiro treino ao Hall da Fama. Cada decisão muda o rumo da sua história.</p>
+          <div className="mt-4 flex items-center gap-2 text-xs text-secondary"><SeloLiga tipo="nba" /><SeloLiga tipo="gleague" /><span>30 times da liga</span></div>
+        </div>
+
         {save && (
-          <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="mt-6">
+          <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="relative mt-6">
             <p className="mb-2 text-[11px] font-medium uppercase tracking-widest text-muted">Carreira salva</p>
             <CartaoJogador estado={save.estado} compacto />
           </motion.div>
         )}
+
+        <ul className="relative mt-6 grid grid-cols-2 gap-2">
+          {RECURSOS.map(([titulo, desc]) => (
+            <li key={titulo} className="rounded-2xl border border-border bg-surface p-3">
+              <p className="text-[13px] font-bold">{titulo}</p>
+              <p className="mt-0.5 text-[11px] leading-snug text-secondary">{desc}</p>
+            </li>
+          ))}
+        </ul>
+
+        <div className="relative mt-6 flex flex-wrap justify-center gap-1.5 opacity-90">
+          {TIMES.map((t) => <TimeEscudo key={t.id} id={t.id} tamanho={30} />)}
+        </div>
+
         <div className="flex-1" />
-        <div className="flex flex-col gap-2 pt-8">
+        <div className="relative flex flex-col gap-2 pt-8">
           {save && (
             <BotaoPrimario onClick={() => setJ(save)}>
               <span className="inline-flex items-center justify-center gap-2"><Play className="h-4 w-4" /> Continuar carreira</span>

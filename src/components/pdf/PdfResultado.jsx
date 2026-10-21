@@ -1,5 +1,7 @@
 import { useState } from 'react'
+import { motion } from 'motion/react'
 import { Crown } from 'lucide-react'
+import Confete from '../core/Confete.jsx'
 import ExitButton from '../core/ExitButton.jsx'
 import { supabase } from '../../lib/supabase.js'
 import { BotaoPrimario, Cabecalho, FraseComRespostas, Placar } from './pdfUtils.jsx'
@@ -23,27 +25,36 @@ export default function PdfResultado({ salaId, userId, sala, jogadores, juizNome
   return (
     <div className="flex min-h-[100dvh] flex-col px-5 py-6">
       <ExitButton onExit={onExit} />
+      {res.vencedor_id === userId && <Confete />}
       <div className="mx-auto w-full max-w-sm flex-1 pb-28">
         <Cabecalho rodada={est.rodada} juizNome={juizNome} souJuiz={souJuiz} />
         <div className="mt-3">
           <Placar jogadores={jogadores} pontuacoes={est.pontuacoes} meta={est.meta} userId={userId} juizId={est.juiz_id} />
         </div>
 
-        <div className="mt-6 flex items-center gap-2 text-accent">
-          <Crown className="h-5 w-5" />
-          <p className="text-sm font-bold">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ type: 'spring', stiffness: 300, damping: 20, delay: 0.1 }}
+          className="mt-6 flex items-center gap-2 rounded-2xl border border-accent/40 bg-accent-glow px-4 py-3 text-accent"
+        >
+          <Crown className="h-6 w-6" />
+          <p className="text-base font-extrabold">
             {res.vencedor_id === userId ? 'Você levou o ponto!' : `${res.vencedor_nome} levou o ponto`}
           </p>
-        </div>
+        </motion.div>
 
         <div className="mt-4 flex flex-col gap-3">
-          {res.todas.map((r) => {
+          {res.todas.map((r, i) => {
             const venceu = r.idx === res.idx
             return (
-              <div
+              <motion.div
                 key={r.idx}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: venceu ? 1 : 0.8, y: 0 }}
+                transition={{ delay: 0.25 + i * 0.12 }}
                 className={`rounded-2xl border p-4 ${
-                  venceu ? 'border-accent bg-accent-glow' : 'border-border bg-[#0d0d10] opacity-80'
+                  venceu ? 'border-accent bg-accent-glow' : 'border-border bg-[#0d0d10]'
                 }`}
               >
                 <p className="text-[16px] font-semibold leading-snug text-primary">
@@ -53,7 +64,7 @@ export default function PdfResultado({ salaId, userId, sala, jogadores, juizNome
                   {r.user_id === userId ? 'Você' : r.nome}
                   {venceu ? ' · +1' : ''}
                 </p>
-              </div>
+              </motion.div>
             )
           })}
         </div>

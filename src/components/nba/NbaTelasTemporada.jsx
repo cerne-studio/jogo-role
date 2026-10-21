@@ -106,7 +106,9 @@ export function TemporadaTela({ estado, relatorio, onContinuar, temPlayoffs }) {
     return (
       <Pagina>
         <Titulo pequeno={`Temporada ${estado.temporada} · ${estado.ano}${rel.liga ? ` · ${rel.liga}` : ''}`} sub={rel.fase}>{rel.equipe}</Titulo>
-        <div className="mt-5 grid grid-cols-3 gap-2">
+        <motion.div {...entrada} className="mt-4"><CartaoJogador estado={estado} compacto semToque /></motion.div>
+        <p className="mt-5 text-[11px] font-medium uppercase tracking-widest text-muted">Seus números no ano</p>
+        <div className="mt-2 grid grid-cols-3 gap-2">
           <Stat rotulo="PTS" valor={s.ppg.toFixed(1)} destaque />
           <Stat rotulo="REB" valor={s.rpg.toFixed(1)} />
           <Stat rotulo="AST" valor={s.apg.toFixed(1)} />

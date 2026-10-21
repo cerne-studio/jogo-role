@@ -73,18 +73,21 @@ export default function PdfMao({ salaId, userId, sala, jogadores, juizNome, onEx
           {mao === null ? (
             <p className="text-sm text-muted">Carregando...</p>
           ) : (
-            mao.map((c) => {
+            mao.map((c, i) => {
               const posicao = sel.indexOf(c.carta_id)
               const marcada = posicao >= 0
               return (
                 <motion.button
                   key={c.carta_id}
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0, scale: marcada ? 1.02 : 1 }}
+                  transition={{ delay: Math.min(i, 9) * 0.035, type: 'spring', stiffness: 320, damping: 26 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => alternar(c.carta_id)}
-                  className={`flex items-center justify-between gap-3 rounded-xl border px-4 py-3 text-left text-sm font-medium leading-snug transition ${
+                  className={`flex items-center justify-between gap-3 rounded-xl border px-4 py-3.5 text-left text-[15px] font-semibold leading-snug shadow-[0_6px_16px_-8px_rgba(0,0,0,0.8)] transition-colors ${
                     marcada
-                      ? 'border-accent bg-accent text-black'
-                      : 'border-border-strong bg-[#f5f5f0] text-black'
+                      ? 'border-accent bg-accent text-black ring-2 ring-accent/40'
+                      : 'border-white/10 bg-[#f5f5f0] text-black'
                   }`}
                 >
                   <span>{c.texto}</span>

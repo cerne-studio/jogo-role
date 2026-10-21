@@ -30,10 +30,12 @@ export function FraseComRespostas({ texto, lacunas, respostas }) {
 export function PretaCard({ preta, respostas, compacta }) {
   return (
     <div
-      className={`rounded-2xl border border-border-strong bg-[#0d0d10] text-left font-semibold leading-snug ${
-        compacta ? 'p-4 text-[16px]' : 'p-5 text-lg'
+      className={`relative overflow-hidden rounded-2xl border border-white/10 text-left font-bold leading-snug shadow-[0_18px_40px_-20px_rgba(0,0,0,0.9)] ${
+        compacta ? 'p-4 text-[16px]' : 'p-5 text-[19px]'
       }`}
+      style={{ background: 'linear-gradient(160deg, #1b1b20 0%, #0a0a0c 70%)' }}
     >
+      <span className="pointer-events-none absolute -bottom-3 -right-1 select-none text-[54px] font-black leading-none tracking-tighter text-white/[0.05]">P.D.F</span>
       <FraseComRespostas texto={preta.texto} lacunas={preta.lacunas} respostas={respostas} />
       {preta.lacunas === 2 && (
         <p className="mt-3 text-[10px] font-medium uppercase tracking-widest text-muted">
@@ -49,18 +51,28 @@ export function Placar({ jogadores, pontuacoes, meta, userId, juizId }) {
     (a, b) => (pontuacoes?.[b.user_id] ?? 0) - (pontuacoes?.[a.user_id] ?? 0),
   )
   return (
-    <ul className="flex flex-wrap gap-1.5">
-      {ordenados.map((j) => (
-        <li
-          key={j.user_id}
-          className={`rounded-full border px-2.5 py-1 text-[11px] font-medium ${
-            j.user_id === userId ? 'border-accent/40 bg-accent-glow text-primary' : 'border-border bg-surface text-secondary'
-          }`}
-        >
-          {j.user_id === juizId ? '⚖️ ' : ''}
-          {j.nome} {pontuacoes?.[j.user_id] ?? 0}/{meta}
-        </li>
-      ))}
+    <ul className="grid grid-cols-2 gap-1.5">
+      {ordenados.map((j) => {
+        const pts = pontuacoes?.[j.user_id] ?? 0
+        const eu = j.user_id === userId
+        return (
+          <li
+            key={j.user_id}
+            className={`rounded-xl border px-3 py-2 ${eu ? 'border-accent/40 bg-accent-glow' : 'border-border bg-surface'}`}
+          >
+            <div className="flex items-center justify-between gap-2 text-[12px]">
+              <span className={`truncate font-semibold ${eu ? 'text-primary' : 'text-secondary'}`}>
+                {j.user_id === juizId ? '⚖️ ' : ''}
+                {j.nome}
+              </span>
+              <span className="font-bold tabular-nums text-accent">{pts}/{meta}</span>
+            </div>
+            <div className="mt-1.5 h-1 overflow-hidden rounded-full bg-white/10">
+              <div className="h-full rounded-full bg-accent transition-all duration-500" style={{ width: `${Math.min(100, (pts / meta) * 100)}%` }} />
+            </div>
+          </li>
+        )
+      })}
     </ul>
   )
 }

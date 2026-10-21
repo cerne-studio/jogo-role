@@ -1,4 +1,6 @@
+import { motion } from 'motion/react'
 import { Trophy } from 'lucide-react'
+import Confete from '../core/Confete.jsx'
 import ExitButton from '../core/ExitButton.jsx'
 
 export default function PdfFim({ sala, jogadores, userId, onExit }) {
@@ -11,6 +13,7 @@ export default function PdfFim({ sala, jogadores, userId, onExit }) {
   return (
     <div className="flex min-h-[100dvh] flex-col items-center justify-center px-6 py-10 text-center">
       <ExitButton onExit={onExit} />
+      <Confete quantidade={46} />
       <div className="w-full max-w-sm">
         <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-accent-glow">
           <Trophy className="h-8 w-8 text-accent" />
@@ -19,6 +22,29 @@ export default function PdfFim({ sala, jogadores, userId, onExit }) {
           {campeao?.user_id === userId ? 'Você ganhou!' : `${campeao?.nome ?? 'Alguém'} ganhou`}
         </h1>
         <p className="mt-2 text-sm text-secondary">Primeiro a chegar em {est.meta} pontos.</p>
+
+        {ordenados.length >= 3 && (
+          <div className="mt-8 flex items-end justify-center gap-2">
+            {[ordenados[1], ordenados[0], ordenados[2]].map((j, pos) => {
+              const lugar = [2, 1, 3][pos]
+              const alturas = { 1: 'h-28', 2: 'h-20', 3: 'h-14' }
+              return (
+                <motion.div
+                  key={j.user_id}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 + (lugar === 1 ? 0.5 : lugar === 2 ? 0.25 : 0), type: 'spring', stiffness: 220, damping: 20 }}
+                  className="flex w-24 flex-col items-center"
+                >
+                  <p className="max-w-full truncate text-xs font-semibold">{j.nome}</p>
+                  <div className={`mt-1 flex w-full ${alturas[lugar]} items-start justify-center rounded-t-xl pt-2 text-xl font-black ${lugar === 1 ? 'bg-accent text-black' : 'bg-elevated text-secondary'}`}>
+                    {lugar}º
+                  </div>
+                </motion.div>
+              )
+            })}
+          </div>
+        )}
 
         <ul className="mt-6 flex flex-col gap-2 text-left">
           {ordenados.map((j, i) => (
