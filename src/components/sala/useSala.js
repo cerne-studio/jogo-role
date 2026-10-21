@@ -20,6 +20,22 @@ export default function useSala(salaId) {
       setJogadores(jogadoresData ?? [])
     }
 
+    // Rede de segurança: o realtime pode cair em silêncio (celular dormindo, wifi trocando). Sem isso a tela
+    // fica presa na rodada antiga ("Abrindo a próxima rodada...") até recarregar. Busca de novo a cada 3 s
+    // e sempre que a aba volta a ficar visível.
+    async function atualizarSala() {
+      const { data } = await supabase.from('salas').select('*').eq('id', salaId).single()
+      if (!cancelado && data) {
+        setSala((atual) => (atual && Date.parse(atual.atualizada_em) >= Date.parse(data.atualizada_em) ? atual : data))
+      }
+    }
+    const intervalo = setInterval(atualizarSala, 3000)
+    const aoVoltar = () => {
+      if (document.visibilityState === 'visible') atualizarSala()
+    }
+    document.addEventListener('visibilitychange', aoVoltar)
+    window.addEventListener('online', atualizarSala)
+
     recarregar()
 
     const canal = supabase
@@ -38,6 +54,9 @@ export default function useSala(salaId) {
 
     return () => {
       cancelado = true
+      clearInterval(intervalo)
+      document.removeEventListener('visibilitychange', aoVoltar)
+      window.removeEventListener('online', atualizarSala)
       supabase.removeChannel(canal)
     }
   }, [salaId])

@@ -10,6 +10,10 @@ Registro de alterações. Mais recente no topo.
 
 ---
 
+## 2026-10-21 — Claude (2)
+- **Salas multiplayer (todos os jogos de sala)**: a tela agora se atualiza sozinha a cada 3 s e quando a aba volta a ficar visível, além do realtime. Antes, se o realtime caísse em silêncio o jogador ficava preso em "Abrindo a próxima rodada..." até recarregar (pego no Draft FC, modo Por liga)
+- Home: tirado o selo "Novo" do Draft FC
+
 ## 2026-10-21 — Claude
 - **Draft FC**: tempo de escolha de 7 s para **30 s** (a rodada fecha assim que todos escolhem). `db/021`
 - **Home nova**: Draft FC em destaque, jogos separados em "cada um no seu celular", "um celular, passa de mão em mão" e "solo", cartões com cor própria. Site carrega só o jogo que for usado (de 1 MB pra 280 KB na Home) e o botão voltar do celular volta pra Home

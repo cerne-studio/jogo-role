@@ -174,7 +174,6 @@ function Destaque({ game, onSelect }) {
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2">
             <h2 className="text-xl font-extrabold tracking-tight">{game.nome}</h2>
-            <span className="rounded-full bg-accent px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wider text-black">Novo</span>
           </div>
           <p className="mt-1 text-[13px] leading-snug text-secondary">{game.desc}</p>
         </div>
