@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
-import { ArrowLeft, Check, Minus, Plus, SkipForward, Theater } from 'lucide-react'
+import { ArrowLeft, Check, Minus, Plus, SkipForward } from 'lucide-react'
 import ExitButton from '../core/ExitButton.jsx'
 import { categorias, sortearPalavras } from '../../data/mimicaBank.js'
 import { vibrar } from '../../lib/aleatorio.js'
+import CapaJogo from '../core/CapaJogo.jsx'
+import { CAPAS } from '../../assets/role/index.js'
 
 export default function MimicaGame({ players, onBack }) {
   const [phase, setPhase] = useState('setup')
@@ -90,12 +92,8 @@ export default function MimicaGame({ players, onBack }) {
           <button onClick={onBack} className="flex items-center gap-1 text-sm text-secondary">
             <ArrowLeft className="h-4 w-4" /> Voltar
           </button>
-          <div className="mt-6 flex flex-col items-center text-center">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-accent-glow">
-              <Theater className="h-7 w-7 text-accent" />
-            </div>
-            <h1 className="mt-4 text-2xl font-bold tracking-tight">Configurar Mímica</h1>
-          </div>
+          <CapaJogo src={CAPAS.mimica} className="mt-6" />
+          <h1 className="mt-5 text-2xl font-bold tracking-tight">Configurar Mímica</h1>
 
           <p className="mt-8 text-xs font-medium uppercase tracking-widest text-muted">
             Tempo por rodada

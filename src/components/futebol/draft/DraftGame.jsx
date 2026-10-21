@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import ExitButton from '../../core/ExitButton.jsx'
 import CriarOuEntrarSala from '../../sala/CriarOuEntrarSala.jsx'
 import SalaLobby from '../../sala/SalaLobby.jsx'
+import { CAPAS } from '../../../assets/role/index.js'
 import useJogadorAtual from '../../sala/useJogadorAtual.js'
 import useSala from '../../sala/useSala.js'
 import { lerSalaAtiva, limparSalaAtiva } from '../../sala/salaMemoria.js'
@@ -43,6 +44,7 @@ function LobbyDraft({ salaInfo, sala, jogadores, souHost, onExit }) {
 
   return (
     <SalaLobby
+      capa={CAPAS.draft}
       codigo={salaInfo.codigo}
       jogadores={jogadores}
       souHost={souHost}
@@ -106,7 +108,7 @@ export default function DraftGame({ onBack }) {
   if (erroSessao) return <TelaMensagem mensagem={erroSessao} onExit={sair} />
 
   if (!salaInfo) {
-    if (caminho === 'amigos') return <CriarOuEntrarSala jogo={JOGO} onEntrou={setSalaInfo} onExit={sair} />
+    if (caminho === 'amigos') return <CriarOuEntrarSala capa={CAPAS.draft} jogo={JOGO} onEntrou={setSalaInfo} onExit={sair} />
     return <DraftEntrada jogo={JOGO} onSolo={setSalaInfo} onAmigos={() => setCaminho('amigos')} onExit={sair} />
   }
 

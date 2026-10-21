@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'motion/react'
-import { ArrowLeft, Minus, Plus, Skull } from 'lucide-react'
+import { ArrowLeft, Minus, Plus } from 'lucide-react'
 import PassDevice from '../core/PassDevice.jsx'
 import ExitButton from '../core/ExitButton.jsx'
 import { sortearPalavra } from '../../data/wordBank.js'
 import { embaralhar, sortearUm, vibrar } from '../../lib/aleatorio.js'
+import { PERSONAGENS } from '../../assets/role/index.js'
 
 function sortearPapeis(players, numImpostores) {
   const indices = embaralhar(players.map((_, i) => i))
@@ -77,9 +78,7 @@ export default function ImpostorGame({ players, onBack }) {
             <ArrowLeft className="h-4 w-4" /> Voltar
           </button>
           <div className="mt-8 flex flex-col items-center text-center">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-accent-glow">
-              <Skull className="h-7 w-7 text-accent" />
-            </div>
+            <img src={PERSONAGENS.impostor} alt="" className="h-28 w-28 object-contain" />
             <h1 className="mt-4 text-2xl font-bold tracking-tight">Quantos impostores?</h1>
             <p className="mt-1 text-sm text-secondary">{players.length} jogadores na rodada</p>
 
@@ -135,6 +134,7 @@ export default function ImpostorGame({ players, onBack }) {
       >
         {isImpostor ? (
           <>
+            <img src={PERSONAGENS.impostor} alt="" className="mx-auto mb-2 h-24 w-24 object-contain" />
             <p className="text-xs font-medium uppercase tracking-widest text-danger">
               Você é o impostor
             </p>

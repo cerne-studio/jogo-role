@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { motion } from 'motion/react'
 import { ArrowLeft, User, Users } from 'lucide-react'
 import ExitButton from '../../core/ExitButton.jsx'
+import CapaJogo from '../../core/CapaJogo.jsx'
+import { CAPAS } from '../../../assets/role/index.js'
 import { supabase } from '../../../lib/supabase.js'
 import { salvarSalaAtiva } from '../../sala/salaMemoria.js'
 import DraftConfig from './DraftConfig.jsx'
@@ -43,7 +45,8 @@ export default function DraftEntrada({ jogo, onSolo, onAmigos, onExit }) {
           <button onClick={onExit} className="flex items-center gap-1 text-sm text-secondary">
             <ArrowLeft className="h-4 w-4" /> Voltar
           </button>
-          <p className="mt-8 text-xs font-semibold uppercase tracking-[0.25em] text-accent">Draft FC</p>
+          <CapaJogo src={CAPAS.draft} foco="78% 50%" className="mt-6" />
+          <p className="mt-6 text-xs font-semibold uppercase tracking-[0.25em] text-accent">Draft FC</p>
           <h1 className="mt-1 text-2xl font-bold tracking-tight">Como você quer jogar?</h1>
           <p className="mt-2 text-sm text-secondary">Monte um time por letras, escolha a tática e dispute o campeonato.</p>
           <div className="mt-8 flex flex-col gap-3">

@@ -10,6 +10,11 @@ Registro de alterações. Mais recente no topo.
 
 ---
 
+## 2026-10-21 — Claude (4)
+- **Artes do Rolê (pacote role-assets-v1)**: logo vetorial na Home, banner verde do Draft FC (texto à esquerda, arte à direita), capas do Impostor, Efeito Manada, The Mind e Mímica nos cartões da Home. Os outros jogos ganharam um bloco na cor própria com o ícone grande, na mesma proporção. Capas também nas telas de sala (Manada, The Mind, Draft FC), na configuração da Mímica e na entrada do Draft FC; o personagem do Impostor aparece na revelação e na configuração, e a vaca na vitória do Efeito Manada
+- Paleta nova do pacote: fundo `#101114`, superfície `#1b1d22`, texto `#f4f2ed`, primária `#ffba38`
+- Imagens recomprimidas em WebP (de ~1,5 MB cada pra 12–24 KB) em `src/assets/role/`; novo `core/CapaJogo.jsx`
+
 ## 2026-10-21 — Claude (3)
 - **P.D.F**: carta preta com cara de carta (marca d'água P.D.F), cartas brancas entram em cascata e sobem quando escolhidas, placar com barra de progresso até a meta, revelação do resultado em sequência com coroa e confete pro vencedor, pódio e confete no fim
 - **A Resistência**: trilha das 5 missões (verde = sucesso, vermelho = sabotada, âmbar = a da vez), contador de propostas rejeitadas, lista de jogadores com avatar e coroa do líder, aviso quando a missão precisa de 2 sabotagens, cartas de voto viradas uma a uma no resultado, fim com a lista de quem era leal ou traidor. Sorteio de traidores com embaralhamento justo

@@ -1,6 +1,7 @@
 import { motion } from 'motion/react'
 import { Users } from 'lucide-react'
 import ExitButton from '../core/ExitButton.jsx'
+import CapaJogo from '../core/CapaJogo.jsx'
 
 // Cor estável por nome (o mesmo jogador tem sempre a mesma cor)
 function corDoNome(nome) {
@@ -9,13 +10,14 @@ function corDoNome(nome) {
   return `hsl(${h % 360}, 55%, 42%)`
 }
 
-export default function SalaLobby({ codigo, jogadores, souHost, minimo = 3, erro, iniciando, onIniciar, onExit, children }) {
+export default function SalaLobby({ capa, codigo, jogadores, souHost, minimo = 3, erro, iniciando, onIniciar, onExit, children }) {
   const podeIniciar = jogadores.length >= minimo
 
   return (
     <div className="flex min-h-[100dvh] flex-col px-6 py-8">
       <ExitButton onExit={onExit} />
       <div className="mx-auto w-full max-w-sm flex-1">
+        <CapaJogo src={capa} className="mb-5 mt-8" />
         <div className="flex flex-col items-center text-center">
           <p className="text-xs font-medium uppercase tracking-widest text-muted">Código da sala</p>
           <h1 className="mt-2 text-5xl font-bold tracking-tight tabular-nums text-accent">{codigo}</h1>

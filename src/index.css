@@ -5,15 +5,15 @@
 
 :root {
   --bg-canvas: #0a0a0b;
-  --bg-surface: #111113;
-  --bg-elevated: #1a1a1f;
+  --bg-surface: #1b1d22;
+  --bg-elevated: #24262d;
   --border: rgba(255, 255, 255, 0.08);
   --border-strong: rgba(255, 255, 255, 0.15);
-  --text-primary: #f0f0f2;
+  --text-primary: #f4f2ed;
   --text-secondary: #8b8b9a;
   --text-muted: #5a5a6a;
-  --accent: #f59e0b;
-  --accent-glow: rgba(245, 158, 11, 0.25);
+  --accent: #ffba38;
+  --accent-glow: rgba(255, 186, 56, 0.22);
   --color-success: #10b981;
   --color-danger: #ef4444;
   --color-traitor: #ef4444;

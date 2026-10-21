@@ -1,12 +1,20 @@
 import { motion } from 'motion/react'
+import logoRole from '../assets/role/logo-role.svg'
+import capaDraft from '../assets/role/capa-draft.webp'
+import capaImpostor from '../assets/role/capa-impostor.webp'
+import capaManada from '../assets/role/capa-manada.webp'
+import capaTheMind from '../assets/role/capa-themind.webp'
+import capaMimica from '../assets/role/capa-mimica.webp'
 import { Skull, Users, Theater, Hash, HelpCircle, Ban, Target, StickyNote, Milk, TrendingUp, Brain, Layers, Trophy, Smartphone, Share2, User } from 'lucide-react'
 
 // secao: 'celulares' (cada um no seu celular), 'passa' (um celular passando de mão em mão), 'solo'
 const GAMES = [
   {
     id: 'draft',
+    capa: capaDraft,
     nome: 'Draft FC',
     desc: 'Monte seu time sorteando letras, escolha a tática e dispute o campeonato contra os amigos e clubes reais.',
+    descBanner: 'Sorteie letras, monte o time e dispute o campeonato.',
     icon: Trophy,
     minPlayers: 1,
     multiDispositivo: true,
@@ -28,6 +36,7 @@ const GAMES = [
   },
   {
     id: 'manada',
+    capa: capaManada,
     nome: 'Efeito Manada',
     desc: 'Adivinhe o que a maioria vai responder e fuja da Vaca Rosa.',
     icon: Milk,
@@ -39,6 +48,7 @@ const GAMES = [
   },
   {
     id: 'themind',
+    capa: capaTheMind,
     nome: 'The Mind',
     desc: 'Cooperativo e sem falar: jogue as cartas em ordem só na sintonia do grupo.',
     icon: Brain,
@@ -50,6 +60,7 @@ const GAMES = [
   },
   {
     id: 'impostor',
+    capa: capaImpostor,
     nome: 'Impostor',
     desc: 'Todo mundo recebe a mesma palavra, menos o impostor. Descubra quem é.',
     icon: Skull,
@@ -70,6 +81,7 @@ const GAMES = [
   },
   {
     id: 'mimica',
+    capa: capaMimica,
     nome: 'Mímica',
     desc: 'Um mimica, o resto adivinha. Cronômetro e centenas de palavras.',
     icon: Theater,
@@ -157,6 +169,7 @@ function IconeJogo({ icon: Icon, cor, tam = 48 }) {
   )
 }
 
+// Banner do Draft FC: fundo verde escuro, texto numa coluna à esquerda e a arte à direita (cortada sem deformar)
 function Destaque({ game, onSelect }) {
   return (
     <motion.button
@@ -165,24 +178,41 @@ function Destaque({ game, onSelect }) {
       transition={{ type: 'spring', stiffness: 260, damping: 24 }}
       whileTap={{ scale: 0.98 }}
       onClick={() => onSelect(game)}
-      className="relative w-full overflow-hidden rounded-3xl border border-accent/40 p-5 text-left"
-      style={{ background: 'linear-gradient(135deg, rgba(245,158,11,.22), rgba(245,158,11,.04) 55%, rgba(17,17,19,.9))' }}
+      className="relative flex min-h-[188px] w-full overflow-hidden rounded-3xl border border-white/10 bg-[#04251a] text-left"
     >
-      <div className="pointer-events-none absolute -right-8 -top-8 h-40 w-40 rounded-full bg-accent/20 blur-3xl" />
-      <div className="relative flex items-start gap-4">
-        <IconeJogo icon={game.icon} cor={game.cor} tam={56} />
-        <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-2">
-            <h2 className="text-xl font-extrabold tracking-tight">{game.nome}</h2>
-          </div>
-          <p className="mt-1 text-[13px] leading-snug text-secondary">{game.desc}</p>
+      <img
+        src={game.capa}
+        alt=""
+        className="absolute inset-y-0 right-0 h-full w-[72%] object-cover object-[78%_50%]"
+        style={{ maskImage: 'linear-gradient(to right, transparent 0%, #000 38%)', WebkitMaskImage: 'linear-gradient(to right, transparent 0%, #000 38%)' }}
+      />
+      <div className="relative flex w-[54%] flex-col justify-between p-5">
+        <div>
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-accent">{game.tag}</span>
+          <h2 className="mt-3 text-[26px] font-black leading-none tracking-tight">{game.nome}</h2>
+          <p className="mt-2 text-[12px] leading-snug text-white/75">{game.descBanner ?? game.desc}</p>
         </div>
-      </div>
-      <div className="relative mt-4 flex items-center justify-between">
-        <span className="text-[11px] font-semibold uppercase tracking-widest text-accent">{game.tag}</span>
-        <span className="rounded-full bg-accent px-4 py-1.5 text-xs font-extrabold uppercase tracking-wide text-black">Jogar</span>
+        <span className="mt-4 inline-flex w-fit rounded-full bg-accent px-5 py-2 text-xs font-extrabold uppercase tracking-wide text-black">Jogar</span>
       </div>
     </motion.button>
+  )
+}
+
+// Topo do cartão: a capa do jogo quando existe; senão um bloco na cor do jogo com o ícone grande (mesma proporção 3:2)
+function TopoCartao({ game, larga }) {
+  const caixa = larga ? 'w-[42%] shrink-0 self-stretch' : 'aspect-[3/2] w-full'
+  if (game.capa) {
+    return <img src={game.capa} alt="" loading="lazy" decoding="async" className={`${caixa} object-cover`} />
+  }
+  const Icon = game.icon
+  return (
+    <div
+      className={`relative flex ${caixa} items-center justify-center overflow-hidden`}
+      style={{ background: `linear-gradient(135deg, ${game.cor}55, ${game.cor}14 70%)` }}
+    >
+      <Icon className="absolute -bottom-4 -right-3 h-24 w-24 opacity-20" style={{ color: game.cor }} strokeWidth={1.4} />
+      <Icon className="relative h-9 w-9" style={{ color: game.cor }} strokeWidth={1.8} />
+    </div>
   )
 }
 
@@ -194,15 +224,13 @@ function Cartao({ game, i, onSelect, larga }) {
       transition={{ delay: 0.04 * i, type: 'spring', stiffness: 300, damping: 26 }}
       whileTap={{ scale: 0.97 }}
       onClick={() => onSelect(game)}
-      className={`rounded-2xl border border-border bg-surface p-4 text-left transition-colors hover:border-border-strong ${
-        larga ? 'col-span-2 flex items-center gap-4' : 'flex flex-col'
-      }`}
+      className={`overflow-hidden rounded-2xl border border-border bg-surface text-left transition-colors hover:border-border-strong ${larga ? 'col-span-2 flex' : ''}`}
     >
-      <IconeJogo icon={game.icon} cor={game.cor} tam={42} />
-      <div className={`flex min-w-0 flex-1 flex-col ${larga ? '' : 'mt-3'}`}>
+      <TopoCartao game={game} larga={larga} />
+      <div className={`p-3.5 ${larga ? 'flex min-w-0 flex-1 flex-col justify-center' : ''}`}>
         <h3 className="text-[15px] font-bold leading-tight tracking-tight">{game.nome}</h3>
-        <p className={`mt-1 text-[12px] leading-snug text-secondary ${larga ? '' : 'line-clamp-3'}`}>{game.desc}</p>
-        <span className="mt-auto pt-3 text-[10px] font-semibold uppercase tracking-widest" style={{ color: game.cor }}>
+        <p className="mt-1 line-clamp-2 text-[12px] leading-snug text-secondary">{game.desc}</p>
+        <span className="mt-2.5 inline-block text-[10px] font-semibold uppercase tracking-widest" style={{ color: game.cor }}>
           {game.tag}
         </span>
       </div>
@@ -214,12 +242,12 @@ export default function Home({ onSelectGame }) {
   const destaque = GAMES.find((g) => g.destaque)
   return (
     <div className="relative min-h-[100dvh] overflow-x-hidden px-5 pb-14 pt-10">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-[radial-gradient(ellipse_at_top,rgba(245,158,11,0.14),transparent_70%)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-[radial-gradient(ellipse_at_top,rgba(255,186,56,0.14),transparent_70%)]" />
       <div className="relative mx-auto w-full max-w-md">
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ type: 'spring', stiffness: 260, damping: 24 }}>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-accent">Cerne Studio</p>
-          <h1 className="mt-2 text-4xl font-black tracking-tight">Jogo do Rolê</h1>
-          <p className="mt-2 text-sm text-secondary">Escolhe um jogo e chama a galera. {GAMES.length} jogos pra festa, pra mesa e pra jogar sozinho.</p>
+          <img src={logoRole} alt="Rolê" className="h-auto w-28" />
+          <h1 className="sr-only">Jogo do Rolê</h1>
+          <p className="mt-3 text-sm text-secondary">Escolhe um jogo e chama a galera. {GAMES.length} jogos pra festa, pra mesa e pra jogar sozinho.</p>
         </motion.div>
 
         {destaque && (
@@ -241,7 +269,7 @@ export default function Home({ onSelectGame }) {
                 </h2>
                 <span className="text-[11px] text-muted">{s.dica}</span>
               </div>
-              <div className="mt-3 grid grid-cols-2 gap-3">
+              <div className="mt-3 grid grid-cols-[repeat(2,minmax(0,1fr))] gap-3">
                 {lista.map((g, i) => (
                   <Cartao key={g.id} game={g} i={i} onSelect={onSelectGame} larga={lista.length % 2 === 1 && i === lista.length - 1} />
                 ))}

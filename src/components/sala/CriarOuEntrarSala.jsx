@@ -2,10 +2,11 @@ import { useState } from 'react'
 import { motion } from 'motion/react'
 import { ArrowLeft } from 'lucide-react'
 import ExitButton from '../core/ExitButton.jsx'
+import CapaJogo from '../core/CapaJogo.jsx'
 import { supabase } from '../../lib/supabase.js'
 import { salvarSalaAtiva } from './salaMemoria.js'
 
-export default function CriarOuEntrarSala({ jogo, onEntrou, onExit }) {
+export default function CriarOuEntrarSala({ jogo, capa, onEntrou, onExit }) {
   const [fase, setFase] = useState('escolha')
   const [nome, setNome] = useState('')
   const [codigo, setCodigo] = useState('')
@@ -50,6 +51,7 @@ export default function CriarOuEntrarSala({ jogo, onEntrou, onExit }) {
           <button onClick={onExit} className="flex items-center gap-1 text-sm text-secondary">
             <ArrowLeft className="h-4 w-4" /> Voltar
           </button>
+          <CapaJogo src={capa} className="mt-6" />
           <div className="mt-8 flex flex-col items-center text-center">
             <h1 className="text-2xl font-bold tracking-tight">Todo mundo no jogo</h1>
             <p className="mt-2 text-sm text-secondary">

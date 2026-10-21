@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { motion } from 'motion/react'
-import { Trophy } from 'lucide-react'
 import ExitButton from '../core/ExitButton.jsx'
 import { supabase } from '../../lib/supabase.js'
+import { PERSONAGENS } from '../../assets/role/index.js'
 
 export default function ManadaRevelacao({ sala, jogadores, souHost, onExit }) {
   const [avancando, setAvancando] = useState(false)
@@ -26,9 +26,7 @@ export default function ManadaRevelacao({ sala, jogadores, souHost, onExit }) {
       <div className="mx-auto w-full max-w-sm flex-1">
         {vencedor && (
           <div className="mb-6 flex flex-col items-center text-center">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-accent-glow">
-              <Trophy className="h-7 w-7 text-accent" />
-            </div>
+            <img src={PERSONAGENS.vaca} alt="" className="h-24 w-24 object-contain" />
             <h1 className="mt-4 text-2xl font-bold tracking-tight">
               🎉 {nomePorId[vencedor]} venceu!
             </h1>
