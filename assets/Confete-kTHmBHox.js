@@ -1,0 +1,6 @@
+import{c as d,r as s,j as o,m as i}from"./index-DUnnWV_N.js";/**
+ * @license lucide-react v0.454.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const m=d("Crown",[["path",{d:"M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z",key:"1vdc57"}],["path",{d:"M5 21h14",key:"11awu3"}]]),r=["#f59e0b","#fbbf24","#f0f0f2","#10b981","#ef4444","#8b5cf6"];function h({quantidade:e=28}){const n=s.useMemo(()=>Array.from({length:e},(a,t)=>({id:t,x:Math.random()*100,atraso:Math.random()*.9,duracao:2.2+Math.random()*1.6,giro:(Math.random()-.5)*720,deriva:(Math.random()-.5)*60,tam:6+Math.random()*6,cor:r[t%r.length],redonda:t%3===0})),[e]);return o.jsx("div",{className:"pointer-events-none fixed inset-0 z-30 overflow-hidden","aria-hidden":!0,children:n.map(a=>o.jsx(i.span,{initial:{y:-20,x:0,opacity:1,rotate:0},animate:{y:"105vh",x:a.deriva,opacity:[1,1,0],rotate:a.giro},transition:{duration:a.duracao,delay:a.atraso,ease:"easeIn"},className:"absolute top-0",style:{left:`${a.x}%`,width:a.tam,height:a.redonda?a.tam:a.tam*.5,background:a.cor,borderRadius:a.redonda?"50%":2}},a.id))})}export{m as C,h as a};
