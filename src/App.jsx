@@ -1,6 +1,7 @@
 import { lazy, Suspense, useCallback, useEffect, useState } from 'react'
 import Home from './components/Home.jsx'
 import PlayerSetup from './components/PlayerSetup.jsx'
+import { CAPAS, FOCOS } from './assets/role/index.js'
 
 // Cada jogo vira um pedaço separado do site: a Home abre rápido e o celular só baixa o jogo que for usar.
 const JOGOS_PASSA = {
@@ -76,6 +77,8 @@ export default function App() {
       {screen === 'setup' && (
         <PlayerSetup
           gameName={selectedGame.nome}
+          capa={CAPAS[selectedGame.id]}
+          foco={FOCOS[selectedGame.id]}
           minPlayers={selectedGame.minPlayers}
           maxPlayers={selectedGame.id === 'resistencia' ? 10 : undefined}
           onBack={goHome}

@@ -18,6 +18,8 @@ import { TreinoTela } from './NbaTreino.jsx'
 import { recomendarTreino, aplicarTreino } from '../../nba/engine/treino.js'
 import { BotaoPrimario, CartaoJogador, SeloLiga, TimeEscudo } from './ui.jsx'
 import { TIMES } from '../../nba/data/times.js'
+import CapaJogo from '../core/CapaJogo.jsx'
+import { CAPAS, FOCOS } from '../../assets/role/index.js'
 import { EventoTela, TemporadaTela, PlayoffsTela, PremiosTela, ResumoAnoTela } from './NbaTelasTemporada.jsx'
 import { DraftDecisaoTela, DraftNoiteTela, SemDraftTela, ContratoTela, FimTela } from './NbaTelasCarreira.jsx'
 
@@ -221,7 +223,8 @@ export default function NbaCarreira({ onBack }) {
       <div className="relative mx-auto flex min-h-[100dvh] w-full max-w-sm flex-col px-5 pb-8 pt-8 lg:max-w-md">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(ellipse_at_top,rgba(251,146,60,0.18),transparent_70%)]" />
         <ExitButton onExit={onBack} mensagem="Voltar pro início?" />
-        <div className="relative">
+        <CapaJogo src={CAPAS.carreira} foco={FOCOS.carreira} className="relative mt-10" />
+        <div className="relative mt-5">
           <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-accent">Jogo do Rolê</p>
           <h1 className="mt-2 text-4xl font-black tracking-tight">Carreira NBA</h1>
           <p className="mt-2 text-sm text-secondary">Do primeiro treino ao Hall da Fama. Cada decisão muda o rumo da sua história.</p>

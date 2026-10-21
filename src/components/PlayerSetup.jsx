@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { ArrowLeft, Plus, X } from 'lucide-react'
+import CapaJogo from './core/CapaJogo.jsx'
 
 const CHAVE_GRUPO = 'jogo-role:ultimo-grupo'
 
@@ -21,7 +22,7 @@ function salvarUltimoGrupo(players) {
   }
 }
 
-export default function PlayerSetup({ gameName, minPlayers, maxPlayers, onBack, onStart }) {
+export default function PlayerSetup({ capa, foco, gameName, minPlayers, maxPlayers, onBack, onStart }) {
   const [players, setPlayers] = useState([])
   const [nameInput, setNameInput] = useState('')
   const [erro, setErro] = useState('')
@@ -59,6 +60,7 @@ export default function PlayerSetup({ gameName, minPlayers, maxPlayers, onBack, 
           <ArrowLeft className="h-4 w-4" /> Voltar
         </button>
 
+        <CapaJogo src={capa} foco={foco} className="mt-4" />
         <h1 className="mt-4 text-2xl font-bold tracking-tight">{gameName}</h1>
         <p className="mt-1 text-sm text-secondary">
           Quem vai jogar? Mínimo {minPlayers}

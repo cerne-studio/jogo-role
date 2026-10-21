@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import ExitButton from '../core/ExitButton.jsx'
 import CriarOuEntrarSala from '../sala/CriarOuEntrarSala.jsx'
 import SalaLobby from '../sala/SalaLobby.jsx'
+import { CAPAS } from '../../assets/role/index.js'
 import useJogadorAtual from '../sala/useJogadorAtual.js'
 import useSala from '../sala/useSala.js'
 import { lerSalaAtiva, limparSalaAtiva } from '../sala/salaMemoria.js'
@@ -65,7 +66,7 @@ export default function PdfGame({ onBack }) {
   if (erroSessao) return <TelaMensagem mensagem={erroSessao} onExit={sair} />
 
   if (!salaInfo) {
-    return <CriarOuEntrarSala jogo={JOGO} onEntrou={setSalaInfo} onExit={sair} />
+    return <CriarOuEntrarSala capa={CAPAS.pdf} jogo={JOGO} onEntrou={setSalaInfo} onExit={sair} />
   }
 
   if (!sala) return <TelaMensagem mensagem="Entrando na sala..." onExit={sair} />
@@ -75,6 +76,7 @@ export default function PdfGame({ onBack }) {
   if (sala.status === 'lobby') {
     return (
       <SalaLobby
+        capa={CAPAS.pdf}
         codigo={salaInfo.codigo}
         jogadores={jogadores}
         souHost={souHost}

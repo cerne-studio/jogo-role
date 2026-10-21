@@ -10,6 +10,9 @@ Registro de alterações. Mais recente no topo.
 
 ---
 
+## 2026-10-21 — Claude (6)
+- **Capas dos outros 8 jogos (pacote role-assets-v2)**: P.D.F, A Resistência, Tabu, Papelitos, Quem Sou Eu, Jogo da Nota, Palpite e Carreira NBA agora têm capa na Home (todos os 13 jogos têm). A tela de escolher jogadores dos jogos "passa de mão em mão", a sala da P.D.F e a tela inicial da Carreira NBA mostram a capa em faixa, com o corte ajustado por jogo (`FOCOS` em `src/assets/role/index.js`)
+
 ## 2026-10-21 — Claude (5)
 - **Draft FC — escudos**: todo time do campeonato tem escudo (forma, padrão, símbolo, duas cores e sigla). Os humanos montam o próprio na tela de formação e na de "Times prontos" (forma, padrão, símbolo, cores e sigla) ou tocam em **Sortear**; os bots recebem um escudo gerado a partir do clube, sempre o mesmo em todo celular. Aparece no sorteio dos grupos, tabelas, chaveamento, resumos, campeão e no placar da partida; as peças do campo usam as cores dos escudos (se forem parecidas, o time B troca). `db/023` valida e guarda o escudo (`fd_definir_escudo`) e o leva pro time no campeonato
 - Prompts pro ChatGPT gerar as capas dos 8 jogos que faltam: `referencias/prompts-capas-restantes.md` (fora do repo)

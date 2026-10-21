@@ -1,17 +1,11 @@
 import { motion } from 'motion/react'
-import logoRole from '../assets/role/logo-role.svg'
-import capaDraft from '../assets/role/capa-draft.webp'
-import capaImpostor from '../assets/role/capa-impostor.webp'
-import capaManada from '../assets/role/capa-manada.webp'
-import capaTheMind from '../assets/role/capa-themind.webp'
-import capaMimica from '../assets/role/capa-mimica.webp'
+import { CAPAS, LOGO as logoRole } from '../assets/role/index.js'
 import { Skull, Users, Theater, Hash, HelpCircle, Ban, Target, StickyNote, Milk, TrendingUp, Brain, Layers, Trophy, Smartphone, Share2, User } from 'lucide-react'
 
 // secao: 'celulares' (cada um no seu celular), 'passa' (um celular passando de mão em mão), 'solo'
-const GAMES = [
+const GAMES_BASE = [
   {
     id: 'draft',
-    capa: capaDraft,
     nome: 'Draft FC',
     desc: 'Monte seu time sorteando letras, escolha a tática e dispute o campeonato contra os amigos e clubes reais.',
     descBanner: 'Sorteie letras, monte o time e dispute o campeonato.',
@@ -36,7 +30,6 @@ const GAMES = [
   },
   {
     id: 'manada',
-    capa: capaManada,
     nome: 'Efeito Manada',
     desc: 'Adivinhe o que a maioria vai responder e fuja da Vaca Rosa.',
     icon: Milk,
@@ -48,7 +41,6 @@ const GAMES = [
   },
   {
     id: 'themind',
-    capa: capaTheMind,
     nome: 'The Mind',
     desc: 'Cooperativo e sem falar: jogue as cartas em ordem só na sintonia do grupo.',
     icon: Brain,
@@ -60,7 +52,6 @@ const GAMES = [
   },
   {
     id: 'impostor',
-    capa: capaImpostor,
     nome: 'Impostor',
     desc: 'Todo mundo recebe a mesma palavra, menos o impostor. Descubra quem é.',
     icon: Skull,
@@ -81,7 +72,6 @@ const GAMES = [
   },
   {
     id: 'mimica',
-    capa: capaMimica,
     nome: 'Mímica',
     desc: 'Um mimica, o resto adivinha. Cronômetro e centenas de palavras.',
     icon: Theater,
@@ -151,6 +141,9 @@ const GAMES = [
     tag: 'Solo',
   },
 ]
+
+// cada jogo recebe a capa de mesmo id
+const GAMES = GAMES_BASE.map((g) => ({ ...g, capa: CAPAS[g.id] }))
 
 const SECOES = [
   { id: 'celulares', titulo: 'Cada um no seu celular', icon: Smartphone, dica: 'Entra com código de sala' },
