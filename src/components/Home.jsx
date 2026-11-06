@@ -1,6 +1,6 @@
 import { motion } from 'motion/react'
 import { CAPAS, LOGO as logoRole } from '../assets/role/index.js'
-import { Skull, Users, Theater, Hash, HelpCircle, Ban, Target, StickyNote, Milk, TrendingUp, Brain, Layers, Trophy, Smartphone, Share2, User } from 'lucide-react'
+import { Skull, Users, Theater, Hash, HelpCircle, Ban, Target, StickyNote, Milk, TrendingUp, Brain, Layers, MessageCircleQuestion, Trophy, Smartphone, Share2, User } from 'lucide-react'
 
 // secao: 'celulares' (cada um no seu celular), 'passa' (um celular passando de mão em mão), 'solo'
 const GAMES_BASE = [
@@ -49,6 +49,17 @@ const GAMES_BASE = [
     secao: 'celulares',
     cor: '#8b5cf6',
     tag: '3+ jogadores',
+  },
+  {
+    id: 'respostas',
+    nome: 'Respostas sem Perguntas',
+    desc: 'Você sabe a resposta, mas não sabe a pergunta. Revele palavras uma a uma: quanto menos revelar, mais pontos.',
+    icon: MessageCircleQuestion,
+    minPlayers: 2,
+    multiDispositivo: true,
+    secao: 'celulares',
+    cor: '#22d3ee',
+    tag: '2+ jogadores',
   },
   {
     id: 'impostor',

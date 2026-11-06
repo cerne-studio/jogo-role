@@ -19,6 +19,7 @@ const JOGOS_CELULARES = {
   themind: lazy(() => import('./components/themind/TheMindGame.jsx')),
   pdf: lazy(() => import('./components/pdf/PdfGame.jsx')),
   draft: lazy(() => import('./components/futebol/draft/DraftGame.jsx')),
+  respostas: lazy(() => import('./components/respostas/RespostasGame.jsx')),
 }
 const NbaCarreira = lazy(() => import('./components/nba/NbaCarreira.jsx'))
 const FutebolDemo = lazy(() => import('./components/futebol/FutebolDemo.jsx'))

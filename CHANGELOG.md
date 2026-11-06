@@ -10,6 +10,12 @@ Registro de alterações. Mais recente no topo.
 
 ---
 
+## 2026-11-05 — Claude
+- **Respostas sem Perguntas (novo jogo, cada um no seu celular)**: a pergunta é secreta; todos veem só a quantidade de palavras e, a cada turno, o jogador da vez revela uma palavra e tenta responder (uma tentativa por turno). Cada palavra escondida vale 1 ponto: quem acerta leva o que sobrou, sem pontos negativos. Se todas forem reveladas, "Ninguém pontuou". Host escolhe 5/10/15/20/outro de perguntas, 15–60 s de resposta e categorias; ordem sorteada e a pergunta seguinte começa por quem vem depois do último turno; 15 s pra escolher palavra (senão revela uma aleatória); reconecta sozinho; no fim, ranking com empate dividindo a vitória e "Nova partida" com os mesmos jogadores
+- Segredo no servidor: a pergunta e a resposta ficam em tabelas sem policy e só a palavra sorteada sai por vez; resposta errada só aparece pros outros no fim da pergunta. Validação no servidor (caixa, acento, pontuação, artigo, variações cadastradas e erro de 1 letra só em nomes longos; "Brasil e Argentina" não vale). Banco com 206 perguntas novas em 13 categorias (62% fáceis, 31% médias, 6% difíceis), todas escritas pra esconder o assunto até revelar várias palavras
+- **Precisa aplicar no SQL Editor do Supabase, nesta ordem**: `db/024_respostas.sql` e depois `db/025_seed_respostas.sql` (o seed é gerado por `node scripts/gerar-seed-respostas.mjs` a partir de `db/data/respostas-banco.txt`; pra adicionar pergunta é só acrescentar linha lá e rodar de novo). Teste: `node scripts/e2e-respostas.mjs`
+- Arquivos: `src/components/respostas/`, `db/024`, `db/025`, `db/data/respostas-banco.txt`, `scripts/{gerar-seed-respostas,e2e-respostas}.mjs`, `src/App.jsx`, `src/components/Home.jsx`
+
 ## 2026-10-21 — Claude (6)
 - **Capas dos outros 8 jogos (pacote role-assets-v2)**: P.D.F, A Resistência, Tabu, Papelitos, Quem Sou Eu, Jogo da Nota, Palpite e Carreira NBA agora têm capa na Home (todos os 13 jogos têm). A tela de escolher jogadores dos jogos "passa de mão em mão", a sala da P.D.F e a tela inicial da Carreira NBA mostram a capa em faixa, com o corte ajustado por jogo (`FOCOS` em `src/assets/role/index.js`)
 

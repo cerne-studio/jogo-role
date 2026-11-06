@@ -1,0 +1,225 @@
+# Banco de perguntas do "Respostas sem Perguntas".
+# Formato: categoria|dificuldade|pergunta|resposta|variações aceitas separadas por ;
+# dificuldade: f (fácil), m (média), d (difícil). Linhas com # são comentário.
+# A lista de palavras do jogo é gerada pelo servidor a partir da pergunta (separa por espaço, pontuação fica colada na palavra).
+# O servidor ignora maiúsculas, acentos, pontuação e artigo no começo; a resposta oficial já conta como aceita.
+# Pra adicionar perguntas: acrescente linhas aqui e rode `node scripts/gerar-seed-respostas.mjs`.
+
+Cultura pop|f|Entre os personagens criados por Mauricio de Sousa, qual menino de cabelos ralos costuma trocar o erre pelo ele ao falar?|Cebolinha|
+Cultura pop|f|Na saga escrita por J. K. Rowling, como se chama a escola de magia onde o jovem bruxo de cicatriz na testa estuda?|Hogwarts|
+Cultura pop|f|Dentre os heróis da Marvel, qual deles é um bilionário inventor que constrói uma armadura metálica vermelha e dourada?|Homem de Ferro|Tony Stark;Iron Man
+Cultura pop|f|Durante a história de Star Wars, qual vilão de capa preta e respiração mecânica revela ser o pai do herói Luke?|Darth Vader|Vader;Anakin Skywalker
+Cultura pop|f|Na animação da família amarela de Springfield, qual é o nome do filho mais velho, famoso por aprontar e usar um estilingue?|Bart|Bart Simpson
+Cultura pop|f|Entre as princesas dos contos de fadas, qual delas deixou um sapatinho de cristal para trás ao fugir do baile à meia-noite?|Cinderela|
+Cultura pop|f|Na animação ambientada na savana africana, qual leãozinho precisa assumir o reino depois de perder o pai?|Simba|
+Cultura pop|f|Entre as bonecas mais vendidas do mundo, qual é a loira da fabricante Mattel que tem um namorado chamado Ken?|Barbie|
+Cultura pop|f|Nas histórias de Gotham, qual vilão de sorriso largo e rosto pintado é o maior inimigo do Homem-Morcego?|Coringa|Joker
+Cultura pop|m|No desenho da esponja amarela que trabalha no restaurante Siri Cascudo, como se chama o lugar no fundo do mar onde ele mora?|Fenda do Biquíni|Fenda do Biquini;Bikini Bottom
+Cultura pop|m|Conhecido por ter sido criado pela Nintendo, qual encanador de boné vermelho enfrenta o vilão Bowser para salvar a Princesa Peach?|Mario|Super Mario
+Cultura pop|m|Em um famoso anime sobre piratas, qual jovem de chapéu de palha, com corpo de borracha, sonha em ser o Rei dos Piratas?|Luffy|Monkey D. Luffy
+Cultura pop|m|Na série da HBO sobre disputas pelos Sete Reinos, qual objeto feito de espadas derretidas simboliza o poder de governar?|Trono de Ferro|Trono
+Cultura pop|f|Na Turma da Mônica, qual garoto sujo, que odeia tomar banho, vive com uma nuvem de poeira em volta do corpo?|Cascão|Cascao
+Cultura pop|m|No universo dos desenhos da Disney, qual pato de pavio curto e roupa de marinheiro é sobrinho do milionário Tio Patinhas?|Donald|Pato Donald
+Cultura pop|d|Entre os personagens do Maurício de Sousa, qual indiozinho da turma vive com um cocar e adora brincar com os amigos da floresta?|Papa-Capim|Papa Capim
+
+Filmes e séries|f|Em qual filme um luxuoso navio afunda depois de bater em um iceberg, unindo um casal de classes sociais diferentes?|Titanic|
+Filmes e séries|f|Na animação da Pixar em que um robô solitário limpa o lixo de um planeta abandonado, qual é o nome dele?|WALL-E|Wall E;Wall-E
+Filmes e séries|f|Dentro da franquia sobre dinossauros criados em laboratório, qual rei carnívoro de dentes enormes persegue os visitantes?|Tiranossauro Rex|T-Rex;Tiranossauro;T Rex
+Filmes e séries|f|Em uma animação sobre duas irmãs de reino gelado, qual rainha tem o poder de criar neve e canta Let It Go?|Elsa|
+Filmes e séries|m|Na trilogia baseada nos livros de Tolkien, qual pequeno hobbit é encarregado de levar o Anel até o Monte da Perdição?|Frodo|Frodo Bolseiro
+Filmes e séries|f|No seriado mexicano mais famoso da TV brasileira, qual menino órfão de boné costuma se esconder dentro de um barril?|Chaves|Chavo
+Filmes e séries|f|Entre os personagens de animação, qual ogro verde e rabugento vive em um pântano ao lado de um burro falante?|Shrek|
+Filmes e séries|m|No filme em que o herói Neo descobre que vive numa simulação, qual cor de pílula ele escolhe para ver a verdade?|Vermelha|Vermelho;Pílula vermelha
+Filmes e séries|f|Na série que se passa na cidade de Hawkins, como se chama o mundo sombrio paralelo onde vivem as criaturas?|Mundo Invertido|Upside Down;Invertido
+Filmes e séries|f|Em uma animação sobre o fundo do oceano, qual é o nome da peixinha azul de memória curta que ajuda a procurar o filho de um peixe-palhaço?|Dory|
+Filmes e séries|m|Na série sul-coreana da Netflix, pessoas endividadas disputam brincadeiras infantis mortais em busca de um enorme prêmio. Qual é o título?|Round 6|Squid Game;Round Six;Round 6
+Filmes e séries|m|Na série espanhola sobre assaltos à Casa da Moeda, qual é o codinome do cérebro que planeja tudo e usa óculos?|Professor|O Professor
+Filmes e séries|f|Em uma animação da Disney ambientada em ilhas do Pacífico, qual jovem enfrenta o mar acompanhada de um semideus tatuado chamado Maui?|Moana|Vaiana
+Filmes e séries|m|Na saga de vampiros adolescentes, como se chama o rapaz de pele brilhante que se apaixona por Bella?|Edward|Edward Cullen
+Filmes e séries|d|Entre os diretores de cinema, qual britânico assina filmes como A Origem, Interestelar e Oppenheimer?|Christopher Nolan|Nolan
+
+Música|f|Entre as bandas britânicas formadas em Liverpool, qual quarteto com John, Paul, George e Ringo mudou a história do pop?|Beatles|The Beatles
+Música|f|Considerado o Rei do Baião, qual sanfoneiro pernambucano eternizou a canção Asa Branca?|Luiz Gonzaga|Gonzagão;Gonzagao
+Música|m|Nos anos 1940, qual cantora luso-brasileira ficou conhecida em Hollywood por usar turbantes cheios de frutas na cabeça?|Carmen Miranda|
+Música|f|Conhecida como a Rainha do Pop, qual cantora norte-americana lançou os sucessos Like a Virgin e Vogue?|Madonna|
+Música|f|Famoso pelo passo moonwalk e pelo álbum Thriller, qual cantor é chamado de Rei do Pop?|Michael Jackson|
+Música|f|Entre os eventos musicais, qual festival, realizado no Rio de Janeiro desde 1985, reúne astros do mundo todo em um grande palco?|Rock in Rio|
+Música|f|Quando pequenos martelos batem nas cordas para produzir o som, qual instrumento de teclas brancas e pretas está sendo tocado?|Piano|
+Música|m|Entre as duplas sertanejas formadas por irmãos, qual cantou o grande sucesso Evidências nos anos 1990?|Chitãozinho e Xororó|Chitaozinho e Xororo;Chitãozinho & Xororó
+Música|m|Dona de uma turnê chamada Eras e de um álbum de nome 1989, qual cantora norte-americana é fã de gatos e de música country?|Taylor Swift|
+Música|f|Liderado por Freddie Mercury, qual grupo britânico gravou a ópera-rock Bohemian Rhapsody?|Queen|
+Música|f|Nas rodas cariocas nasceu um ritmo que embala os desfiles das escolas durante o Carnaval. Qual é ele?|Samba|
+Música|m|Apelidada de Pimentinha, qual cantora gaúcha eternizou a canção Como Nossos Pais?|Elis Regina|Elis
+Música|m|Com sete integrantes e sucessos como Dynamite, qual grupo sul-coreano conquistou o mundo?|BTS|
+Música|m|No centro da bateria, tocado com baquetas e marcando o ritmo mais grave, fica qual instrumento?|Bumbo|
+Música|d|Mesmo ficando surdo, qual compositor alemão escreveu a Nona Sinfonia, com o famoso Hino à Alegria?|Beethoven|Ludwig van Beethoven
+Música|f|Nas bandas de rock, os solos mais marcantes costumam ser feitos com qual instrumento de cordas elétrico?|Guitarra|Guitarra elétrica
+
+Esportes|f|Em qual modalidade olímpica os atletas disputam provas como cem metros rasos, salto em distância e arremesso de peso?|Atletismo|
+Esportes|f|Exigindo roupas brancas dos jogadores, qual torneio de tênis é disputado na grama de Londres?|Wimbledon|
+Esportes|f|Em quadra dividida por uma rede, com sets e posições como levantador e líbero, qual esporte é disputado?|Vôlei|Volei;Voleibol
+Esportes|m|Morto em 1994 no circuito de Ímola, qual piloto brasileiro foi três vezes campeão mundial de Fórmula 1?|Ayrton Senna|Senna
+Esportes|f|Com mais de vinte medalhas de ouro, qual nadador americano é o maior medalhista da história das Olimpíadas?|Michael Phelps|Phelps
+Esportes|f|Com faixas coloridas e golpes de projeção no tatame, qual esporte de combate nasceu no Japão?|Judô|Judo
+Esportes|m|Apelidado de Raio, qual velocista jamaicano é recordista mundial dos cem metros rasos?|Usain Bolt|Bolt
+Esportes|m|Em qual esporte de raquete, jogado sobre uma rede, se usa uma peteca de penas no lugar da bola?|Badminton|
+Esportes|m|Nos Jogos de Tóquio, qual ginasta brasileira conquistou a medalha de ouro no salto sobre a mesa?|Rebeca Andrade|Rebeca
+Esportes|f|Em qual esporte os lutadores usam luvas, sobem em um ringue e disputam rounds até um nocaute?|Boxe|
+Esportes|f|Primeira cidade da América do Sul a sediar as Olimpíadas, em 2016, qual foi ela?|Rio de Janeiro|Rio
+Esportes|f|Com provas como nado borboleta, costas, peito e livre, em qual modalidade aquática os atletas competem?|Natação|Natacao
+Esportes|m|Muito popular no Canadá, qual esporte coletivo usa um disco de borracha, tacos e uma pista congelada?|Hóquei no gelo|Hoquei no gelo;Hockey;Hóquei
+Esportes|d|Rival de Nadal e dono de vinte títulos de Grand Slam, qual tenista suíço marcou época nas quadras?|Roger Federer|Federer
+Esportes|f|Em qual prova olímpica o atleta usa uma vara flexível para passar por cima de um sarrafo muito alto?|Salto com vara|Salto de vara
+Esportes|m|Em grandes campos verdes, tentando acertar a bola em buracos com o menor número de tacadas, joga-se qual esporte?|Golfe|
+
+Futebol|f|Com Ronaldo marcando os dois gols da final, qual seleção conquistou o pentacampeonato mundial em 2002?|Brasil|Seleção Brasileira
+Futebol|f|Com mais de mil gols na carreira, qual craque ficou conhecido como o Rei do Futebol?|Pelé|Pele
+Futebol|f|No Catar, em 2022, com Messi de capitão, qual seleção levantou a taça da Copa do Mundo?|Argentina|
+Futebol|f|Quantos jogadores de cada time, contando o goleiro, ficam em campo durante uma partida oficial?|Onze|11
+Futebol|f|Inaugurado em 1950 para uma Copa do Mundo, qual estádio carioca é um dos templos do futebol mundial?|Maracanã|Maracana
+Futebol|f|Entre os clubes paulistas, qual é carinhosamente chamado de Timão pela sua torcida?|Corinthians|
+Futebol|f|Tendo o craque Zico como maior ídolo, qual clube carioca de camisa rubro-negra marcou época?|Flamengo|
+Futebol|m|Nascido na Ilha da Madeira e campeão por Real Madrid e Manchester United, qual craque português venceu cinco Bolas de Ouro?|Cristiano Ronaldo|CR7
+Futebol|f|Quando o árbitro precisa expulsar um jogador de campo, mostra um cartão de qual cor?|Vermelho|Cartão vermelho
+Futebol|m|Disputada desde 1960, qual competição sul-americana de clubes entrega a taça mais sonhada pelos brasileiros?|Libertadores|Copa Libertadores
+Futebol|f|Quando um mesmo jogador marca três gols na mesma partida, como esse feito é conhecido em inglês?|Hat-trick|Hat trick;Hattrick;Triplete
+Futebol|m|Eleito o melhor do mundo em 2005 jogando pelo Barcelona, qual craque brasileiro encantava com dribles ousados e sorriso largo?|Ronaldinho Gaúcho|Ronaldinho;Ronaldinho Gaucho
+Futebol|f|Como se chama o torneio de seleções disputado a cada quatro anos, considerado o maior evento do futebol?|Copa do Mundo|Mundial
+Futebol|m|De camisa azul e apelidada de Azzurra, qual seleção europeia já foi tetracampeã mundial?|Itália|Italia
+Futebol|f|No estádio Camp Nou, onde Lionel Messi brilhou por muitos anos, joga qual clube espanhol?|Barcelona|
+Futebol|d|Na final da Copa de 2006, uma cabeçada em Materazzi expulsou qual craque francês de origem argelina?|Zidane|Zinedine Zidane
+
+Geografia|f|Em território, qual é o maior país da América do Sul, famoso pelo Carnaval e pela Floresta Amazônica?|Brasil|
+Geografia|f|Passando pela cidade de Manaus, qual rio é considerado o maior do mundo em volume de água?|Amazonas|Rio Amazonas
+Geografia|f|Berço do tango e banhada pelo Rio da Prata, qual cidade é a capital argentina?|Buenos Aires|
+Geografia|f|Em qual continente fica o Egito, país conhecido pelas pirâmides e pelo Rio Nilo?|África|Africa
+Geografia|m|De norte a sul, a costa leste do Brasil é banhada por qual oceano?|Atlântico|Oceano Atlântico
+Geografia|f|Inaugurada em 1960 e projetada por Lúcio Costa e Oscar Niemeyer, qual cidade se tornou a capital do Brasil?|Brasília|Brasilia
+Geografia|m|Atravessando a América do Sul de norte a sul, qual é a cordilheira mais extensa do mundo?|Andes|Cordilheira dos Andes
+Geografia|f|Com formato de bota e Roma como capital, de qual país europeu estamos falando?|Itália|Italia
+Geografia|m|Localizado dentro de Roma e governado pelo Papa, qual é o menor país do mundo em área?|Vaticano|Cidade do Vaticano
+Geografia|m|Cobrindo boa parte do norte da África, qual é o maior deserto quente do mundo?|Saara|Sahara
+Geografia|m|Entre a Europa e a Ásia, cortada pelo estreito do Bósforo, fica qual cidade turca?|Istambul|Istanbul
+Geografia|f|Famoso pelo acarajé e pelo axé, com Salvador como capital, qual estado brasileiro é esse?|Bahia|
+Geografia|m|Na fronteira entre o Nepal e a China, qual é a montanha mais alta do mundo?|Everest|Monte Everest
+Geografia|f|Conhecido como a Terra do Sol Nascente e com capital em Tóquio, qual país asiático é esse?|Japão|Japao
+Geografia|f|Banhada pelo Rio Sena e famosa pela Torre Eiffel e pelo Museu do Louvre, qual é essa cidade europeia?|Paris|
+Geografia|d|Na fronteira entre Brasil e Argentina, onde fica a impressionante Garganta do Diabo, qual conjunto de quedas d'água atrai turistas?|Cataratas do Iguaçu|Iguaçu;Foz do Iguaçu;Cataratas do Iguacu
+
+História|f|Em qual ano o príncipe Dom Pedro proclamou a independência do Brasil, às margens do riacho do Ipiranga?|1822|
+História|f|Em 1500, a esquadra que chegou ao território brasileiro estava sob o comando de qual navegador português?|Pedro Álvares Cabral|Cabral;Pedro Alvares Cabral
+História|f|Vivendo às margens do Rio Nilo, qual povo da Antiguidade construiu as grandes pirâmides de Gizé?|Egípcios|Egipcios;Egito;Antigo Egito;Egípcio
+História|f|Derrotado na famosa batalha de Waterloo, qual imperador francês, de baixa estatura e grande ambição, perdeu o poder?|Napoleão|Napoleão Bonaparte;Napoleao;Napoleao Bonaparte
+História|m|Em 1888, a lei que acabou oficialmente com a escravidão no Brasil foi assinada por qual princesa?|Princesa Isabel|Isabel
+História|f|Construído em 1961 para dividir uma cidade alemã e derrubado em 1989, qual muro simboliza o fim da Guerra Fria?|Muro de Berlim|Berlim
+História|m|Após a proclamação da República, em 1889, quem assumiu como primeiro presidente do Brasil?|Deodoro da Fonseca|Marechal Deodoro;Deodoro
+História|f|A serviço da Espanha, qual explorador genovês chegou à América em 1492?|Cristóvão Colombo|Colombo;Cristovao Colombo
+História|f|Terminando em 1945, depois das bombas atômicas sobre Hiroshima e Nagasaki, qual conflito mundial chegou ao fim?|Segunda Guerra Mundial|Segunda Guerra;2ª Guerra Mundial;II Guerra Mundial;Segunda guerra
+História|m|Encontrado quase intacto em 1922, o túmulo de qual faraó, morto ainda muito jovem, ficou famoso no mundo todo?|Tutancâmon|Tutankamon;Tutancamon;Tutankhamon
+História|m|Liderado por Montezuma, qual povo construiu um grande império no território do atual México?|Astecas|Asteca
+História|f|Com o lema cinquenta anos em cinco, qual presidente brasileiro inaugurou Brasília em 1960?|Juscelino Kubitschek|JK;Juscelino
+História|m|Defendendo a resistência pacífica contra o domínio britânico, qual líder indiano ficou mundialmente famoso?|Mahatma Gandhi|Gandhi
+História|m|Iniciada em 1789 com a tomada da Bastilha, qual revolução derrubou a monarquia na França?|Revolução Francesa|Francesa
+História|d|Envolvida com Júlio César e depois com Marco Antônio, qual rainha do Egito era de origem grega?|Cleópatra|Cleopatra
+
+Animais e natureza|f|Conhecido pela tromba comprida e pelas presas de marfim, qual é o maior animal terrestre do planeta?|Elefante|
+Animais e natureza|f|Com um bico enorme e colorido, qual ave brasileira é comum no Pantanal e na Amazônia?|Tucano|
+Animais e natureza|f|Muito inteligente e dando saltos acrobáticos nas ondas, qual mamífero marinho emite sons agudos?|Golfinho|
+Animais e natureza|f|Vivendo em colmeias com uma rainha e muitas operárias, qual inseto produz o mel que comemos?|Abelha|
+Animais e natureza|f|Dando grandes saltos e carregando o filhote em uma bolsa na barriga, qual animal australiano é esse?|Canguru|
+Animais e natureza|m|Capaz de ultrapassar os cem quilômetros por hora, qual é o animal terrestre mais veloz do planeta?|Guepardo|Chita
+Animais e natureza|f|Símbolo da fauna brasileira, de manchas pretas e vivendo na Amazônia e no Pantanal, qual é esse grande felino?|Onça-pintada|Onça pintada;Onça;Onca pintada
+Animais e natureza|m|Chegando a trinta metros, um mamífero marinho é o maior animal que já existiu na Terra. Qual é ele?|Baleia-azul|Baleia azul
+Animais e natureza|f|Parecido com um cavalo e listrado de preto e branco, qual animal vive nas savanas da África?|Zebra|
+Animais e natureza|m|Durante a fotossíntese, para produzir o próprio alimento, as plantas absorvem do ar qual gás?|Gás carbônico|Dióxido de carbono;CO2;Gas carbonico
+Animais e natureza|f|Famoso por viver muitos anos e se mover bem devagar, qual réptil de casco rígido é esse?|Tartaruga|Jabuti;Cágado
+Animais e natureza|f|Único mamífero capaz de voar de verdade, qual animal noturno tem asas membranosas?|Morcego|
+Animais e natureza|f|Cobrindo boa parte do norte do Brasil, qual é a maior floresta tropical do mundo?|Amazônia|Floresta Amazônica;Amazonia;Floresta Amazonica
+Animais e natureza|f|Em regiões geladas do sul do planeta vive uma ave que não consegue voar e anda de forma desajeitada. Qual é ela?|Pinguim|
+Animais e natureza|m|Como se chama a transformação pela qual a lagarta passa dentro do casulo até virar borboleta?|Metamorfose|
+Animais e natureza|d|Parecido com um ursinho de pelúcia, qual animal australiano se alimenta quase só de folhas de eucalipto?|Coala|Koala
+
+Comidas e bebidas|f|Feito com feijão preto cozido com carnes de porco e servido com arroz, couve e laranja, qual é esse prato brasileiro?|Feijoada|
+Comidas e bebidas|f|De casca verde listrada e polpa vermelha e suculenta, qual fruta é a preferida nos dias de calor?|Melancia|
+Comidas e bebidas|f|Misturado com água e fermento, qual ingrediente é a base para fazer pães, bolos e massas?|Farinha de trigo|Farinha;Trigo
+Comidas e bebidas|f|Preparada com limão, açúcar, gelo e cachaça, qual bebida brasileira é um dos coquetéis mais famosos do país?|Caipirinha|
+Comidas e bebidas|f|Nascido na cidade de Nápoles, de massa redonda coberta com molho de tomate e queijo, qual prato italiano é esse?|Pizza|
+Comidas e bebidas|f|Amarela, comprida e rica em potássio, qual fruta é muito associada aos macacos?|Banana|
+Comidas e bebidas|f|Feito de leite condensado, chocolate em pó e manteiga, qual doce brasileiro é indispensável em festas de aniversário?|Brigadeiro|
+Comidas e bebidas|f|Depois de torrado e moído, qual grão serve de base para a bebida que mais acorda os brasileiros pela manhã?|Café|Cafe
+Comidas e bebidas|f|Preparado com arroz temperado e geralmente acompanhado de peixe cru, qual prato japonês é esse?|Sushi|
+Comidas e bebidas|f|Em formato de gota, recheado com frango desfiado, empanado e frito, qual salgado brasileiro é esse?|Coxinha|
+Comidas e bebidas|m|Feita de cevada e lúpulo, qual bebida alcoólica é a estrela da festa alemã chamada Oktoberfest?|Cerveja|
+Comidas e bebidas|m|Também conhecida como ananás, qual fruta tropical tem casca espinhosa e coroa de folhas pontudas?|Abacaxi|
+Comidas e bebidas|f|Produzido pelas abelhas a partir do néctar das flores, qual alimento é dourado e doce?|Mel|
+Comidas e bebidas|m|Feita de grão-de-bico triturado com azeite e servida com pão sírio, qual pasta árabe é essa?|Homus|Hummus;Húmus;Hommus
+Comidas e bebidas|f|Cozido na água, qual cereal acompanha o feijão no prato mais tradicional do almoço brasileiro?|Arroz|
+Comidas e bebidas|d|Aparecendo junto com a cebolinha no cheiro-verde, qual tempero de folhas finas e cheiro marcante é esse?|Salsa|Salsinha
+
+Tecnologia e internet|f|Criada por Mark Zuckerberg quando ele era estudante e identificada por uma letra f em um quadrado azul, qual rede social é essa?|Facebook|
+Tecnologia e internet|f|Preferido dos brasileiros para conversar e enviar áudios, qual aplicativo de mensagens tem ícone verde?|WhatsApp|Zap;Whatsapp;Zap zap
+Tecnologia e internet|f|Fundada por Steve Jobs e fabricante do iPhone, do iPad e do computador Mac, qual é a empresa?|Apple|
+Tecnologia e internet|f|Com um logotipo de letras azuis, vermelhas, amarelas e verdes, qual é o buscador mais usado do mundo?|Google|
+Tecnologia e internet|m|Criada na China e viral por danças e desafios entre adolescentes, qual rede social é de vídeos curtos?|TikTok|Tik Tok
+Tecnologia e internet|f|Conhecida pelas fotos, pelos stories e pelos reels, qual rede social pertence à Meta?|Instagram|Insta
+Tecnologia e internet|m|Permitindo que celulares e notebooks acessem a internet dentro de casa, qual tecnologia dispensa cabos?|Wi-Fi|Wifi;Wi Fi
+Tecnologia e internet|f|Em qual plataforma de vídeos é possível criar canais, juntar inscritos e ganhar dinheiro com visualizações?|YouTube|Youtube
+Tecnologia e internet|m|Criada pela empresa OpenAI, qual inteligência artificial conversa por texto e responde perguntas dos usuários?|ChatGPT|Chat GPT
+Tecnologia e internet|m|Chamada de cérebro da máquina, qual peça de um computador executa as instruções dos programas?|Processador|CPU
+Tecnologia e internet|m|Criado pelo Google, qual sistema operacional equipa a maioria dos celulares que não são iPhone?|Android|
+Tecnologia e internet|f|Em um endereço de e-mail, separando o nome do usuário do nome do provedor, aparece obrigatoriamente qual símbolo?|Arroba|@
+Tecnologia e internet|m|Fundada por Jeff Bezos, qual loja virtual começou vendendo livros e hoje vende praticamente de tudo?|Amazon|
+Tecnologia e internet|f|Permitindo construir mundos feitos de blocos quadrados, qual jogo virou febre entre crianças e adolescentes?|Minecraft|
+Tecnologia e internet|f|De logotipo vermelho, qual serviço de streaming popularizou as maratonas de séries no sofá?|Netflix|
+Tecnologia e internet|d|Com tela sensível ao toque e tamanho intermediário entre um celular e um notebook, qual é esse aparelho eletrônico?|Tablet|
+
+Curiosidades|f|Quantos dias tem um ano bissexto, aquele que aparece de quatro em quatro anos?|366|Trezentos e sessenta e seis
+Curiosidades|f|No sistema solar, em qual único planeta já se comprovou a existência de vida?|Terra|
+Curiosidades|f|Segundo a tradição, em quantas cores se divide a luz do sol quando forma um arco-íris?|Sete|7
+Curiosidades|f|De cor avermelhada, qual planeta do sistema solar é conhecido como o Planeta Vermelho?|Marte|
+Curiosidades|m|Localizado na região da coxa, qual é o osso mais longo do corpo humano?|Fêmur|Femur
+Curiosidades|f|Responsável por recobrir tudo e proteger contra o ambiente, qual é o maior órgão do corpo humano?|Pele|
+Curiosidades|f|Usado em joias e nas medalhas dos campeões olímpicos, qual metal precioso é amarelo e brilhante?|Ouro|
+Curiosidades|f|Quantas horas tem um dia inteiro, do nascer de um sol ao nascer do próximo?|24|Vinte e quatro
+Curiosidades|f|Girando em torno da Terra e iluminando as nossas noites, qual é o satélite natural do nosso planeta?|Lua|
+Curiosidades|m|Quantos lados tem um hexágono, figura geométrica que aparece nos favos de mel?|Seis|6
+Curiosidades|m|Indispensável para a respiração dos seres vivos, qual elemento químico tem símbolo O?|Oxigênio|Oxigenio
+Curiosidades|m|Com cabelos brancos e língua de fora em uma foto famosa, qual cientista alemão criou a teoria da relatividade?|Albert Einstein|Einstein
+Curiosidades|f|No centro do sistema solar, fornecendo luz e calor para todos os planetas, fica qual estrela?|Sol|
+Curiosidades|m|Em número de falantes nativos, qual é o idioma mais falado do planeta, usado principalmente na China?|Mandarim|Chinês;Chines;Chinês mandarim
+Curiosidades|d|Em qual temperatura, medida em graus Celsius, a água pura entra em ebulição ao nível do mar?|100|Cem
+Curiosidades|f|Formado por uma única letra, qual número romano representa o valor dez?|X|
+
+Cotidiano|f|Na cozinha, conservando alimentos e bebidas bem geladas, fica qual eletrodoméstico?|Geladeira|Refrigerador;Freezer
+Cotidiano|f|Aberto sobre a cabeça, qual objeto protege as pessoas dos pingos nos dias de temporal?|Guarda-chuva|Guarda chuva;Sombrinha
+Cotidiano|m|Presente em grandes cidades, passando por trilhos e túneis subterrâneos, qual meio de transporte coletivo é esse?|Metrô|Metro
+Cotidiano|f|Preso ao pulso para mostrar as horas e os minutos, qual acessório é esse?|Relógio|Relogio
+Cotidiano|f|Feita logo depois de acordar, geralmente com pão, queijo e leite, qual é a primeira refeição do dia?|Café da manhã|Cafe da manha;Desjejum
+Cotidiano|f|De lâmina afiada, qual utensílio de cozinha serve para cortar legumes e carnes?|Faca|
+Cotidiano|f|Em qual mês do ano os brasileiros montam a árvore e comemoram o Natal?|Dezembro|
+Cotidiano|f|Equipado com pia e fogão, qual cômodo da casa é o lugar onde preparamos as refeições?|Cozinha|
+Cotidiano|f|Logo depois da sexta-feira e antes do domingo, qual dia da semana aparece?|Sábado|Sabado
+Cotidiano|m|Com foto e número, qual documento o brasileiro usa para se identificar, chamado também de carteira de identidade?|RG|Registro Geral
+Cotidiano|f|Formado por um cabo e cerdas, qual objeto usamos todos os dias na higiene bucal?|Escova de dentes|Escova;Escova dental
+Cotidiano|f|Em barra ou líquido, usado com água para limpar as mãos, qual produto de higiene é esse?|Sabonete|Sabão;Sabao
+Cotidiano|m|Criado pelo Banco Central, qual meio de pagamento instantâneo permite transferir dinheiro na hora pelo celular?|Pix|PIX
+Cotidiano|f|Movido a pedal e muito usado para passeios e exercício, qual veículo de duas rodas é esse?|Bicicleta|Bike
+Cotidiano|f|Em qual comemoração as pessoas cantam parabéns e sopram as velinhas de um bolo?|Aniversário|Aniversario
+Cotidiano|d|Com resistências no interior, qual eletrodoméstico pequeno deixa o pão fatiado quentinho e crocante?|Torradeira|Tostadeira
+
+Conhecimentos gerais|f|Herdado da colonização europeia, qual idioma é oficialmente falado no Brasil?|Português|Portugues
+Conhecimentos gerais|f|Substituindo o cruzeiro em 1994, qual é o nome da moeda oficial usada hoje no Brasil?|Real|
+Conhecimentos gerais|f|Localizado na região Norte e com capital em Manaus, qual é o maior estado brasileiro em área?|Amazonas|
+Conhecimentos gerais|f|Ao misturar tinta azul com tinta amarela, qual cor se obtém?|Verde|
+Conhecimentos gerais|m|Pintor de Guernica e um dos criadores do cubismo, qual artista espanhol é esse?|Pablo Picasso|Picasso
+Conhecimentos gerais|f|Pintor da Mona Lisa e de A Última Ceia, qual gênio italiano do Renascimento é esse?|Leonardo da Vinci|Da Vinci;Leonardo
+Conhecimentos gerais|m|Criador do detetive Sherlock Holmes e do seu fiel parceiro, o doutor Watson, qual escritor britânico é esse?|Arthur Conan Doyle|Conan Doyle
+Conhecimentos gerais|f|Com três lados e três ângulos, qual figura geométrica é essa?|Triângulo|Triangulo
+Conhecimentos gerais|f|Dividido em Antigo e Novo Testamento, qual livro sagrado do cristianismo é esse?|Bíblia|Biblia
+Conhecimentos gerais|f|Multiplicando nove por nove, qual é o resultado?|81|Oitenta e um
+Conhecimentos gerais|m|Criado a partir do testamento de um inventor da dinamite, qual prêmio reconhece feitos em física, química, medicina e literatura?|Prêmio Nobel|Nobel;Premio Nobel
+Conhecimentos gerais|f|Com uma perna só, gorro vermelho e cachimbo, qual personagem do folclore brasileiro é um menino travesso?|Saci|Saci-Pererê;Saci Perere;Saci Pererê
+Conhecimentos gerais|m|Vivendo nas águas dos rios, com corpo de mulher e cauda de peixe, qual personagem do folclore brasileiro é essa?|Iara|Mãe d'Água;Mae d'agua;Uiara;Sereia
+Conhecimentos gerais|d|Depois de ver uma maçã cair de uma árvore, qual cientista inglês teria formulado a lei da gravidade, segundo a lenda?|Isaac Newton|Newton
+Conhecimentos gerais|f|Na contagem natural, que número vem logo depois do noventa e nove?|100|Cem
+Conhecimentos gerais|m|Reunindo o Sol, oito planetas e os demais corpos que giram ao redor dele, qual é o nome do conjunto onde vivemos?|Sistema Solar|Sistema solar
