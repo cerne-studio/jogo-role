@@ -56,7 +56,7 @@ for (let i = 1; i < 4; i++) ok(!(await rpc(us[i], 'entrar_sala', { p_codigo: c.d
 const porId = Object.fromEntries(us.map((u) => [u.id, u]))
 
 const cats = await rpc(us[0], 'respostas_categorias')
-ok(Array.isArray(cats.data) && cats.data.length === 13, 'categorias: ' + (cats.data?.length ?? cats.erro))
+ok(Array.isArray(cats.data) && cats.data.length === 14, 'categorias (13 + Rolê 18+): ' + (cats.data?.length ?? cats.erro))
 
 // segurança: tabelas privadas e funções internas
 for (const t of ['respostas_perguntas', 'respostas_sala']) {
