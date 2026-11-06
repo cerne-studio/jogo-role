@@ -223,3 +223,220 @@ Conhecimentos gerais|m|Vivendo nas águas dos rios, com corpo de mulher e cauda 
 Conhecimentos gerais|d|Depois de ver uma maçã cair de uma árvore, qual cientista inglês teria formulado a lei da gravidade, segundo a lenda?|Isaac Newton|Newton
 Conhecimentos gerais|f|Na contagem natural, que número vem logo depois do noventa e nove?|100|Cem
 Conhecimentos gerais|m|Reunindo o Sol, oito planetas e os demais corpos que giram ao redor dele, qual é o nome do conjunto onde vivemos?|Sistema Solar|Sistema solar
+
+# --- Leva 2 (05/11): mais perguntas, nível difícil e categoria "Rolê 18+" (fica fora de "Todas"; só entra se o host marcar) ---
+Animais e natureza|f|Qual mamífero australiano que bota ovos tem bico parecido com o de um pato e cauda de castor?|Ornitorrinco|
+Animais e natureza|f|Qual ave colorida da Amazônia, de bico grande e curvo, é famosa por repetir palavras que ouve das pessoas?|Papagaio|Louro
+Animais e natureza|f|Qual animal marinho tem oito braços e solta uma nuvem de tinta escura para fugir dos predadores?|Polvo|
+Animais e natureza|f|Qual animal de pescoço comprido é o mais alto do mundo e come folhas no topo das árvores?|Girafa|
+Animais e natureza|f|Qual réptil gigante de mandíbula cheia de dentes vive nos rios e é parente próximo dos jacarés?|Crocodilo|
+Animais e natureza|m|Qual planta típica do deserto, coberta de espinhos, guarda água dentro do caule grosso?|Cacto|
+Animais e natureza|m|Qual processo permite que as plantas usem a luz do sol para transformar gás carbônico em alimento?|Fotossíntese|Fotossintese
+Animais e natureza|m|Qual inseto nasce como lagarta, vira casulo e depois ganha asas coloridas e sai voando?|Borboleta|
+Animais e natureza|m|Qual animal de movimentos lentíssimos vive pendurado em árvores da Mata Atlântica e dorme quase o dia inteiro?|Preguiça|Bicho-preguiça;Bicho preguiça
+Animais e natureza|m|Qual é a maior cobra do Brasil, que vive em rios e pântanos e mata as presas por esmagamento?|Sucuri|Anaconda
+Animais e natureza|m|Qual ave pequena, de bico fino e longo, é a única capaz de ficar parada no ar batendo as asas?|Beija-flor|Beija flor;Colibri
+Animais e natureza|m|Qual animal da Ásia, de pelagem preta e branca, passa a maior parte do dia comendo bambu?|Panda|Panda gigante
+Animais e natureza|d|Qual é o maior roedor do mundo, nativo da América do Sul, que adora ficar dentro da água?|Capivara|
+Animais e natureza|d|Qual é o nome do fenômeno em que ursos e outros animais passam o inverno dormindo e gastando pouca energia?|Hibernação|Hibernacao
+Animais e natureza|d|Qual ave marinha tem a maior envergadura de asas do mundo, passando de três metros de ponta a ponta?|Albatroz|
+Animais e natureza|d|Qual é a única classe de animais em que as fêmeas produzem leite para alimentar os filhotes?|Mamíferos|Mamiferos;Mamífero
+Comidas e bebidas|f|Qual queijo italiano de massa branca e elástica é o ingrediente principal da pizza Margherita?|Muçarela|Mussarela;Mozzarella;Mucarela
+Comidas e bebidas|f|Qual comida de rua americana é feita de pão redondo, carne moída, queijo e salada no meio?|Hambúrguer|Hamburguer;Hamburger
+Comidas e bebidas|f|Qual massa italiana em formato de fios compridos costuma ser servida com molho de tomate e carne moída?|Espaguete|Spaghetti;Macarrão;Macarrao
+Comidas e bebidas|m|Qual é o nome do fruto de origem mexicana cujas sementes são a base para fazer chocolate?|Cacau|
+Comidas e bebidas|m|Qual bebida alcoólica brasileira, feita da cana-de-açúcar, é a base da caipirinha?|Cachaça|Cachaca;Pinga
+Comidas e bebidas|m|Qual prato baiano de origem africana é feito de massa de feijão-fradinho frita no azeite de dendê?|Acarajé|Acaraje
+Comidas e bebidas|m|Qual doce português de massa folhada e creme de ovos com canela é famoso no bairro de Belém?|Pastel de nata|Pastel de Belém;Pastel de Belem
+Comidas e bebidas|m|Qual prato típico gaúcho é feito de carne assada na brasa em espetos compridos?|Churrasco|
+Comidas e bebidas|m|Qual fruto brasileiro de polpa roxa, rico em energia, é consumido em tigelas com granola e banana?|Açaí|Acai
+Comidas e bebidas|m|Qual bebida japonesa feita de arroz fermentado é servida quente ou fria em pequenos copos?|Saquê|Saque;Sake
+Comidas e bebidas|d|Qual prato espanhol de arroz amarelado com frutos do mar e açafrão é típico da cidade de Valência?|Paella|Paelha
+Comidas e bebidas|d|Qual especiaria, considerada a mais cara do mundo, é extraída de flores roxas e dá cor amarelada aos pratos?|Açafrão|Acafrao;Saffron
+Comidas e bebidas|d|Qual queijo francês de casca branca e mofada, cremoso por dentro, é muito servido com vinho e geleia?|Brie|Camembert
+Comidas e bebidas|d|Qual é o país de origem da bebida chamada tequila, feita a partir de uma planta chamada agave?|México|Mexico
+Comidas e bebidas|d|Qual é o nome do pão indiano achatado, assado em forno de barro, que acompanha pratos com curry?|Naan|Nan
+Comidas e bebidas|d|Qual é o nome do molho italiano de manjericão, alho, pinhão e azeite, típico da região de Gênova?|Pesto|
+Conhecimentos gerais|f|Qual é o maior planeta do Sistema Solar, famoso pela grande mancha vermelha e pelos muitos satélites?|Júpiter|Jupiter
+Conhecimentos gerais|f|Qual órgão do corpo humano bombeia o sangue para todas as partes do corpo?|Coração|Coracao
+Conhecimentos gerais|m|Qual é a menor unidade da matéria, composta por prótons, nêutrons e elétrons?|Átomo|Atomo
+Conhecimentos gerais|m|Qual instrumento é usado para medir a temperatura do corpo quando alguém está com febre?|Termômetro|Termometro
+Conhecimentos gerais|m|Qual camada de gás envolve a Terra e protege os seres vivos da radiação ultravioleta do Sol?|Ozônio|Ozonio;Camada de ozônio
+Conhecimentos gerais|m|Qual é o nome do processo em que a água líquida vira vapor quando é aquecida até cem graus?|Ebulição|Ebulicao;Evaporação;Evaporacao
+Conhecimentos gerais|m|Qual é a moeda oficial usada em vários países da Europa, como Alemanha, França e Itália?|Euro|
+Conhecimentos gerais|m|Qual é o símbolo químico do ouro, que aparece na tabela periódica com duas letras?|Au|
+Conhecimentos gerais|m|Dentro da matemática, qual é o único número primo que também é par?|Dois|2
+Conhecimentos gerais|d|Qual é a velocidade aproximada da luz no vácuo, em quilômetros por segundo, arredondando para um número redondo?|300 mil|300000;Trezentos mil;300.000
+Conhecimentos gerais|d|Qual é o nome da galáxia em que fica o nosso Sistema Solar?|Via Láctea|Via Lactea
+Conhecimentos gerais|d|Qual elemento químico, de símbolo Fe, é o principal componente do aço?|Ferro|
+Conhecimentos gerais|d|Qual é o menor osso do corpo humano, que fica dentro do ouvido e ajuda na audição?|Estribo|
+Conhecimentos gerais|d|Qual astrônomo polonês defendeu que a Terra e os outros planetas giram em torno do Sol?|Copérnico|Copernico;Nicolau Copérnico
+Conhecimentos gerais|d|Qual é o nome da escala criada por um sismólogo americano para medir a intensidade dos terremotos?|Richter|Escala Richter
+Cotidiano|f|Qual aparelho da cozinha esquenta a comida rapidamente com ondas e tem um prato giratório dentro?|Micro-ondas|Microondas;Micro ondas
+Cotidiano|f|Qual peça de roupa de tecido azul resistente, usada por quase todo mundo, foi popularizada pelos cowboys?|Calça jeans|Jeans;Calca jeans
+Cotidiano|f|Qual objeto toca em um horário programado de manhã para acordar as pessoas e atrapalhar o sono?|Despertador|Alarme;Relógio despertador
+Cotidiano|f|Qual utensílio de cozinha, redondo e com cabo comprido, é usado para fritar ovos e bifes no fogão?|Frigideira|
+Cotidiano|f|Qual meio de transporte, com asas e turbinas, leva passageiros de uma cidade a outra voando?|Avião|Aviao
+Cotidiano|m|Qual objeto com botões serve para trocar o canal da televisão sem precisar levantar do sofá?|Controle remoto|Controle
+Cotidiano|m|Qual é o nome do cômodo da casa onde os carros ficam guardados durante a noite?|Garagem|
+Cotidiano|m|Qual documento é obrigatório para dirigir um carro nas ruas e se tira depois de passar na autoescola?|CNH|Carteira de motorista;Habilitação;Carteira de habilitação;Habilitacao
+Cotidiano|m|Qual aplicativo de transporte, famoso pelos carros pretos, chegou ao Brasil em 2014 e mudou os táxis?|Uber|
+Cotidiano|m|Qual é o nome do imposto anual cobrado de quem tem carro e que costuma pesar no começo do ano?|IPVA|
+Cotidiano|m|Qual benefício é pago aos trabalhadores no fim do ano e equivale a um salário a mais?|Décimo terceiro|13º;Décimo terceiro salário;13 salário;Decimo terceiro
+Cotidiano|m|Qual serviço cobre consultas, exames e internações em hospitais particulares mediante mensalidade?|Plano de saúde|Plano de saude
+Cotidiano|d|Qual é o número do telefone para chamar a polícia militar em caso de emergência no Brasil?|190|Cento e noventa
+Cotidiano|d|Qual é o número do telefone para chamar o corpo de bombeiros no Brasil?|193|Cento e noventa e três
+Cotidiano|d|Qual é o número do telefone para chamar o Samu, a ambulância, em casos de urgência?|192|Cento e noventa e dois
+Cotidiano|d|Qual documento de onze números é pedido em compras, cadastros e declarações de imposto de renda?|CPF|
+Cultura pop|f|Qual herói da DC veste azul e vermelho, usa capa e vem do planeta Krypton?|Superman|Super-Homem;Super Homem
+Cultura pop|f|Qual herói da Marvel foi picado por uma aranha radioativa e lança teias pelos prédios?|Homem-Aranha|Homem Aranha;Spider-Man
+Cultura pop|m|Qual franquia japonesa de monstrinhos tem o Pikachu como mascote e virou jogo, desenho e cartas?|Pokémon|Pokemon
+Cultura pop|m|Qual personagem de anime tem cabelos espetados, vira Super Saiyajin e é protagonista de Dragon Ball?|Goku|Son Goku
+Cultura pop|m|Qual reality brasileiro confina pessoas em uma casa vigiada por câmeras e termina em eliminações no paredão?|Big Brother Brasil|BBB;Big Brother
+Cultura pop|m|Qual jogo de tabuleiro tem como objetivo comprar ruas e cobrar aluguel dos adversários até falirem todos?|Banco Imobiliário|Monopoly;Banco imobiliario
+Cultura pop|m|Qual jogo de tabuleiro tem peças como rei, dama, torre e bispo e termina com um xeque-mate?|Xadrez|
+Cultura pop|m|Qual camundongo, mascote da Disney, usa luvas brancas, shorts vermelhos e tem uma namorada chamada Minnie?|Mickey|Mickey Mouse
+Cultura pop|d|Qual franquia de games tem um herói chamado Link, que salva o reino de Hyrule e uma princesa?|Zelda|The Legend of Zelda
+Cultura pop|d|Qual série animada para adultos mostra um cientista maluco e o seu neto aprendendo a viajar entre dimensões?|Rick and Morty|Rick e Morty
+Cultura pop|d|Qual jogo online reúne cem jogadores em uma ilha, onde só um sobrevive, e ficou famoso pelas danças?|Fortnite|
+Cultura pop|d|Qual gato laranja preguiçoso, que adora lasanha e odeia as segundas-feiras, é personagem de tirinhas famosas?|Garfield|
+Cultura pop|d|Qual criatura verde de orelhas grandes, apelidada de bebê Yoda, virou febre na série The Mandalorian?|Grogu|Baby Yoda
+Curiosidades|f|Quantos dias tem o mês de fevereiro em um ano comum, ou seja, sem ser bissexto?|Vinte e oito|28
+Curiosidades|m|Quantos corações tem o polvo, animal marinho de corpo mole e muitos tentáculos?|Três|3;Tres
+Curiosidades|m|Quantos ossos, aproximadamente, tem o corpo de uma pessoa adulta?|Duzentos e seis|206
+Curiosidades|m|Qual é o nome do medo de altura, que faz as pessoas passarem mal ao olhar do alto de prédios?|Acrofobia|
+Curiosidades|m|Qual é o nome do medo irracional de aranhas, um dos mais comuns entre as pessoas?|Aracnofobia|
+Curiosidades|m|Qual animal de grande porte consegue dormir em pé porque tem um sistema que trava as pernas?|Cavalo|
+Curiosidades|m|Dentro da bandeira do Brasil, qual cor ocupa a forma de losango no meio do retângulo verde?|Amarelo|Amarela
+Curiosidades|d|Qual é o nome da maior ilha do mundo, que pertence à Dinamarca e é quase toda coberta de gelo?|Groenlândia|Groenlandia
+Curiosidades|d|Qual é o nome da cachorrinha russa que foi o primeiro ser vivo a orbitar a Terra, em 1957?|Laika|
+Curiosidades|d|Qual cosmonauta russo foi o primeiro ser humano a viajar pelo espaço, em 1961?|Yuri Gagarin|Gagarin
+Curiosidades|d|Qual astronauta americano foi o primeiro homem a pisar na Lua, na missão Apollo 11?|Neil Armstrong|Armstrong
+Curiosidades|d|Qual é a única fruta que tem as sementes do lado de fora da casca?|Morango|
+Curiosidades|d|Qual é o único país do mundo cuja bandeira não é retangular nem quadrada, com formato de duas pontas?|Nepal|
+Curiosidades|d|Qual é o animal terrestre que vive mais tempo, podendo passar de cento e cinquenta anos?|Tartaruga-gigante|Tartaruga;Tartaruga gigante
+Esportes|f|Qual esporte é jogado com raquete e bola amarela em uma quadra dividida por rede, em torneios como Wimbledon?|Tênis|Tenis
+Esportes|f|Qual esporte brasileiro de origem africana mistura luta, dança e música e é praticado em roda?|Capoeira|
+Esportes|f|Qual esporte tem uma bola laranja e uma cesta pendurada a três metros de altura?|Basquete|Basquetebol
+Esportes|m|Qual piloto brasileiro foi campeão da Fórmula 1 em 1972 e 1974 e dá nome a um autódromo?|Emerson Fittipaldi|Fittipaldi
+Esportes|m|Qual prova do atletismo tem quarenta e dois quilômetros e é a mais longa das corridas olímpicas?|Maratona|
+Esportes|m|Qual esporte usa uma bola oval e é muito popular nos Estados Unidos, com final chamada Super Bowl?|Futebol americano|Football americano
+Esportes|m|Qual esporte é praticado sobre as ondas do mar com uma prancha e teve Gabriel Medina como campeão mundial?|Surfe|Surf
+Esportes|m|Qual esporte de origem inglesa usa taco de madeira e bola dura e é muito popular na Índia e na Austrália?|Críquete|Criquete;Cricket
+Esportes|d|Qual é o nome da maior competição de ciclismo do mundo, disputada em três semanas pelas estradas francesas?|Tour de France|Volta da França
+Esportes|d|Qual judoca carioca conquistou o primeiro ouro do Brasil nos Jogos do Rio, em 2016?|Rafaela Silva|
+Esportes|d|Qual é o nome da prova do atletismo com dez disciplinas, que elege o atleta mais completo?|Decatlo|Decatlon
+Esportes|d|Qual esporte olímpico usa floretes, espadas e sabres em duelos com roupas brancas e máscara?|Esgrima|
+Esportes|d|Quantos jogadores de cada time ficam em quadra durante uma partida de basquete?|Cinco|5
+Futebol|f|Qual jogador argentino, camisa 10, levou o título da Copa do Mundo de 2022?|Messi|Lionel Messi
+Futebol|m|Qual meia brasileiro, camisa 10, foi eleito melhor jogador do mundo em 2007 jogando pelo Milan?|Kaká|Kaka
+Futebol|m|Qual clube espanhol, da capital do país, é o maior vencedor da Liga dos Campeões da Europa?|Real Madrid|
+Futebol|m|Qual seleção goleou o Brasil por sete a um na semifinal da Copa do Mundo de 2014?|Alemanha|
+Futebol|m|Qual clube gaúcho de camisa tricolor tem como grande rival o Internacional?|Grêmio|Gremio
+Futebol|m|Qual é o nome popular do campeonato nacional de futebol de clubes da primeira divisão, disputado em pontos corridos?|Brasileirão|Campeonato Brasileiro;Brasileirao;Serie A;Série A
+Futebol|m|Qual atacante brasileiro, apelidado de Fenômeno, foi artilheiro e campeão mundial em 2002?|Ronaldo|Ronaldo Fenômeno;Ronaldo Fenomeno
+Futebol|d|Qual país foi o primeiro campeão da Copa do Mundo, em 1930, e também o país-sede?|Uruguai|
+Futebol|d|Qual atacante francês marcou três gols na final da Copa de 2022 contra a Argentina?|Mbappé|Mbappe;Kylian Mbappé
+Futebol|d|Qual técnico brasileiro comandou a seleção na conquista da Copa do Mundo de 2002?|Felipão|Luiz Felipe Scolari;Scolari
+Futebol|d|Qual é o nome do prêmio dado ao melhor jogador do mundo pela revista France Football?|Bola de Ouro|Ballon d'Or
+Futebol|d|Qual é o nome do estádio do Barcelona, um dos maiores da Europa, com mais de noventa mil lugares?|Camp Nou|
+Futebol|d|Qual é a duração, em minutos, de uma partida de futebol, sem contar acréscimos e prorrogação?|Noventa|90
+Filmes e séries|f|Qual animação da Disney mostra um peixe-palhaço que atravessa o oceano para encontrar o filho perdido?|Procurando Nemo|Nemo
+Filmes e séries|f|Qual personagem interpretado por Johnny Depp é o pirata atrapalhado da saga Piratas do Caribe?|Jack Sparrow|Capitão Jack Sparrow
+Filmes e séries|f|Qual filme de animação mostra brinquedos que ganham vida, com o caubói Woody e o astronauta Buzz?|Toy Story|
+Filmes e séries|f|Qual equipe de super-heróis da Marvel reúne Homem de Ferro, Capitão América, Thor e Hulk?|Vingadores|Os Vingadores
+Filmes e séries|m|Qual saga de ficção científica tem sabres de luz, a Força e o planeta de areia Tatooine?|Star Wars|Guerra nas Estrelas
+Filmes e séries|m|Qual série de comédia mostra seis amigos que moram em Nova Iorque e se encontram no Central Perk?|Friends|
+Filmes e séries|m|Qual série conta a história de um professor de química que vira fabricante de metanfetamina?|Breaking Bad|
+Filmes e séries|m|Qual filme brasileiro de 2002, passado em uma favela do Rio, foi indicado a quatro Oscars?|Cidade de Deus|
+Filmes e séries|m|Qual série da Netflix mostra a filha mais velha da família Addams, de tranças e humor ácido?|Wandinha|Wednesday
+Filmes e séries|m|Qual diretor americano criou filmes como Tubarão, E.T. e Jurassic Park?|Steven Spielberg|Spielberg
+Filmes e séries|m|Qual animação da Pixar mostra as emoções de uma garota chamada Riley dentro da cabeça dela?|Divertida Mente|Inside Out
+Filmes e séries|d|Qual filme de 1994 conta a vida de um homem de poucas palavras que corre pelos Estados Unidos?|Forrest Gump|
+Filmes e séries|d|Qual ator interpretou o Coringa em O Cavaleiro das Trevas e ganhou o Oscar depois de morrer?|Heath Ledger|
+Filmes e séries|d|Qual filme de 1975, dirigido por Steven Spielberg, assustou o público e afastou muita gente das praias?|Tubarão|Jaws;Tubarao
+Filmes e séries|d|Qual atriz interpretou Katniss Everdeen, a garota que luta em arenas, em Jogos Vorazes?|Jennifer Lawrence|
+Filmes e séries|d|Qual filme dirigido por Christopher Nolan conta a história do físico que criou a bomba atômica?|Oppenheimer|
+Filmes e séries|d|Qual animação da Pixar mostra um ratinho que sonha em ser cozinheiro em um restaurante de Paris?|Ratatouille|
+História|f|Qual período da história, entre os séculos cinco e quinze, teve reis, castelos e cavaleiros na Europa?|Idade Média|Idade Media;Medieval
+História|f|Qual povo antigo criou os Jogos Olímpicos em homenagem ao deus Zeus, na cidade de Olímpia?|Gregos|Os gregos
+História|f|Qual era o nome dos guerreiros do Japão antigo que seguiam um código de honra e lutavam com katana?|Samurais|Samurai
+História|f|Qual era o nome dos lutadores da Roma Antiga que enfrentavam feras e outros homens em arenas?|Gladiadores|Gladiador
+História|f|Em que ano o ser humano pisou na Lua pela primeira vez, na missão Apollo 11?|1969|
+História|m|Qual guerra aconteceu entre 1914 e 1918 e foi chamada de Grande Guerra antes da Segunda?|Primeira Guerra Mundial|Primeira Guerra;I Guerra Mundial
+História|m|Qual líder alemão comandou o nazismo e provocou a Segunda Guerra Mundial com a invasão da Polônia?|Hitler|Adolf Hitler
+História|m|Qual cidade italiana foi soterrada por cinzas depois da erupção do vulcão Vesúvio no ano 79?|Pompeia|
+História|m|Qual civilização andina, com capital em Cusco, construiu a cidade de Machu Picchu nas montanhas?|Incas|Inca
+História|m|Qual gigantesca construção de pedra foi erguida na China ao longo de séculos para proteger o império do norte?|Muralha da China|Grande Muralha;Grande Muralha da China;Muralha
+História|m|Qual foi a primeira capital do Brasil, fundada em 1549, no estado da Bahia?|Salvador|
+História|d|Qual foi o primeiro imperador de Roma, sobrinho-neto de Júlio César, que governou a partir do ano 27 antes de Cristo?|Augusto|Otaviano;Otávio Augusto;Otavio Augusto
+História|d|Qual rei inglês teve seis esposas, rompeu com a Igreja de Roma e fundou a Igreja Anglicana?|Henrique VIII|Henrique 8;Henry VIII
+História|d|Qual tentativa de revolta de 1789, liderada por Tiradentes, queria libertar Minas Gerais do domínio português?|Inconfidência Mineira|Inconfidencia Mineira
+História|d|Qual tratado de 1494 dividiu as terras descobertas no Novo Mundo entre Portugal e Espanha?|Tratado de Tordesilhas|Tordesilhas
+História|d|Qual general de Cartago atravessou os Alpes com elefantes para atacar a cidade de Roma?|Aníbal|Anibal;Hanibal
+História|d|Qual conquistador espanhol derrotou o Império Asteca no início do século dezesseis?|Hernán Cortés|Cortés;Cortes;Hernan Cortes
+Música|f|Qual banda britânica liderada por Mick Jagger é famosa pela música Satisfaction?|Rolling Stones|The Rolling Stones
+Música|f|Qual cantora colombiana, famosa pelos quadris, cantou Waka Waka, o hino da Copa do Mundo de 2010?|Shakira|
+Música|f|Qual gênero musical, de duplas e violas, fala de amor, dor de cotovelo e boteco e domina as rádios do Brasil?|Sertanejo|
+Música|m|Qual cantora britânica ficou famosa com o álbum 21 e a música Rolling in the Deep?|Adele|
+Música|m|Qual banda brasileira liderada por Renato Russo cantou Pais e Filhos e Tempo Perdido?|Legião Urbana|Legiao Urbana
+Música|m|Qual cantor americano, conhecido como Rei do Rock, ficou famoso por rebolar e cantar Hound Dog?|Elvis Presley|Elvis
+Música|m|Qual cantora de Barbados é conhecida pelo hit Umbrella e criou a marca de maquiagem Fenty?|Rihanna|
+Música|m|Qual banda irlandesa liderada por Bono lançou músicas como With or Without You e One?|U2|
+Música|m|Qual compositor, símbolo da Bossa Nova, fez Garota de Ipanema ao lado do poeta Vinicius de Moraes?|Tom Jobim|Antonio Carlos Jobim;Jobim
+Música|m|Qual grupo sueco dos anos setenta ficou famoso por músicas como Dancing Queen e Mamma Mia?|ABBA|Abba
+Música|m|Qual estilo musical, criado em Nova Iorque nos anos setenta, tem rimas faladas sobre bases de DJ?|Hip hop|Rap;Hip-hop
+Música|d|Qual compositor austríaco, considerado criança prodígio, criou obras como A Flauta Mágica e Réquiem?|Mozart|Wolfgang Amadeus Mozart
+Música|d|Qual instrumento de sopro de metal, de som agudo e brilhante, foi o preferido de Louis Armstrong?|Trompete|
+Música|d|Qual cantor mineiro, autor de Maria Maria e Travessia, tinha uma voz inconfundível?|Milton Nascimento|Bituca
+Música|d|Qual instrumento de percussão, de som grave, marca o ritmo da bateria de uma escola de samba?|Surdo|
+Geografia|f|Qual é o maior país do mundo em extensão, que ocupa parte da Europa e da Ásia?|Rússia|Russia
+Geografia|f|Qual é a capital dos Estados Unidos, cidade onde fica a Casa Branca?|Washington|Washington D.C.;Washington DC
+Geografia|f|Qual é o maior oceano do planeta, que cobre mais de um terço da superfície da Terra?|Oceano Pacífico|Pacífico;Pacifico
+Geografia|f|Qual é a cidade mais populosa do Brasil, conhecida como Terra da Garoa?|São Paulo|Sao Paulo
+Geografia|m|Qual é a capital do Japão, uma das maiores metrópoles do mundo?|Tóquio|Toquio;Tokyo
+Geografia|m|Qual é o país asiático mais populoso do mundo ao lado da China, famoso pelo Taj Mahal?|Índia|India
+Geografia|m|Qual é o menor estado do Brasil em extensão territorial, na região Nordeste, com capital Aracaju?|Sergipe|
+Geografia|m|Qual é a capital do Rio Grande do Sul, que fica às margens do lago Guaíba?|Porto Alegre|
+Geografia|m|Qual é a capital do Ceará, famosa pelas praias e pela Praia do Futuro?|Fortaleza|
+Geografia|d|Qual é o rio mais longo do mundo, que atravessa o Egito e desemboca no Mediterrâneo?|Nilo|Rio Nilo
+Geografia|d|Qual é o continente mais frio do planeta, quase todo coberto de gelo e sem população fixa?|Antártida|Antartica;Antártica
+Geografia|d|Qual é a capital da Austrália, muitas vezes confundida com Sydney?|Camberra|Canberra
+Geografia|d|Qual é a capital do Canadá, localizada na província de Ontário, perto da divisa com o Quebec?|Ottawa|Otava
+Geografia|d|Qual país sul-americano, de capital La Paz, não tem saída para o mar e é vizinho do Brasil?|Bolívia|Bolivia
+Geografia|d|Qual é o ponto mais alto do Brasil, na divisa entre o Amazonas e Roraima?|Pico da Neblina|Neblina
+Geografia|d|Qual país asiático, de capital Seul, é famoso pelo K-pop e pelas séries de drama?|Coreia do Sul|Coreia
+Geografia|d|Qual é o rio mais extenso da Europa, que atravessa a Rússia até o Mar Cáspio?|Volga|Rio Volga
+Tecnologia e internet|f|Qual aparelho distribui o sinal de internet sem fio pela casa inteira, ligado por cabo ao provedor?|Roteador|Router
+Tecnologia e internet|m|Qual empresa fundada por Bill Gates criou o sistema operacional Windows?|Microsoft|
+Tecnologia e internet|m|Qual bilionário comprou o Twitter em 2022 e mudou o nome da rede para X?|Elon Musk|Musk
+Tecnologia e internet|m|Qual console de videogame da Sony tem botões com triângulo, círculo, xis e quadrado?|PlayStation|Playstation;PS
+Tecnologia e internet|m|Qual é o nome dado às mensagens enviadas em massa por e-mail sem ninguém ter pedido?|Spam|
+Tecnologia e internet|m|Qual é o nome do golpe digital em que criminosos se passam por empresas para roubar senhas?|Phishing|
+Tecnologia e internet|m|Qual navegador da Microsoft substituiu o Internet Explorer a partir de 2015?|Edge|Microsoft Edge
+Tecnologia e internet|d|Qual é o nome do protocolo de sites seguros que mostra um cadeado ao lado do endereço no navegador?|HTTPS|
+Tecnologia e internet|d|Qual é o nome do conjunto de zeros e uns que os computadores usam para guardar informações?|Código binário|Binário;Binario;Codigo binario
+Tecnologia e internet|d|Qual empresa é dona do Facebook, do Instagram e do WhatsApp?|Meta|
+Tecnologia e internet|d|Qual criptomoeda, criada em 2009 por Satoshi Nakamoto, é a mais famosa do mundo?|Bitcoin|
+Tecnologia e internet|d|Qual é o nome do padrão de cabo usado para ligar pendrives e carregar celulares?|USB|
+Tecnologia e internet|d|Qual rede social profissional, comprada pela Microsoft, serve para currículos e vagas de emprego?|LinkedIn|Linkedin
+Tecnologia e internet|d|Qual jogo de celular lançado em 2016 fez multidões caçarem monstrinhos em lugares reais?|Pokémon GO|Pokemon Go;Pokemon GO
+Rolê 18+|f|Qual bebida alcoólica, feita de uvas fermentadas, é servida em taças e tem as versões tinto, branco e rosé?|Vinho|
+Rolê 18+|f|Qual bebida russa, incolor e muito forte, é a base de drinques como o Moscow Mule?|Vodka|Vodca
+Rolê 18+|f|Qual aplicativo de relacionamentos faz as pessoas deslizarem o dedo para a direita para dar match?|Tinder|
+Rolê 18+|f|Qual é o nome do estado de mal-estar no dia seguinte, com dor de cabeça e enjoo, depois de beber demais?|Ressaca|
+Rolê 18+|m|Qual drinque mexicano, servido com sal na borda do copo, é feito de tequila, limão e licor de laranja?|Margarita|
+Rolê 18+|m|Qual bebida alcoólica escocesa, envelhecida em barris de carvalho, é servida com gelo em copos baixos?|Uísque|Uisque;Whisky;Whiskey
+Rolê 18+|m|Qual espumante francês, produzido em uma região de mesmo nome, é o preferido nos brindes de réveillon?|Champanhe|Champagne
+Rolê 18+|m|Qual é a idade mínima para comprar bebida alcoólica no Brasil, segundo a lei?|Dezoito|18;Dezoito anos;18 anos
+Rolê 18+|m|Qual método de barreira, feito de látex, é o mais usado para evitar gravidez e doenças sexualmente transmissíveis?|Camisinha|Preservativo
+Rolê 18+|m|Qual hormônio sexual masculino, produzido principalmente nos testículos, aumenta a massa muscular e a libido?|Testosterona|
+Rolê 18+|m|Qual destilado de zimbro, de origem holandesa e inglesa, é a base do drinque com água tônica?|Gim|Gin
+Rolê 18+|m|Qual drinque cubano leva rum, hortelã, limão, açúcar e água com gás servido em copo alto?|Mojito|
+Rolê 18+|d|Qual festa de cerveja, realizada todo outono em Munique, atrai milhões de turistas do mundo inteiro?|Oktoberfest|
+Rolê 18+|d|Qual droga legal, vendida em maços, contém nicotina e é a principal causa de câncer de pulmão?|Cigarro|Tabaco
+Rolê 18+|d|Qual cidade holandesa é famosa pelos canais, pelos coffee shops e pelo bairro da luz vermelha?|Amsterdã|Amsterda;Amsterdam
+Rolê 18+|d|Qual mês do ano é dedicado à campanha de prevenção do câncer de mama, com laços cor-de-rosa?|Outubro|
+Rolê 18+|d|Qual mês do ano é dedicado à campanha de prevenção do câncer de próstata, com a cor azul?|Novembro|
+Rolê 18+|d|Qual doença, causada por um vírus que ataca as defesas do corpo, é transmitida por sexo sem proteção?|AIDS|Aids;HIV
+Rolê 18+|d|Qual bebida energética, famosa pelo touro vermelho no logotipo, é misturada com vodka em baladas?|Red Bull|

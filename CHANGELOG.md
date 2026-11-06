@@ -10,6 +10,10 @@ Registro de alterações. Mais recente no topo.
 
 ---
 
+## 2026-11-05 — Claude (2)
+- **Respostas sem Perguntas**: ligado ao nosso Supabase (migrations `db/024`–`026` aplicadas) e banco de perguntas ampliado de 206 pra **421** (+215): todas as categorias ganharam perguntas novas, o nível difícil foi de 13 pra ~94 (antes quase não havia o que sortear) e entrou a categoria **Rolê 18+** (bebida, sexo, vícios, festa). O 18+ fica **fora de "Todas"** (`db/026_respostas_18mais.sql`) e só entra se o host marcar a categoria; o lobby avisa. Perguntas escritas sem a resposta vazando no texto e sem repetir resposta do banco anterior
+- Arquivos: `db/data/respostas-banco.txt`, `db/025_seed_respostas.sql` (regerado), `db/026_respostas_18mais.sql`, `src/components/respostas/RespostasConfig.jsx`
+
 ## 2026-11-05 — Claude
 - **Respostas sem Perguntas (novo jogo, cada um no seu celular)**: a pergunta é secreta; todos veem só a quantidade de palavras e, a cada turno, o jogador da vez revela uma palavra e tenta responder (uma tentativa por turno). Cada palavra escondida vale 1 ponto: quem acerta leva o que sobrou, sem pontos negativos. Se todas forem reveladas, "Ninguém pontuou". Host escolhe 5/10/15/20/outro de perguntas, 15–60 s de resposta e categorias; ordem sorteada e a pergunta seguinte começa por quem vem depois do último turno; 15 s pra escolher palavra (senão revela uma aleatória); reconecta sozinho; no fim, ranking com empate dividindo a vitória e "Nova partida" com os mesmos jogadores
 - Segredo no servidor: a pergunta e a resposta ficam em tabelas sem policy e só a palavra sorteada sai por vez; resposta errada só aparece pros outros no fim da pergunta. Validação no servidor (caixa, acento, pontuação, artigo, variações cadastradas e erro de 1 letra só em nomes longos; "Brasil e Argentina" não vale). Banco com 206 perguntas novas em 13 categorias (62% fáceis, 31% médias, 6% difíceis), todas escritas pra esconder o assunto até revelar várias palavras

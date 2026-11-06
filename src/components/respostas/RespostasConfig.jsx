@@ -120,6 +120,9 @@ export default function RespostasConfig({ config, onChange, souHost }) {
           )
         })}
       </div>
+      <p className="mt-2 text-[11px] leading-snug text-muted">
+        “Todas” não inclui o Rolê 18+ (bebida, sexo e vícios). Pra jogar com ele, marque a categoria.
+      </p>
     </div>
   )
 }
