@@ -1,0 +1,213 @@
+# HINT: banco de cartas ORIGINAL (nada copiado de jogo comercial).
+# Formato: modalidade|tema|dificuldade|resposta1;resposta2;resposta3;resposta4;resposta5|proibida
+# Variantes aceitas num palpite: Resposta/Variante (a primeira é a que aparece pro responsável).
+# modalidade: falar | desenhar | mimica | cantarolar     dificuldade: facil | media | dificil
+# A proibida é a isca: parece caber no tema, mas NÃO é resposta. Dizer a proibida custa -2.
+
+# ---------------- FALAR ----------------
+falar|Frutas vermelhas|facil|Morango;Cereja;Framboesa;Amora;Groselha|Laranja
+falar|Coisas que se vê na praia|facil|Areia;Guarda-sol;Prancha;Canga;Concha|Neve
+falar|Países da América do Sul|facil|Chile;Peru;Uruguai;Bolívia;Paraguai|México
+falar|Esportes jogados com bola|facil|Futebol;Vôlei;Basquete;Handebol;Tênis|Natação
+falar|Cores do arco-íris|facil|Vermelho;Laranja;Verde;Azul;Violeta|Rosa
+falar|Coisas que ficam na cozinha|facil|Fogão;Geladeira;Panela;Colher;Liquidificador|Sofá
+falar|Instrumentos de sopro|media|Flauta;Trompete;Saxofone;Clarinete;Gaita|Violão
+falar|Super-heróis|facil|Batman;Homem-Aranha;Super-Homem;Mulher-Maravilha;Hulk|Darth Vader
+falar|Animais de fazenda|facil|Vaca;Galinha;Porco;Cavalo;Ovelha|Leão
+falar|Comidas típicas do Brasil|media|Feijoada;Moqueca;Acarajé;Baião de dois;Tapioca|Sushi
+falar|Roupas de frio|facil|Casaco;Cachecol;Luva;Gorro;Moletom|Biquíni
+falar|Profissões da área da saúde|media|Médico;Enfermeiro;Dentista;Fisioterapeuta;Nutricionista|Advogado
+falar|Coisas que ficam no banheiro|facil|Chuveiro;Pia;Vaso sanitário;Toalha;Escova de dente|Fogão
+falar|Redes sociais|facil|Instagram;TikTok;Facebook;Twitter/X;LinkedIn|Gmail
+falar|Frutas cítricas|media|Laranja;Limão;Tangerina;Lima;Toranja|Maçã
+falar|Planetas do sistema solar|media|Marte;Vênus;Júpiter;Saturno;Netuno|Lua
+falar|Bebidas quentes|facil|Café;Chá;Chocolate quente;Chimarrão;Capuccino|Limonada
+falar|Doces de festa junina|media|Pé de moleque;Paçoca;Canjica;Pamonha;Maçã do amor|Pizza
+falar|Animais que vivem no mar|facil|Tubarão;Polvo;Baleia;Golfinho;Tartaruga-marinha|Jacaré
+falar|Meios de transporte|facil|Ônibus;Metrô;Avião;Bicicleta;Barco|Escada
+falar|Coisas que cabem numa mochila escolar|facil|Caderno;Estojo;Lápis;Borracha;Régua|Martelo
+falar|Brinquedos clássicos|facil|Boneca;Carrinho;Bola;Pião;Quebra-cabeça|Geladeira
+falar|Capitais de estado do Brasil|media|Brasília;Salvador;Manaus;Recife;Curitiba|Santos
+falar|Instrumentos de percussão|media|Tambor;Pandeiro;Bateria;Triângulo;Cuíca|Violino
+falar|Coisas que aparecem no céu|facil|Sol;Lua;Estrela;Nuvem;Avião|Montanha
+falar|Filmes de animação da Disney|media|Frozen;Moana;Rei Leão;Aladdin;Toy Story|Shrek
+falar|Sobremesas|facil|Pudim;Brigadeiro;Sorvete;Mousse;Bolo|Lasanha
+falar|Ferramentas de obra|facil|Martelo;Chave de fenda;Serrote;Alicate;Furadeira|Vassoura
+falar|Partes do rosto|facil|Olho;Nariz;Boca;Orelha;Sobrancelha|Joelho
+falar|Salgados de boteco|facil|Coxinha;Pastel;Esfiha;Pão de queijo;Torresmo|Bolo de chocolate
+falar|Destinos turísticos do Brasil|media|Rio de Janeiro;Gramado;Fortaleza;Foz do Iguaçu;Bonito|Buenos Aires
+falar|Coisas de quem vai dormir|facil|Cama;Travesseiro;Lençol;Cobertor;Pijama|Capacete
+falar|Times do futebol brasileiro|facil|Flamengo;Corinthians;Palmeiras;Grêmio;Cruzeiro|Real Madrid
+falar|Marcas de refrigerante|facil|Coca-Cola;Guaraná Antarctica;Fanta;Sprite;Pepsi|Nescau
+falar|Eletrodomésticos|media|Micro-ondas;Máquina de lavar;Aspirador;Ventilador;Batedeira|Violão
+falar|Coisas de festa de aniversário|facil|Bolo;Balão;Parabéns;Vela;Brigadeiro|Terço
+falar|Instrumentos de corda|media|Violão;Violino;Guitarra;Harpa;Cavaquinho|Flauta
+falar|Animais que botam ovos|media|Galinha;Pato;Cobra;Tartaruga;Jacaré|Cachorro
+falar|Verbos de movimento|media|Correr;Pular;Andar;Nadar;Dançar|Dormir
+falar|Lendas do folclore brasileiro|media|Saci;Curupira;Iara;Boitatá;Mula sem cabeça|Drácula
+falar|Personagens da Turma da Mônica|media|Mônica;Cebolinha;Cascão;Magali;Chico Bento|Garfield
+falar|Coisas geladas|facil|Sorvete;Picolé;Gelo;Geladeira;Freezer|Fogão
+falar|Lugares pra fazer compras|facil|Shopping;Mercado;Feira;Padaria;Farmácia|Cinema
+falar|Frutas tropicais|facil|Manga;Abacaxi;Mamão;Maracujá;Caju|Maçã
+falar|Peças de computador|media|Teclado;Mouse;Monitor;Processador;Placa de vídeo|Carburador
+falar|Matérias da escola|facil|Matemática;Português;História;Geografia;Biologia|Futebol
+falar|Ritmos brasileiros|media|Samba;Forró;Axé;Sertanejo;Funk|Jazz
+falar|Bichos de estimação|facil|Cachorro;Gato;Hamster;Coelho;Periquito|Leão
+falar|Coisas que cheiram bem|media|Perfume;Flor;Café;Pão quente;Baunilha|Lixo
+falar|Jogos de tabuleiro|media|Banco Imobiliário;Xadrez;Damas;Detetive;War|Truco
+
+# ---------------- DESENHAR ----------------
+desenhar|Coisas que voam|facil|Avião;Pássaro;Balão;Foguete;Helicóptero|Barco
+desenhar|Frutas amarelas|facil|Banana;Limão;Abacaxi;Maracujá;Manga|Morango
+desenhar|Partes de uma casa|facil|Porta;Janela;Telhado;Chaminé;Cerca|Semáforo
+desenhar|Bichos que vivem na água|facil|Peixe;Baleia;Polvo;Tubarão;Caranguejo|Gaivota
+desenhar|Instrumentos musicais|media|Violão;Piano;Tambor;Trompete;Violino|Microfone
+desenhar|Veículos com roda|facil|Carro;Bicicleta;Moto;Ônibus;Patinete|Barco
+desenhar|Coisas de Natal|facil|Árvore de Natal;Presente;Papai Noel;Estrela;Meia|Coelho
+desenhar|Coisas de Páscoa|facil|Ovo de Páscoa;Coelho;Cesta;Cenoura;Chocolate|Peru
+desenhar|Coisas numa mesa de jantar|facil|Prato;Garfo;Copo;Faca;Guardanapo|Panela
+desenhar|Coisas do espaço|facil|Foguete;Lua;Planeta;Estrela;Astronauta|Avião
+desenhar|Fenômenos do clima|media|Sol;Chuva;Nuvem;Raio;Arco-íris|Terremoto
+desenhar|Objetos de escritório|facil|Caneta;Grampeador;Computador;Cadeira;Telefone|Panela
+desenhar|Animais de estimação|facil|Gato;Cachorro;Peixe;Coelho;Tartaruga|Cavalo
+desenhar|Peças de roupa e acessórios|facil|Camisa;Calça;Chapéu;Sapato;Óculos|Colar
+desenhar|Insetos|media|Borboleta;Abelha;Formiga;Joaninha;Mosquito|Aranha
+desenhar|Coisas do mar|media|Barco;Âncora;Concha;Estrela-do-mar;Farol|Palmeira
+desenhar|Móveis de casa|facil|Cama;Mesa;Sofá;Armário;Cadeira|Tapete
+desenhar|Coisas de circo|media|Palhaço;Trapézio;Barraca;Leão;Malabarista|Roda-gigante
+desenhar|Coisas do campo|media|Trator;Celeiro;Espantalho;Cerca;Vaca|Arranha-céu
+desenhar|Símbolos de amor|facil|Coração;Cupido;Flecha;Rosa;Aliança|Caveira
+desenhar|Veículos de emergência|media|Ambulância;Caminhão de bombeiros;Viatura;Helicóptero de resgate;Barco salva-vidas|Táxi
+desenhar|Coisas pontudas|media|Lápis;Agulha;Cacto;Espada;Foguete|Bola
+desenhar|Partes de uma árvore|media|Tronco;Folha;Raiz;Galho;Fruto|Cacto
+desenhar|Esportes de raquete|media|Tênis;Badminton;Pingue-pongue;Squash;Frescobol|Vôlei
+desenhar|Construções|media|Escola;Hospital;Igreja;Castelo;Farol|Ponte
+desenhar|Coisas redondas|facil|Roda;Relógio;Pizza;Lua;Moeda|Dado
+desenhar|Coisas de pirata|media|Navio pirata;Tesouro;Papagaio;Mapa do tesouro;Bandeira pirata|Astronauta
+desenhar|Utensílios de limpeza|facil|Vassoura;Balde;Rodo;Esponja;Aspirador|Martelo
+desenhar|Partes do rosto|facil|Olho;Nariz;Boca;Orelha;Sobrancelha|Cotovelo
+desenhar|Material de pintura|media|Pincel;Tinta;Tela;Paleta;Cavalete|Régua
+desenhar|Coisas de praia|facil|Guarda-sol;Prancha;Bola;Balde de areia;Chinelo|Casaco
+desenhar|Coisas de bebê|facil|Mamadeira;Chupeta;Berço;Fralda;Chocalho|Cachimbo
+desenhar|Esportes na água|media|Natação;Surfe;Remo;Mergulho;Polo aquático|Tênis
+desenhar|Aves|media|Pinguim;Pato;Galinha;Coruja;Pavão|Morcego
+desenhar|Ferramentas de jardim|media|Pá;Regador;Enxada;Cortador de grama;Mangueira|Martelo
+desenhar|Coisas de Halloween|facil|Abóbora;Fantasma;Bruxa;Morcego;Vassoura|Presépio
+desenhar|Coisas de academia|media|Halter;Esteira;Corda de pular;Bicicleta ergométrica;Bola de pilates|Rede de vôlei
+desenhar|Aparelhos de tecnologia|facil|Celular;Notebook;Fone de ouvido;Câmera;Drone|Máquina de escrever
+desenhar|Pré-história|media|T-Rex;Tricerátopo;Mamute;Vulcão;Caverna|Elefante
+desenhar|Flores|facil|Rosa;Girassol;Margarida;Tulipa;Orquídea|Cacto
+desenhar|Utensílios de cozinha|facil|Panela;Frigideira;Garfo;Colher;Ralador|Chave de fenda
+desenhar|Símbolos de sorte|media|Trevo;Ferradura;Dado;Estrela cadente;Pé de coelho|Espelho quebrado
+desenhar|Mundo medieval|media|Castelo;Cavaleiro;Dragão;Espada;Coroa|Foguete
+desenhar|Partes de um carro|media|Volante;Pneu;Farol;Porta;Retrovisor|Hélice
+desenhar|Itens de super-herói|media|Capa;Máscara;Escudo;Martelo;Teia|Varinha mágica
+desenhar|Objetos mágicos|media|Varinha;Chapéu de bruxo;Bola de cristal;Poção;Tapete voador|Espada
+desenhar|Paisagens da natureza|media|Montanha;Rio;Cachoeira;Vulcão;Floresta|Prédio
+desenhar|Lanches|facil|Hambúrguer;Cachorro-quente;Pizza;Sanduíche;Batata frita|Feijoada
+desenhar|Coisas de dentista|media|Dente;Escova de dente;Fio dental;Aparelho;Sorriso|Estetoscópio
+desenhar|Coisas do inverno|facil|Boneco de neve;Gorro;Cachecol;Lareira;Trenó|Biquíni
+
+# ---------------- MÍMICA ----------------
+mimica|Profissões|facil|Médico;Bombeiro;Cozinheiro;Dentista;Cabeleireiro|Papai Noel
+mimica|Esportes|facil|Natação;Boxe;Golfe;Surfe;Basquete|Dança
+mimica|Animais|facil|Macaco;Elefante;Cobra;Pinguim;Canguru|Dinossauro
+mimica|Rotina da manhã|facil|Escovar os dentes;Tomar banho;Tomar café;Acordar;Se vestir|Jantar
+mimica|Ações de cozinha|media|Cortar cebola;Mexer a panela;Bater ovos;Abrir lata;Lavar louça|Passar roupa
+mimica|Tocar instrumento|media|Violão;Bateria;Trompete;Piano;Violino|Dançar
+mimica|Emoções|facil|Alegria;Raiva;Medo;Tristeza;Surpresa|Fome
+mimica|Exercícios de academia|media|Levantar peso;Correr na esteira;Pular corda;Alongar;Remar|Dormir
+mimica|Filmes com animais|media|Tubarão;Rei Leão;King Kong;Procurando Nemo;101 Dálmatas|Titanic
+mimica|Tarefas domésticas|facil|Varrer;Passar roupa;Lavar louça;Regar planta;Estender roupa|Dirigir
+mimica|Coisas que se faz na praia|facil|Nadar;Surfar;Fazer castelo de areia;Passar protetor;Jogar frescobol|Esquiar
+mimica|Super-heróis|facil|Super-Homem;Batman;Homem-Aranha;Hulk;Mulher-Maravilha|Pateta
+mimica|Ações de viagem|media|Arrumar mala;Tirar foto;Pegar táxi;Fazer check-in;Ler mapa|Pagar boleto
+mimica|Animais de fazenda|facil|Vaca;Galinha;Porco;Cavalo;Ovelha|Leão
+mimica|Danças|media|Samba;Forró;Balé;Break;Valsa|Xadrez
+mimica|Trabalho de escritório|media|Digitar;Atender telefone;Imprimir;Carimbar;Grampear|Soldar
+mimica|Coisas do trânsito|media|Dirigir;Frear;Buzinar;Pedir carona;Trocar pneu|Voar
+mimica|Hobbies|facil|Pescar;Pintar;Fotografar;Jardinar;Tocar violão|Trabalhar
+mimica|Famosos reais|dificil|Tarzan;Charlie Chaplin;Elvis Presley;Michael Jackson;Rei Pelé|Mickey Mouse
+mimica|Coisas que bebê faz|facil|Engatinhar;Chorar;Chupar chupeta;Dar tchau;Dormir|Dirigir
+mimica|Consulta médica|media|Medir pressão;Examinar garganta;Tomar injeção;Ouvir o coração;Engessar|Cortar cabelo
+mimica|Lutas e artes marciais|media|Boxe;Judô;Karatê;Capoeira;Esgrima|Golfe
+mimica|Animais selvagens|facil|Leão;Girafa;Gorila;Crocodilo;Tigre|Vaca
+mimica|Coisas de festa|facil|Soprar vela;Cantar parabéns;Abrir presente;Estourar balão;Dançar|Rezar
+mimica|Quando faz frio|facil|Tremer;Esquiar;Fazer boneco de neve;Tomar chocolate quente;Vestir casaco|Tomar sol
+mimica|Quando faz calor|facil|Tomar sol;Se abanar;Tomar sorvete;Nadar;Passar protetor|Esquiar
+mimica|Ações no mercado|media|Empurrar carrinho;Pesar fruta;Passar no caixa;Escolher produto;Embalar compras|Pegar ônibus
+mimica|Rotina da noite|facil|Escovar os dentes;Vestir pijama;Apagar a luz;Ler antes de dormir;Ressonar|Tomar café da manhã
+mimica|Coisas que se faz no celular|facil|Tirar selfie;Digitar mensagem;Atender ligação;Jogar;Ouvir música|Escrever carta
+mimica|Aventuras|media|Escalar;Mergulhar;Pular de paraquedas;Acampar;Andar de balão|Dormir
+mimica|Esportes de raquete|media|Tênis;Pingue-pongue;Badminton;Squash;Frescobol|Golfe
+mimica|Brincadeiras de rua|facil|Pular amarelinha;Soltar pipa;Brincar de pega-pega;Jogar bolinha de gude;Pular corda|Dirigir
+mimica|Receitas|media|Fazer pizza;Fazer pipoca;Fazer café;Fazer bolo;Fazer omelete|Fazer fogueira
+mimica|Cuidados no banheiro|facil|Escovar os dentes;Pentear o cabelo;Tomar banho;Fazer a barba;Lavar as mãos|Cozinhar
+mimica|Gestos|facil|Dar tchau;Aplaudir;Fazer joinha;Mandar beijo;Piscar|Mergulhar
+mimica|Veículos|media|Moto;Helicóptero;Barco a remo;Trem;Bicicleta|Cadeira de balanço
+mimica|Personagens de desenho|media|Chaves;Mônica;Bob Esponja;Pikachu;Homer Simpson|Papai Noel
+mimica|Artistas de circo|media|Malabarista;Palhaço;Equilibrista;Mágico;Domador de leão|Bombeiro
+mimica|Esportes de bola|facil|Futebol;Vôlei;Basquete;Handebol;Tênis|Natação
+mimica|Comendo e bebendo|media|Comer espaguete;Tomar sopa;Comer melancia;Mascar chiclete;Descascar laranja|Dirigir
+mimica|Animais do mar|media|Tubarão;Caranguejo;Polvo;Foca;Tartaruga|Jacaré
+mimica|Cenas românticas|media|Dar flores;Beijar a mão;Pedir em casamento;Dançar valsa;Fazer serenata|Brigar
+mimica|Cenas de sala de aula|facil|Levantar a mão;Escrever no quadro;Fazer prova;Apagar o quadro;Ler em voz alta|Cozinhar
+mimica|Bebidas|facil|Brindar;Tomar café;Beber água;Servir chá;Espremer limão|Fumar
+mimica|Esportes radicais|media|Skate;Paraquedismo;Bungee jump;Rafting;Surfe|Xadrez
+mimica|Ofícios|media|Pedreiro;Pintor;Jardineiro;Eletricista;Sapateiro|Super-Homem
+mimica|Cuidados pessoais|facil|Passar maquiagem;Fazer a barba;Pintar a unha;Secar o cabelo;Passar perfume|Lavar o carro
+mimica|Torcida no estádio|facil|Comemorar gol;Bater palma;Vaiar o juiz;Balançar bandeira;Cantar na arquibancada|Tomar banho
+mimica|Brincadeiras de criança|facil|Andar de bicicleta;Andar de balanço;Escorregar;Subir em árvore;Brincar de esconde-esconde|Votar
+mimica|Sons de bicho|facil|Latir;Miar;Ronronar;Cacarejar;Uivar|Tossir
+
+# ---------------- CANTAROLAR ----------------
+cantarolar|Músicas do Roberto Carlos|media|Detalhes;Emoções;O Calhambeque;Como é Grande o Meu Amor por Você;Jesus Cristo|Evidências
+cantarolar|Músicas da Legião Urbana|media|Pais e Filhos;Tempo Perdido;Eduardo e Mônica;Faroeste Caboclo;Será|Exagerado
+cantarolar|Músicas dos Beatles|media|Yesterday;Let It Be;Hey Jude;Help!;Come Together|Imagine
+cantarolar|Músicas de Natal|facil|Noite Feliz;Jingle Bells;Bate o Sino;Então é Natal;Boas Festas|Parabéns pra Você
+cantarolar|Cantigas infantis|facil|Ciranda Cirandinha;Cai Cai Balão;Escravos de Jó;Pirulito que Bate Bate;O Cravo Brigou com a Rosa|Asa Branca
+cantarolar|Músicas do Queen|media|Bohemian Rhapsody;We Will Rock You;Another One Bites the Dust;Don't Stop Me Now;Somebody to Love|Hotel California
+cantarolar|Músicas do Michael Jackson|media|Billie Jean;Thriller;Beat It;Smooth Criminal;Bad|Like a Virgin
+cantarolar|Músicas dos Titãs|media|Epitáfio;Comida;Sonífera Ilha;Polícia;Flores|Pais e Filhos
+cantarolar|Músicas do Tim Maia|media|Azul da Cor do Mar;Do Leme ao Pontal;Descobridor dos Sete Mares;Gostava Tanto de Você;Primavera|Detalhes
+cantarolar|Músicas do Skank|media|Garota Nacional;Jackie Tequila;Vou Deixar;Resposta;Ainda Gosto Dela|Pescador de Ilusões
+cantarolar|Músicas do Charlie Brown Jr.|media|Zóio de Lula;Só os Loucos Sabem;Lugar ao Sol;Proibida pra Mim;Dias de Luta, Dias de Glória|Tempo Perdido
+cantarolar|Músicas da Anitta|facil|Envolver;Vai Malandra;Girl from Rio;Show das Poderosas;Bang|Dona de Mim
+cantarolar|Músicas do Djavan|dificil|Oceano;Sina;Se;Faltando um Pedaço;Esquinas|Águas de Março
+cantarolar|Bossa nova|media|Garota de Ipanema;Chega de Saudade;Corcovado;Desafinado;Wave|Asa Branca
+cantarolar|Músicas do Luiz Gonzaga|media|Asa Branca;Baião;Qui Nem Jiló;Olha pro Céu;Vozes da Seca|Faroeste Caboclo
+cantarolar|Músicas do Cazuza|media|Exagerado;Codinome Beija-Flor;O Tempo Não Para;Ideologia;Brasil|Pais e Filhos
+cantarolar|Músicas dos Mamonas Assassinas|facil|Pelados em Santos;Vira-Vira;Robocop Gay;1406;Lá Vem o Alemão|Eduardo e Mônica
+cantarolar|Músicas da Ivete Sangalo|media|Sorte Grande;Festa;Abalou;Na Base do Beijo;Quando a Chuva Passar|Evidências
+cantarolar|Músicas dos Paralamas do Sucesso|media|Alagados;Meu Erro;Lourinha Bombril;Vital e Sua Moto;Uma Brasileira|Garota Nacional
+cantarolar|Sertanejo clássico|media|Evidências;Fio de Cabelo;Pense em Mim;Boate Azul;É o Amor|Garota de Ipanema
+cantarolar|Músicas de filmes da Disney|facil|Let It Go;Hakuna Matata;Can You Feel the Love Tonight;A Whole New World;How Far I'll Go|My Heart Will Go On
+cantarolar|Músicas do ABBA|media|Dancing Queen;Mamma Mia;Waterloo;Fernando;Gimme Gimme Gimme|Yesterday
+cantarolar|Músicas do Elvis Presley|media|Love Me Tender;Jailhouse Rock;Can't Help Falling in Love;Suspicious Minds;Hound Dog|Rock Around the Clock
+cantarolar|Músicas de festa junina|facil|Pula Fogueira;Olha pro Céu;Capelinha de Melão;Esperando na Janela;Chegou a Hora da Fogueira|Noite Feliz
+cantarolar|Músicas do Raul Seixas|media|Maluco Beleza;Sociedade Alternativa;Gita;Metamorfose Ambulante;Ouro de Tolo|Faroeste Caboclo
+cantarolar|Músicas do Gilberto Gil|media|Aquele Abraço;Andar com Fé;Realce;Domingo no Parque;Expresso 2222|Asa Branca
+cantarolar|Músicas da Beyoncé|media|Halo;Crazy in Love;Single Ladies;Irreplaceable;Formation|Umbrella
+cantarolar|Músicas da Rihanna|media|Umbrella;Diamonds;We Found Love;Work;Only Girl|Halo
+cantarolar|Músicas do Coldplay|media|Yellow;Viva la Vida;Fix You;Clocks;The Scientist|Wonderwall
+cantarolar|Músicas do Oasis|media|Wonderwall;Don't Look Back in Anger;Champagne Supernova;Live Forever;Supersonic|Yellow
+cantarolar|Músicas do Nirvana|media|Smells Like Teen Spirit;Come as You Are;Lithium;Heart-Shaped Box;All Apologies|Creep
+cantarolar|Músicas da Madonna|media|Like a Prayer;Vogue;Material Girl;La Isla Bonita;Holiday|Toxic
+cantarolar|Músicas da Britney Spears|media|Toxic;...Baby One More Time;Oops!... I Did It Again;Gimme More;Stronger|Vogue
+cantarolar|Músicas do Bruno Mars|facil|Uptown Funk;Just the Way You Are;Grenade;Locked Out of Heaven;The Lazy Song|Shape of You
+cantarolar|Músicas do Ed Sheeran|facil|Shape of You;Perfect;Thinking Out Loud;Photograph;Castle on the Hill|Grenade
+cantarolar|Músicas da Taylor Swift|facil|Shake It Off;Blank Space;Love Story;Anti-Hero;Bad Blood|Rolling in the Deep
+cantarolar|Músicas da Adele|facil|Hello;Someone Like You;Rolling in the Deep;Skyfall;Easy on Me|Shake It Off
+cantarolar|Músicas que animam qualquer festa|facil|Parabéns pra Você;Ai Se Eu Te Pego;Macarena;Lepo Lepo;Aquarela|Noite Feliz
+cantarolar|Rock brasileiro dos anos 80|media|Inútil;Bete Balanço;Óculos;Pro Dia Nascer Feliz;Selvagem|Garota Nacional
+cantarolar|Samba clássico|media|Aquarela do Brasil;Mas que Nada;Deixa a Vida Me Levar;Trem das Onze;Alvorada|Detalhes
+cantarolar|Músicas de trilha de filme|media|My Heart Will Go On;Eye of the Tiger;I Will Always Love You;Gonna Fly Now;Circle of Life|Evidências
+cantarolar|Hits dos anos 80|media|Take On Me;Africa;Girls Just Want to Have Fun;Livin' on a Prayer;Sweet Child o' Mine|Smells Like Teen Spirit
+cantarolar|Músicas da Marisa Monte|dificil|Ainda Lembro;Amor I Love You;Beija Eu;Ainda Bem;Segue o Seco|Pais e Filhos
+cantarolar|Hinos e marchas|media|Hino Nacional Brasileiro;Hino da Independência;Marcha Soldado;Ode à Alegria;Marcha Nupcial|Parabéns pra Você
+cantarolar|Músicas com bicho|facil|Boi da Cara Preta;Baby Shark;Eye of the Tiger;Atirei o Pau no Gato;Sapo Cururu|Ciranda Cirandinha
+cantarolar|Rap internacional|media|Lose Yourself;In da Club;Empire State of Mind;Gangsta's Paradise;Stan|Billie Jean
+cantarolar|Músicas da Pitty|media|Máscara;Admirável Chip Novo;Na Minha Pele;Me Adora;Equalize|Zóio de Lula
+cantarolar|Músicas do Bob Marley|media|One Love;Three Little Birds;No Woman No Cry;Redemption Song;Is This Love|Imagine
+cantarolar|Músicas do Frank Sinatra|media|My Way;New York New York;Fly Me to the Moon;Strangers in the Night;Come Fly with Me|Can't Help Falling in Love
+cantarolar|Músicas do Jota Quest|media|Dias Melhores;Fácil;Do Seu Lado;Encontrar Alguém;Oxigênio|Tempo Perdido
