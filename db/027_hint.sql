@@ -1206,7 +1206,9 @@ set search_path = public
 as $$
   select coalesce(
     (select now() - p.visto > interval '45 seconds' from hint_presenca p join salas s on s.id = p.sala_id and s.host_id = p.user_id where p.sala_id = p_sala_id),
-    true)
+    -- sem batimento do host ainda: usa a última atividade da sala
+    (select now() - s.atualizada_em > interval '45 seconds' from salas s where s.id = p_sala_id),
+    false)
 $$;
 
 create or replace function hint_transferir_host(p_sala_id uuid, p_novo uuid)
