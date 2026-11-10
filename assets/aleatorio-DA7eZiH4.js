@@ -1,0 +1,1 @@
+function o(a){const t=[...a];for(let r=t.length-1;r>0;r--){const n=Math.floor(Math.random()*(r+1));[t[r],t[n]]=[t[n],t[r]]}return t}function e(a){return a[Math.floor(Math.random()*a.length)]}function i(a=[200,80,200]){try{typeof navigator<"u"&&navigator.vibrate&&navigator.vibrate(a)}catch{}}export{o as e,e as s,i as v};
