@@ -10,6 +10,10 @@ Registro de alterações. Mais recente no topo.
 
 ---
 
+## 2026-11-09 — Claude (2)
+- **Capas do HINT e do Respostas sem Perguntas**: mesmo estilo das outras (fundo facetado de uma cor, formas chapadas, faíscas amarelas), 768x512 `.webp`. HINT: roda de 5 setores com os ícones das 4 modalidades e lâmpada no miolo (âmbar). Respostas: cartão com palavras reveladas/escondidas e balão com "?" (ciano). Aparecem na Home e no topo das telas de sala dos dois jogos
+- Arquivos: `src/assets/role/capa-hint.webp`, `capa-respostas.webp`, `src/assets/role/index.js`, `scripts/gerar-capas-hint-respostas.mjs` (gera as duas; precisa de `npm i --no-save sharp`), `HintGame.jsx`, `RespostasGame.jsx`
+
 ## 2026-11-09 — Claude
 - **HINT (novo jogo, cada um no seu celular, 4 a 12 jogadores)**: duas equipes, roda de 5 setores com 3 cartas que gira a cada turno (setores 1 e 3 dão +1, carta que chega no setor 4 é obrigatória), 4 modalidades (Falar, Desenhar, Mímica, Cantarolar), 5 respostas + 1 proibida por carta, cronômetro do servidor (60/90/120 s), pontuação (+1 acerto, -2 se disser a proibida, palpite do adversário em 15 s: +1 pendente, +2 proibida, -1 errado), reta final (adversário escolhe a carta; obrigatória tem prioridade), vitória na meta (10/15/20/30) com desempate por turnos extras, regras configuráveis, "Nova partida" no mesmo grupo
 - **Quadro de desenho multijogador**: o desenhista manda traços em lote (coordenadas 0..1), todo mundo da sala vê em tempo real (realtime avisa, busca incremental traz, polling a cada 1,5 s garante) e quem recarrega a página reconstrói o quadro do servidor

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import ExitButton from '../core/ExitButton.jsx'
+import { CAPAS } from '../../assets/role/index.js'
 import CriarOuEntrarSala from '../sala/CriarOuEntrarSala.jsx'
 import SalaLobby from '../sala/SalaLobby.jsx'
 import useJogadorAtual from '../sala/useJogadorAtual.js'
@@ -74,7 +75,7 @@ export default function RespostasGame({ onBack }) {
   if (erroSessao) return <TelaMensagem mensagem={erroSessao} onExit={sair} />
 
   if (!salaInfo) {
-    return <CriarOuEntrarSala jogo={JOGO} onEntrou={setSalaInfo} onExit={sair} />
+    return <CriarOuEntrarSala capa={CAPAS.respostas} jogo={JOGO} onEntrou={setSalaInfo} onExit={sair} />
   }
 
   if (!sala) return <TelaMensagem mensagem="Entrando na sala..." onExit={sair} />
@@ -84,6 +85,7 @@ export default function RespostasGame({ onBack }) {
   if (sala.status === 'lobby') {
     return (
       <SalaLobby
+        capa={CAPAS.respostas}
         codigo={salaInfo.codigo}
         jogadores={jogadores}
         souHost={souHost}

@@ -13,15 +13,17 @@ import quemsoueu from './capa-quemsoueu.webp'
 import nota from './capa-nota.webp'
 import palpite from './capa-palpite.webp'
 import carreira from './capa-nba.webp'
+import hint from './capa-hint.webp'
+import respostas from './capa-respostas.webp'
 import personagemImpostor from './personagem-impostor.webp'
 import personagemVaca from './personagem-vaca.webp'
 
 export const LOGO = logo
-export const CAPAS = { draft, impostor, manada, themind, mimica, pdf, resistencia, tabu, papelitos, quemsoueu, nota, palpite, carreira }
+export const CAPAS = { draft, impostor, manada, themind, mimica, pdf, resistencia, tabu, papelitos, quemsoueu, nota, palpite, carreira, hint, respostas }
 
 // Onde cortar quando a capa vira faixa larga (3:1): mantém o assunto principal visível
 export const FOCOS = {
   draft: '78% 50%', impostor: '50% 45%', manada: '50% 40%', themind: '50% 50%', mimica: '50% 45%', pdf: '50% 45%', resistencia: '50% 62%',
-  tabu: '68% 28%', papelitos: '50% 38%', quemsoueu: '45% 32%', nota: '50% 62%', palpite: '58% 45%', carreira: '45% 62%',
+  tabu: '68% 28%', papelitos: '50% 38%', quemsoueu: '45% 32%', nota: '50% 62%', palpite: '58% 45%', carreira: '45% 62%', hint: '50% 50%', respostas: '50% 45%',
 }
 export const PERSONAGENS = { impostor: personagemImpostor, vaca: personagemVaca }
