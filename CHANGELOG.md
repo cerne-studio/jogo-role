@@ -10,6 +10,14 @@ Registro de alterações. Mais recente no topo.
 
 ---
 
+## 2026-11-09 — Claude
+- **HINT (novo jogo, cada um no seu celular, 4 a 12 jogadores)**: duas equipes, roda de 5 setores com 3 cartas que gira a cada turno (setores 1 e 3 dão +1, carta que chega no setor 4 é obrigatória), 4 modalidades (Falar, Desenhar, Mímica, Cantarolar), 5 respostas + 1 proibida por carta, cronômetro do servidor (60/90/120 s), pontuação (+1 acerto, -2 se disser a proibida, palpite do adversário em 15 s: +1 pendente, +2 proibida, -1 errado), reta final (adversário escolhe a carta; obrigatória tem prioridade), vitória na meta (10/15/20/30) com desempate por turnos extras, regras configuráveis, "Nova partida" no mesmo grupo
+- **Quadro de desenho multijogador**: o desenhista manda traços em lote (coordenadas 0..1), todo mundo da sala vê em tempo real (realtime avisa, busca incremental traz, polling a cada 1,5 s garante) e quem recarrega a página reconstrói o quadro do servidor
+- **Privacidade no servidor**: a carta completa só existe na tabela `hint_privado` (RLS: só o responsável lê); o estado público da sala só tem tema e modalidade; as respostas só viram públicas no resultado do turno. Pontos são calculados só nas funções do banco. O host não é ponto único de falha: qualquer celular avança prazos e, sem batimento do host há 45 s, qualquer jogador assume o comando
+- **200 cartas originais** (50 por modalidade) em `db/data/hint-cartas.txt`; `node scripts/gerar-seed-hint.mjs` valida e gera `db/028_seed_hint.sql`
+- **Precisa aplicar no SQL Editor do Supabase, nesta ordem**: `db/027_hint.sql` e depois `db/028_seed_hint.sql` (já aplicados no projeto de produção). Testes: `node --env-file=.env scripts/e2e-hint.mjs` (67 checagens com 6 sessões, inclui realtime do quadro e reconexão) e `db/tests/hint-sql.sql` (33 checagens de prazos, obrigatória, reta final, empates, host ausente). `scripts/bots-hint.mjs CODIGO` põe bots numa sala pra testar a interface
+- Arquivos: `src/components/hint/`, `db/027_hint.sql`, `db/028_seed_hint.sql`, `db/data/hint-cartas.txt`, `db/tests/hint-sql.sql`, `scripts/{gerar-seed-hint,e2e-hint,bots-hint}.mjs`, `src/App.jsx`, `src/components/Home.jsx` (só o registro; nenhum outro jogo foi alterado)
+
 ## 2026-11-05 — Claude (2)
 - **Respostas sem Perguntas**: ligado ao nosso Supabase (migrations `db/024`–`026` aplicadas) e banco de perguntas ampliado de 206 pra **421** (+215): todas as categorias ganharam perguntas novas, o nível difícil foi de 13 pra ~94 (antes quase não havia o que sortear) e entrou a categoria **Rolê 18+** (bebida, sexo, vícios, festa). O 18+ fica **fora de "Todas"** (`db/026_respostas_18mais.sql`) e só entra se o host marcar a categoria; o lobby avisa. Perguntas escritas sem a resposta vazando no texto e sem repetir resposta do banco anterior
 - Arquivos: `db/data/respostas-banco.txt`, `db/025_seed_respostas.sql` (regerado), `db/026_respostas_18mais.sql`, `src/components/respostas/RespostasConfig.jsx`
