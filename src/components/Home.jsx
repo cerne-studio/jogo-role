@@ -1,6 +1,6 @@
 import { motion } from 'motion/react'
 import { CAPAS, LOGO as logoRole } from '../assets/role/index.js'
-import { Skull, Users, Theater, Hash, HelpCircle, Ban, Target, StickyNote, Milk, TrendingUp, Brain, Layers, MessageCircleQuestion, Trophy, Smartphone, Share2, User } from 'lucide-react'
+import { Lightbulb, Skull, Users, Theater, Hash, HelpCircle, Ban, Target, StickyNote, Milk, TrendingUp, Brain, Layers, MessageCircleQuestion, Trophy, Smartphone, Share2, User } from 'lucide-react'
 
 // secao: 'celulares' (cada um no seu celular), 'passa' (um celular passando de mão em mão), 'solo'
 const GAMES_BASE = [
@@ -60,6 +60,17 @@ const GAMES_BASE = [
     secao: 'celulares',
     cor: '#22d3ee',
     tag: '2+ jogadores',
+  },
+  {
+    id: 'hint',
+    nome: 'HINT',
+    desc: 'Dois times, uma roda de cartas. Faça seu time adivinhar falando, desenhando, na mímica ou cantarolando.',
+    icon: Lightbulb,
+    minPlayers: 4,
+    multiDispositivo: true,
+    secao: 'celulares',
+    cor: '#facc15',
+    tag: 'Times · 4 a 12',
   },
   {
     id: 'impostor',
